@@ -20,7 +20,7 @@ end
 file:write(serialized)    
 file:close()  
 end  
-if not database:get(id_server..":token") then
+if not io.open("./"..VENOM.."", "r") then
 io.write('\27[0;31m\n ارسل لي توكن البوت الان ↓ :\na⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n\27')
 local token = io.read()
 if token ~= '' then
@@ -29,44 +29,42 @@ if res ~= 200 then
 print('\27[0;31m⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n التوكن غير صحيح تاكد منه ثم ارسله')
 else
 io.write('\27[0;31m تم حفظ التوكن بنجاح \na⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n27[0;39;49m')
-local json = JSON.decode(url)
-database:set(id_server..":token_username",json.result.username)
-database:set(id_server..":token",token)
 end 
 else
 print('\27[0;35m⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n لم يتم حفظ التوكن ارسل لي التوكن الان')
+os.execute('lua '..VENOM..'.lua')
 end 
-os.execute('lua VENOM.lua')
-end
-if not database:get(id_server..":SUDO:ID") then
+
 io.write('\27[0;35m\n ارسل لي ايدي المطور الاساسي ↓ :\na⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n\27[0;33;49m')
 local SUDOID = io.read()
 if SUDOID ~= '' then
 io.write('\27[1;35m تم حفظ ايدي المطور الاساسي \na⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n27[0;39;49m')
-database:set(id_server..":SUDO:ID",SUDOID)
 else
 print('\27[0;31m⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n لم يتم حفظ ايدي المطور الاساسي ارسله مره اخره')
+os.execute('lua '..VENOM..'.lua')
 end 
 
 io.write('\27[1;31m ↓ ارسل معرف المطور الاساسي :\n SEND ID FOR SIDO : \27[0;39;49m')
 local SUDOUSERNAME = io.read():gsub('@','')
 if SUDOUSERNAME ~= '' then
 io.write('\n\27[1;34m تم حفظ معرف المطور :\n\27[0;39;49m')
-database:set(id_server..":SUDO:USERNAME",SUDOUSERNAME)
+local json = JSON.decode(url)
+database:set(whoami..":bot_id",json.result.id)
+database:set(json.result.id..":token",token)
+database:set(json.result.id..":SUDO:ID",SUDOID)
+database:set(json.result.id..":bot_username",json.result.username)
+database:set(json.result.id..":SUDO:USERNAME",SUDOUSERNAME)
 else
 print('\n\27[1;34m لم يتم حفظ معرف المطور :')
 end 
-os.execute('lua VENOM.lua')
+os.execute('lua '..VENOM..'.lua')
 end
 local create_config_auto = function()
 config = {
-botUserName = database:get(id_server..":token_username"),
-token = database:get(id_server..":token"),
-SUDO = database:get(id_server..":SUDO:ID"),
-UserName = database:get(id_server..":SUDO:USERNAME"),
+botid = database:get(whoami..":bot_id"),
  }
 create(config, "./Info.lua")   
-end 
+end
 create_config_auto()
 botUserName = database:get(id_server..":token_username")
 token = database:get(id_server..":token")
@@ -140,6 +138,9 @@ return config
 end 
 _redis = load_redis()  
 --------------------------------------------------------------------------------------------------------------
+bot_id = dofile("./Info.lua").botid
+SUDO = database:get(bot_id..":SUDO:ID")
+token = database:get(bot_id..":token")
 print([[
 
 
@@ -161,18 +162,8 @@ print([[
 > CH › 「@SOURCEVENOM」
 ~> DEVELOPER › @Q_0_ll 
 ]])
-sudos = dofile("./Info.lua") 
-SUDO = tonumber(sudos.SUDO)
-sudo_users = {SUDO}
-bot_id = sudos.token:match("(%d+)")  
-token = sudos.token 
 --- start functions ↓
 --------------------------------------------------------------------------------------------------------------
-io.popen("mkdir File_Bot") 
-io.popen("cd File_Bot && rm -rf commands.lua.1") 
-io.popen("cd File_Bot && rm -rf commands.lua.2") 
-io.popen("cd File_Bot && rm -rf commands.lua.3") 
-io.popen("cd File_Bot && wget https://raw.githubusercontent.com/VENOM197/Venom/main/File_Bot/commands.lua") 
 t = "\27[35m".."\nAll Files Started : \n____________________\n"..'\27[m'
 i = 0
 for v in io.popen('ls File_Bot'):lines() do
@@ -220,7 +211,7 @@ return idbot
 end
 function Sudo(msg) 
 local hash = database:sismember(bot_id..'Sudo:User', msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Bot(msg)  then  
+if hash or SudoBot(msg) or Devban(msg) then  
 return true  
 else  
 return false  
@@ -228,7 +219,7 @@ end
 end
 function moall(msg) 
 local hash = database:sismember(bot_id..'Sudo:User', msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Bot(msg)  then  
+if hash or SudoBot(msg) or Devban(msg) then  
 return true  
 else  
 return false  
@@ -236,7 +227,7 @@ end
 end
 function onall(msg) 
 local hash = database:sismember(bot_id..'Sudo:User', msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Bot(msg)  then  
+if hash or SudoBot(msg) or Devban(msg) then  
 return true  
 else  
 return false  
@@ -244,7 +235,7 @@ end
 end
 function CoSu(msg)
 local hash = database:sismember(bot_id..'CoSu'..msg.chat_id_, msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or Bot(msg)  then   
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) then   
 return true 
 else 
 return false 
@@ -252,7 +243,7 @@ end
 end
 function BasicConstructor(msg)
 local hash = database:sismember(bot_id..'Basic:Constructor'..msg.chat_id_, msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or CoSu(msg) or Bot(msg)  then   
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or CoSu(msg) then   
 return true 
 else 
 return false 
@@ -260,7 +251,7 @@ end
 end
 function Constructor(msg)
 local hash = database:sismember(bot_id..'Constructor'..msg.chat_id_, msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or CoSu(msg) or Bot(msg)  then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or CoSu(msg) then       
 return true    
 else    
 return false    
@@ -268,7 +259,7 @@ end
 end
 function Manager(msg)
 local hash = database:sismember(bot_id..'Manager'..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or CoSu(msg) or Bot(msg)  then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or CoSu(msg) then       
 return true    
 else    
 return false    
@@ -276,7 +267,7 @@ end
 end
 function onall(msg)
 local hash = database:sismember(bot_id..'onall'..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or CoSu(msg) or Bot(msg)  then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or CoSu(msg) then       
 return true    
 else    
 return false    
@@ -284,7 +275,7 @@ end
 end
 function cleaner(msg)
 local hash = database:sismember(bot_id.."banda:MN:TF"..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or CoSu(msg) or Bot(msg)  then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or CoSu(msg) then       
 return true    
 else    
 return false    
@@ -292,7 +283,7 @@ end
 end
 function Mod(msg)
 local hash = database:sismember(bot_id..'Mod:User'..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or CoSu(msg) or Bot(msg)  then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or CoSu(msg) then       
 return true    
 else    
 return false    
@@ -300,7 +291,7 @@ end
 end
 function Special(msg)
 local hash = database:sismember(bot_id..'Special:User'..msg.chat_id_,msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or Mod(msg) or CoSu(msg) or Bot(msg)  then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or Mod(msg) or CoSu(msg) then       
 return true 
 else 
 return false 
@@ -354,7 +345,7 @@ function Rutba(user_id,chat_id)
 if tonumber(user_id) == tonumber(1804133252) then  
 var = 'المبرمج باندا'
 elseif tonumber(user_id) == tonumber(944353237) then
-var = 'المبرمج'
+var = 'المطور'
 elseif tonumber(user_id) == tonumber(1896382059) then
 var = 'مطور السورس'
 elseif tonumber(user_id) == tonumber(1360140225) then
