@@ -18542,8 +18542,6 @@ local Id_Link = Text:match('mp4/(.*)')
 DeleteMessage(data.chat_id_,{[0] = Msg_id})    
 http.request('http://devstorm.ml/yt2.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=mp4&msg=0')
 end
-
-end
 if Text == '/lockwelcm' then
 local Text = '• تم تفعيل الترحيب '
 database:set(bot_id.."Chek:Welcome"..Chat_id,true)  
