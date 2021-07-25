@@ -7,11 +7,6 @@ URL = require('socket.url')
 utf8 = require ('lua-utf8') 
 database = redis.connect('127.0.0.1', 6379) 
 id_server = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
-IP = io.popen("dig +short myip.opendns.com @resolver1.opendns.com"):read('*a'):gsub('[\n\r]+', '')
-Name = io.popen("uname -a | awk '{ name = $2 } END { print name }'"):read('*a'):gsub('[\n\r]+', '')
-Port = io.popen("echo ${SSH_CLIENT} | awk '{ port = $3 } END { print port }'"):read('*a'):gsub('[\n\r]+', '')
-Time = io.popen("date +'%Y/%m/%d %T'"):read('*a'):gsub('[\n\r]+', '')
-whoami = io.popen("whoami"):read('*a'):gsub('[\n\r]+', '') 
 --------------------------------------------------------------------------------------------------------------
 local AutoSet = function() 
 local create = function(data, file, uglify)  
@@ -25,7 +20,7 @@ end
 file:write(serialized)    
 file:close()  
 end  
-if not io.open("./VENOM", "r") then
+if not database:get(id_server..":token") then
 io.write('\27[0;31m\n ارسل لي توكن البوت الان ↓ :\na⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n\27')
 local token = io.read()
 if token ~= '' then
@@ -34,31 +29,30 @@ if res ~= 200 then
 print('\27[0;31m⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n التوكن غير صحيح تاكد منه ثم ارسله')
 else
 io.write('\27[0;31m تم حفظ التوكن بنجاح \na⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n27[0;39;49m')
+local json = JSON.decode(url)
+database:set(id_server..":token_username",json.result.username)
+database:set(id_server..":token",token)
 end 
 else
 print('\27[0;35m⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n لم يتم حفظ التوكن ارسل لي التوكن الان')
-os.execute('lua VENOM.lua')
 end 
-
+os.execute('lua VENOM.lua')
+end
+if not database:get(id_server..":SUDO:ID") then
 io.write('\27[0;35m\n ارسل لي ايدي المطور الاساسي ↓ :\na⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n\27[0;33;49m')
 local SUDOID = io.read()
 if SUDOID ~= '' then
 io.write('\27[1;35m تم حفظ ايدي المطور الاساسي \na⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n27[0;39;49m')
+database:set(id_server..":SUDO:ID",SUDOID)
 else
 print('\27[0;31m⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n لم يتم حفظ ايدي المطور الاساسي ارسله مره اخره')
-os.execute('lua VENOM.lua')
 end 
 
 io.write('\27[1;31m ↓ ارسل معرف المطور الاساسي :\n SEND ID FOR SIDO : \27[0;39;49m')
 local SUDOUSERNAME = io.read():gsub('@','')
 if SUDOUSERNAME ~= '' then
 io.write('\n\27[1;34m تم حفظ معرف المطور :\n\27[0;39;49m')
-local json = JSON.decode(url)
-database:set(whoami..":bot_id",json.result.id)
-database:set(json.result.id..":token",token)
-database:set(json.result.id..":SUDO:ID",SUDOID)
-database:set(json.result.id..":bot_username",json.result.username)
-database:set(json.result.id..":SUDO:USERNAME",SUDOUSERNAME)
+database:set(id_server..":SUDO:USERNAME",SUDOUSERNAME)
 else
 print('\n\27[1;34m لم يتم حفظ معرف المطور :')
 end 
@@ -66,10 +60,13 @@ os.execute('lua VENOM.lua')
 end
 local create_config_auto = function()
 config = {
-botid = database:get(whoami..":bot_id"),
+botUserName = database:get(id_server..":token_username"),
+token = database:get(id_server..":token"),
+SUDO = database:get(id_server..":SUDO:ID"),
+UserName = database:get(id_server..":SUDO:USERNAME"),
  }
 create(config, "./Info.lua")   
-end
+end 
 create_config_auto()
 botUserName = database:get(id_server..":token_username")
 token = database:get(id_server..":token")
@@ -135,15 +132,14 @@ if not f then
 AutoSet()  
 else   
 f:close()  
+database:del(id_server..":token")
+database:del(id_server..":SUDO:ID")
 end  
 local config = loadfile("./Info.lua")() 
 return config 
 end 
 _redis = load_redis()  
 --------------------------------------------------------------------------------------------------------------
-bot_id = dofile("./Info.lua").botid
-SUDO = database:get(bot_id..":SUDO:ID")
-token = database:get(bot_id..":token")
 print([[
 
 
@@ -165,8 +161,18 @@ print([[
 > CH › 「@SOURCEVENOM」
 ~> DEVELOPER › @Q_0_ll 
 ]])
+sudos = dofile("./Info.lua") 
+SUDO = tonumber(sudos.SUDO)
+sudo_users = {SUDO}
+bot_id = sudos.token:match("(%d+)")  
+token = sudos.token 
 --- start functions ↓
 --------------------------------------------------------------------------------------------------------------
+io.popen("mkdir File_Bot") 
+io.popen("cd File_Bot && rm -rf commands.lua.1") 
+io.popen("cd File_Bot && rm -rf commands.lua.2") 
+io.popen("cd File_Bot && rm -rf commands.lua.3") 
+io.popen("cd File_Bot && wget https://raw.githubusercontent.com/VENOM197/Venom/main/File_Bot/commands.lua") 
 t = "\27[35m".."\nAll Files Started : \n____________________\n"..'\27[m'
 i = 0
 for v in io.popen('ls File_Bot'):lines() do
@@ -214,7 +220,7 @@ return idbot
 end
 function Sudo(msg) 
 local hash = database:sismember(bot_id..'Sudo:User', msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) then  
+if hash or SudoBot(msg) or Devban(msg) or Bot(msg)  then  
 return true  
 else  
 return false  
@@ -222,7 +228,7 @@ end
 end
 function moall(msg) 
 local hash = database:sismember(bot_id..'Sudo:User', msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) then  
+if hash or SudoBot(msg) or Devban(msg) or Bot(msg)  then  
 return true  
 else  
 return false  
@@ -230,7 +236,7 @@ end
 end
 function onall(msg) 
 local hash = database:sismember(bot_id..'Sudo:User', msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) then  
+if hash or SudoBot(msg) or Devban(msg) or Bot(msg)  then  
 return true  
 else  
 return false  
@@ -238,7 +244,7 @@ end
 end
 function CoSu(msg)
 local hash = database:sismember(bot_id..'CoSu'..msg.chat_id_, msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) then   
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or Bot(msg)  then   
 return true 
 else 
 return false 
@@ -246,7 +252,7 @@ end
 end
 function BasicConstructor(msg)
 local hash = database:sismember(bot_id..'Basic:Constructor'..msg.chat_id_, msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or CoSu(msg) then   
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or CoSu(msg) or Bot(msg)  then   
 return true 
 else 
 return false 
@@ -254,7 +260,7 @@ end
 end
 function Constructor(msg)
 local hash = database:sismember(bot_id..'Constructor'..msg.chat_id_, msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or CoSu(msg) then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or CoSu(msg) or Bot(msg)  then       
 return true    
 else    
 return false    
@@ -262,7 +268,7 @@ end
 end
 function Manager(msg)
 local hash = database:sismember(bot_id..'Manager'..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or CoSu(msg) then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or CoSu(msg) or Bot(msg)  then       
 return true    
 else    
 return false    
@@ -270,7 +276,7 @@ end
 end
 function onall(msg)
 local hash = database:sismember(bot_id..'onall'..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or CoSu(msg) then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or CoSu(msg) or Bot(msg)  then       
 return true    
 else    
 return false    
@@ -278,7 +284,7 @@ end
 end
 function cleaner(msg)
 local hash = database:sismember(bot_id.."banda:MN:TF"..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or CoSu(msg) then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or CoSu(msg) or Bot(msg)  then       
 return true    
 else    
 return false    
@@ -286,7 +292,7 @@ end
 end
 function Mod(msg)
 local hash = database:sismember(bot_id..'Mod:User'..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or CoSu(msg) then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or CoSu(msg) or Bot(msg)  then       
 return true    
 else    
 return false    
@@ -294,7 +300,7 @@ end
 end
 function Special(msg)
 local hash = database:sismember(bot_id..'Special:User'..msg.chat_id_,msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or Mod(msg) or CoSu(msg) then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or Mod(msg) or CoSu(msg) or Bot(msg)  then       
 return true 
 else 
 return false 
@@ -348,7 +354,7 @@ function Rutba(user_id,chat_id)
 if tonumber(user_id) == tonumber(1804133252) then  
 var = 'المبرمج باندا'
 elseif tonumber(user_id) == tonumber(944353237) then
-var = 'المطور'
+var = 'المبرمج'
 elseif tonumber(user_id) == tonumber(1896382059) then
 var = 'مطور السورس'
 elseif tonumber(user_id) == tonumber(1360140225) then
@@ -1071,7 +1077,7 @@ end
 return false
 end
 if Devban(msg) then
-local bl = '●انت الان المطور الاساسي في البوت \n● سورس فينمو\n ●يمكنك تحكم في البوتات من الكيبورد أسفل \n[تابع جديدنا](t.me/ch_nasa)'
+local bl = '●انت الان المطور الاساسي في البوت \n● سورس فينمو\n ●يمكنك تحكم في البوتات من الكيبورد أسفل \n[تابع جديدنا](t.me/SOURCEVENOM)'
 local keyboard = {
 {'ضع اسم للبوت','معلومات الكيبورد'},
 {'المطور','الاحصائيات'},
@@ -10489,7 +10495,6 @@ kickme = '✘'
 end
 NUM_MSG_MAX = database:hget(bot_id.."flooding:settings:"..msg.chat_id_,"floodmax") or 0
 local text = 
-'\n❲[🅢🅞🅞🅝](t.me/SOURCEVENOM)❳'..
 '\n⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺'..
 '\n 𖥔 اعدادات الجروب كتالي √↓'..
 '\nء⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺'..
@@ -10538,7 +10543,7 @@ local text =
 ' }\n'..' 𖥔  الايدي  ↚ { '..idgp..
 ' }\n'..' 𖥔  الايدي بالصوره  ↚ { '..idph..
 ' }\n'..' 𖥔  الرفع  ↚ { '..setadd..
-' }\n'..' 𖥔  الحظر  ↚ { '..VNOm..' }\n\n 𖥔⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n 𖥔 قناة سورس فينوم↓\n [ ❲[𝐒ΘΘ𝐍](t.me/SOURCEVENOM)❳](t.me/SOURCEVENOM) \n'
+' }\n'..' 𖥔  الحظر  ↚ { '..VNOm..' }\n\n 𖥔⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n 𖥔 قناة سورس فينوم↓\n━━━━━━━\n'
 send(msg.chat_id_, msg.id_,text)     
 end
 if text ==('تثبيت') and msg.reply_to_message_id_ ~= 0 and Mod(msg) then  
@@ -12383,6 +12388,16 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendvideo?chat_id=' .. msg.chat_id_ .. '&video=https://t.me/comxnxp/18&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
+if text == 'احا' then
+local Text = [[
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice=https://t.me/Qtdao/43&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end
 if text == 'كسمهم' then
 local Text = [[
 ]]
@@ -13018,6 +13033,15 @@ end
 send(msg.chat_id_,msg.id_, '[مع الف سلامه يقلبي متجيش تاني..😹💔🎶](t.me/SOURCEVENOM)')
 return false
 end
+if text == 'بوتي' then 
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_," ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[قلب بوتكك من جواا 🥺♥️](t.me/SOURCEVENOM)')
+return false
+end
 
 if text == 'هاي' or text == 'هيي' then
 local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
@@ -13216,7 +13240,7 @@ end
 end
 end
 if text then 
-list = {'++٩٠'}
+list = {'وه'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
 local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
@@ -13224,7 +13248,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[خخخ امال ..😹](t.me/SOURCEVENOM)')
+send(msg.chat_id_,msg.id_, '[بسيفلاح يقميل 😽❤️](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13286,7 +13310,7 @@ end
 end
 end
 if text then 
-list = {'مش'}
+list = {'جيت'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
 local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
@@ -13294,7 +13318,175 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[مش بدودو ..😹👻](t.me/SOURCEVENOM)')
+send(msg.chat_id_,msg.id_, '[لف وارجع تاني م حوار🐭💘](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'شكرا'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[العفو ياروحي..🌚💘](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'حصلخير'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[ايتي كبرت وبقيت بتشبك الكلام..🥺💘](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'متيقي'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[♯علي فين يوسخ..🙂😹 ❅](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'طيب'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[فرح خالتك قريب😹💋💃🏻](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'اه'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[سـلامـتك مـن اه يـروحـي🥺❤️](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'😒'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[اعدل وشكك ونت بتكلمني 😒](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'🌚'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[القمر ده شبهك..🙂♥️](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'خلاص'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[خلصتت روحكك يبعيد😹🚶🏻‍♀💔](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'سي في'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[كفايه شقط يبني سيب حاجه لغيرك 😹👅](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'🙂'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[فرفش ياقمــوص 🙄🔪](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'🙄'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[متـــبصش وتــبحلق لــتقع تــتزحلق 🏄](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'حلو'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[انت الي حلو ياقمر..♥️🦋](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -16212,13 +16404,6 @@ if Text == 'okCaptcha'..data.sender_user_id_ then
 DeleteMessage(Chat_id, {[0] = Msg_id}) 
 return https.request("https://api.telegram.org/bot" .. token .. "/restrictChatMember?chat_id=" .. Chat_id .. "&user_id="..Ok_id .. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")
 end
-if Text == '/hide' then
-local hide = 'تم اخفاء الاوامر'
-https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(hide)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true') 
-https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(hide).."&show_alert=false")
-DeleteMessage(Chat_id,{[0] = msg_idd})
-return false
-end
 if Text == '/help1' then
 if not Mod(data) then
 local notText = '✘ عذرا الاوامر هذه لا تخصك'
@@ -16736,6 +16921,13 @@ keyboard.inline_keyboard = {
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+if Text == '/hide' then
+local hide = 'تم اخفاء الاوامر'
+https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(hide)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true') 
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(hide).."&show_alert=false")
+DeleteMessage(Chat_id, msg_idd)
+return false
 end
 if Text == '/help8' then
 if not Mod(data) then
@@ -17893,13 +18085,13 @@ return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption
 end
 if Text == '/change-siusr' then
 local Teext =[[
-𖢜 W𝙴𝙻𝙲𝙾𝙼𝙴 𝚃𝙾 𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼⇣
+𖢜 𝚆𝙴𝙻𝙲𝙾𝙼𝙴 𝚃𝙾 𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼⇣
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '˹ʙᴀɴᴅᴀ ғᴜᴄᴋ σғғ↺˼',url="t.me/Q_0_ll"},{text = '˹𖢜 𝗔𝗛𝗠𝗘𝗗 ⤶˼ ', url="t.me/AY_AHD"}},
-{{text = '˹ＤＥＶＩＤ༈˼',url="t.me/de_vi_d"},{text = '𓌹 ˹ＤＯＮＧＯＬ¹˼ 𓌺 ', url="t.me/UU_DO_N"}},
-{{text = '˹ᴛᴀᴡᴏsʟ˼',url="t.me/TEAMVENOM1"}}, 
+{{text = '•ʙᴀɴᴅᴀ♪',url="t.me/Q_0_ll"},{text = '•ᴀʜᴍᴀᴅ♪', url="t.me/AY_AHD"}},
+{{text = '•ᴅᴇᴠɪᴅ♪',url="t.me/de_vi_d"},{text = '•ᴅᴏɴɢᴏʟ♪', url="t.me/UU_DO_N"}},
+{{text = '•ᴛᴀᴡᴏsʟ♪',url="t.me/TEAMVENOM1"}}, 
 {{text = '𖥔 مــطــور الــبــوت 𖥔', url="http://t.me/"..sudos.UserName}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -17923,8 +18115,8 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼 2⤶',url="t.me/SOURCEVENOM2"},{text = 'SOURCEVENOM1', url="t.me/SOURCEVENOM1"}},
-{{text = 'SOURCEVENOM3',url="t.me/SOURCEVENOM5"}},
+{{text = '𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼 2⤶',url="t.me/SOURCEVENOM2"},{text = '𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼 1⤶', url="t.me/SOURCEVENOM1"}},
+{{text = '𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼 3⤶',url="t.me/SOURCEVENOM3"}},
 {{text = '𖥔𝙱𝙰𝙲𝙺↵', callback_data="/HHH"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
