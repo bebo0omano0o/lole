@@ -12011,7 +12011,7 @@ end
 send(msg.chat_id_, msg.id_," - تم مسح الردود العامه")
 end
 
-if text == ("الردود العامه") and Devban(msg) then 
+if text == ("الردود العامه") and DevSoFi(msg) then 
 local list = database:smembers(bot_id..'List:Rd:Sudo')
 text = "\n - قائمة الردود العامه \n⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n"
 for k,v in pairs(list) do
@@ -12032,7 +12032,7 @@ db = 'ملف'
 elseif database:get(bot_id.."Add:Rd:Sudo:Audio"..v) then
 db = 'اغنيه'
 end
-text = text..""..k.." >> 「 '..v..' 」  ↚ 「 '..db..' 」\n"
+text = text..""..k.." >> ("..v..") ← {"..db.."}\n"
 end
 if #list == 0 then
 text = " - لا يوجد ردود للمطور"
@@ -12088,51 +12088,51 @@ return false
 end  
 end
 if text and text:match("^(.*)$") then
-if database:get(bot_id..'Set:Rd「'..msg.sender_user_id_..'」:'..msg.chat_id_) == 'true' then
+if database:get(bot_id..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true' then
 send(msg.chat_id_, msg.id_,' - ارسل الرد الذي تريد اضافته')
-database:set(bot_id..'Set:Rd「'..msg.sender_user_id_..'」:'..msg.chat_id_, 'true1')
-database:set(bot_id..'Text:Sudo:Bot「'..msg.sender_user_id_..'」:'..msg.chat_id_, text)
+database:set(bot_id..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_, 'true1')
+database:set(bot_id..'Text:Sudo:Bot'..msg.sender_user_id_..':'..msg.chat_id_, text)
 database:sadd(bot_id..'List:Rd:Sudo', text)
 return false end
 end
 if text and text:match("^(.*)$") then
-if database:get(bot_id..'Set:On「'..msg.sender_user_id_..'」:'..msg.chat_id_) == 'true' then
+if database:get(bot_id..'Set:On'..msg.sender_user_id_..':'..msg.chat_id_) == 'true' then
 send(msg.chat_id_, msg.id_,' - تم ازالة الرد العام')
 list = {"Add:Rd:Sudo:Audio","Add:Rd:Sudo:File","Add:Rd:Sudo:Video","Add:Rd:Sudo:Photo","Add:Rd:Sudo:Text","Add:Rd:Sudo:stekr","Add:Rd:Sudo:vico","Add:Rd:Sudo:Gif"}
 for k,v in pairs(list) do
 database:del(bot_id..v..text)
 end
-database:del(bot_id..'Set:On「'..msg.sender_user_id_..'」:'..msg.chat_id_)
+database:del(bot_id..'Set:On'..msg.sender_user_id_..':'..msg.chat_id_)
 database:srem(bot_id..'List:Rd:Sudo', text)
 return false
 end
 end
-if text == 'اضف رد عام' and Devban(msg) then 
+if text == 'اضف رد عام' and DevSoFi(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
 send(msg.chat_id_, msg.id_,'['..textchuser..']')
 else
-send(msg.chat_id_, msg.id_,' - لا تستطيع استخدام البوت \n -  يرجى الاشتراك بالقناه اولا \n -  اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+send(msg.chat_id_, msg.id_,' - لا تستطيع استخدام البوت \n  - يرجى الاشتراك بالقناه اولا \n  - اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
 end
 return false
 end
 send(msg.chat_id_, msg.id_,' - ارسل الكلمه تريد اضافتها')
-database:set(bot_id..'Set:Rd「'..msg.sender_user_id_..'」:'..msg.chat_id_,true)
+database:set(bot_id..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_,true)
 return false 
 end
-if text == 'مسح رد عام' and Devban(msg) then 
+if text == 'حذف رد عام' and DevSoFi(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
 send(msg.chat_id_, msg.id_,'['..textchuser..']')
 else
-send(msg.chat_id_, msg.id_,' - لا تستطيع استخدام البوت \n -  يرجى الاشتراك بالقناه اولا \n -  اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+send(msg.chat_id_, msg.id_,' - لا تستطيع استخدام البوت \n  - يرجى الاشتراك بالقناه اولا \n  - اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
 end
 return false
 end
-send(msg.chat_id_, msg.id_,' - ارسل الكلمه تريد مسحها')
-database:set(bot_id..'Set:On「'..msg.sender_user_id_..'」:'..msg.chat_id_,true)
+send(msg.chat_id_, msg.id_,' - ارسل الكلمه تريد حذفها')
+database:set(bot_id..'Set:On'..msg.sender_user_id_..':'..msg.chat_id_,true)
 return false 
 end
 if text and not database:get(bot_id..'Reply:Sudo'..msg.chat_id_) then
@@ -14767,7 +14767,7 @@ Msᴀɢ ~ #msgs
 𓄼 ѕᴛᴀ : #stast  ☥
 𓄼 ɪᴅ : #id ‌‌‏⚚
 𓄼 ᴍѕɢ : #msgs 𓆊 
-𓐀 𝑾𝒆𝒍𝒄𝒐??𝒆 𓀃.
+𓐀 𝑾𝒆𝒍𝒄????𝒆 𓀃.
 𓄼 𝗖𝗛 - 「@SOURCEVENOM」 -.
 ]],
 [[
@@ -15205,7 +15205,7 @@ Msᴀɢ ~ #msgs
 ]],
 [[
 ♡ : 𝐼𝐷 𖠀 #id .
-♡ : 𝑈𝑆??𝑅 𖠀 #username .
+♡ : 𝑈𝑆??𝑅 ?? #username .
 ♡ : 𝑀𝑆𝐺𝑆 𖠀 #msgs .
 ♡ : 𝑆𝑇𝐴𝑇𝑆 𖠀 #stast .
 ♡ : 𝐸𝐷𝐼𝑇  𖠀 #edit .
