@@ -12011,7 +12011,7 @@ end
 send(msg.chat_id_, msg.id_," - تم مسح الردود العامه")
 end
 
-if text == ("الردود العامه") and DevSoFi(msg) then 
+if text == ("الردود العامه") and Devban(msg) then 
 local list = database:smembers(bot_id..'List:Rd:Sudo')
 text = "\n - قائمة الردود العامه \n⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n"
 for k,v in pairs(list) do
@@ -12107,7 +12107,7 @@ database:srem(bot_id..'List:Rd:Sudo', text)
 return false
 end
 end
-if text == 'اضف رد عام' and DevSoFi(msg) then 
+if text == 'اضف رد عام' and Devban(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -12121,7 +12121,7 @@ send(msg.chat_id_, msg.id_,' - ارسل الكلمه تريد اضافتها')
 database:set(bot_id..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_,true)
 return false 
 end
-if text == 'حذف رد عام' and DevSoFi(msg) then 
+if text == 'حذف رد عام' and Devban(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -14767,7 +14767,7 @@ Msᴀɢ ~ #msgs
 𓄼 ѕᴛᴀ : #stast  ☥
 𓄼 ɪᴅ : #id ‌‌‏⚚
 𓄼 ᴍѕɢ : #msgs 𓆊 
-𓐀 𝑾𝒆𝒍𝒄????𝒆 𓀃.
+𓐀 𝑾𝒆𝒍𝒄𝒐??𝒆 𓀃.
 𓄼 𝗖𝗛 - 「@SOURCEVENOM」 -.
 ]],
 [[
@@ -15205,7 +15205,7 @@ Msᴀɢ ~ #msgs
 ]],
 [[
 ♡ : 𝐼𝐷 𖠀 #id .
-♡ : 𝑈𝑆??𝑅 ?? #username .
+♡ : 𝑈𝑆??𝑅 𖠀 #username .
 ♡ : 𝑀𝑆𝐺𝑆 𖠀 #msgs .
 ♡ : 𝑆𝑇𝐴𝑇𝑆 𖠀 #stast .
 ♡ : 𝐸𝐷𝐼𝑇  𖠀 #edit .
