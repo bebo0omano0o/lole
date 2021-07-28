@@ -12090,13 +12090,13 @@ photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_
 end
 database:set(bot_id.."Add:Rd:Sudo:Photo"..test, photo_in_group)  
 end
-send(msg.chat_id_, msg.id_,' - تم حفظ الرد')
+send(msg.chat_id_, msg.id_,'- تم حفظ الرد')
 return false  
 end  
 end
 if text and text:match("^(.*)$") then
 if database:get(bot_id..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true' then
-send(msg.chat_id_, msg.id_,' - ارسل الرد الذي تريد اضافته')
+send(msg.chat_id_, msg.id_,'- ارسل الرد الذي تريد اضافته')
 database:set(bot_id..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_, 'true1')
 database:set(bot_id..'Text:Sudo:Bot'..msg.sender_user_id_..':'..msg.chat_id_, text)
 database:sadd(bot_id..'List:Rd:Sudo', text)
@@ -12104,7 +12104,7 @@ return false end
 end
 if text and text:match("^(.*)$") then
 if database:get(bot_id..'Set:On'..msg.sender_user_id_..':'..msg.chat_id_) == 'true' then
-send(msg.chat_id_, msg.id_,' - تم ازالة الرد العام')
+send(msg.chat_id_, msg.id_,'- تم ازالة الرد العام')
 list = {"Add:Rd:Sudo:Audio","Add:Rd:Sudo:File","Add:Rd:Sudo:Video","Add:Rd:Sudo:Photo","Add:Rd:Sudo:Text","Add:Rd:Sudo:stekr","Add:Rd:Sudo:vico","Add:Rd:Sudo:Gif"}
 for k,v in pairs(list) do
 database:del(bot_id..v..text)
@@ -12114,31 +12114,13 @@ database:srem(bot_id..'List:Rd:Sudo', text)
 return false
 end
 end
-if text == 'اضف رد عام' and Devban(msg) then 
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,' - لا تستطيع استخدام البوت \n  - يرجى الاشتراك بالقناه اولا \n  - اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-send(msg.chat_id_, msg.id_,' - ارسل الكلمه تريد اضافتها')
+if text == 'اضف رد عام' and Devban(msg) then    
+send(msg.chat_id_, msg.id_,'- ارسل الكلمه تريد اضافتها')
 database:set(bot_id..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_,true)
 return false 
 end
-if text == 'حذف رد عام' and Devban(msg) then 
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,' - لا تستطيع استخدام البوت \n  - يرجى الاشتراك بالقناه اولا \n  - اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-send(msg.chat_id_, msg.id_,' - ارسل الكلمه تريد حذفها')
+if text == 'حذف رد عام' and Devban(msg) then    
+send(msg.chat_id_, msg.id_,'- ارسل الكلمه تريد حذفها')
 database:set(bot_id..'Set:On'..msg.sender_user_id_..':'..msg.chat_id_,true)
 return false 
 end
@@ -12146,7 +12128,7 @@ if text and not database:get(bot_id..'Reply:Sudo'..msg.chat_id_) then
 if not database:sismember(bot_id..'Spam:Texting'..msg.sender_user_id_,text) then
 local anemi = database:get(bot_id.."Add:Rd:Sudo:Gif"..text)   
 local veico = database:get(bot_id.."Add:Rd:Sudo:vico"..text)   
-local stekr = database:get(bot_id.."Add:Rd:Sudo:stekr"..text)     
+local stekr = database:get(bot_id.."Add:Rd:Sudo:stekr"..text) 
 local text1 = database:get(bot_id.."Add:Rd:Sudo:Text"..text)   
 local photo = database:get(bot_id.."Add:Rd:Sudo:Photo"..text)
 local video = database:get(bot_id.."Add:Rd:Sudo:Video"..text)
@@ -13726,7 +13708,7 @@ end
 local Text = "قم بتأكيد العمليه الان"
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text="اذاعه",callback_data="/opkla"},{text="اذاعه خاص",callback_data="/noay63"}},
+{{text="اذاعه",callback_data="opkla"..msg.sender_user_id_},{text="اذاعه خاص",callback_data="noay63"..msg.sender_user_id_}},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
@@ -14301,7 +14283,7 @@ local List = {
 [[
 ••• ••• ••• ••• ••• ••• ••• 
 ࿕ ¦• 𝙐𝙎𝙀𝙍  ⟿ #username ༆
- ࿕ ¦• 𝙈𝙎??𝙎   ⟿ #msgs ༆
+ ࿕ ¦• 𝙈𝙎𝙂𝙎   ⟿ #msgs ༆
  ࿕ ¦• 𝙂𝙈𝘼𝙎  ⟿ #stast ༆
  ࿕ ¦• 𝙏𝘿 𝙎𝙏𝘼  ⟿ #id ༆
 ••• ••• ••• ••• ••• ••• •••
@@ -20250,7 +20232,7 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
-if Text == '/opkla' then
+if Text == 'opkla'..data.sender_user_id_ then  
 if database:get(bot_id..'Bc:Bots') and not Devban(msg) then 
 send(msg.chat_id_, msg.id_,' - الاذاعه معطله من قبل المطور الاساسي')
 return false
@@ -20263,7 +20245,7 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
-if Text == '/noay63' then
+if Text == 'noay63'..data.sender_user_id_ then  
 if database:get(bot_id..'Bc:Bots') and not Devban(msg) then 
 send(msg.chat_id_, msg.id_,' - الاذاعه معطله من قبل المطور الاساسي')
 return false
