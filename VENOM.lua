@@ -13718,7 +13718,7 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 end
-if text == 'اذاعه' or text == 'قائمه الاذاعه' and SudoBot(msg) then 
+if text=="قائمه الاذاعه" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
 if database:get(bot_id..'Bc:Bots') and not Devban(msg) then 
 send(msg.chat_id_, msg.id_,' - الاذاعه معطله من قبل المطور الاساسي')
 return false
@@ -15159,7 +15159,7 @@ Msᴀɢ ~ #msgs
 • 🦄 | 𝗖𝗛 - 「@SOURCEVENOM」 -
 ]],
 [[
-• △ | 𝑼𝑬𝑺 : #username ‌‌‏⚚
+• △ | ??𝑬𝑺 : #username ‌‌‏⚚
 • ▽ | 𝑺𝑻𝑨 : #stast ☥
 • ⊠ | 𝑰𝑫 : #id ‌‌‏♕
 • ❏ | 𝑴𝑺𝑮 : #msgs 𓆊
