@@ -13726,7 +13726,7 @@ end
 local Text = "قم بتأكيد العمليه الان"
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text="اذاعه",callback_data="opkla"..msg.sender_user_id_},{text="اذاعه خاص",callback_data="noay63"..msg.sender_user_id_}},
+{{text="اذاعه",callback_data="/opkla"},{text="اذاعه خاص",callback_data="/noay63"}},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
@@ -14301,7 +14301,7 @@ local List = {
 [[
 ••• ••• ••• ••• ••• ••• ••• 
 ࿕ ¦• 𝙐𝙎𝙀𝙍  ⟿ #username ༆
- ࿕ ¦• 𝙈𝙎𝙂𝙎   ⟿ #msgs ༆
+ ࿕ ¦• 𝙈𝙎??𝙎   ⟿ #msgs ༆
  ࿕ ¦• 𝙂𝙈𝘼𝙎  ⟿ #stast ༆
  ࿕ ¦• 𝙏𝘿 𝙎𝙏𝘼  ⟿ #id ༆
 ••• ••• ••• ••• ••• ••• •••
@@ -20250,7 +20250,7 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
-if Text == 'opkla'..data.sender_user_id_ then  
+if Text == '/opkla' then
 if database:get(bot_id..'Bc:Bots') and not Devban(msg) then 
 send(msg.chat_id_, msg.id_,' - الاذاعه معطله من قبل المطور الاساسي')
 return false
@@ -20263,7 +20263,7 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
-if Text == 'noay63'..data.sender_user_id_ then  
+if Text == '/noay63' then
 if database:get(bot_id..'Bc:Bots') and not Devban(msg) then 
 send(msg.chat_id_, msg.id_,' - الاذاعه معطله من قبل المطور الاساسي')
 return false
