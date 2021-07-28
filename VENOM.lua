@@ -13711,7 +13711,11 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 end
-if text == 'اذاعه' or text == 'قائمه الاذاعه' and GetChannelMember(msg) then   
+if text == 'اذاعه' or text == 'قائمه الاذاعه' and SudoBot(msg) then   
+if database:get(bot_id..'Bc:Bots') and not Devban(msg) then 
+send(msg.chat_id_, msg.id_,' - الاذاعه معطله من قبل المطور الاساسي')
+return false
+end
 local Text = "قم بتأكيد العمليه الان"
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -13719,6 +13723,7 @@ keyboard.inline_keyboard = {
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
 end
 if text and text:match("^صيح (.*)$") then
 local username = text:match("^صيح (.*)$") 
@@ -15175,7 +15180,7 @@ Msᴀɢ ~ #msgs
 𓄼 ѕᴛᴀ : #stast ☥
 𓄼 ɪᴅ : #id ‌‌‏⚚
 𓄼 ᴍѕɢ : #msgs 𓆊
-𓄼 𝗖𝗛 - 「@SOURCEVENOM」 -
+?? 𝗖𝗛 - 「@SOURCEVENOM」 -
 ]],
 [[
 ‎⿻┊Yor iD 𖠄 #id ٫
