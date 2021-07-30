@@ -16106,18 +16106,29 @@ end
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 end -- Chat_Type = 'GroupBot' 
 end -- end msg 
+tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta) 
+tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(arg,data) 
+local ban = ' ⍟ عدد الادمنيه : '..data.administrator_count_..
+'\n\n ⍟ عدد المطرودين : '..data.kicked_count_..
+'\n\n ⍟ عدد الاعضاء : '..data.member_count_..
+'\n\n ⍟ عدد رسائل الجروب : '..(msg.id_/2097152/0.5)..
+'\n\n ⍟  اسم الجروب : ['..ta.title_..']'
+send(msg.chat_id_, msg.id_, ban) 
+end,nil)
+end,nil)
+end 
 --------------------------------------------------------------------------------------------------------------
 function tdcli_update_callback(data)  -- clback
 if data.ID == "UpdateChannel" then 
 if data.channel_.status_.ID == "ChatMemberStatusKicked" then 
+tdcli_function({ID ="GetChat",chat_id_="-100"..data.chat_id_},function(arg,chat)  
 t = "قام احد المنشئين بطرد البوت من مجموعته\n\n"
-tdcli_function({ID ="GetChat",chat_id_="-100"..data.channel_.id_},function(arg,chat)  
 local NameChat = chat.title_
 t =t.."اسم المجموعه\n"..NameChat
-local IdChat = "-100"..data.channel_.id_
+local IdChat = "-100"..data.chat_id_
 t =t.."\n\nايدي المجموعه\n"..IdChat
 send(SUDO, msg.id_,t)
-database:srem(bot_id..'Chek:Groups','-100'..data.channel_.id_)  
+database:srem(bot_id..'Chek:Groups','-100'..data.chat_id_)  
 end,nil)
 end
 end
