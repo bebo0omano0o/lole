@@ -2744,7 +2744,29 @@ end
 end
 end
 -------------------------------------------------------------------------------------------------------------
-
+if msg.content_.ID == "MessageChatDeleteMember" and tonumber(msg.content_.user_.id_) == tonumber(bot_id) then 
+database:srem(bot_id.."Chek:Groups", msg.chat_id_)
+ tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
+tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,dp)
+ local Name1 = result.first_name_
+local Name1 = Name1:gsub('"',"") 
+local Name1 = Name1:gsub("'","") 
+local Name1 = Name1:gsub("`","") 
+local Name1 = Name1:gsub("*","")
+ local Name1 = Name1:gsub("{","")
+ local Name1 = Name1:gsub("}","")
+ local Name = '['..Name1..'](tg://user?id='..result.id_..')'
+local NameChat = dp.title_
+local NameChat = NameChat:gsub('"',"")
+ local NameChat = NameChat:gsub("'","")
+ local NameChat = NameChat:gsub("`","") 
+local NameChat = NameChat:gsub("*","") 
+local NameChat = NameChat:gsub("{","") 
+local NameChat = NameChat:gsub("}","")
+sendText(SUDO,"⍟ تم طرد البوت من جروب \n\n⍟ بواسطة  {"..Name.."}\n⍟ اسم الجروب {"..NameChat.."}\n⍟ ايدي الجروب {`"..msg.chat_id_.."`} ",0,'md')
+end,nil)
+end,nil)
+end
 -------------------------------------------------------------------------------------------------------------
 if text == 'تفعيل' and Sudo(msg) then
 if AddChannel(msg.sender_user_id_) == false then
