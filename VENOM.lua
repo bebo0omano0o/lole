@@ -10751,7 +10751,8 @@ end
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta) 
 local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_)) or database:get(bot_id.."Private:Group:Link"..msg.chat_id_) 
 if linkgpp.ok == true then 
-local linkgp = '🌐┇ 𝙻𝙸𝙽𝙺 𝙶𝚁𝙾𝚄𝙿.\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n ['..ta.title_..']('..linkgpp.result..')'
+local linkgp = '⍟ \n ['..ta.title_..']('..linkgpp.result..')'
+local linkgp = '- \n ['..linkgpp.result..']'
 local inline = {{{text = ta.title_, url=linkgpp.result}},} 
 send_inline_key(msg.chat_id_,linkgp,nil,inline,msg.id_/2097152/0.5) 
 else 
@@ -13956,7 +13957,7 @@ local List = {
 𝟓 𝟔 𖡻 #id  ࿇🦄
 ]],
 [[
-金 - 𝓾𝓼𝓮𝓻??𝓪𝓶𝓮 . #username ⸙ 
+金 - 𝓾??𝓮𝓻𝓷𝓪𝓶𝓮 . #username ⸙ 
 金 - 𝓼𝓽𝓪𝓼𝓽  . #stast ⸙ 
 金 - 𝓲𝓭 . #id ⸙ 
 金 - 𝓰𝓶𝓪𝓼 . #gmas ⸙ 
@@ -14387,7 +14388,7 @@ local List = {
 ⌾ | 𝐮𝐬??𝐫 𓃠 #username .
 ⌾ | 𝐦𝐬𝐠 𓃠 #msgs .
 ⌾ | 𝐬??𝐚 𓃠 #stast .
-⌾ | 𝒆??𝒊𝒕 𓃠 #edit .
+⌾ | 𝒆𝒅𝒊𝒕 𓃠 #edit .
 ⌾ | 𝗖𝗛 - 「@SOURCEVENOM」 💞.
 ]],
 [[
