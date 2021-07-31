@@ -10749,10 +10749,9 @@ send(msg.chat_id_, msg.id_,"الرابط معطل")
 return false   
 end 
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta) 
-local link = database:get(bot_id.."Private:Group:Link"..msg.chat_id_)            
-local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_))
+local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_)) or database:get(bot_id.."Private:Group:Link"..msg.chat_id_) 
 if linkgpp.ok == true then 
-local linkgp = '✧'..ta.title_..' ('..linkgpp.result..')'\n'..linkgpp.result 
+local linkgp = '✧'..ta.title_..' '..linkgpp.result \n'..linkgpp.result 
 local inline = {{{text = ta.title_, url=linkgpp.result}},} 
 send_inline_key(msg.chat_id_,linkgp,nil,inline,msg.id_/2097152/0.5) 
 else 
@@ -14810,7 +14809,7 @@ Msᴀɢ ~ #msgs
 • ❉ 𝑼𝑬𝑺 : #username ‌‌‏.
 • ❉ 𝑺𝑻𝑨 : #stast .
 • ❉ 𝑰𝑫 : #id  ‌‌‏.
-• ❉  𝑴𝑺𝑮 : #msgs 𓆊.
+• ❉  𝑴??𝑮 : #msgs 𓆊.
 • ❉ 𝑾𝒆𝒍𝒄𝒐𝒎𝒆  ⁞ .
 • ❉ 𝗖𝗛 - 「@SOURCEVENOM」 ⍟
 ]],
