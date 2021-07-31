@@ -2746,7 +2746,7 @@ end
 -------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == "MessageChatDeleteMember" and tonumber(msg.content_.user_.id_) == tonumber(bot_id) then 
 database:srem(bot_id.."Chek:Groups", msg.chat_id_)
- tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
+ 
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,dp)
  local Name1 = result.first_name_
 local Name1 = Name1:gsub('"',"") 
@@ -2770,6 +2770,7 @@ end
 
 if msg.content_.ID == "MessageChatDeleteMember" and tonumber(msg.content_.user_.id_) == tonumber(bot_id) then 
 database:srem(bot_id..'Chek:Groups',msg.chat_id_)  
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
  tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=bot_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
  local Name1 = result.first_name_
 local Name1 = Name1:gsub('"',"") 
@@ -2786,7 +2787,7 @@ local NameChat = NameChat:gsub('"',"")
 local NameChat = NameChat:gsub("*","") 
 local NameChat = NameChat:gsub("{","") 
 local NameChat = NameChat:gsub("}","")
-sendText(SUDO,"⍟ قام البوت بمغادرة الجروب \n\n⍟ بواسطة  {"..Name.."}\n⍟ اسم الجروب {"..NameChat.."}\n⍟ ايدي الجروب {`"..msg.chat_id_.."`} ",0,'md')
+sendText(SUDO,"⍟ قام البوت بمغادرة الجروب  \n\n⍟ بواسطة  {"..Name.."}\n⍟ اسم الجروب {"..NameChat.."}\n⍟ ايدي الجروب {`"..msg.chat_id_.."`} ",0,'md')
 end,nil)
 end,nil)
 end
@@ -13317,20 +13318,7 @@ return false
 end
 end
 end
-if text then 
-list = {'مش'}
-for k,v in pairs(list) do
-if string.find(text,v) ~= nil then
-local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
-if not my_ph then
-send(msg.chat_id_, msg.id_,"  ") 
-return false  
-end
-send(msg.chat_id_,msg.id_, '[مش بدودو ..😹👻](t.me/SOURCEVENOM)')
-return false
-end
-end
-end
+
 if text then 
 list = {'بنتي'}
 for k,v in pairs(list) do
@@ -15205,7 +15193,7 @@ Msᴀɢ ~ #msgs
 𝐓𝐓• 𝐘𝐎𝐔𝐑 𝐈𝐃 𖠰 #id .
 𝐓𝐓• 𝐌𝐬𝐠𝐒 𖠰 #msgs .
 𝐓𝐓• 𝐔𝐬𝐞𝐫𝐍𝐚 𖠰 #username .
-𝐓𝐓• 𝐒𝐓𝐀??𝐓 𖠰 #stast .
+𝐓𝐓• 𝐒𝐓𝐀𝐒𝐓 𖠰 #stast .
 𝐓𝐓• 𝐀𝐔𝐓𝐎 𖠰 #auto .
 𝐓𝐓• 𝗘𝗗𝗜𝗧 𖠰 #edit .
 𝐓𝐓• 𝗖𝗛 - 「@SOURCEVENOM」 ⍟
