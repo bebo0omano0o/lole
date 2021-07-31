@@ -10752,9 +10752,9 @@ tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta)
 local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_)) or database:get(bot_id.."Private:Group:Link"..msg.chat_id_) 
 if linkgpp.ok == true then 
 local linkgp = '⍟ \n ['..ta.title_..']('..linkgpp.result..')'
-local linkgp = '- \n ['..linkgpp.result..']'
+local linkgpp = ' \n ['..linkgpp.result..']'
 local inline = {{{text = ta.title_, url=linkgpp.result}},} 
-send_inline_key(msg.chat_id_,linkgp,nil,inline,msg.id_/2097152/0.5) 
+send_inline_key(msg.chat_id_,linkgp,linkgpp,nil,inline,msg.id_/2097152/0.5) 
 else 
 send(msg.chat_id_, msg.id_,'✧لا يوجد رابط ارسل ضع رابط') 
 end 
@@ -11700,7 +11700,7 @@ local VENOM_Msg = {
 'اسمي  '..Namebot..' يامزه 🥺❤️',
 'اسمي  '..Namebot..' يعم 😒',
 'مقولت اسمي '..Namebot..' في اي 🙄',
-'اسمي الكيوت '..Namebot..' 🌝💘',
+'اسمي الكيوت '..Namebot..' ??💘',
 'اسمي  '..Namebot..' ياحياتي🧸♥️',
 'اسمي  '..Namebot..' يوتكه🙈🍑',
 } 
@@ -13957,7 +13957,7 @@ local List = {
 𝟓 𝟔 𖡻 #id  ࿇🦄
 ]],
 [[
-金 - 𝓾??𝓮𝓻𝓷𝓪𝓶𝓮 . #username ⸙ 
+金 - 𝓾𝓼𝓮𝓻𝓷𝓪𝓶𝓮 . #username ⸙ 
 金 - 𝓼𝓽𝓪𝓼𝓽  . #stast ⸙ 
 金 - 𝓲𝓭 . #id ⸙ 
 金 - 𝓰𝓶𝓪𝓼 . #gmas ⸙ 
