@@ -2746,7 +2746,7 @@ end
 -------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == "MessageChatDeleteMember" and tonumber(msg.content_.user_.id_) == tonumber(bot_id) then 
 database:srem(bot_id.."Chek:Groups", msg.chat_id_)
- 
+ tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,dp)
  local Name1 = result.first_name_
 local Name1 = Name1:gsub('"',"") 
