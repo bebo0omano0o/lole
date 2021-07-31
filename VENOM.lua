@@ -10751,7 +10751,7 @@ end
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta) 
 local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_)) or database:get(bot_id.."Private:Group:Link"..msg.chat_id_) 
 if linkgpp.ok == true then 
-local linkgp = '✧'..ta.title_..' ('..linkgpp.result..')\n'..linkgpp.result 
+local linkgp = '✧'\n ['..ta.title_..']('..linkgpp.result..')'\n'..linkgpp.result 
 local inline = {{{text = ta.title_, url=linkgpp.result}},} 
 send_inline_key(msg.chat_id_,linkgp,nil,inline,msg.id_/2097152/0.5) 
 else 
@@ -17669,7 +17669,7 @@ https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callb
 return false
 end
 if Text == '/help23' then
-local Text = 'لتجربه العلبه عليك ان تكتب نكته في الشات🔰'
+local Text = 'لتجربه العلبه عليك ان تكتب نكته في الشات??'
 https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(Text).."&show_alert=true")
 return false
 end
@@ -18391,7 +18391,7 @@ database:del(bot_id.."Cick:lov"..Chat_id)
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '⍟𝙱𝙰??𝙺↵', callback_data="/help8"},
+{text = '⍟𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
