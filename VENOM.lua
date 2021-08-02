@@ -2035,6 +2035,26 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://mode-pro.tk/niggax/captcha.php?c='..captcha..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end 
 end
+
+if msg.content_.ID == "MessageChatJoinByLink" then
+local Text =' '
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/comxnxp/20&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end  
+if msg.content_.ID == "MessageChatAddMembers" then 
+local Text =' '
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/comxnxp/20&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end 
+
 if database:get(bot_id.."CAPTCHA"..msg.chat_id_) then
 if msg.content_.ID == "MessageChatAddMembers" then 
 https.request("https://api.telegram.org/bot"..token.."/restrictChatMember?chat_id="..msg.chat_id_.."&user_id="..msg.sender_user_id_)
@@ -2053,25 +2073,8 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://mode-pro.tk/niggax/captcha.php?c='..captcha..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end 
 end
-if msg.content_.ID == "MessageChatJoinByLink" then
-local Text =' '
-keyboard = {} 
-keyboard.inline_keyboard = {
-{{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/comxnxp/20&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-end  
-if msg.content_.ID == "MessageChatAddMembers" then 
-tdcli_function({ID = "GetUser",user_id_=msg.sender_user_id_},function(extra,result) 
-local Text =' '
-keyboard = {} 
-keyboard.inline_keyboard = {
-{{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/comxnxp/20&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-end 
+
+
 if msg.content_.ID == "MessageChatAddMembers" then 
 if msg.content_.members_[0].id_ == tonumber(bot_id) then 
 print("it is Bot")
@@ -18591,7 +18594,7 @@ database:set(bot_id.."my_maryam:status"..Chat_id,true)
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱??𝙲𝙺↵', callback_data="/help8"},
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
