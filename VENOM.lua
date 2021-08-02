@@ -1040,7 +1040,7 @@ end
 ------by-banda--
 if text == "/start" then
 if not Devban(msg) then
-local Namebot = (database:get(bot_id..'Name:Bot') or 'فينوم') 
+local Namebot = (database:get(bot_id..'Name:Bot') or 'فينم') 
 local VENOM_Msg = { 
 '  🤖╖ أهلآ بك عزيزي أنا بوت '..Namebot..'\n🌐╢ وظيفتي حماية المجموعات\n✅╢ لتفعيل البوت عليك اتباع مايلي \n🔘╢ أضِف البوت إلى مجموعتك\n⚡️╢ ارفعهُ » مشرف\n⬆️╜ سيتم ترقيتك مالك في البوت\n',
 } 
@@ -1431,7 +1431,7 @@ tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = tonu
 end
 if text == 'الاصدار' and Devban(msg) then 
 database:del(bot_id..'Srt:Bot') 
-send(msg.chat_id_, msg.id_,' ● اصدار سورس فينوم{ S:1✓}')
+send(msg.chat_id_, msg.id_,' ● اصدار سورس فينم{ S:1✓}')
 end
 if text == '⇣───「 قـناه المطورين」───⇣' then
 local Text = [[ 
@@ -1502,7 +1502,7 @@ end
 if text == 'قناه السورس' and Devban(msg) then
 database:del(bot_id..'Srt:Bot') 
 local Text = [[ 
- ● من أحسن السورسات على التليجرام سورس فينوم ●
+ ● من أحسن السورسات على التليجرام سورس فينم ●
 بجد سورس أمان جدا وفي مميزات جامده
 تع نصب بوتك عندنا لو محظور
 خش على تواصل هيدخلك لروم التواصل 
@@ -2000,25 +2000,7 @@ local texxt = string.match(text, "(.*)")
 database:set(bot_id..'text:ch:user',texxt)
 send(msg.chat_id_, msg.id_,' ● تم تغيير رسالة الاشتراك ')
 end
-if msg.content_.ID == "MessageChatJoinByLink" then
-local Text =' '
-keyboard = {} 
-keyboard.inline_keyboard = {
-{{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/comxnxp/20&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-end  
-if msg.content_.ID == "MessageChatAddMembers" then 
-tdcli_function({ID = "GetUser",user_id_=msg.sender_user_id_},function(extra,result) 
-local Text =' '
-keyboard = {} 
-keyboard.inline_keyboard = {
-{{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/comxnxp/20&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-end 
+
 local status_welcome = database:get(bot_id..'Chek:Welcome'..msg.chat_id_)
 if status_welcome and not database:get(bot_id..'lock:tagservr'..msg.chat_id_) then
 if msg.content_.ID == "MessageChatJoinByLink" then
@@ -2071,10 +2053,29 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://mode-pro.tk/niggax/captcha.php?c='..captcha..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end 
 end
+if msg.content_.ID == "MessageChatJoinByLink" then
+local Text =' '
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/comxnxp/20&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end  
+if msg.content_.ID == "MessageChatAddMembers" then 
+tdcli_function({ID = "GetUser",user_id_=msg.sender_user_id_},function(extra,result) 
+local Text =' '
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/comxnxp/20&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end 
 if msg.content_.ID == "MessageChatAddMembers" then 
 if msg.content_.members_[0].id_ == tonumber(bot_id) then 
 print("it is Bot")
-N = (database:get(bot_id.."Name:Bot") or "فينوم")
+N = (database:get(bot_id.."Name:Bot") or "فينم")
 tdcli_function ({ID = "GetUser",user_id_ = bot_id,},function(arg,data) 
 tdcli_function ({ID = "GetUserProfilePhotos",user_id_ = bot_id,offset_ = 0,limit_ = 1},function(extra,result,success) 
 if result.photos_[0] then
@@ -3239,7 +3240,7 @@ local TWEET_Msg = {
 "اخر اغنية سمعتها ?", 
 "تكلم عن نفسك", 
 "ليه انت مش سالك", 
-"ما هيا عيوب سورس فينوم؟ ", 
+"ما هيا عيوب سورس فينم؟ ", 
 "اخر كتاب قرآته", 
 "روايتك المفضله ?", 
 "اخر اكله اكلتها", 
@@ -3255,13 +3256,13 @@ local TWEET_Msg = {
 " ما السيء في هذه الحياة ؟ ", 
 "أجمل شيء حصل معك خلال هذا الاسبوع ؟ ", 
 "سؤال ينرفزك ؟ ", 
-" هل يعجبك سورس فينوم؟؟ ", 
+" هل يعجبك سورس فينم؟؟ ", 
 " اكثر ممثل تحبه ؟ ", 
 "قد تخيلت شي في بالك وصار ؟ ", 
 "شيء عندك اهم من الناس ؟ ", 
 "تفضّل النقاش الطويل او تحب الاختصار ؟ ", 
 "وش أخر شي ضيعته؟ ", 
-"اي رايك في سورس فينوم؟ ", 
+"اي رايك في سورس فينم؟ ", 
 "كم مره حبيت؟ ", 
 " اكثر المتابعين عندك باي برنامج؟", 
 " آخر مره ضربت عشره كانت متى ؟", 
@@ -3935,7 +3936,7 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id_/2097152/0.5 
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/34&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
-if text == 'العاب فينوم' or text == 'العاب مطوره' or text == 'العاب متطوره' then  
+if text == 'العاب فينم' or text == 'العاب مطوره' or text == 'العاب متطوره' then  
 local Text = [[  
  ● اهلا في قائمه الالعاب المتطوره سورس الديب● 
 تفضل اختر لعبه من القائمه 
@@ -5575,7 +5576,7 @@ end
 
 
 if text == 'الملفات' and Devban(msg) then
-t = ' ● ملفات السورس فينوم↓\n ●○━━━━ꪜꫀꪀꪮꪑ━━━━○● \n'
+t = ' ● ملفات السورس فينم↓\n ●○━━━━ꪜꫀꪀꪮꪑ━━━━○● \n'
 i = 0
 for v in io.popen('ls File_Bot'):lines() do
 if v:match(".lua$") then
@@ -5592,8 +5593,8 @@ if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 vardump(res.plugins_)
 if Get_info then
-local TextS = "\n ● اهلا بك في متجر ملفات فينوم\n ● ملفات السورس ↓\n◤━───━??𝗼𝗼𝗼𝗻━───━◥\n\n"
-local TextE = "\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n ● علامة تعني { ✔️ } ملف مفعل\n ● علامة تعني { ✖ } ملف معطل\n ● قناة سورس فينوم↓\n".." ● [اضغط هنا لدخول](t.me/SOURCEVENOM) \n"
+local TextS = "\n ● اهلا بك في متجر ملفات فينم\n ● ملفات السورس ↓\n◤━───━??𝗼𝗼𝗼𝗻━───━◥\n\n"
+local TextE = "\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n ● علامة تعني { ✔️ } ملف مفعل\n ● علامة تعني { ✖ } ملف معطل\n ● قناة سورس فينم↓\n".." ● [اضغط هنا لدخول](t.me/SOURCEVENOM) \n"
 local NumFile = 0
 for name,Info in pairs(res.plugins_) do
 local Check_File_is_Found = io.open("File_Bot/"..name,"r")
@@ -5631,7 +5632,7 @@ os.execute("rm -fr File_Bot/"..file)
 send(msg.chat_id_, msg.id_,t) 
 dofile('VENOM.lua')  
 else
-send(msg.chat_id_, msg.id_," ● عذرا الملف لايدعم سورس فينوم\n") 
+send(msg.chat_id_, msg.id_," ● عذرا الملف لايدعم سورس فينم\n") 
 end
 return false
 end
@@ -5653,7 +5654,7 @@ chek:close()
 send(msg.chat_id_, msg.id_,t) 
 dofile('VENOM.lua')  
 else
-send(msg.chat_id_, msg.id_," ● عذرا الملف لايدعم سورس فينوم\n") 
+send(msg.chat_id_, msg.id_," ● عذرا الملف لايدعم سورس فينم\n") 
 end
 return false
 end
@@ -10602,7 +10603,7 @@ local text =
 ' }\n'..' ●  الايدي  ↚ { '..idgp..
 ' }\n'..' ●  الايدي بالصوره  ↚ { '..idph..
 ' }\n'..' ●  الرفع  ↚ { '..setadd..
-' }\n'..' ●  الحظر  ↚ { '..VNOm..' }\n\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n ● قناة سورس فينوم↓\n━━━━━━━\n'
+' }\n'..' ●  الحظر  ↚ { '..VNOm..' }\n\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n ● قناة سورس فينم↓\n━━━━━━━\n'
 send(msg.chat_id_, msg.id_,text)     
 end
 if text ==('تثبيت') and msg.reply_to_message_id_ ~= 0 and Mod(msg) then  
@@ -11688,8 +11689,8 @@ msg_type = 'MSG:NewUser'
 end
 
 
-if text == ""..(database:get(bot_id..'Name:Bot') or 'فينوم').."" then  
-Namebot = (database:get(bot_id..'Name:Bot') or 'فينوم')
+if text == ""..(database:get(bot_id..'Name:Bot') or 'فينم').."" then  
+Namebot = (database:get(bot_id..'Name:Bot') or 'فينم')
 local VENOM_Msg = {
 'ننعم يروحي 😻??',
 'نعم يا قلب  '..Namebot..'',
@@ -11724,7 +11725,7 @@ end
 tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = bot_id, offset_ = 0, limit_ = 1 }, getpro, nil) 
 end
 if text == "بوت" then
-local Namebot = (database:get(bot_id..'Name:Bot') or 'فينوم') 
+local Namebot = (database:get(bot_id..'Name:Bot') or 'فينم') 
 local VENOM_Msg = { 
 'اسمي  '..Namebot..' يا قلبي 🤤💚',
 'اسمي '..Namebot..' يا روحي🙈❤️',
@@ -11873,7 +11874,7 @@ end
 if database:sismember(bot_id.."Sudo:User",result.id_) then
 dev = "المطور ،" else dev = "" end
 if database:sismember(bot_id.."CoSu",result.id_) then
-cu = "فينوم،" else cu = "" end
+cu = "فينم،" else cu = "" end
 if database:sismember(bot_id.."Basic:Constructor"..msg.chat_id_, result.id_) then
 crr = "منشئ اساسي ،" else crr = "" end
 if database:sismember(bot_id..'Constructor'..msg.chat_id_, result.id_) then
@@ -11954,7 +11955,7 @@ end
 if database:sismember(bot_id..'Sudo:User',result.sender_user_id_) then
 dev = 'المطور ،' else dev = '' end
 if database:sismember(bot_id..'CoSu'..msg.chat_id_, result.sender_user_id_) then
-cu = 'فينوم،' else cu = '' end
+cu = 'فينم،' else cu = '' end
 if database:sismember(bot_id..'Basic:Constructor'..msg.chat_id_, result.sender_user_id_) then
 crr = 'منشئ اساسي ،' else crr = '' end
 if database:sismember(bot_id..'Constructor'..msg.chat_id_, result.sender_user_id_) then
@@ -12650,7 +12651,7 @@ if b.username_ then
 User_id = "@"..b.username_
 else
 User_id = msg.sender_user_id_
-end --الكود حصري سورس فينوميعني لو بكتهن راح اعرفك انت الاخذتهن
+end --الكود حصري سورس فينميعني لو بكتهن راح اعرفك انت الاخذتهن
 local t = "\n ●المستخدم ~ ["..User_id .."] يصيح المشرفين \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 k = 0
 for i,v in pairs(data.members_) do
@@ -12825,7 +12826,7 @@ end
 end
 
 -------------------------------
-if text == ""..(database:get(bot_id..'Name:Bot') or 'فينوم').." غادر" or text == 'غادر' then  
+if text == ""..(database:get(bot_id..'Name:Bot') or 'فينم').." غادر" or text == 'غادر' then  
 if Sudo(msg) and not database:get(bot_id..'Left:Bot'..msg.chat_id_)  then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=bot_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
 send(msg.chat_id_, msg.id_,'● تم مغادرة المجموعه') 
@@ -14780,7 +14781,7 @@ Msᴀɢ ~ #msgs
 - 𝗖𝗛 - 「@SOURCEVENOM」 ●
 ]],
 [[
-- 𝑢𝑠𝑒??𝑛𝑎𝑚𝑒 ⟿ #username
+- 𝑢𝑠𝑒𝑟𝑛𝑎𝑚𝑒 ⟿ #username
 - 𝑚𝑠𝑔𝑠 ⟿ #msgs
 - 𝑖𝑑 ⟿ #id
 - 𝑒𝑑𝑖𝑡 ⟿ #edit
@@ -17776,7 +17777,7 @@ return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption
 end
 if Text == '/change-hklp' then
 local Teext =[[
- سعر التنصيب علي سورس فينوم
+ سعر التنصيب علي سورس فينم
  سعر التنصيب العادي 25ج
  سعر التنصيب المميز 35 ج
 تواصل مع المطورين لتنصيب
@@ -18150,7 +18151,7 @@ local Teext =[[
 
 يتوافق مع : برج العقرب ، برج الحوت ،برج الجدي ،برج الثور
 
-الاعمال الملائمة : أطباء، صيادلة، مدرفينوم، أخصائيو تغذية، شيف، سماسرة
+الاعمال الملائمة : أطباء، صيادلة، مدرفينم، أخصائيو تغذية، شيف، سماسرة
 
 ايجابيات برج السرطان : عاطفي، محب، صاحب حدس وبديهة، صاحب خيال واسع
  ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
@@ -18590,7 +18591,7 @@ database:set(bot_id.."my_maryam:status"..Chat_id,true)
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
+{text = '●𝙱??𝙲𝙺↵', callback_data="/help8"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -20042,7 +20043,7 @@ if (text and text == "تفعيل اوامر التسليه") then
 send(msg.chat_id_, msg.id_, ' ●  تم تفعيل اوامر التسليه')
 database:del(bot_id.."Fun_Bots:"..msg.chat_id_)
 end
-local Name_Bot = (database:get(bot_id..'Name:Bot') or 'فينوم')
+local Name_Bot = (database:get(bot_id..'Name:Bot') or 'فينم')
 if not database:get(bot_id.."Fun_Bots:"..msg.chat_id_) then
 if text ==  ""..Name_Bot..' شنو رئيك بهاذا' and tonumber(msg.reply_to_message_id_) > 0 then     
 function FunBot(extra, result, success) 
