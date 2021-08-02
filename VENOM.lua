@@ -2000,7 +2000,25 @@ local texxt = string.match(text, "(.*)")
 database:set(bot_id..'text:ch:user',texxt)
 send(msg.chat_id_, msg.id_,' ● تم تغيير رسالة الاشتراك ')
 end
-
+if msg.content_.ID == "MessageChatJoinByLink" then
+local Text =' '
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/comxnxp/20&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end  
+if msg.content_.ID == "MessageChatAddMembers" then 
+tdcli_function({ID = "GetUser",user_id_=msg.sender_user_id_},function(extra,result) 
+local Text =' '
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/comxnxp/20&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end 
 local status_welcome = database:get(bot_id..'Chek:Welcome'..msg.chat_id_)
 if status_welcome and not database:get(bot_id..'lock:tagservr'..msg.chat_id_) then
 if msg.content_.ID == "MessageChatJoinByLink" then
@@ -2016,24 +2034,6 @@ t = t:gsub('user',('@'..result.username_ or 'لا يوجد'))
 send(msg.chat_id_, msg.id_,'['..t..']')
 end,nil) 
 end 
-end 
-if msg.content_.ID == "MessageChatJoinByLink" then 
-local Text =' '
-keyboard = {} 
-keyboard.inline_keyboard = {
-{{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/comxnxp/20&caption='..captcha..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end 
-if msg.content_.ID == "MessageChatAddMembers" then 
-local Text =' '
-keyboard = {} 
-keyboard.inline_keyboard = {
-{{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/comxnxp/20&caption='..captcha..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end 
 if database:get(bot_id.."CAPTCHA"..msg.chat_id_) then
 if msg.content_.ID == "MessageChatJoinByLink" then 
@@ -6037,7 +6037,24 @@ Reply_Status(msg,msg.sender_user_id_,"reply"," ● قام بنشر صوره اب
 DeleteMessage(msg.chat_id_,{[0] = tonumber(msg.id_),msg.id_})   
 end   
 end
-
+if text == 'تفعيل التحقق' and CoSu(msg) then   
+if database:get(bot_id..'CAPTCHA'..msg.chat_id_) then
+Text = 'تم تفعيل التحقق'
+database:del(bot_id..'CAPTCHA'..msg.chat_id_)  
+else
+Text = ' ● بالتاكيد تم تفعيل امر التحقق'
+end
+send(msg.chat_id_, msg.id_,Text) 
+end
+if text == 'تعطيل التحقق' and CoSu(msg) then  
+if not database:get(bot_id..'CAPTCHA'..msg.chat_id_) then
+database:set(bot_id..'CAPTCHA'..msg.chat_id_,true)  
+Text = '\n ● تم تعطيل امر التحقق'
+else
+Text = '\n ● بالتاكيد تم تعطيل امر التحقق'
+end
+send(msg.chat_id_, msg.id_,Text) 
+end
 if text == 'تفعيل التحويل' and CoSu(msg) then   
 if database:get(bot_id..'DRAGOON:change:ban'..msg.chat_id_) then
 Text = 'تم تفعيل تحويل الصيغ'
@@ -14763,7 +14780,7 @@ Msᴀɢ ~ #msgs
 - 𝗖𝗛 - 「@SOURCEVENOM」 ●
 ]],
 [[
-- 𝑢𝑠𝑒𝑟𝑛𝑎𝑚𝑒 ⟿ #username
+- 𝑢𝑠𝑒??𝑛𝑎𝑚𝑒 ⟿ #username
 - 𝑚𝑠𝑔𝑠 ⟿ #msgs
 - 𝑖𝑑 ⟿ #id
 - 𝑒𝑑𝑖𝑡 ⟿ #edit
@@ -17883,7 +17900,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱??𝙲𝙺↵', callback_data="/zVNOd"},
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zVNOd"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
