@@ -11858,27 +11858,27 @@ local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
 send(msg.chat_id_, msg.id_,'['..textchuser..']')
 else
-send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n ●  يرجى الاشتراك بالقناه اولا \n ●  اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+send(msg.chat_id_, msg.id_,' ⦁ لا تستطيع استخدام البوت \n ⦁  يرجى الاشتراك بالقناه اولا \n ⦁  اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
 end
 return false
 end
 function start_function(extra, result, success)
 if (result.id_) then
 if tonumber(result.id_) == true then
-send(msg.chat_id_, msg.id_," ● لا تستطيع تنزيل المطور الاساسي")
+send(msg.chat_id_, msg.id_," ⦁ لا تستطيع تنزيل المطور الاساسي")
 return false 
 end
 if database:sismember(bot_id.."Sudo:User",result.id_) then
 dev = "المطور ،" else dev = "" end
 if database:sismember(bot_id.."CoSu",result.id_) then
-cu = "فينم،" else cu = "" end
+cu = "بكار،" else cu = "" end
 if database:sismember(bot_id.."Basic:Constructor"..msg.chat_id_, result.id_) then
 crr = "منشئ اساسي ،" else crr = "" end
 if database:sismember(bot_id..'Constructor'..msg.chat_id_, result.id_) then
 cr = "منشئ ،" else cr = "" end
 if database:sismember(bot_id..'Manager'..msg.chat_id_, result.id_) then
 own = "مدير ،" else own = "" end
-if database:sismember(bot_id..'banda:MN:TF'..msg.chat_id_, result.id_) then
+if database:sismember(bot_id..'S00F4:MN:TF'..msg.chat_id_, result.id_) then
 mn = 'منظف ،' else mn = '' end
 if database:sismember(bot_id..'Mod:User'..msg.chat_id_, result.id_) then
 mod = "ادمن ،" else mod = "" end
@@ -11886,9 +11886,9 @@ if database:sismember(bot_id..'Special:User'..msg.chat_id_, result.id_) then
 vip = "مميز ،" else vip = ""
 end
 if Can_or_NotCan(result.id_,msg.chat_id_) ~= false then
-send(msg.chat_id_, msg.id_,"\n ● تم تنزيل الشخص من الرتب التاليه \n ●  { "..dev..""..crr..""..cr..""..own..""..mod..""..mn..""..vip.." } \n")
+send(msg.chat_id_, msg.id_,"\n ⦁ تم تنزيل الشخص من الرتب التاليه \n ⦁  { "..dev..""..crr..""..cr..""..own..""..mod..""..mn..""..vip.." } \n")
 else
-send(msg.chat_id_, msg.id_,"\n ●  عذرا الـعـضو  لايملك رتبه \n")
+send(msg.chat_id_, msg.id_,"\n ⦁  عذرا الـعـضو  لايملك رتبه \n")
 end
 if tonumber(msg.sender_user_id_) == true then
 database:srem(bot_id.."Sudo:User", result.id_)
@@ -11897,35 +11897,35 @@ database:srem(bot_id.."Basic:Constructor"..msg.chat_id_,result.id_)
 database:srem(bot_id..'Constructor'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Manager'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Mod:User'..msg.chat_id_, result.id_)
-database:srem(bot_id..'banda:MN:TF'..msg.chat_id_, result.id_)
+database:srem(bot_id..'S00F4:MN:TF'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Special:User'..msg.chat_id_, result.id_)
 elseif database:sismember(bot_id.."Sudo:User",msg.sender_user_id_) then
-database:srem(bot_id..'banda:MN:TF'..msg.chat_id_, result.id_)
+database:srem(bot_id..'S00F4:MN:TF'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Mod:User'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Special:User'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Manager'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Constructor'..msg.chat_id_, result.id_)
 database:srem(bot_id.."Basic:Constructor"..msg.chat_id_,result.id_)
 elseif database:sismember(bot_id.."CoSu",msg.sender_user_id_) then
-database:srem(bot_id..'banda:MN:TF'..msg.chat_id_, result.id_)
+database:srem(bot_id..'S00F4:MN:TF'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Mod:User'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Special:User'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Manager'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Constructor'..msg.chat_id_, result.id_)
 database:srem(bot_id.."Basic:Constructor"..msg.chat_id_,result.id_)
 elseif database:sismember(bot_id.."Basic:Constructor"..msg.chat_id_, msg.sender_user_id_) then
-database:srem(bot_id..'banda:MN:TF'..msg.chat_id_, result.id_)
+database:srem(bot_id..'S00F4:MN:TF'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Mod:User'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Special:User'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Manager'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Constructor'..msg.chat_id_, result.id_)
 elseif database:sismember(bot_id..'Constructor'..msg.chat_id_, msg.sender_user_id_) then
-database:srem(bot_id..'banda:MN:TF'..msg.chat_id_, result.id_)
+database:srem(bot_id..'S00F4:MN:TF'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Mod:User'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Special:User'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Manager'..msg.chat_id_, result.id_)
 elseif database:sismember(bot_id..'Manager'..msg.chat_id_, msg.sender_user_id_) then
-database:srem(bot_id..'banda:MN:TF'..msg.chat_id_, result.id_)
+database:srem(bot_id..'S00F4:MN:TF'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Mod:User'..msg.chat_id_, result.id_)
 database:srem(bot_id..'Special:User'..msg.chat_id_, result.id_)
 end
@@ -11940,19 +11940,19 @@ local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
 send(msg.chat_id_, msg.id_,'['..textchuser..']')
 else
-send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n ●  يرجى الاشتراك بالقناه اولا \n ●  اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+send(msg.chat_id_, msg.id_,' ⦁ لا تستطيع استخدام البوت \n ⦁  يرجى الاشتراك بالقناه اولا \n ⦁  اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
 end
 return false
 end
 function start_function(extra, result, success)
 if tonumber(SUDO) == tonumber(result.sender_user_id_) then
-send(msg.chat_id_, msg.id_," ● لا تستطيع تنزيل المطور الاساسي")
+send(msg.chat_id_, msg.id_," ⦁ لا تستطيع تنزيل المطور الاساسي")
 return false 
 end
 if database:sismember(bot_id..'Sudo:User',result.sender_user_id_) then
 dev = 'المطور ،' else dev = '' end
 if database:sismember(bot_id..'CoSu'..msg.chat_id_, result.sender_user_id_) then
-cu = 'فينم،' else cu = '' end
+cu = 'بكار،' else cu = '' end
 if database:sismember(bot_id..'Basic:Constructor'..msg.chat_id_, result.sender_user_id_) then
 crr = 'منشئ اساسي ،' else crr = '' end
 if database:sismember(bot_id..'Constructor'..msg.chat_id_, result.sender_user_id_) then
@@ -11963,7 +11963,7 @@ if database:sismember(bot_id..'onall'..msg.chat_id_, result.sender_user_id_) the
 onall = 'مدير عام ،' else  onall = '' end
 if database:sismember(bot_id..'Mod:User'..msg.chat_id_, result.sender_user_id_) then
 mod = 'ادمن عام ،' else mod = '' end
-if database:sismember(bot_id..'banda:MN:TF'..msg.chat_id_, result.sender_user_id_) then
+if database:sismember(bot_id..'S00F4:MN:TF'..msg.chat_id_, result.sender_user_id_) then
 mn = 'منظف ،' else mn = '' end
 if database:sismember(bot_id..'Mod:User'..msg.chat_id_, result.sender_user_id_) then
 mod = 'ادمن ،' else mod = '' end
@@ -11971,9 +11971,9 @@ if database:sismember(bot_id..'Special:User'..msg.chat_id_, result.sender_user_i
 vip = 'مميز ،' else vip = ''
 end
 if Can_or_NotCan(result.sender_user_id_,msg.chat_id_) ~= false then
-send(msg.chat_id_, msg.id_,"\n ● تم تنزيل الشخص من الرتب التاليه \n ● { "..dev..''..crr..''..cr..''..own..''..mod..''..mn..''..vip.." } \n")
+send(msg.chat_id_, msg.id_,"\n ⦁ تم تنزيل الشخص من الرتب التاليه \n ⦁ { "..dev..''..crr..''..cr..''..own..''..mod..''..mn..''..vip.." } \n")
 else
-send(msg.chat_id_, msg.id_,"\n ●  عذرا الـعـضو  لايملك رتبه \n")
+send(msg.chat_id_, msg.id_,"\n ⦁  عذرا الـعـضو  لايملك رتبه \n")
 end
 if tonumber(SUDO) == tonumber(msg.sender_user_id_) then
 database:srem(bot_id..'Sudo:User', result.sender_user_id_)
@@ -11982,10 +11982,10 @@ database:srem(bot_id..'Basic:Constructor'..msg.chat_id_,result.sender_user_id_)
 database:srem(bot_id..'Constructor'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Manager'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Mod:User'..msg.chat_id_, result.sender_user_id_)
-database:srem(bot_id..'banda:MN:TF'..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id..'S00F4:MN:TF'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Special:User'..msg.chat_id_, result.sender_user_id_)
-elseif database:sismember(bot_id..'Dev:ban:2',msg.sender_user_id_) then
-database:srem(bot_id..'banda:MN:TF'..msg.chat_id_, result.sender_user_id_)
+elseif database:sismember(bot_id..'Dev:SoFi:2',msg.sender_user_id_) then
+database:srem(bot_id..'S00F4:MN:TF'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Mod:User'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Special:User'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Manager'..msg.chat_id_, result.sender_user_id_)
@@ -11993,7 +11993,7 @@ database:srem(bot_id..'Constructor'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Basic:Constructor'..msg.chat_id_,result.sender_user_id_)
 database:srem(bot_id..'CoSu'..msg.chat_id_, result.sender_user_id_)
 elseif database:sismember(bot_id..'Sudo:User',msg.sender_user_id_) then
-database:srem(bot_id..'banda:MN:TF'..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id..'S00F4:MN:TF'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Mod:User'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Special:User'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Manager'..msg.chat_id_, result.sender_user_id_)
@@ -12001,25 +12001,25 @@ database:srem(bot_id..'Constructor'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Basic:Constructor'..msg.chat_id_,result.sender_user_id_)
 database:srem(bot_id..'CoSu'..msg.chat_id_, result.sender_user_id_)
 elseif database:sismember(bot_id..'CoSu'..msg.chat_id_, msg.sender_user_id_) then
-database:srem(bot_id..'banda:MN:TF'..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id..'S00F4:MN:TF'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Mod:User'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Special:User'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Manager'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Constructor'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Basic:Constructor'..msg.chat_id_,result.sender_user_id_)
 elseif database:sismember(bot_id..'Basic:Constructor'..msg.chat_id_, msg.sender_user_id_) then
-database:srem(bot_id..'banda:MN:TF'..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id..'S00F4:MN:TF'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Mod:User'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Special:User'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Manager'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Constructor'..msg.chat_id_, result.sender_user_id_)
 elseif database:sismember(bot_id..'Constructor'..msg.chat_id_, msg.sender_user_id_) then
-database:srem(bot_id..'banda:MN:TF'..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id..'S00F4:MN:TF'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Mod:User'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Special:User'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Manager'..msg.chat_id_, result.sender_user_id_)
 elseif database:sismember(bot_id..'Manager'..msg.chat_id_, msg.sender_user_id_) then
-database:srem(bot_id..'banda:MN:TF'..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id..'S00F4:MN:TF'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Mod:User'..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id..'Special:User'..msg.chat_id_, result.sender_user_id_)
 end
@@ -12040,12 +12040,12 @@ database:del(bot_id.."Add:Rd:Sudo:File"..v)
 database:del(bot_id.."Add:Rd:Sudo:Audio"..v)
 database:del(bot_id..'List:Rd:Sudo')
 end
-send(msg.chat_id_, msg.id_," ● تم مسح الردود العامه")
+send(msg.chat_id_, msg.id_," 🦂 تم مسح الردود العامه")
 end
 
 if text == ("الردود العامه") and Devban(msg) then 
 local list = database:smembers(bot_id..'List:Rd:Sudo')
-text = "\n ● قائمة الردود العامه \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
+text = "\n 🦂 قائمة الردود العامه \n≪━━━━━━𝑩𝑨𝑲𝑨𝑹━━━━━━≫\n"
 for k,v in pairs(list) do
 if database:get(bot_id.."Add:Rd:Sudo:Gif"..v) then
 db = 'متحركه'
@@ -12067,7 +12067,7 @@ end
 text = text..""..k.." >> ("..v..") ⤌ {"..db.."}\n"
 end
 if #list == 0 then
-text = " ● لا يوجد ردود للمطور"
+text = " 🦂 لا يوجد ردود للمطور"
 end
 send(msg.chat_id_, msg.id_,'['..text..']')
 end
@@ -12115,13 +12115,13 @@ photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_
 end
 database:set(bot_id.."Add:Rd:Sudo:Photo"..test, photo_in_group)  
 end
-send(msg.chat_id_, msg.id_,' ● تم حفظ الرد')
+send(msg.chat_id_, msg.id_,' 🦂 تم حفظ الرد')
 return false  
 end  
 end
 if text and text:match("^(.*)$") then
 if database:get(bot_id..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true' then
-send(msg.chat_id_, msg.id_,' ● ارسل الرد الذي تريد اضافته')
+send(msg.chat_id_, msg.id_,' 🦂 ارسل الرد الذي تريد اضافته')
 database:set(bot_id..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_, 'true1')
 database:set(bot_id..'Text:Sudo:Bot'..msg.sender_user_id_..':'..msg.chat_id_, text)
 database:sadd(bot_id..'List:Rd:Sudo', text)
@@ -12129,7 +12129,7 @@ return false end
 end
 if text and text:match("^(.*)$") then
 if database:get(bot_id..'Set:On'..msg.sender_user_id_..':'..msg.chat_id_) == 'true' then
-send(msg.chat_id_, msg.id_,' ● تم ازالة الرد العام')
+send(msg.chat_id_, msg.id_,' 🦂 تم ازالة الرد العام')
 list = {"Add:Rd:Sudo:Audio","Add:Rd:Sudo:File","Add:Rd:Sudo:Video","Add:Rd:Sudo:Photo","Add:Rd:Sudo:Text","Add:Rd:Sudo:stekr","Add:Rd:Sudo:vico","Add:Rd:Sudo:Gif"}
 for k,v in pairs(list) do
 database:del(bot_id..v..text)
@@ -12145,11 +12145,11 @@ local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
 send(msg.chat_id_, msg.id_,'['..textchuser..']')
 else
-send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n  ● يرجى الاشتراك بالقناه اولا \n  ● اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+send(msg.chat_id_, msg.id_,' 🦂 لا تستطيع استخدام البوت \n  🦂 يرجى الاشتراك بالقناه اولا \n  🦂 اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
 end
 return false
 end
-send(msg.chat_id_, msg.id_,' ● ارسل الكلمه تريد اضافتها')
+send(msg.chat_id_, msg.id_,' 🦂 ارسل الكلمه تريد اضافتها')
 database:set(bot_id..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_,true)
 return false 
 end
@@ -12159,11 +12159,11 @@ local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
 send(msg.chat_id_, msg.id_,'['..textchuser..']')
 else
-send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n  ● يرجى الاشتراك بالقناه اولا \n  ● اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+send(msg.chat_id_, msg.id_,' 🦂 لا تستطيع استخدام البوت \n  🦂 يرجى الاشتراك بالقناه اولا \n  🦂 اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
 end
 return false
 end
-send(msg.chat_id_, msg.id_,' ● ارسل الكلمه تريد مسحها')
+send(msg.chat_id_, msg.id_,' 🦂 ارسل الكلمه تريد مسحها')
 database:set(bot_id..'Set:On'..msg.sender_user_id_..':'..msg.chat_id_,true)
 return false 
 end
@@ -12180,7 +12180,7 @@ local audio = database:get(bot_id.."Add:Rd:Sudo:Audio"..text)
 ------------------------------------------------------------------------
 if text and text:match("^(.*)$") then
 if database:get(bot_id.."botss:VENOM:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
-send(msg.chat_id_, msg.id_, '\n ● ارسل الكلمه تريد اضافتها')
+send(msg.chat_id_, msg.id_, '\n 🦂 ارسل الكلمه تريد اضافتها')
 database:set(bot_id.."botss:VENOM:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_, "true1")
 database:set(bot_id.."botss:VENOM:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_, text)
 database:sadd(bot_id.."botss:VENOM:List:Rd:Sudo", text)
@@ -12188,7 +12188,7 @@ return false end
 end
 if text and text:match("^(.*)$") then
 if database:get(bot_id.."botss:VENOM:Set:On"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
-send(msg.chat_id_, msg.id_,"● تم مسح الرد من ردود المتعدده")
+send(msg.chat_id_, msg.id_,"🦂 تم مسح الرد من ردود المتعدده")
 database:del(bot_id..'botss:VENOM:Add:Rd:Sudo:Text'..text)
 database:del(bot_id..'botss:VENOM:Add:Rd:Sudo:Text1'..text)
 database:del(bot_id..'botss:VENOM:Add:Rd:Sudo:Text2'..text)
@@ -12203,7 +12203,7 @@ local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
 send(msg.chat_id_, msg.id_,'['..textchuser..']')
 else
-send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n  ● يرجى الاشتراك بالقناه اولا \n  ● اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+send(msg.chat_id_, msg.id_,' 🦂 لا تستطيع استخدام البوت \n  🦂 يرجى الاشتراك بالقناه اولا \n  🦂 اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
 end
 return false
 end
@@ -12214,7 +12214,7 @@ database:del(bot_id.."botss:VENOM:Add:Rd:Sudo:Text1"..v)
 database:del(bot_id.."botss:VENOM:Add:Rd:Sudo:Text2"..v)   
 database:del(bot_id.."botss:VENOM:List:Rd:Sudo")
 end
-send(msg.chat_id_, msg.id_,"●تم مسح ردود المتعدده")
+send(msg.chat_id_, msg.id_,"🦂تم مسح ردود المتعدده")
 end
 ------------------------------------------------------------------------
 if text1 then 
@@ -12264,12 +12264,12 @@ database:del(bot_id.."Add:Rd:Manager:File"..v..msg.chat_id_)
 database:del(bot_id.."Add:Rd:Manager:Audio"..v..msg.chat_id_)
 database:del(bot_id..'List:Manager'..msg.chat_id_)
 end
-send(msg.chat_id_, msg.id_," ● تم مسح الردود")
+send(msg.chat_id_, msg.id_," 🦂 تم مسح الردود")
 end
 
 if text == ("الردود") and Manager(msg) then
 local list = database:smembers(bot_id..'List:Manager'..msg.chat_id_..'')
-text = " ● قائمه الردود \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
+text = " 🦂 قائمه الردود \n≪━━━━━━𝑩𝑨𝑲𝑨𝑹━━━━━━≫\n"
 for k,v in pairs(list) do
 if database:get(bot_id.."Add:Rd:Manager:Gif"..v..msg.chat_id_) then
 db = 'متحركه'
@@ -12291,7 +12291,7 @@ end
 text = text..""..k..">> ("..v..") ⤌ {"..db.."}\n"
 end
 if #list == 0 then
-text = " ● لا يوجد ردود للمدير"
+text = " 🦂 لا يوجد ردود للمدير"
 end
 send(msg.chat_id_, msg.id_,'['..text..']')
 end
@@ -12339,13 +12339,13 @@ photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_
 end
 database:set(bot_id.."Add:Rd:Manager:Photo"..test..msg.chat_id_, photo_in_group)  
 end
-send(msg.chat_id_, msg.id_,' ● تم حفظ الرد')
+send(msg.chat_id_, msg.id_,' 🦂 تم حفظ الرد')
 return false  
 end  
 end
 if text and text:match("^(.*)$") then
 if database:get(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true' then
-send(msg.chat_id_, msg.id_,' ● ارسل الرد الذي تريد اضافته')
+send(msg.chat_id_, msg.id_,' 🦂 ارسل الرد الذي تريد اضافته')
 database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,'true1')
 database:set(bot_id..'Text:Manager'..msg.sender_user_id_..':'..msg.chat_id_, text)
 database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
@@ -12361,7 +12361,7 @@ return false end
 end
 if text and text:match("^(.*)$") then
 if database:get(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_..'') == 'true2' then
-send(msg.chat_id_, msg.id_,' ● تم ازالة الرد ')
+send(msg.chat_id_, msg.id_,' 🦂 تم ازالة الرد ')
 database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
 database:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
 database:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
@@ -12381,11 +12381,11 @@ local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
 send(msg.chat_id_, msg.id_,'['..textchuser..']')
 else
-send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n  ● يرجى الاشتراك بالقناه اولا \n  ● اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+send(msg.chat_id_, msg.id_,' 🦂 لا تستطيع استخدام البوت \n  🦂 يرجى الاشتراك بالقناه اولا \n  🦂 اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
 end
 return false
 end
-send(msg.chat_id_, msg.id_,' ● ارسل الكلمه التي تريد اضافتها')
+send(msg.chat_id_, msg.id_,' 🦂 ارسل الكلمه التي تريد اضافتها')
 database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,true)
 return false 
 end
@@ -12395,11 +12395,11 @@ local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
 send(msg.chat_id_, msg.id_,'['..textchuser..']')
 else
-send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n  ● يرجى الاشتراك بالقناه اولا \n  ● اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+send(msg.chat_id_, msg.id_,' 🦂 لا تستطيع استخدام البوت \n  🦂 يرجى الاشتراك بالقناه اولا \n  🦂 اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
 end
 return false
 end
-send(msg.chat_id_, msg.id_,' ● ارسل الكلمه التي تريد مسحها')
+send(msg.chat_id_, msg.id_,' 🦂 ارسل الكلمه التي تريد مسحها')
 database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,'true2')
 return false 
 end
@@ -14796,7 +14796,7 @@ Msᴀɢ ~ #msgs
 - 𝗖𝗛 - 「@SOURCEVENOM」 ●
 ]],
 [[
-- 𝑢𝑠𝑒𝑟𝑛𝑎𝑚𝑒 ⟿ #username
+- ??𝑠𝑒𝑟𝑛𝑎𝑚𝑒 ⟿ #username
 - 𝑚𝑠𝑔𝑠 ⟿ #msgs
 - 𝑖𝑑 ⟿ #id
 - 𝑒𝑑𝑖𝑡 ⟿ #edit
