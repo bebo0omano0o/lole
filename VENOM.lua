@@ -12070,7 +12070,7 @@ db = 'ملف'
 elseif database:get(bot_id.."Add:Rd:Sudo:Audio"..v) then
 db = 'اغنيه'
 end
-text = text..""..k.." >> ("..v..") » {"..db.."}\n"
+text = text..""..k.." >> ("..v..") ⤌ {"..db.."}\n"
 end
 if #list == 0 then
 text = " ● لا يوجد ردود للمطور"
@@ -12159,7 +12159,7 @@ send(msg.chat_id_, msg.id_,' ● ارسل الكلمه تريد اضافتها')
 database:set(bot_id..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_,true)
 return false 
 end
-if text == 'حذف رد عام' and Devban(msg) then 
+if text == 'مسح رد عام' and Devban(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -12169,7 +12169,7 @@ send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n 
 end
 return false
 end
-send(msg.chat_id_, msg.id_,' ● ارسل الكلمه تريد حذفها')
+send(msg.chat_id_, msg.id_,' ● ارسل الكلمه تريد مسحها')
 database:set(bot_id..'Set:On'..msg.sender_user_id_..':'..msg.chat_id_,true)
 return false 
 end
@@ -12185,21 +12185,21 @@ local document = database:get(bot_id.."Add:Rd:Sudo:File"..text)
 local audio = database:get(bot_id.."Add:Rd:Sudo:Audio"..text)
 ------------------------------------------------------------------------
 if text and text:match("^(.*)$") then
-if database:get(bot_id.."botss:lucifer⁦:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
+if database:get(bot_id.."botss:DRAGON:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
 send(msg.chat_id_, msg.id_, '\n ● ارسل الكلمه تريد اضافتها')
-database:set(bot_id.."botss:lucifer⁦:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_, "true1")
-database:set(bot_id.."botss:lucifer⁦:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_, text)
-database:sadd(bot_id.."botss:lucifer⁦:List:Rd:Sudo", text)
+database:set(bot_id.."botss:DRAGON:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_, "true1")
+database:set(bot_id.."botss:DRAGON:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_, text)
+database:sadd(bot_id.."botss:DRAGON:List:Rd:Sudo", text)
 return false end
 end
 if text and text:match("^(.*)$") then
-if database:get(bot_id.."botss:lucifer⁦:Set:On"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
-send(msg.chat_id_, msg.id_,"● تم حذف الرد من ردود المتعدده")
-database:del(bot_id..'botss:lucifer⁦:Add:Rd:Sudo:Text'..text)
-database:del(bot_id..'botss:lucifer⁦:Add:Rd:Sudo:Text1'..text)
-database:del(bot_id..'botss:lucifer⁦:Add:Rd:Sudo:Text2'..text)
-database:del(bot_id.."botss:lucifer⁦:Set:On"..msg.sender_user_id_..":"..msg.chat_id_)
-database:srem(bot_id.."botss:lucifer⁦:List:Rd:Sudo", text)
+if database:get(bot_id.."botss:DRAGON:Set:On"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
+send(msg.chat_id_, msg.id_,"● تم مسح الرد من ردود المتعدده")
+database:del(bot_id..'botss:DRAGON:Add:Rd:Sudo:Text'..text)
+database:del(bot_id..'botss:DRAGON:Add:Rd:Sudo:Text1'..text)
+database:del(bot_id..'botss:DRAGON:Add:Rd:Sudo:Text2'..text)
+database:del(bot_id.."botss:DRAGON:Set:On"..msg.sender_user_id_..":"..msg.chat_id_)
+database:srem(bot_id.."botss:DRAGON:List:Rd:Sudo", text)
 return false
 end
 end
@@ -12213,14 +12213,14 @@ send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n 
 end
 return false
 end
-local list = database:smembers(bot_id.."botss:lucifer⁦:List:Rd:Sudo")
+local list = database:smembers(bot_id.."botss:DRAGON:List:Rd:Sudo")
 for k,v in pairs(list) do  
-database:del(bot_id.."botss:lucifer⁦:Add:Rd:Sudo:Text"..v) 
-database:del(bot_id.."botss:lucifer⁦:Add:Rd:Sudo:Text1"..v) 
-database:del(bot_id.."botss:lucifer⁦:Add:Rd:Sudo:Text2"..v)   
-database:del(bot_id.."botss:lucifer⁦:List:Rd:Sudo")
+database:del(bot_id.."botss:DRAGON:Add:Rd:Sudo:Text"..v) 
+database:del(bot_id.."botss:DRAGON:Add:Rd:Sudo:Text1"..v) 
+database:del(bot_id.."botss:DRAGON:Add:Rd:Sudo:Text2"..v)   
+database:del(bot_id.."botss:DRAGON:List:Rd:Sudo")
 end
-send(msg.chat_id_, msg.id_,"●تم حذف ردود المتعدده")
+send(msg.chat_id_, msg.id_,"●تم مسح ردود المتعدده")
 end
 ------------------------------------------------------------------------
 if text1 then 
@@ -12294,7 +12294,7 @@ db = 'ملف'
 elseif database:get(bot_id.."Add:Rd:Manager:Audio"..v..msg.chat_id_) then
 db = 'اغنيه'
 end
-text = text..""..k..">> ("..v..") » {"..db.."}\n"
+text = text..""..k..">> ("..v..") ⤌ {"..db.."}\n"
 end
 if #list == 0 then
 text = " ● لا يوجد ردود للمدير"
@@ -12395,7 +12395,7 @@ send(msg.chat_id_, msg.id_,' ● ارسل الكلمه التي تريد اضا�
 database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,true)
 return false 
 end
-if text == 'حذف رد' and Manager(msg) then
+if text == 'مسح رد' and Manager(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -12405,7 +12405,7 @@ send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n 
 end
 return false
 end
-send(msg.chat_id_, msg.id_,' ● ارسل الكلمه التي تريد حذفها')
+send(msg.chat_id_, msg.id_,' ● ارسل الكلمه التي تريد مسحها')
 database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,'true2')
 return false 
 end
@@ -12419,7 +12419,6 @@ local photo = database:get(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_)
 local video = database:get(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
 local document = database:get(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
 local audio = database:get(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
-------------------------------------------------------------------------
 ------------------------------------------------------------------------
 if text and text:match("^قول (.*)$") then
 local Textxt = text:match("^قول (.*)$")
@@ -14332,14 +14331,14 @@ local List = {
 [[
 ✶- 𝒔𝒕𝒂𓂅 #stast 𓍯↝❃ .
 ✶- 𝐮𝐬𝐞𝐫𓂅 #username 𓍯↝❃.
-✶- 𝒎𝒔𝒈??𓂅 #msgs 𓍯↝❃.
+✶- 𝒎𝒔𝒈𝒆𓂅 #msgs 𓍯↝❃.
 ✶- 𝐢𝐝 𓂅 #id 𓍯↝❃.
 ✶- 𝗖𝗛 - 「@SOURCEVENOM」 ●.
 ]],
 [[
 • 🖤 | 𝑼𝑬𝑺 :  #username
 
-• 🖤 | 𝑺𝑻𝑨 : #stast
+• ?? | 𝑺𝑻𝑨 : #stast
 
 • 🖤 | 𝑰𝑫 :  #id
 
