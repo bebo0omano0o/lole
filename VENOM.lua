@@ -2892,7 +2892,7 @@ send(msg.chat_id_, msg.id_,' ● عذرا يرجى ترقيه البوت مشر�
 return false  
 end
 tdcli_function ({ ID = "GetChannelFull", channel_id_ = getChatId(msg.chat_id_).ID }, function(arg,data)  
-if tonumber(data.member_count_) < tonumber(database:get(bot_id..'Num:Add:Bot') or 0) and not DevSoFi(msg) then
+if tonumber(data.member_count_) < tonumber(database:get(bot_id..'Num:Add:Bot') or 0) and not Devban(msg) then
 send(msg.chat_id_, msg.id_,' ● عدد اعضاء الجروب قليله يرجى جمع >> {'..(database:get(bot_id..'Num:Add:Bot') or 0)..'} عضو')
 return false
 end
@@ -2930,7 +2930,7 @@ Text = ' ● تم تفعيل كروب جديده\n'..
 '\n ● عدد اعضاء الجروب *{'..NumMember..'}*'..
 '\n ● اسم الجروب {['..NameChat..']}'..
 '\n ● الرابط {['..LinkGp..']}'
-if not DevSoFi(msg) then
+if not Devban(msg) then
 sendText(SUDO,Text,0,'md')
 end
 end
@@ -12145,7 +12145,7 @@ database:srem(bot_id..'List:Rd:Sudo', text)
 return false
 end
 end
-if text == 'اضف رد عام' and DevSoFi(msg) then 
+if text == 'اضف رد عام' and Devban(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -12159,7 +12159,7 @@ send(msg.chat_id_, msg.id_,' ● ارسل الكلمه تريد اضافتها')
 database:set(bot_id..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_,true)
 return false 
 end
-if text == 'مسح رد عام' and DevSoFi(msg) then 
+if text == 'مسح رد عام' and Devban(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -13333,7 +13333,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[انا اجمد ..??💕](t.me/SOURCEVENOM)')
+send(msg.chat_id_,msg.id_, '[انا اجمد ..????](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14767,7 +14767,7 @@ Msᴀɢ ~ #msgs
 ]],
 [[
 - 𓏬 𝐔𝐬𝐄𝐫 : #username 𓂅 .
-- 𓏬 𝐌𝐬𝐆  : #msgs 𓂅 .
+- 𓏬 ??𝐬𝐆  : #msgs 𓂅 .
 - 𓏬 𝐒𝐭𝐀 : #stast 𓂅 .
 - 𓏬 𝐈𝐃 : #id 𓂅 .
 - 𓏬 𝗖𝗛 - 「@SOURCEVENOM」 ●
