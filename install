@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 cd $HOME/VENOM
 wget https://raw.githubusercontent.com/ahmedyad200/tg-file/master/tg
-mkdir File_Bot
 install() {
 rm -rf $HOME/.telegram-cli
 sudo apt-get update -y
@@ -23,8 +22,8 @@ sudo apt-get install libnotify-dev -y
 sudo chmod +x tg
 lua VENOM.lua
 sudo chmod +x VENOM
-sudo chmod +x ./VNO
-./VNO
+sudo chmod +x ./DRG
+./DRG
 }
 if [ "$1" = "install" ]; then
 install
@@ -36,6 +35,6 @@ fi
 sudo chmod +x tg
 lua VENOM.lua
 sudo chmod +x VENOM
-sudo chmod +x ./VNO
-./VNO
+sudo chmod +x ./DRG
+./DRG
 fi
