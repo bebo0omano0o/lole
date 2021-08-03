@@ -12033,7 +12033,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
 end
 
-if text == ("مسح الردود العامه") and DevSoFi(msg) then 
+if text == ("مسح الردود العامه") and Devban(msg) then 
 local list = database:smembers(bot_id..'List:Rd:Sudo')
 for k,v in pairs(list) do
 database:del(bot_id.."Add:Rd:Sudo:Gif"..v)   
@@ -12049,7 +12049,7 @@ end
 send(msg.chat_id_, msg.id_," ● تم مسح الردود العامه")
 end
 
-if text == ("الردود العامه") and DevSoFi(msg) then 
+if text == ("الردود العامه") and Devban(msg) then 
 local list = database:smembers(bot_id..'List:Rd:Sudo')
 text = "\n ● قائمة الردود العامه \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 for k,v in pairs(list) do
@@ -12145,7 +12145,7 @@ database:srem(bot_id..'List:Rd:Sudo', text)
 return false
 end
 end
-if text == 'اضف رد عام' and DevSoFi(msg) then 
+if text == 'اضف رد عام' and Devban(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -12159,7 +12159,7 @@ send(msg.chat_id_, msg.id_,' ● ارسل الكلمه تريد اضافتها')
 database:set(bot_id..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_,true)
 return false 
 end
-if text == 'حذف رد عام' and DevSoFi(msg) then 
+if text == 'حذف رد عام' and Devban(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -14332,7 +14332,7 @@ local List = {
 [[
 ✶- 𝒔𝒕𝒂𓂅 #stast 𓍯↝❃ .
 ✶- 𝐮𝐬𝐞𝐫𓂅 #username 𓍯↝❃.
-✶- 𝒎??𝒈𝒆𓂅 #msgs 𓍯↝❃.
+✶- 𝒎𝒔𝒈??𓂅 #msgs 𓍯↝❃.
 ✶- 𝐢𝐝 𓂅 #id 𓍯↝❃.
 ✶- 𝗖𝗛 - 「@SOURCEVENOM」 ●.
 ]],
@@ -14762,7 +14762,7 @@ Msᴀɢ ~ #msgs
 🇪🇬 - 𝚄𝚂𝙴𝚁 ⟿ #username 💘.
 🇪🇬 - 𝙼𝚂𝙶𝚂 ⟿  #msgs 💘.
 🇪🇬 - 𝙶𝙼𝙰𝚂 ⟿ #stast 💘.
-🇪🇬 - 𝙸𝙳 𝚂𝚃𝙰 ⟿ #id ??.  
+🇪🇬 - 𝙸𝙳 𝚂𝚃𝙰 ⟿ #id 💘.  
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 🇪🇬 - 𝗖𝗛 - 「@SOURCEVENOM」 ●
 ]],
