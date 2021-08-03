@@ -103,7 +103,7 @@ echo -e "\e[36m"
 done
 ]])  
 file:close()  
-file = io.open("VNO", "w")  
+file = io.open("DRG", "w")  
 file:write([[
 #!/usr/bin/env bash
 cd $HOME/VENOM
@@ -407,16 +407,16 @@ Var = false
 end
 return Var
 end
-function VNO_User(Chat_id,User_id) 
-if database:sismember(bot_id..'VNO:User'..Chat_id,User_id) then
+function DRG_User(Chat_id,User_id) 
+if database:sismember(bot_id..'DRG:User'..Chat_id,User_id) then
 Var = true
 else
 Var = false
 end
 return Var
 end 
-function GVNO_User(User_id) 
-if database:sismember(bot_id..'GVNO:User',User_id) then
+function GDRG_User(User_id) 
+if database:sismember(bot_id..'GDRG:User',User_id) then
 Var = true
 else
 Var = false
@@ -722,7 +722,7 @@ keyboard.inline_keyboard = {
 {text = 'حذف الرسائل '..delete, callback_data='amr@'..user..'/user@'..user_id.."/delmsgg"..deletee},
 },
 {
-{text = 'حظر المستخدمين '..restrict, callback_data='amr@'..user..'/user@'..user_id.."/VNOuser"..restrictt},
+{text = 'حظر المستخدمين '..restrict, callback_data='amr@'..user..'/user@'..user_id.."/DRGuser"..restrictt},
 },
 {
 {text = 'اضافه مستخدمين '..invite, callback_data='amr@'..user..'/user@'..user_id.."/addlink"..invitee},
@@ -1046,7 +1046,7 @@ keyboard.inline_keyboard = {
 {text = 'معلومات', callback_data="/change-hhh"},{text = 'السورس', callback_data="/change-siusr"},
 },
 {
-{text = 'الابراج', callback_data="/zVNOd"},{text = 'الالعاب', callback_data="/add"},
+{text = 'الابراج', callback_data="/zDRGd"},{text = 'الالعاب', callback_data="/add"},
 },
 {
 {text = ' مــطــور الــبــوت🔰', url="http://t.me/"..sudos.UserName},
@@ -1097,7 +1097,7 @@ send_inline_key(msg.chat_id_,bl,keyboard)
 end
 end
 
-if not Devban(msg) and not database:sismember(bot_id..'VNO:User_Bot',msg.sender_user_id_) and not database:get(bot_id..'Tuasl:Bots') then
+if not Devban(msg) and not database:sismember(bot_id..'DRG:User_Bot',msg.sender_user_id_) and not database:get(bot_id..'Tuasl:Bots') then
 send(msg.sender_user_id_, msg.id_,'  ')
 tdcli_function ({ID = "ForwardMessages", chat_id_ = SUDO,    from_chat_id_ = msg.sender_user_id_,    message_ids_ = {[0] = msg.id_},    disable_notification_ = 1,    from_background_ = 1 },function(arg,data) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,ta) 
@@ -1120,14 +1120,14 @@ if text == 'حظر' then
 local Name = '['..string.sub(data.first_name_,0, 40)..'](tg://user?id='..id_user..')'
 local Text = ' ●المستخدم ↚ 「'..Name..'」\n ●تم حظره من التواصل'
 sendText(SUDO,Text,msg.id_/2097152/0.5,'md')
-database:sadd(bot_id..'VNO:User_Bot',data.id_)  
+database:sadd(bot_id..'DRG:User_Bot',data.id_)  
 return false  
 end 
 if text =='الغاء الحظر' then
 local Name = '['..string.sub(data.first_name_,0, 40)..'](tg://user?id='..id_user..')'
 local Text = ' ●المستخدم ↚ 「'..Name..'」\n ●تم الغاء حظره من التواصل'
 sendText(SUDO,Text,msg.id_/2097152/0.5,'md')
-database:srem(bot_id..'VNO:User_Bot',data.id_)  
+database:srem(bot_id..'DRG:User_Bot',data.id_)  
 return false  
 end 
 
@@ -1570,7 +1570,7 @@ end
 send(msg.chat_id_, msg.id_, t)
 end
 if text == ("قائمه العام") and SudoBot(msg) then
-local list = database:smembers(bot_id..'GVNO:User')
+local list = database:smembers(bot_id..'GDRG:User')
 t = "\n ● قائمه المحظورين عام \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 for k,v in pairs(list) do
 local username = database:get(bot_id.."user:Name" .. v)
@@ -5075,22 +5075,22 @@ dofile('VENOM.lua')
 send(msg.chat_id_, msg.id_, ' ● تم تحديث جميع الملفات') 
 end 
 if text == ("مسح قائمه العام") and Devban(msg) then
-database:del(bot_id..'GVNO:User')
+database:del(bot_id..'GDRG:User')
 send(msg.chat_id_, msg.id_, '\n ● تم مسح قائمه العام')
 return false
 end
 if text == ("مسح الحظر العام") and Devban(msg) then
-database:del(bot_id..'GVNO:User')
+database:del(bot_id..'GDRG:User')
 send(msg.chat_id_, msg.id_, '\n ● تم مسح الحظر العام')
 return false
 end
 if text == ("مسح الكتم العام") and Devban(msg) then
-database:del(bot_id..'GVNO:User')
+database:del(bot_id..'GDRG:User')
 send(msg.chat_id_, msg.id_, '\n ● تم مسح الكتم العام')
 return false
 end
 if text == ("قائمه العام") and Devban(msg) then
-local list = database:smembers(bot_id..'GVNO:User')
+local list = database:smembers(bot_id..'GDRG:User')
 t = "\n ● قائمة المحظورين عام \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 for k,v in pairs(list) do
 local username = database:get(bot_id.."user:Name" .. v)
@@ -5141,7 +5141,7 @@ if tonumber(result.sender_user_id_) == tonumber(1360140225) then
 send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مبرمج السورس عام")
 return false 
 end
-database:sadd(bot_id..'GVNO:User', result.sender_user_id_)
+database:sadd(bot_id..'GDRG:User', result.sender_user_id_)
 chat_kick(result.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},
 function(arg,data) 
@@ -5198,7 +5198,7 @@ end
 usertext = '\n ● الـعـضو   ↚ ['..result.title_..'](t.me/'..(username or 'SOURCEVENOM')..')'
 status  = '\n ● تم حظرو عام من الجروبات '
 texts = usertext..status
-database:sadd(bot_id..'GVNO:User', result.id_)
+database:sadd(bot_id..'GDRG:User', result.id_)
 else
 texts = ' ● لا يوجد حساب بهاذا المعرف'
 end
@@ -5243,7 +5243,7 @@ if tonumber(userid) == tonumber(1360140225) then
 send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مبرمج السورس عام")
 return false 
 end
-database:sadd(bot_id..'GVNO:User', userid)
+database:sadd(bot_id..'GDRG:User', userid)
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
 usertext = '\n ● الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'SOURCEVENOM')..')'
@@ -5422,7 +5422,7 @@ usertext = '\n ● الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.u
 status  = '\n ● تم الغاء (الحظر-الكتم) عام من الجروبات'
 send(msg.chat_id_, msg.id_, usertext..status)
 end,nil)
-database:srem(bot_id..'GVNO:User', result.sender_user_id_)
+database:srem(bot_id..'GDRG:User', result.sender_user_id_)
 database:srem(bot_id..'Gmute:User', result.sender_user_id_)
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
@@ -5444,7 +5444,7 @@ if result.id_ then
 usertext = '\n ● الـعـضو   ↚ ['..result.title_..'](t.me/'..(username or 'SOURCEVENOM')..')'
 status  = '\n ● تم الغاء (الحظر-الكتم) عام من الجروبات'
 texts = usertext..status
-database:srem(bot_id..'GVNO:User', result.id_)
+database:srem(bot_id..'GDRG:User', result.id_)
 database:srem(bot_id..'Gmute:User', result.id_)
 else
 texts = ' ● لا يوجد حساب بهاذا المعرف'
@@ -5465,7 +5465,7 @@ send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n 
 end
 return false
 end
-database:srem(bot_id..'GVNO:User', userid)
+database:srem(bot_id..'GDRG:User', userid)
 database:srem(bot_id..'Gmute:User', userid)
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
@@ -9253,11 +9253,11 @@ tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumbe
 return false
 end
 if text == 'مسح المحظورين' and Mod(msg) then
-database:del(bot_id..'VNO:User'..msg.chat_id_)
+database:del(bot_id..'DRG:User'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '\n ● تم مسح المحظورين')
 end
 if text == ("المحظورين") then
-local list = database:smembers(bot_id..'VNO:User'..msg.chat_id_)
+local list = database:smembers(bot_id..'DRG:User'..msg.chat_id_)
 t = "\n ● قائمة محظورين الجروب \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 for k,v in pairs(list) do
 local username = database:get(bot_id.."user:Name" .. v)
@@ -9303,7 +9303,7 @@ if msg.can_be_deleted_ == false then
 send(msg.chat_id_, msg.id_,' ● البوت ليس ادمن يرجى ترقيتي !') 
 return false  
 end
-database:sadd(bot_id..'VNO:User'..msg.chat_id_, result.sender_user_id_)
+database:sadd(bot_id..'DRG:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 usertext = '\n ● الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
 status  = '\n ● تم حظره'
@@ -9341,7 +9341,7 @@ if msg.can_be_deleted_ == false then
 send(msg.chat_id_, msg.id_,' ● البوت ليس ادمن يرجى ترقيتي !') 
 return false  
 end
-database:sadd(bot_id..'VNO:User'..msg.chat_id_, result.id_)
+database:sadd(bot_id..'DRG:User'..msg.chat_id_, result.id_)
 usertext = '\n ●  المستخدم  ↚ ['..result.title_..'](t.me/'..(username or 'GLOBLA')..')'
 status  = '\n ● تم حظره'
 texts = usertext..status
@@ -9388,7 +9388,7 @@ if msg.can_be_deleted_ == false then
 send(msg.chat_id_, msg.id_,' ● البوت ليس ادمن يرجى ترقيتي !') 
 return false  
 end
-database:sadd(bot_id..'VNO:User'..msg.chat_id_, userid)
+database:sadd(bot_id..'DRG:User'..msg.chat_id_, userid)
 chat_kick(msg.chat_id_, userid)  
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
@@ -9419,13 +9419,13 @@ if tonumber(result.sender_user_id_) == tonumber(bot_id) then
 send(msg.chat_id_, msg.id_, ' ● انا لست محظورآ \n') 
 return false 
 end
-database:srem(bot_id..'VNO:User'..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id..'DRG:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 usertext = '\n ● الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
 status  = '\n ● تم الغاء حظره'
 send(msg.chat_id_, msg.id_, usertext..status)
 end,nil)
-tdcli_function ({ ID = "ChangeChatMemberStatus", chat_id_ = msg.chat_id_, user_id_ = result.sender_user_id_, status_ = { ID = "ChatMemberStatusLeft" },},function(arg,VNO) end,nil)   
+tdcli_function ({ ID = "ChangeChatMemberStatus", chat_id_ = msg.chat_id_, user_id_ = result.sender_user_id_, status_ = { ID = "ChatMemberStatusLeft" },},function(arg,DRG) end,nil)   
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
 return false
@@ -9448,8 +9448,8 @@ if tonumber(result.id_) == tonumber(bot_id) then
 send(msg.chat_id_, msg.id_, ' ● انا لست محظورآ \n') 
 return false 
 end
-database:srem(bot_id..'VNO:User'..msg.chat_id_, result.id_)
-tdcli_function ({ ID = "ChangeChatMemberStatus", chat_id_ = msg.chat_id_, user_id_ = result.id_, status_ = { ID = "ChatMemberStatusLeft" },},function(arg,VNO) end,nil)   
+database:srem(bot_id..'DRG:User'..msg.chat_id_, result.id_)
+tdcli_function ({ ID = "ChangeChatMemberStatus", chat_id_ = msg.chat_id_, user_id_ = result.id_, status_ = { ID = "ChatMemberStatusLeft" },},function(arg,DRG) end,nil)   
 usertext = '\n ● الـعـضو   ↚ ['..result.title_..'](t.me/'..(username or 'textchuser')..')'
 status  = '\n ● تم الغاء حظره'
 texts = usertext..status
@@ -9477,8 +9477,8 @@ if tonumber(userid) == tonumber(bot_id) then
 send(msg.chat_id_, msg.id_, ' ● انا لست محظورآ \n') 
 return false 
 end
-database:srem(bot_id..'VNO:User'..msg.chat_id_, userid)
-tdcli_function ({ ID = "ChangeChatMemberStatus", chat_id_ = msg.chat_id_, user_id_ = userid, status_ = { ID = "ChatMemberStatusLeft" },},function(arg,VNO) end,nil)   
+database:srem(bot_id..'DRG:User'..msg.chat_id_, userid)
+tdcli_function ({ ID = "ChangeChatMemberStatus", chat_id_ = msg.chat_id_, user_id_ = userid, status_ = { ID = "ChatMemberStatusLeft" },},function(arg,DRG) end,nil)   
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
 usertext = '\n ● الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
@@ -10031,8 +10031,8 @@ end
 function start_function(extra, result, success)
 if result.id_ then
 if Devban(msg) then
-database:srem(bot_id..'GVNO:User',result.id_)
-database:srem(bot_id..'VNO:User'..msg.chat_id_,result.id_)
+database:srem(bot_id..'GDRG:User',result.id_)
+database:srem(bot_id..'DRG:User'..msg.chat_id_,result.id_)
 database:srem(bot_id..'Muted:User'..msg.chat_id_,result.id_)
 database:srem(bot_id..'Gmute:User'..msg.chat_id_,result.id_)
 usertext = '\n ● الـعـضو   ↚ ['..result.title_..'](t.me/'..(username or 'textchuser')..')'
@@ -10040,7 +10040,7 @@ status  = '\n ● تم الغاء جميع القيود'
 texts = usertext..status
 send(msg.chat_id_, msg.id_,texts)
 else
-database:srem(bot_id..'VNO:User'..msg.chat_id_,result.id_)
+database:srem(bot_id..'DRG:User'..msg.chat_id_,result.id_)
 database:srem(bot_id..'Muted:User'..msg.chat_id_,result.id_)
 usertext = '\n ● الـعـضو   ↚ ['..result.title_..'](t.me/'..(username or 'textchuser')..')'
 status  = '\n ● تم الغاء جميع القيود'
@@ -10066,8 +10066,8 @@ return false
 end
 function start_function(extra, result, success)
 if Devban(msg) then
-database:srem(bot_id..'GVNO:User',result.sender_user_id_)
-database:srem(bot_id..'VNO:User'..msg.chat_id_,result.sender_user_id_)
+database:srem(bot_id..'GDRG:User',result.sender_user_id_)
+database:srem(bot_id..'DRG:User'..msg.chat_id_,result.sender_user_id_)
 database:srem(bot_id..'Muted:User'..msg.chat_id_,result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 usertext = '\n ● الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
@@ -10075,7 +10075,7 @@ status  = '\n ● تم الغاء جميع القيود'
 send(msg.chat_id_, msg.id_, usertext..status)
 end,nil)
 else
-database:srem(bot_id..'VNO:User'..msg.chat_id_,result.sender_user_id_)
+database:srem(bot_id..'DRG:User'..msg.chat_id_,result.sender_user_id_)
 database:srem(bot_id..'Muted:User'..msg.chat_id_,result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 usertext = '\n ● الـعـضو   ↚ ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
@@ -10104,17 +10104,17 @@ Muted = 'مكتوم'
 else
 Muted = 'غير مكتوم'
 end
-if database:sismember(bot_id..'VNO:User'..msg.chat_id_,result.id_) then
-VNO = 'محظور'
+if database:sismember(bot_id..'DRG:User'..msg.chat_id_,result.id_) then
+DRG = 'محظور'
 else
-VNO = 'غير محظور'
+DRG = 'غير محظور'
 end
-if database:sismember(bot_id..'GVNO:User',result.id_) then
-GVNO = 'محظور عام'
+if database:sismember(bot_id..'GDRG:User',result.id_) then
+GDRG = 'محظور عام'
 else
-GVNO = 'غير محظور عام'
+GDRG = 'غير محظور عام'
 end
-Textt = " ● الحظر العام  ↚ "..GVNO.."\n ● الحظر  ↚ "..VNO.."\n ● الكتم  ↚ "..Muted..""
+Textt = " ● الحظر العام  ↚ "..GDRG.."\n ● الحظر  ↚ "..DRG.."\n ● الكتم  ↚ "..Muted..""
 send(msg.chat_id_, msg.id_,Textt)
 else
 Text = ' ● المعرف غلط'
@@ -10140,22 +10140,22 @@ Muted = 'مكتوم'
 else
 Muted = 'غير مكتوم'
 end
-if database:sismember(bot_id..'VNO:User'..msg.chat_id_,result.sender_user_id_) then
-VNO = 'محظور'
+if database:sismember(bot_id..'DRG:User'..msg.chat_id_,result.sender_user_id_) then
+DRG = 'محظور'
 else
-VNO = 'غير محظور'
+DRG = 'غير محظور'
 end
-if database:sismember(bot_id..'GVNO:User',result.sender_user_id_) then
-GVNO = 'محظور عام'
+if database:sismember(bot_id..'GDRG:User',result.sender_user_id_) then
+GDRG = 'محظور عام'
 else
-GVNO = 'غير محظور عام'
+GDRG = 'غير محظور عام'
 end
 if database:sismember(bot_id..'Gmute:User',result.sender_user_id_) then
 Gmute = 'محظور عام'
 else
 Gmute = 'غير محظور عام'
 end
-Textt = " ● الحظر العام  ↚ "..GVNO.."\n ● الكتم العام  ↚ "..Gmute.."\n ● الحظر  ↚ "..VNO.."\n ● الكتم  ↚ "..Muted..""
+Textt = " ● الحظر العام  ↚ "..GDRG.."\n ● الكتم العام  ↚ "..Gmute.."\n ● الحظر  ↚ "..DRG.."\n ● الكتم  ↚ "..Muted..""
 send(msg.chat_id_, msg.id_,Textt)
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
@@ -10531,9 +10531,9 @@ else
 setadd = '✘'
 end
 if not database:get(bot_id..'Lock:Add:Bot'..msg.chat_id_)  then
-VNOm = '✓'
+DRGm = '✓'
 else
-VNOm = '✘'
+DRGm = '✘'
 end
 if not database:get(bot_id..'Added:Me'..msg.chat_id_) then
 addme = '✓'
@@ -10600,7 +10600,7 @@ local text =
 ' }\n'..' ●  الايدي  ↚ { '..idgp..
 ' }\n'..' ●  الايدي بالصوره  ↚ { '..idph..
 ' }\n'..' ●  الرفع  ↚ { '..setadd..
-' }\n'..' ●  الحظر  ↚ { '..VNOm..' }\n\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n ● قناة سورس فينم↓\n━━━━━━━\n'
+' }\n'..' ●  الحظر  ↚ { '..DRGm..' }\n\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n ● قناة سورس فينم↓\n━━━━━━━\n'
 send(msg.chat_id_, msg.id_,text)     
 end
 if text ==('تثبيت') and msg.reply_to_message_id_ ~= 0 and Mod(msg) then  
@@ -15815,7 +15815,7 @@ keyboard.inline_keyboard = {
 {text = '◗العاب السورس◖', callback_data="/mute-name"},{text = '◗الاضافات◖', callback_data="/change-photo"},
 },
 {
-{text = '◗ متطوره◖', callback_data="/VNO"},
+{text = '◗ متطوره◖', callback_data="/DRG"},
 },
 {
 {text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
@@ -16302,7 +16302,7 @@ keyboard.inline_keyboard = {
 {text = 'تفعيل  انا مين', callback_data="/lockanmen"},{text = 'تعطيل انا مين', callback_data="/oppganmen"},
 },
 {
-{text = 'تفعيل ضافني', callback_data="/lockbafne"},{text = 'تعطيل ضافني', callback_data="/opaVNOfe"},
+{text = 'تفعيل ضافني', callback_data="/lockbafne"},{text = 'تعطيل ضافني', callback_data="/opaDRGfe"},
 },
 {
 {text = 'تفعيل الالعاب', callback_data="/lockgams"},{text = 'تعطيل الالعاب', callback_data="/opagams"},
@@ -16423,7 +16423,7 @@ local Teext =[[
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
     ● Habayeb survey..↑↓
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
-● my husVNOd
+● my husDRGd
 ● Crown for couples
 ● Survey of couples
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
@@ -16879,7 +16879,7 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
------------------------------- callback add dev mr VNO
+------------------------------ callback add dev mr DRG
 if Text == '/may' then
 local Teext =[[
 • يلا بنا نبحث عن المنزل •
@@ -17492,7 +17492,7 @@ end
 
 
 
-if Text == '/VNO' then
+if Text == '/DRG' then
 local Teext =[[
  ● مرحبا بيك في الالعاب  الالكترونيه ..↑↓
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
@@ -17727,7 +17727,7 @@ keyboard.inline_keyboard = {
 {text = '◗العاب السورس◖', callback_data="/mute-name"},{text = '◗الاضافات◖', callback_data="/change-photo"},
 },
 {
-{text = '◗ متطوره◖', callback_data="/VNO"},
+{text = '◗ متطوره◖', callback_data="/DRG"},
 },
 {
 {text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
@@ -17735,7 +17735,7 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
-if Text == '/zVNOd' then
+if Text == '/zDRGd' then
 local Teext =[[
 • اختر برجك عزيزي •📮،⍆
 ]]
@@ -17818,7 +17818,7 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'الــمــبــرمــج بــانــدا', url="t.me/QSVNO"}},
+{{text = 'الــمــبــرمــج بــانــدا', url="t.me/QSDRG"}},
 {{text = 'تــواصــل بــانــدا',url="t.me/T_fuck_off"}}, 
 {{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/change-hhh"}},
 }
@@ -17917,7 +17917,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zVNOd"},
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zDRGd"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -17934,7 +17934,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zVNOd"},
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zDRGd"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -17965,7 +17965,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zVNOd"},
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zDRGd"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -17995,7 +17995,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zVNOd"},
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zDRGd"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -18027,7 +18027,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zVNOd"},
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zDRGd"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -18056,7 +18056,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zVNOd"},
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zDRGd"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -18088,7 +18088,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zVNOd"},
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zDRGd"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -18119,7 +18119,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zVNOd"},
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zDRGd"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -18147,7 +18147,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zVNOd"},
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zDRGd"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -18176,7 +18176,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zVNOd"},
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zDRGd"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -18203,7 +18203,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zVNOd"},
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zDRGd"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -18234,7 +18234,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zVNOd"},
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zDRGd"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -18258,7 +18258,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zVNOd"},
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zDRGd"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -18332,7 +18332,7 @@ return https.request("https://api.telegram.org/bot"..token..'/editMessageText?ch
 end
 if Text == '/lockamr' then
 local Text = '• تم تفعيل حساب العمر '
-database:set(bot_id.."VNO:age_Bots"..Chat_id,true)  
+database:set(bot_id.."DRG:age_Bots"..Chat_id,true)  
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
@@ -18343,7 +18343,7 @@ return https.request("https://api.telegram.org/bot"..token..'/editMessageText?ch
 end
 if Text == '/opamar' then
 local Text = '• تم تعطيل حساب العمر '
-database:del(bot_id.."VNO:age_Bots"..Chat_id)  
+database:del(bot_id.."DRG:age_Bots"..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
@@ -18517,7 +18517,7 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
-if Text == '/opaVNOfe' then
+if Text == '/opaDRGfe' then
 local Text = '• تم تعطيل ضافني '
 database:del(bot_id.."Added:Me"..Chat_id)  
 keyboard = {} 
@@ -19357,8 +19357,8 @@ https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
 end
 end
-if Text and Text:match('amr@(%d+)/user@(%d+)/VNOusertrue') then
-local users = {string.match(Text,"^amr@(%d+)/user@(%d+)/VNOusertrue$")}
+if Text and Text:match('amr@(%d+)/user@(%d+)/DRGusertrue') then
+local users = {string.match(Text,"^amr@(%d+)/user@(%d+)/DRGusertrue$")}
 if tonumber(users[1]) == tonumber(data.sender_user_id_) then
 local Chek_Info = https.request('https://api.telegram.org/bot'..token..'/getChatMember?chat_id='.. data.chat_id_ ..'&user_id='.. users[2])
 local Json_Info = JSON.decode(Chek_Info)
@@ -19661,8 +19661,8 @@ https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
 end
 end
-if Text and Text:match('amr@(%d+)/user@(%d+)/VNOuserfalse') then
-local users = {string.match(Text,"^amr@(%d+)/user@(%d+)/VNOuserfalse$")}
+if Text and Text:match('amr@(%d+)/user@(%d+)/DRGuserfalse') then
+local users = {string.match(Text,"^amr@(%d+)/user@(%d+)/DRGuserfalse$")}
 if tonumber(users[1]) == tonumber(data.sender_user_id_) then
 local Chek_Info = https.request('https://api.telegram.org/bot'..token..'/getChatMember?chat_id='.. data.chat_id_ ..'&user_id='.. users[2])
 local Json_Info = JSON.decode(Chek_Info)
@@ -20241,19 +20241,19 @@ DeleteMessage(msg.chat_id_, {[0] = msg.id_})
 return false  
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.sender_user_id_ and VNO_User(msg.chat_id_,msg.sender_user_id_) then 
+if msg.sender_user_id_ and DRG_User(msg.chat_id_,msg.sender_user_id_) then 
 chat_kick(msg.chat_id_,msg.sender_user_id_) 
 DeleteMessage(msg.chat_id_, {[0] = msg.id_}) 
 return false  
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.content_ and msg.content_.members_ and msg.content_.members_[0] and msg.content_.members_[0].id_ and VNO_User(msg.chat_id_,msg.content_.members_[0].id_) then 
+if msg.content_ and msg.content_.members_ and msg.content_.members_[0] and msg.content_.members_[0].id_ and DRG_User(msg.chat_id_,msg.content_.members_[0].id_) then 
 chat_kick(msg.chat_id_,msg.content_.members_[0].id_) 
 DeleteMessage(msg.chat_id_, {[0] = msg.id_}) 
 return false
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.sender_user_id_ and GVNO_User(msg.sender_user_id_) then 
+if msg.sender_user_id_ and GDRG_User(msg.sender_user_id_) then 
 chat_kick(msg.chat_id_,msg.sender_user_id_) 
 DeleteMessage(msg.chat_id_, {[0] = msg.id_}) 
 return false 
@@ -20264,7 +20264,7 @@ DeleteMessage(msg.chat_id_, {[0] = msg.id_})
 return false 
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.content_ and msg.content_.members_ and msg.content_.members_[0] and msg.content_.members_[0].id_ and GVNO_User(msg.content_.members_[0].id_) then 
+if msg.content_ and msg.content_.members_ and msg.content_.members_[0] and msg.content_.members_[0].id_ and GDRG_User(msg.content_.members_[0].id_) then 
 chat_kick(msg.chat_id_,msg.content_.members_[0].id_) 
 DeleteMessage(msg.chat_id_, {[0] = msg.id_})  
 end 
