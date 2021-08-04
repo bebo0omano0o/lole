@@ -2602,7 +2602,7 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://mode-pro.tk/niggax/captcha.php?c='..captcha..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end 
 end
-if bot_data:get(ban_id.."CAPTCHA"..msg.chat_id_) then
+if bot_data:get(ban_id.."CAPTAIN"..msg.chat_id_) then
 if msg.content_.ID == "MessageChatAddMembers" then 
 https.request("https://api.telegram.org/bot"..token.."/restrictChatMember?chat_id="..msg.chat_id_.."&user_id="..msg.sender_user_id_)
 captcha = math.random(4567,8907);
@@ -2653,16 +2653,6 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/comxnxp/20&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end  
-if msg.content_.ID == "MessageChatAddMembers" then 
-local Text =' '
-keyboard = {} 
-keyboard.inline_keyboard = {
-{{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/comxnxp/20&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-end 
-
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.photo_ then  
 if bot_data:get(ban_id..'Change:Chat:Photo'..msg.chat_id_..':'..msg.sender_user_id_) then 
@@ -14736,7 +14726,7 @@ Msᴀɢ ~ #msgs
 - رسائلڪ  الطيفهہَ ⁞ #msgs 💘 ٬
 - رتبتڪ الحلوه ⁞ #stast  💘٬
 - سحڪاتڪ الفول ⁞ #edit 💘 ٬
-- ??𝗛 - 「@SOURCEVENOM」 ●
+- 𝗖𝗛 - 「@SOURCEVENOM」 ●
 ]],
 [[
 𓁷⁦⁦ - 𝙪𝙚𝙨 †: #username 𓀀 .
@@ -15205,7 +15195,7 @@ Msᴀɢ ~ #msgs
 🇪🇬 - 𝄬 𝗖𝗛 - 「@SOURCEVENOM」 ●
 ]],
 [[
-.𖣂 𝙪𝙨𝙚𝙧𝙣𝙖𝙢𝙚 , #username  🖤 ↴
+.𖣂 𝙪𝙨𝙚𝙧𝙣𝙖??𝙚 , #username  🖤 ↴
 .𖣂 𝙨𝙩𝙖𝙨𝙩 , #stast  🖤 ↴
 .𖣂 𝙡𝘿 , #id  🖤 ↴
 .𖣂 𝘼𝙪𝙩𝙤 , #auto  🖤 ↴
@@ -16327,6 +16317,9 @@ keyboard.inline_keyboard = {
 },
 {
 {text = 'تفعيل التحقق', callback_data="/lockCickp"},{text = 'تعطيل التحقق', callback_data="/opCickp"},
+},
+{
+{text = 'تفعيل التحقق عند دخول', callback_data="/lockCAPTAIN"},{text = 'تعطيل التحقق عند دخول', callback_data="/opCAPTAIN"},
 },
 {
 {text = 'تفعيل الرابط', callback_data="/locklinka"},{text = 'تعطيل الرابط', callback_data="/opalinka"},
@@ -17907,8 +17900,8 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text = '•ᴍʏ ᴅᴇᴠ♪', callback_data="/units"},{text = '•ᴍʏ ᴄʜᴀɴɴᴇʟ♪', callback_data="/theytry"}},   
-{{text = ' مــطــور الــبــوت🔰', url="http://t.me/"..sudos.UserName}},
-{{text = 'اضغط لاضافه البوت لمجمعتك✅' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}}, 
+{{text = '♪مــطــور الــبــوت•', url="http://t.me/"..sudos.UserName}},
+{{text = '♪ اضغط لاضافه البوت لمجمعتك •' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}}, 
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
@@ -18342,6 +18335,28 @@ end
 if Text == '/opCickp' then
 local Text = '• تم تعطيل التحقق '
 bot_data:del(ban_id.."CAPTCHA"..Chat_id)  
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
+},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
+end
+if Text == '/lockCAPTAIN' then
+local Text = '• تم تفعيل التحقق عند دخول'
+bot_data:set(ban_id.."CAPTAIN"..Chat_id,true)  
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
+},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
+end
+if Text == '/opCAPTAIN' then
+local Text = '• تم تعطيل التحقق عند دخول '
+bot_data:del(ban_id.."CAPTAIN"..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
