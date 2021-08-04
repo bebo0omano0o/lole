@@ -16316,10 +16316,10 @@ keyboard.inline_keyboard = {
 {text = 'تفعيل اطردني', callback_data="/opCick"},{text = 'تعطيل اطردني', callback_data="/lockCick"},
 },
 {
-{text = 'تفعيل التحقق', callback_data="/lockCickp"},{text = 'تعطيل التحقق', callback_data="/opCickp"},
+{text = 'تفعيل التحقق1', callback_data="/lockCickp"},{text = 'تعطيل التحقق1', callback_data="/opCickp"},
 },
 {
-{text = 'تفعيل التحقق عند دخول', callback_data="/lockCAPTAIN"},{text = 'تعطيل التحقق عند دخول', callback_data="/opCAPTAIN"},
+{text = 'تفعيل التحقق2', callback_data="/lockCAPTAIN"},{text = 'تعطيل التحقق 2', callback_data="/opCAPTAIN"},
 },
 {
 {text = 'تفعيل الرابط', callback_data="/locklinka"},{text = 'تعطيل الرابط', callback_data="/opalinka"},
@@ -18344,7 +18344,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
 if Text == '/lockCAPTAIN' then
-local Text = '• تم تفعيل التحقق عند دخول'
+local Text = '• تم تفعيل التحقق عند الاضافه'
 bot_data:set(ban_id.."CAPTAIN"..Chat_id,true)  
 keyboard = {} 
 keyboard.inline_keyboard = {
