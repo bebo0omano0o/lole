@@ -2479,17 +2479,17 @@ end
 if msg.content_.ID == "MessageChatAddMembers" then 
 if msg.content_.members_[0].id_ == tonumber(bot_id) then 
 print("it is Bot")
-N = (database:get(bot_id.."Name:Bot") or "بارلو")
+N = (database:get(bot_id.."Name:Bot") or "فينوم")
 tdcli_function ({ID = "GetUser",user_id_ = bot_id,},function(arg,data) 
 tdcli_function ({ID = "GetUserProfilePhotos",user_id_ = bot_id,offset_ = 0,limit_ = 1},function(extra,result,success) 
 if result.photos_[0] then
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = ' مــطــور الــبــوت🔰', url="http://t.me/"..sudos.UserName},
+{text = '𖥔 مــطــور الــبــوت 𖥔', url="http://t.me/"..sudos.UserName},
 },
 {
-{text = 'اضغط لاضافه البوت لمجمعتك✅', url = "https://t.me/"..data.username_.."?startgroup=new"},
+{text = '𖥔 اضغط لاضافه البوت لمجمعتك 𖥔', url = "https://t.me/"..data.username_.."?startgroup=new"},
 },
 }
 local msg_id = msg.id_/2097152/0.5
@@ -2499,29 +2499,6 @@ end
 end,nil)
 end,nil)
 end
-end
-if msg.content_.ID == "MessageChatDeleteMember" and tonumber(msg.content_.user_.id_) == tonumber(bot_id) then 
-database:srem(bot_id.."Chek:Groups", msg.chat_id_)
- tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
-tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,dp)
- local Name1 = result.first_name_
-local Name1 = Name1:gsub('"',"") 
-local Name1 = Name1:gsub("'","") 
-local Name1 = Name1:gsub("`","") 
-local Name1 = Name1:gsub("*","")
- local Name1 = Name1:gsub("{","")
- local Name1 = Name1:gsub("}","")
- local Name = '['..Name1..'](tg://user?id='..result.id_..')'
-local NameChat = dp.title_
-local NameChat = NameChat:gsub('"',"")
- local NameChat = NameChat:gsub("'","")
- local NameChat = NameChat:gsub("`","") 
-local NameChat = NameChat:gsub("*","") 
-local NameChat = NameChat:gsub("{","") 
-local NameChat = NameChat:gsub("}","")
-sendText(SUDO,"● تم طرد البوت من جروب \n\n● بواسطة  {"..Name.."}\n● اسم الجروب {"..NameChat.."}\n● ايدي الجروب {`"..msg.chat_id_.."`} ",0,'md')
-end,nil)
-end,nil)
 end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.photo_ then  
@@ -3190,7 +3167,29 @@ end
 end
 end
 -------------------------------------------------------------------------------------------------------------
-
+if msg.content_.ID == "MessageChatDeleteMember" and tonumber(msg.content_.user_.id_) == tonumber(bot_id) then 
+database:srem(bot_id.."Chek:Groups", msg.chat_id_)
+ tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
+tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,dp)
+ local Name1 = result.first_name_
+local Name1 = Name1:gsub('"',"") 
+local Name1 = Name1:gsub("'","") 
+local Name1 = Name1:gsub("`","") 
+local Name1 = Name1:gsub("*","")
+ local Name1 = Name1:gsub("{","")
+ local Name1 = Name1:gsub("}","")
+ local Name = '['..Name1..'](tg://user?id='..result.id_..')'
+local NameChat = dp.title_
+local NameChat = NameChat:gsub('"',"")
+ local NameChat = NameChat:gsub("'","")
+ local NameChat = NameChat:gsub("`","") 
+local NameChat = NameChat:gsub("*","") 
+local NameChat = NameChat:gsub("{","") 
+local NameChat = NameChat:gsub("}","")
+sendText(SUDO,"● تم طرد البوت من جروب \n\n● بواسطة  {"..Name.."}\n● اسم الجروب {"..NameChat.."}\n● ايدي الجروب {`"..msg.chat_id_.."`} ",0,'md')
+end,nil)
+end,nil)
+end
 -------------------------------------------------------------------------------------------------------------
 if text == 'تفعيل' and Sudo(msg) then
 if AddChannel(msg.sender_user_id_) == false then
