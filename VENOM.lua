@@ -1464,7 +1464,7 @@ if text == "/start" then
 if not Devban(msg) then
 local Namebot = (database:get(bot_id..'Name:Bot') or 'فينم') 
 local VENOM_Msg = { 
-'  🤖╖ أهلآ بك عزيزي أنا بوت '..Namebot..'\n🌐╢ وظيفتي حماية المجموعات\n✅╢ لتفعيل البوت عليك اتباع مايلي \n🔘╢ أضِف البوت إلى مجموعتك\n⚡️╢ ارفعهُ » مشرف\n⬆️╜ سيتم ترقيتك مالك في البوت\n',
+'  🤖╖ أهلآ بك عزيزي أنا بوت \nــــــــــ\nـــــــــــــــــــــــــــــــــــــــــــــــ'..Namebot..'ــــــــــ\nـــــــــــــــــــــــــــــــــــــــــــــــ\n🌐╢ وظيفتي حماية المجموعات\n✅╢ لتفعيل البوت عليك اتباع مايلي \n🔘╢ أضِف البوت إلى مجموعتك\n⚡️╢ ارفعهُ » مشرف\n⬆️╜ سيتم ترقيتك مالك في البوت\n',
 } 
 Namebot = VENOM_Msg[math.random(#VENOM_Msg)] 
 local msg_id = msg.id_/2097152/0.5  
@@ -2510,7 +2510,7 @@ keyboard.inline_keyboard = {
 {text = ' مــطــور الــبــوت🔰', url="http://t.me/"..sudos.UserName},
 },
 {
-{text = 'اضغط لاضافه البوت لمجمعتك✅', url = "https://t.me/"..data.username_.."?startgroup=new"},
+{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"},
 },
 }
 local msg_id = msg.id_/2097152/0.5
@@ -4572,56 +4572,56 @@ end,nil)
 end
 end
 if text == "غنيلي" and not  database:get(bot_id.."sing:for:me"..msg.chat_id_) then 
-ght = math.random(3,43); 
+ban = math.random(3,42); 
 local Text ='تم اختيار المقطع الصوتي لك' 
 keyboard = {}  
 keyboard.inline_keyboard = { 
 {{text = 'اضغط لاضافه البوت لمجمعتك✅' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}}, 
 } 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..token..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&Voice=https://t.me/dfgi9/'..ght..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..token..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice=https://t.me/faioo8/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 end
 if text == "تويت بالصور" and not  database:get(bot_id.."sing:for:me"..msg.chat_id_) then 
-ght = math.random(1,28); 
+ban = math.random(1,28); 
 local Text ='مرحبا إليك تويت بالصوره✨🌚' 
 keyboard = {}  
 keyboard.inline_keyboard = { 
 {{text = 'اضغط لاضافه البوت لمجمعتك✅' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}}, 
 } 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/wffhvv/'..ght..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/wffhvv/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 if text == "لو خيروك بالصور" and not  database:get(bot_id.."sing:for:me"..msg.chat_id_) then 
-ght = math.random(1,24); 
+ban = math.random(1,24); 
 local Text ='مرحبا اليك لو خيروك بالصوره🍁🌝' 
 keyboard = {}  
 keyboard.inline_keyboard = { 
 {{text = 'اضغط لاضافه البوت لمجمعتك✅' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}}, 
 } 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/kbbnv/'..ght..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/kbbnv/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 
 if text == "حروف بالصور" and not  database:get(bot_id.."sing:for:me"..msg.chat_id_) then 
-ght = math.random(1,15); 
+ban = math.random(1,15); 
 local Text ='مرحبا إليك حروف بالصوره✨🌚' 
 keyboard = {}  
 keyboard.inline_keyboard = { 
 {{text = 'اضغط لاضافه البوت لمجمعتك✅' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}}, 
 } 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/ffadi8/'..ght..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/ffadi8/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 if text == "مستقبلي" and not  database:get(bot_id.."sing:for:me"..msg.chat_id_) then 
-ght = math.random(1,14); 
+ban = math.random(1,14); 
 local Text ='حظك زي شكلك..😂💛' 
 keyboard = {}  
 keyboard.inline_keyboard = { 
 {{text = 'اضغط لاضافه البوت لمجمعتك✅' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}}, 
 } 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/dyiotu/'..ght..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/dyiotu/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 
 if text == "تفعيل تنظيف التلقائي" and BasicConstructor(msg)  then
