@@ -2630,7 +2630,7 @@ if result.photos_[0] then
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '🔰 مــطــور الــبــوت ', url="http://t.me/"..sudos.UserName},
+{text = ' مــطــور الــبــوت🔰', url="http://t.me/"..sudos.UserName},
 },
 {
 {text = 'ضغط لاضافه البوت لمجمعتك✅ ', url = "https://t.me/"..data.username_.."?startgroup=new"},
@@ -2644,6 +2644,40 @@ end,nil)
 end,nil)
 end
 end
+if msg.content_.ID == "MessageChatJoinByLink" then
+local Text =' '
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/comxnxp/20&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end  
+if msg.content_.ID == "MessageChatAddMembers" then 
+local Text =' '
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendsticker?chat_id=' .. msg.chat_id_ .. '&sticker=https://t.me/comxnxp/20&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end 
+if msg.content_.ID == "MessageChatDeleteMember" and tonumber(msg.content_.user_.id_) == tonumber(ban_id) then 
+ local Name1 = result.first_name_
+local Name1 = Name1:gsub('"',"") 
+local Name1 = Name1:gsub("'","") 
+local Name1 = Name1:gsub("`","") 
+local Name1 = Name1:gsub("*","")
+ local Name1 = Name1:gsub("{","")
+ local Name1 = Name1:gsub("}","")
+ local Name = '['..Name1..'](tg://user?id='..result.id_..')'
+sendText(msg.chat_id_, msg.id_,'\n🥺  {"..Name.."}• انت مش جدع يا\n❬ حد يكون فى روم زى ده ويخرج ❭ 🙄️\n❬ ده حتى كلنا اخوات واصحاب ❭ 🥺️ √ \n❬ يلا بالسلامات ❭ ❤️😂",0,'md')
+end
+MessageChatDeleteMember
+  . 🥺
+❬ حد يكون فى روم زى ده ويخرج ❭ 🙄️
+❬ ده حتى كلنا اخوات واصحاب ❭ 🥺️ √
+❬ يلا بالسلامات ❭ ❤️😂
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.photo_ then  
 if bot_data:get(ban_id..'Change:Chat:Photo'..msg.chat_id_..':'..msg.sender_user_id_) then 
