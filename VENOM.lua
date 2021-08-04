@@ -1464,7 +1464,7 @@ if text == "/start" then
 if not Devban(msg) then
 local Namebot = (database:get(bot_id..'Name:Bot') or 'فينم') 
 local VENOM_Msg = { 
-'  🤖╖ أهلآ بك عزيزي أنا بوت \nــــــــــ\nـــــــــــــــــــــــــــــــــــــــــــــــ'..Namebot..'ــــــــــ\nـــــــــــــــــــــــــــــــــــــــــــــــ\n🌐╢ وظيفتي حماية المجموعات\n✅╢ لتفعيل البوت عليك اتباع مايلي \n🔘╢ أضِف البوت إلى مجموعتك\n⚡️╢ ارفعهُ » مشرف\n⬆️╜ سيتم ترقيتك مالك في البوت\n',
+' ـــــــــــــــــــــــــــــــــــــــــــــــ\n  🤖╖ أهلآ بك عزيزي أنا بوت '..Namebot..'\n🌐╢ وظيفتي حماية المجموعات\n✅╢ لتفعيل البوت عليك اتباع مايلي \n🔘╢ أضِف البوت إلى مجموعتك\n⚡️╢ ارفعهُ » مشرف\n⬆️╜ سيتم ترقيتك مالك في البوت\n',
 } 
 Namebot = VENOM_Msg[math.random(#VENOM_Msg)] 
 local msg_id = msg.id_/2097152/0.5  
@@ -2422,6 +2422,30 @@ local texxt = string.match(text, "(.*)")
 database:set(bot_id..'text:ch:user',texxt)
 send(msg.chat_id_, msg.id_,' ● تم تغيير رسالة الاشتراك ')
 end
+if msg.content_.ID == "MessageChatAddMembers" then 
+if msg.content_.members_[0].id_ == tonumber(bot_id) then 
+print("it is Bot")
+N = (database:get(bot_id.."Name:Bot") or "بارلو")
+tdcli_function ({ID = "GetUser",user_id_ = bot_id,},function(arg,data) 
+tdcli_function ({ID = "GetUserProfilePhotos",user_id_ = bot_id,offset_ = 0,limit_ = 1},function(extra,result,success) 
+if result.photos_[0] then
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = ' مــطــور الــبــوت🔰', url="http://t.me/"..sudos.UserName},
+},
+{
+{text = 'اضغط لاضافه البوت لمجمعتك✅', url = "https://t.me/"..data.username_.."?startgroup=new"},
+},
+}
+local msg_id = msg.id_/2097152/0.5
+local Texti = "🤖╖ أهلآ بك عزيزي أنا بوت  "..N.." 🌐╢ وظيفتي حماية المجموعات\n✅╢ لتفعيل البوت عليك اتباع مايلي \n🔘╢ أضِف البوت إلى مجموعتك\n⚡️╢ ارفعهُ » مشرف\n⬆️╜ سيتم ترقيتك مالك في البوت"
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id='..msg.chat_id_..'&caption='..URL.escape(Texti)..'&photo='..result.photos_[0].sizes_[1].photo_.persistent_id_..'&reply_to_message_id='..msg_id..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+end,nil)
+end,nil)
+end
+end
 
 local status_welcome = database:get(bot_id..'Chek:Welcome'..msg.chat_id_)
 if status_welcome and not database:get(bot_id..'lock:tagservr'..msg.chat_id_) then
@@ -2496,31 +2520,6 @@ https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. ms
 end 
 end
 
-
-if msg.content_.ID == "MessageChatAddMembers" then 
-if msg.content_.members_[0].id_ == tonumber(bot_id) then 
-print("it is Bot")
-N = (database:get(bot_id.."Name:Bot") or "فينم")
-tdcli_function ({ID = "GetUser",user_id_ = bot_id,},function(arg,data) 
-tdcli_function ({ID = "GetUserProfilePhotos",user_id_ = bot_id,offset_ = 0,limit_ = 1},function(extra,result,success) 
-if result.photos_[0] then
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = ' مــطــور الــبــوت🔰', url="http://t.me/"..sudos.UserName},
-},
-{
-{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"},
-},
-}
-local msg_id = msg.id_/2097152/0.5
-local Texti = "🤖╖ أهلآ بك عزيزي أنا بوت  "..N.." 🌐╢ وظيفتي حماية المجموعات\n✅╢ لتفعيل البوت عليك اتباع مايلي \n🔘╢ أضِف البوت إلى مجموعتك\n⚡️╢ ارفعهُ » مشرف\n⬆️╜ سيتم ترقيتك مالك في البوت"
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id='..msg.chat_id_..'&caption='..URL.escape(Texti)..'&photo='..result.photos_[0].sizes_[1].photo_.persistent_id_..'&reply_to_message_id='..msg_id..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
-end
-end,nil)
-end,nil)
-end
-end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.photo_ then  
 if database:get(bot_id..'Change:Chat:Photo'..msg.chat_id_..':'..msg.sender_user_id_) then 
@@ -4582,6 +4581,29 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice=https://t.me/faioo8/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 end
+if text == "غنيلي" and not  database:get(bot_id.."sing:for:me"..msg.chat_id_) then 
+ght = math.random(3,43); 
+local Text ='تم اختيار المقطع الصوتي لك' 
+keyboard = {}  
+keyboard.inline_keyboard = { 
+{{text = '𖥔 اضغط لاضافه البوت لمجمعتك 𖥔' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}}, 
+} 
+local msg_id = msg.id_/2097152/0.5 
+https.request("https://api.telegram.org/bot"..token..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice=https://t.me/dfgi9/'..ght..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end
+end
+if text == "غنيلي" and not  database:get(bot_id.."sing:for:me"..msg.chat_id_) then 
+ght = math.random(3,200); 
+local Text ='تم اختيار المقطع الصوتي لك' 
+keyboard = {}  
+keyboard.inline_keyboard = { 
+{{text = 'ghost.',url="t.me/G500t"}}, 
+{{text = 'Alamy.',url="t.me/j333x"}}, 
+} 
+local msg_id = msg.id_/2097152/0.5 
+https.request("https://api.telegram.org/bot"..token..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice=https://t.me/Ccckkc/'..ght..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end
+
 if text == "تويت بالصور" and not  database:get(bot_id.."sing:for:me"..msg.chat_id_) then 
 ban = math.random(1,28); 
 local Text ='مرحبا إليك تويت بالصوره✨🌚' 
@@ -18566,7 +18588,7 @@ database:del(bot_id.."Added:Me"..Chat_id)
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
+{text = '●𝙱𝙰??𝙺↵', callback_data="/help8"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
