@@ -4768,12 +4768,12 @@ send(msg.chat_id_, msg.id_, '●  مـن قبـل  ⋙ [「'..Rutba(msg.sender_u
 return false
 end
 if text == "@all" or text == "تاك للكل" or text == "all" and CoSu(msg) then
-if not database:get(bot_id..'Cick:all'..msg.chat_id_) then
-if database:get(bot_id.."S00F4:all:Time"..msg.chat_id_..':'..msg.sender_user_id_) then  
+if not bot_data:get(ban_id..'Cick:all'..msg.chat_id_) then
+if bot_data:get(ban_id.."S00F4:all:Time"..msg.chat_id_..':'..msg.sender_user_id_) then  
 return 
 send(msg.chat_id_, msg.id_,"انتظر دقيقه من فضلك")
 end
-database:setex(bot_id..'S00F4:all:Time'..msg.chat_id_..':'..msg.sender_user_id_,300,true)
+bot_data:setex(ban_id..'S00F4:all:Time'..msg.chat_id_..':'..msg.sender_user_id_,300,true)
 tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(argg,dataa) 
 tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = dataa.member_count_},function(ta,sofi)
 x = 0
@@ -13109,11 +13109,20 @@ end
 send(msg.chat_id_,msg.id_, '[مع الف سلامه يقلبي متجيش تاني..😹💔🎶](t.me/SOURCEVENOM)')
 return false
 end
+if text == 'بوتي' then 
+local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_," ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[قلب بوتكك من جواا 🥺♥️](t.me/SOURCEVENOM)')
+return false
+end
 
 if text == 'هاي' or text == 'هيي' then
 local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
-send(msg.chat_id_, msg.id_," ●معطله") 
+send(msg.chat_id_, msg.id_," -معطله") 
 return false  
 end
 send(msg.chat_id_,msg.id_, '[باي..😺💜](t.me/SOURCEVENOM)')
@@ -13307,7 +13316,7 @@ end
 end
 end
 if text then 
-list = {'++٩٠'}
+list = {'وه'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
 local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
@@ -13315,7 +13324,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[خخخ امال ..😹](t.me/SOURCEVENOM)')
+send(msg.chat_id_,msg.id_, '[بسيفلاح يقميل 😽❤️](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -13376,7 +13385,188 @@ return false
 end
 end
 end
-
+if text then 
+list = {'جيت'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[لف وارجع تاني م حوار🐭💘](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'شكرا'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[العفو ياروحي..🌚💘](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'حصلخير'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[ايتي كبرت وبقيت بتشبك الكلام..🥺💘](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'متيقي'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[♯علي فين يوسخ..🙂😹 ❅](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'طيب'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[فرح خالتك قريب😹💋💃🏻](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'اه'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[سـلامـتك مـن اه يـروحـي🥺❤️](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'😒'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[اعدل وشكك ونت بتكلمني 😒](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'🌚'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[القمر ده شبهك..🙂♥️](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'خلاص'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[خلصتت روحكك يبعيد😹🚶🏻‍♀💔](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'سي في'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[كفايه شقط يبني سيب حاجه لغيرك 😹👅](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'🙂'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[فرفش ياقمــوص 🙄🔪](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'🙄'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[متـــبصش وتــبحلق لــتقع تــتزحلق 🏄](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
+if text then 
+list = {'حلو'}
+for k,v in pairs(list) do
+if string.find(text,v) ~= nil then
+local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[انت الي حلو ياقمر..♥️🦋](t.me/SOURCEVENOM)')
+return false
+end
+end
+end
 if text then 
 list = {'بنتي'}
 for k,v in pairs(list) do
