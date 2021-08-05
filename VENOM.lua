@@ -3344,34 +3344,7 @@ end,nil)
 end,nil)
 end
 
-if text and text:match("^المطور$") or text and text:match("^مطور$") or text and text:match("^الدعم$") then
-tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
-tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,dp) 
-local Name1 = result.first_name_
-local Name1 = Name1:gsub('"',"") 
-local Name1 = Name1:gsub("'","") 
-local Name1 = Name1:gsub("`","") 
-local Name1 = Name1:gsub("*","") 
-local Name1 = Name1:gsub("{","") 
-local Name1 = Name1:gsub("}","") 
-local Name = '['..Name1..'](tg://user?id='..result.id_..')'
-local NameChat = dp.title_
-local NameChat = NameChat:gsub('"',"") 
-local NameChat = NameChat:gsub("'","") 
-local NameChat = NameChat:gsub("`","") 
-local NameChat = NameChat:gsub("*","") 
-local NameChat = NameChat:gsub("{","") 
-local NameChat = NameChat:gsub("}","") 
-local LinkGp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_))
-if LinkGp.ok == true then 
-LinkGroup = LinkGp.result
-else
-LinkGroup = 'لا يوجد'
-end
-sendText(SUDO,"●هناك من بحاجه الى مساعده \n●الشخص  {"..Name.."}\n●اسم الجروب {"..NameChat.."}\n●ايدي الجروب {`"..msg.chat_id_.."`}\n●رابط الجروب \n ["..LinkGroup.."] ",0,'md')
-end,nil)
-end,nil)
-end
+
 -------------------------------------------------------------------------------------------------------------
 if text == 'تفعيل' and Sudo(msg) then
 if AddChannel(msg.sender_user_id_) == false then
@@ -3614,6 +3587,34 @@ else
 send(msg.chat_id_, msg.id_,"● تمت ترقيه ❮ "..num2.." ❯ من الادمنيه") 
 end
 end,nil)   
+end
+if text and text:match("^المطور$") or text and text:match("^مطور$") or text and text:match("^الدعم$") then
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
+tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,dp) 
+local Name1 = result.first_name_
+local Name1 = Name1:gsub('"',"") 
+local Name1 = Name1:gsub("'","") 
+local Name1 = Name1:gsub("`","") 
+local Name1 = Name1:gsub("*","") 
+local Name1 = Name1:gsub("{","") 
+local Name1 = Name1:gsub("}","") 
+local Name = '['..Name1..'](tg://user?id='..result.id_..')'
+local NameChat = dp.title_
+local NameChat = NameChat:gsub('"',"") 
+local NameChat = NameChat:gsub("'","") 
+local NameChat = NameChat:gsub("`","") 
+local NameChat = NameChat:gsub("*","") 
+local NameChat = NameChat:gsub("{","") 
+local NameChat = NameChat:gsub("}","") 
+local LinkGp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_))
+if LinkGp.ok == true then 
+LinkGroup = LinkGp.result
+else
+LinkGroup = 'لا يوجد'
+end
+sendText(SUDO,"●هناك من بحاجه الى مساعده \n●الشخص  {"..Name.."}\n●اسم الجروب {"..NameChat.."}\n●ايدي الجروب {`"..msg.chat_id_.."`}\n●رابط الجروب \n ["..LinkGroup.."] ",0,'md')
+end,nil)
+end,nil)
 end
 if text and text:match("^ضع عدد الاعضاء (%d+)$") and Devban(msg) then
 local Num = text:match("ضع عدد الاعضاء (%d+)$") 
@@ -4861,75 +4862,6 @@ bot_data:del(ban_id.."LoMsg"..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '●  مـن قبـل  ⋙ [「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」](T.ME/'..(data.username_ or 'textchuser')..') \n● تم تعطيل التنظيف التلقائي ')
 return false
 end
-if text == "@all" or text == "تاك للكل" or text == "all" and CoSu(msg) then
-if not database:get(bot_id..'Cick:all'..msg.chat_id_) then
-if database:get(bot_id.."S00F4:all:Time"..msg.chat_id_..':'..msg.sender_user_id_) then  
-return 
-send(msg.chat_id_, msg.id_,"انتظر دقيقه من فضلك")
-end
-database:setex(bot_id..'S00F4:all:Time'..msg.chat_id_..':'..msg.sender_user_id_,300,true)
-tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(argg,dataa) 
-tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = dataa.member_count_},function(ta,sofi)
-x = 0
-tags = 0
-local list = sofi.members_
-for k, v in pairs(list) do
-tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data)
-if x == 5 or x == tags or k == 0 then
-tags = x + 5
-t = "#all"
-end
-x = x + 1
-tagname = data.first_name_
-tagname = tagname:gsub("]","")
-tagname = tagname:gsub("[[]","")
-t = t..", ["..tagname.."](tg://user?id="..v.user_id_..")"
-if x == 5 or x == tags or k == 0 then
-local Text = t:gsub('#all,','#all\n')
-sendText(msg.chat_id_,Text,0,'md')
-end
-end,nil)
-end
-end,nil)
-end,nil)
-end
-end
-
-if text and text:match("^all (.*)$") or text:match("^@all (.*)$") and CoSu(msg) then 
-local ttag = text:match("^all (.*)$") or text:match("^@all (.*)$") 
-if not bot_data:get(ban_id..'Cick:all'..msg.chat_id_) then 
-if bot_data:get(ban_id.."banda:all:Time"..msg.chat_id_..':'..msg.sender_user_id_) then   
-return  
-send(msg.chat_id_, msg.id_,"انتظر دقيقه من فضلك") 
-end 
-bot_data:setex(ban_id..'banda:all:Time'..msg.chat_id_..':'..msg.sender_user_id_,300,true) 
-tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(argg,dataa)  
-tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = dataa.member_count_},function(ta,ban) 
-x = 0 
-tags = 0 
-local list = ban.members_ 
-for k, v in pairs(list) do 
-tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data) 
-if x == 5 or x == tags or k == 0 then 
-tags = x + 5 
-t = "#all "..ttag.."" 
-end 
-x = x + 1 
-tagname = data.first_name_ 
-tagname = tagname:gsub("]","") 
-tagname = tagname:gsub("[[]","") 
-t = t..", ["..tagname.."](tg://user?id="..v.user_id_..")" 
-if x == 5 or x == tags or k == 0 then 
-local Text = t:gsub('#all '..ttag..',','#all '..ttag..'\n') 
-sendText(msg.chat_id_,Text,0,'md') 
-end 
-end,nil) 
-end 
-end,nil) 
-end,nil) 
-end 
-end
-
 
 if text == 'تفعيل الحمايه'and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 bot_data:set(ban_id.."lock:Contact"..msg.chat_id_,'del')  
@@ -6203,6 +6135,78 @@ send(msg.chat_id_, msg.id_, usertext..status)
 end;end,nil)
 return false
 end
+
+------------------------------------------------------------------------
+if text == "@all" or text == "تاك للكل" or text == "all" and CoSu(msg) then
+if not database:get(bot_id..'Cick:all'..msg.chat_id_) then
+if database:get(bot_id.."S00F4:all:Time"..msg.chat_id_..':'..msg.sender_user_id_) then  
+return 
+send(msg.chat_id_, msg.id_,"انتظر دقيقه من فضلك")
+end
+database:setex(bot_id..'S00F4:all:Time'..msg.chat_id_..':'..msg.sender_user_id_,300,true)
+tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(argg,dataa) 
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = dataa.member_count_},function(ta,sofi)
+x = 0
+tags = 0
+local list = sofi.members_
+for k, v in pairs(list) do
+tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data)
+if x == 5 or x == tags or k == 0 then
+tags = x + 5
+t = "#all"
+end
+x = x + 1
+tagname = data.first_name_
+tagname = tagname:gsub("]","")
+tagname = tagname:gsub("[[]","")
+t = t..", ["..tagname.."](tg://user?id="..v.user_id_..")"
+if x == 5 or x == tags or k == 0 then
+local Text = t:gsub('#all,','#all\n')
+sendText(msg.chat_id_,Text,0,'md')
+end
+end,nil)
+end
+end,nil)
+end,nil)
+end
+end
+
+if text and text:match("^all (.*)$") or text:match("^@all (.*)$") and CoSu(msg) then 
+local ttag = text:match("^all (.*)$") or text:match("^@all (.*)$") 
+if not bot_data:get(ban_id..'Cick:all'..msg.chat_id_) then 
+if bot_data:get(ban_id.."banda:all:Time"..msg.chat_id_..':'..msg.sender_user_id_) then   
+return  
+send(msg.chat_id_, msg.id_,"انتظر دقيقه من فضلك") 
+end 
+bot_data:setex(ban_id..'banda:all:Time'..msg.chat_id_..':'..msg.sender_user_id_,300,true) 
+tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(argg,dataa)  
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = dataa.member_count_},function(ta,ban) 
+x = 0 
+tags = 0 
+local list = ban.members_ 
+for k, v in pairs(list) do 
+tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data) 
+if x == 5 or x == tags or k == 0 then 
+tags = x + 5 
+t = "#all "..ttag.."" 
+end 
+x = x + 1 
+tagname = data.first_name_ 
+tagname = tagname:gsub("]","") 
+tagname = tagname:gsub("[[]","") 
+t = t..", ["..tagname.."](tg://user?id="..v.user_id_..")" 
+if x == 5 or x == tags or k == 0 then 
+local Text = t:gsub('#all '..ttag..',','#all '..ttag..'\n') 
+sendText(msg.chat_id_,Text,0,'md') 
+end 
+end,nil) 
+end 
+end,nil) 
+end,nil) 
+end 
+end
+
+
 ------------------------------------------------------------------------
 if text == ("مسح المطورين") and Devban(msg) then
 bot_data:del(ban_id..'Sudo:User')
@@ -12965,8 +12969,8 @@ send(msg.chat_id_, msg.id_,ramsesj20)
 end
 --------------
 
-if text == ""..(bot_data:get(ban_id..'Name:Bot') or 'فينم').." غادر" or text == 'غادر' then  
-if Sudo(msg) and not bot_data:get(ban_id..'Left:Bot'..msg.chat_id_)  then 
+if text == ""..(bot_data:get(ban_id..'Name:Bot') or 'فينم').." غادر" or text == 'غادر' and Devban(msg) then     
+if SudoBot(msg) then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=ban_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
 send(msg.chat_id_, msg.id_,'● تم مغادرة المجموعه') 
 bot_data:srem(ban_id..'Chek:Groups',msg.chat_id_)  
@@ -13857,6 +13861,7 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 end
+
 if text=="قائمه الاذاعه" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
 if database:get(bot_id..'Bc:Bots') and not Devban(msg) then 
 send(msg.chat_id_, msg.id_,' - الاذاعه معطله من قبل المطور الاساسي')
