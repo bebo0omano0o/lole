@@ -11350,28 +11350,7 @@ send(msg.chat_id_, msg.id_,'✧لا يوجد رابط ارسل ضع رابط')
 end 
 end,nil) 
 end
-if text == "الرابط" then
-local status_Link = bot_data:get(ban_id.."Link_Group:status"..msg.chat_id_) 
-if not status_Link then 
-send(msg.chat_id_, msg.id_,"الرابط معطل")  
-return false   
-end 
-tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta) 
-local status_Link = bot_data:get(ban_id.."NightRang:Link_Group"..msg.chat_id_)
-local link = bot_data:get(ban_id.."NightRang:link:set:Group"..msg.chat_id_)     
-if link then                              
-send(msg.chat_id_,msg.id_,"["..link.."]")                          
-else                
-local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_))
-if linkgpp.ok == true then
-send(msg.chat_id_,msg.id_,"["..linkgpp.result.."]")                          
-else
-send(msg.chat_id_, msg.id_,"• لا يوجد رابط للمجموعه")              
-end            
-end
-end,nil)
-return false 
-end
+
 if text == 'مسح الرابط' or text == 'مسح الرابط' then
 if Mod(msg) then     
 if AddChannel(msg.sender_user_id_) == false then
@@ -13302,7 +13281,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[بـعشـقق .??❤️](t.me/SOURCEVENOM)')
+send(msg.chat_id_,msg.id_, '[بـعشـقق .🥰❤️](t.me/SOURCEVENOM)')
 return false
 end
 end
