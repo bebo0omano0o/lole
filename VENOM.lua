@@ -11360,11 +11360,11 @@ tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta)
 local status_Link = bot_data:get(ban_id.."NightRang:Link_Group"..msg.chat_id_)
 local link = bot_data:get(ban_id.."NightRang:link:set:Group"..msg.chat_id_)     
 if link then                              
-send(msg.chat_id_,msg.id_,"["..ta.title_.."]("..link..")")                          
+send(msg.chat_id_,msg.id_,"["..link.."]")                          
 else                
 local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_)) or bot_data:get(ban_id.."Private:Group:Link"..msg.chat_id_) 
-if linkgpp.ok == true then 
-send(msg.chat_id_,msg.id_,"["..ta.title_.."]("..linkgpp.result..")")                          
+if linkgpp.ok == true then
+send(msg.chat_id_,msg.id_,"["..linkgpp.result.."]")                          
 else
 send(msg.chat_id_, msg.id_,"• لا يوجد رابط للمجموعه")              
 end            
@@ -14242,7 +14242,7 @@ local List = {
 [[
 𝟓 𝟔 𖡻 #username  ࿇🦄
 𝟓 𝟔 𖡻 #msgs  ࿇🦄
-?? 𝟔 𖡻 #auto  ࿇🦄
+𝟓 𝟔 𖡻 #auto  ࿇🦄
 𝟓 𝟔 𖡻 #stast  ࿇🦄
 𝟓 𝟔 𖡻 #id  ࿇🦄
 ]],
@@ -14676,7 +14676,7 @@ local List = {
 [[
 ⌾ | 𝐢𝐝  𓃠 #id .
 ⌾ | 𝐮𝐬??𝐫 𓃠 #username .
-⌾ | 𝐦𝐬𝐠 𓃠 #msgs .
+⌾ | 𝐦𝐬?? 𓃠 #msgs .
 ⌾ | 𝐬??𝐚 𓃠 #stast .
 ⌾ | 𝒆𝒅𝒊𝒕 𓃠 #edit .
 ⌾ | 𝗖𝗛 - 「@SOURCEVENOM」 💞.
@@ -15094,10 +15094,10 @@ Msᴀɢ ~ #msgs
 ▽ ¦❀• 𝙼𝚂𝙶𝚂 ➬ ⁞  #msgs  .
 ▽ ¦❀• STAT ➬ ⁞ #stast  .
 ▽ ¦❀• 𝙸𝙳  ➬ ⁞ #id  .
-▽ ¦❀• 𝗖?? - 「@SOURCEVENOM」 ●
+▽ ¦❀• 𝗖𝗛 - 「@SOURCEVENOM」 ●
 ]],
 [[
-• ❉ 𝑼𝑬𝑺 : #username ‌‌‏.
+• ❉ 𝑼??𝑺 : #username ‌‌‏.
 • ❉ 𝑺𝑻𝑨 : #stast .
 • ❉ 𝑰𝑫 : #id  ‌‌‏.
 • ❉  𝑴𝑺𝑮 : #msgs 𓆊.
