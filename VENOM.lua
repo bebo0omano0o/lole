@@ -11362,7 +11362,7 @@ local link = bot_data:get(ban_id.."NightRang:link:set:Group"..msg.chat_id_)
 if link then                              
 send(msg.chat_id_,msg.id_,"["..link.."]")                          
 else                
-local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_)) or bot_data:get(ban_id.."Private:Group:Link"..msg.chat_id_) 
+local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_))
 if linkgpp.ok == true then
 send(msg.chat_id_,msg.id_,"["..linkgpp.result.."]")                          
 else
@@ -13302,7 +13302,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[بـعشـقق .🥰❤️](t.me/SOURCEVENOM)')
+send(msg.chat_id_,msg.id_, '[بـعشـقق .??❤️](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14676,7 +14676,7 @@ local List = {
 [[
 ⌾ | 𝐢𝐝  𓃠 #id .
 ⌾ | 𝐮𝐬??𝐫 𓃠 #username .
-⌾ | 𝐦𝐬?? 𓃠 #msgs .
+⌾ | 𝐦𝐬𝐠 𓃠 #msgs .
 ⌾ | 𝐬??𝐚 𓃠 #stast .
 ⌾ | 𝒆𝒅𝒊𝒕 𓃠 #edit .
 ⌾ | 𝗖𝗛 - 「@SOURCEVENOM」 💞.
@@ -15097,7 +15097,7 @@ Msᴀɢ ~ #msgs
 ▽ ¦❀• 𝗖𝗛 - 「@SOURCEVENOM」 ●
 ]],
 [[
-• ❉ 𝑼??𝑺 : #username ‌‌‏.
+• ❉ 𝑼𝑬𝑺 : #username ‌‌‏.
 • ❉ 𝑺𝑻𝑨 : #stast .
 • ❉ 𝑰𝑫 : #id  ‌‌‏.
 • ❉  𝑴𝑺𝑮 : #msgs 𓆊.
