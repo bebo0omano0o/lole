@@ -4768,12 +4768,12 @@ send(msg.chat_id_, msg.id_, '●  مـن قبـل  ⋙ [「'..Rutba(msg.sender_u
 return false
 end
 if text == "@all" or text == "تاك للكل" or text == "all" and CoSu(msg) then
-if not bot_data:get(ban_id..'Cick:all'..msg.chat_id_) then
-if bot_data:get(ban_id.."S00F4:all:Time"..msg.chat_id_..':'..msg.sender_user_id_) then  
+if not database:get(bot_id..'Cick:all'..msg.chat_id_) then
+if database:get(bot_id.."S00F4:all:Time"..msg.chat_id_..':'..msg.sender_user_id_) then  
 return 
 send(msg.chat_id_, msg.id_,"انتظر دقيقه من فضلك")
 end
-bot_data:setex(ban_id..'S00F4:all:Time'..msg.chat_id_..':'..msg.sender_user_id_,300,true)
+database:setex(bot_id..'S00F4:all:Time'..msg.chat_id_..':'..msg.sender_user_id_,300,true)
 tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(argg,dataa) 
 tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = dataa.member_count_},function(ta,sofi)
 x = 0
@@ -11350,7 +11350,28 @@ send(msg.chat_id_, msg.id_,'✧لا يوجد رابط ارسل ضع رابط')
 end 
 end,nil) 
 end
-
+if text == "الرابط" then
+local status_Link = bot_data:get(ban_id.."Link_Group:status"..msg.chat_id_) 
+if not status_Link then 
+send(msg.chat_id_, msg.id_,"الرابط معطل")  
+return false   
+end 
+tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta) 
+local status_Link = bot_data:get(ban_id.."NightRang:Link_Group"..msg.chat_id_)
+local link = bot_data:get(ban_id.."NightRang:link:set:Group"..msg.chat_id_)     
+if link then                              
+send1(msg.chat_id_,msg.id_,"["..ta.title_.."]("..link..")")                          
+else                
+local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_)) or bot_data:get(ban_id.."Private:Group:Link"..msg.chat_id_) 
+if linkgpp.ok == true then 
+send1(msg.chat_id_,msg.id_,"["..ta.title_.."]("..linkgpp.result..")")                          
+else
+send(msg.chat_id_, msg.id_,"• لا يوجد رابط للمجموعه")              
+end            
+end
+end,nil)
+return false 
+end
 if text == 'مسح الرابط' or text == 'مسح الرابط' then
 if Mod(msg) then     
 if AddChannel(msg.sender_user_id_) == false then
@@ -13101,7 +13122,7 @@ end
 
 
 if text == 'سلام' then 
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_," ") 
 return false  
@@ -13110,7 +13131,7 @@ send(msg.chat_id_,msg.id_, '[مع الف سلامه يقلبي متجيش تان
 return false
 end
 if text == 'بوتي' then 
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_," ") 
 return false  
@@ -13120,7 +13141,7 @@ return false
 end
 
 if text == 'هاي' or text == 'هيي' then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_," -معطله") 
 return false  
@@ -13133,7 +13154,7 @@ if text then
 list = {'برايفت'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13148,7 +13169,7 @@ if text then
 list = {'النبي'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13163,7 +13184,7 @@ if text then
 list = {'قفل المحن'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13178,7 +13199,7 @@ if text then
 list = {'🙄'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13193,7 +13214,7 @@ if text then
 list = {'فتح المحن'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13204,7 +13225,7 @@ end
 end
 end
 if text == "حلوه"  or text == "حلو" then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13217,7 +13238,7 @@ if text then
 list = {'💋'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13232,7 +13253,7 @@ if text then
 list = {'بف'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13247,7 +13268,7 @@ if text then
 list = {'😭'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13261,7 +13282,7 @@ if text then
 list = {'خاص'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13276,7 +13297,7 @@ if text then
 list = {'بحبك'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13291,7 +13312,7 @@ if text then
 list = {'بيف'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13305,7 +13326,7 @@ if text then
 list = {'سلام عليكم'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13319,7 +13340,7 @@ if text then
 list = {'وه'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13333,7 +13354,7 @@ if text then
 list = {'قامد'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13347,7 +13368,7 @@ if text then
 list = {'جامد'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13361,7 +13382,7 @@ if text then
 list = {'جمد'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13375,7 +13396,7 @@ if text then
 list = {'تيجي'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13389,7 +13410,7 @@ if text then
 list = {'جيت'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13403,7 +13424,7 @@ if text then
 list = {'شكرا'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13417,7 +13438,7 @@ if text then
 list = {'حصلخير'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13431,7 +13452,7 @@ if text then
 list = {'متيقي'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13445,7 +13466,7 @@ if text then
 list = {'طيب'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13459,7 +13480,7 @@ if text then
 list = {'اه'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13473,7 +13494,7 @@ if text then
 list = {'😒'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13487,7 +13508,7 @@ if text then
 list = {'🌚'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13501,7 +13522,7 @@ if text then
 list = {'خلاص'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13515,7 +13536,7 @@ if text then
 list = {'سي في'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13529,7 +13550,7 @@ if text then
 list = {'🙂'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13543,7 +13564,7 @@ if text then
 list = {'🙄'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13557,7 +13578,7 @@ if text then
 list = {'حلو'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13571,7 +13592,7 @@ if text then
 list = {'بنتي'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13585,7 +13606,7 @@ if text then
 list = {'ابني'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13599,7 +13620,7 @@ if text then
 list = {'😂'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -13613,7 +13634,7 @@ if text then
 list = {'😹'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+local my_ph = database:get(bot_id.."my_GHoeq2:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
@@ -15073,7 +15094,7 @@ Msᴀɢ ~ #msgs
 ▽ ¦❀• 𝙼𝚂𝙶𝚂 ➬ ⁞  #msgs  .
 ▽ ¦❀• STAT ➬ ⁞ #stast  .
 ▽ ¦❀• 𝙸𝙳  ➬ ⁞ #id  .
-▽ ¦❀• 𝗖𝗛 - 「@SOURCEVENOM」 ●
+▽ ¦❀• ??𝗛 - 「@SOURCEVENOM」 ●
 ]],
 [[
 • ❉ 𝑼𝑬𝑺 : #username ‌‌‏.
