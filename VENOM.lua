@@ -3525,7 +3525,7 @@ elseif da.status_.ID == "ChatMemberStatusEditor" then
 var = 'مشرف'
 end
 if bot_data:sismember(ban_id..'Chek:Groups',msg.chat_id_) then
-send(msg.chat_id_, msg.id_,' ● تم تفعيل الجروب')
+send(msg.chat_id_, msg.id_,' ')
 else
 sendText(msg.chat_id_,'\n ● بواسطه ⤌ ['..string.sub(result.first_name_,0, 70)..'](tg://user?id='..result.id_..')\n ● تم تفعيل الجروب {'..chat.title_..'}',msg.id_/2097152/0.5,'md')
 bot_data:sadd(ban_id..'Chek:Groups',msg.chat_id_)  
