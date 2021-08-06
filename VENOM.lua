@@ -16864,6 +16864,7 @@ local Id_Link = Text:match('mp4/(.*)')
 DeleteMessage(Chat_id,{[0] = Msg_id})    
 http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=mp4&msg=0')
 end
+
 if Text and Text:match("^yesS(.*)$") then local delallph = Text:match("^yesS(.*)$")
 if msg.sender_user_id_ == tonumber(SUDO) then local Texxt = "🚧 ┇ حسننا الان يمكنك ارسال معرف المطور الاساسي الجديد ..."
 keyboard = {} 
