@@ -3498,70 +3498,7 @@ end,nil)
 end,nil)
 end
 
-if msg.content_.ID == "MessageChatAddMembers" and tonumber(msg.content_.user_.id_) == tonumber(ban_id) then 
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = bot_data:get(ban_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n  ● يرجى الاشتراك بالقناه اولا \n  ● اشترك هنا ['..bot_data:get(ban_id..'add:ch:username')..']')
-end
-return false
-end
-if msg.can_be_deleted_ == false then 
-send(msg.chat_id_, msg.id_,' ● عذرا يرجى ترقيه البوت مشرف !')
-return false  
-end
-tdcli_function ({ ID = "GetChannelFull", channel_id_ = getChatId(msg.chat_id_).ID }, function(arg,data)  
-if tonumber(data.member_count_) < tonumber(bot_data:get(ban_id..'Num:Add:Bot') or 0) and not Devban(msg) then
-send(msg.chat_id_, msg.id_,' ● عدد اعضاء الجروب قليله يرجى جمع >> {'..(bot_data:get(ban_id..'Num:Add:Bot') or 0)..'} عضو')
-return false
-end
-tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
-tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,chat)  
-tdcli_function ({ID = "GetChatMember",chat_id_ = msg.chat_id_,user_id_ = msg.sender_user_id_},function(arg,da) 
-if da and da.status_.ID == "ChatMemberStatusEditor" or da and da.status_.ID == "ChatMemberStatusCreator" then
-if da and da.user_id_ == msg.sender_user_id_ then
-if da.status_.ID == "ChatMemberStatusCreator" then
-var = 'المالك'
-elseif da.status_.ID == "ChatMemberStatusEditor" then
-var = 'مشرف'
-end
-if bot_data:sismember(ban_id..'Chek:Groups',msg.chat_id_) then
-send(msg.chat_id_, msg.id_,' ● تم تفعيل الجروب')
-else
-sendText(msg.chat_id_,'\n ● بواسطه ⤌ ['..string.sub(result.first_name_,0, 70)..'](tg://user?id='..result.id_..')\n ● تم تفعيل الجروب {'..chat.title_..'}',msg.id_/2097152/0.5,'md')
-bot_data:sadd(ban_id..'Chek:Groups',msg.chat_id_)  
-bot_data:sadd(ban_id..'CoSu'..msg.chat_id_, msg.sender_user_id_)
-local Name = '['..result.first_name_..'](tg://user?id='..result.id_..')'
-local NumMember = data.member_count_
-local NameChat = chat.title_
-local IdChat = msg.chat_id_
-local AddPy = var
-local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_))
-if linkgpp.ok == true then 
-LinkGp = linkgpp.result
-else
-LinkGp = 'لا يوجد'
-end
-Text = ' ● تم تفعيل كروب جديده\n'..
-'\n ● بواسطة {'..Name..'}'..
-'\n ● موقعه في الجروب {'..AddPy..'}' ..
-'\n ● ايدي الجروب {'..IdChat..'}'..
-'\n ● عدد اعضاء الجروب *{'..NumMember..'}*'..
-'\n ● اسم الجروب {['..NameChat..']}'..
-'\n ● الرابط {['..LinkGp..']}'
-if not Devban(msg) then
-sendText(SUDO,Text,0,'md')
-end
-end
-end
-end
-end,nil)   
-end,nil) 
-end,nil) 
-end,nil)
-end
+
 if text ==("تفعيل") and Sudo(msg) then
 tdcli_function ({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 100},function(arg,data) 
 local num2 = 0
@@ -3588,6 +3525,7 @@ send(msg.chat_id_, msg.id_,"● تمت ترقيه ❮ "..num2.." ❯ من الا
 end
 end,nil)   
 end
+
 if text and text:match("^المطور$") or text and text:match("^مطور$") or text and text:match("^الدعم$") then
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,dp) 
@@ -14567,7 +14505,7 @@ local List = {
 ]],
 [[
 ➞: 𝒔𝒕𝒂𓂅 #stast 𓍯➸💞.
-➞: 𝒖??𝒆??𓂅 #username 𓍯➸💞.
+➞: 𝒖??𝒆𝒓𓂅 #username 𓍯➸💞.
 ➞: 𝒎𝒔𝒈𝒆𓂅 #msgs 𓍯➸💞.
 ➞: 𝐢𝐝 𓂅 #id 𓍯➸💞.
 ➞: 𝗖𝗛 - 「@SOURCEVENOM」 💞.
@@ -14711,7 +14649,7 @@ local List = {
 • ⊠ | 𝑰𝑫 : #id ‌‌‏♕
 • ❏ | 𝑴𝑺𝑮 : #msgs 𓆊
 • ❏ | 𝑾𝒆𝒍𝒄𝒐𝒎𝒆 :
-• ❏ | 𝗖𝗛 - 「@SOURCEVENOM」 💞.
+• ❏ | 𝗖𝗛 - 「@SOURCEVENOM」 ??.
 ]],
 [[
 ┇iD ➺ #id 💘
@@ -16307,6 +16245,17 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/36&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 
+if text == 'نزلني' or text == 'نزيلني' and GetChannelMember(msg) then 
+if not bot_data:get(ban_id..'Cick:Me'..msg.chat_id_) then 
+local Text = "قم بتأكيد العمليه الان"
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text="تأكيد الامر",callback_data="nzllne"..msg.sender_user_id_},{text="الغاء الامر",callback_data="noKikedMe"..msg.sender_user_id_}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end 
+end
 ----------------------------------------------------------------- انتهئ الاوامر الجديدة
 if text == "تعطيل الابراج" and Manager(msg) then
 send(msg.chat_id_, msg.id_, ' ● تم تعطيل الابراج')
@@ -18725,7 +18674,7 @@ bot_data:del(ban_id.."pp_photo:status"..Chat_id)
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
+{text = '●𝙱??𝙲𝙺↵', callback_data="/help8"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -20352,6 +20301,32 @@ return false
 end
 end
 
+if Text == 'nzllne'..data.sender_user_id_ then if bot_data:sismember(ban_id.."Sudo:User",data.sender_user_id_) then dev = "المطور ،" else dev = "" end
+if bot_data:sismember(ban_id.."CoSu",data.sender_user_id_) then cu = "بكار،" else cu = "" end
+if bot_data:sismember(ban_id.."Basic:Constructor"..msg.chat_id_, data.sender_user_id_) then crr = "منشئ اساسي ،" else crr = "" end
+if bot_data:sismember(ban_id..'Constructor'..msg.chat_id_, data.sender_user_id_) then cr = "منشئ ،" else cr = "" end
+if bot_data:sismember(ban_id..'Manager'..msg.chat_id_, data.sender_user_id_) then own = "مدير ،" else own = "" end
+if bot_data:sismember(ban_id..'S00F4:MN:TF'..msg.chat_id_, data.sender_user_id_) then mn = 'منظف ،' else mn = '' end
+if bot_data:sismember(ban_id..'Mod:User'..msg.chat_id_, data.sender_user_id_) then mod = "ادمن ،" else mod = "" end
+if bot_data:sismember(ban_id..'Special:User'..msg.chat_id_, data.sender_user_id_) then vip = "مميز ،" else vip = "" end
+if Can_or_NotCan(data.sender_user_id_,msg.chat_id_) ~= false then local text = "\n ⦁ تم تنزيلك من الرتب التاليه \n ⦁  { "..dev..""..crr..""..cr..""..own..""..mod..""..mn..""..vip.." } \n"
+else
+local text = "\n ⦁ انت لاتمتلك رتبه \n"
+end
+bot_data:srem(ban_id.."Sudo:User", data.sender_user_id_)
+bot_data:srem(ban_id.."CoSu", data.sender_user_id_)
+bot_data:srem(ban_id.."Basic:Constructor"..msg.chat_id_,data.sender_user_id_)
+bot_data:srem(ban_id..'Constructor'..msg.chat_id_, data.sender_user_id_)
+bot_data:srem(ban_id..'Manager'..msg.chat_id_, data.sender_user_id_)
+bot_data:srem(ban_id..'Mod:User'..msg.chat_id_, data.sender_user_id_)
+bot_data:srem(ban_id..'S00F4:MN:TF'..msg.chat_id_, data.sender_user_id_)
+bot_data:srem(ban_id..'Special:User'..msg.chat_id_, data.sender_user_id_)
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCEVENOM'}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
 
 if Text == 'EndAddarray'..data.sender_user_id_ then  
 if bot_data:get(ban_id..'Set:array'..data.sender_user_id_..':'..Chat_id) == 'true1' then
