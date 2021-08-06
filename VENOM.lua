@@ -13807,7 +13807,7 @@ end
 local Text = "قم بتأكيد العمليه الان"
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'اذاعه', callback_data="opkla"..msg.sender_user_id_},{text="اذاعه خاص",callback_data="noay63"..msg.sender_user_id_}},
+{{text="اذاعه",callback_data="opkla"..msg.sender_user_id_},{text="اذاعه خاص",callback_data="noay63"..msg.sender_user_id_}},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
@@ -14649,7 +14649,7 @@ local List = {
 • ⊠ | 𝑰𝑫 : #id ‌‌‏♕
 • ❏ | 𝑴𝑺𝑮 : #msgs 𓆊
 • ❏ | 𝑾𝒆𝒍𝒄𝒐𝒎𝒆 :
-• ❏ | 𝗖𝗛 - 「@SOURCEVENOM」 💞.
+• ❏ | 𝗖𝗛 - 「@SOURCEVENOM」 ??.
 ]],
 [[
 ┇iD ➺ #id 💘
@@ -18674,7 +18674,7 @@ bot_data:del(ban_id.."pp_photo:status"..Chat_id)
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
+{text = '●𝙱??𝙲𝙺↵', callback_data="/help8"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -20384,9 +20384,8 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
-if Text and Text:match("^opkla(.*)$") and msg.reply_to_message_id_ == 0 and SudoBot(msg) then     
-local delallph = Text:match("^opkla(.*)$")
-if bot_data:get(ban_id..'Bc:Bots') and not Devban(msg) then 
+if Text == 'opkla'..data.sender_user_id_ then  
+if bot_data:get(ban_id..'Bc:Bots') and msg.reply_to_message_id_ == 0 and SudoBot(msg) then   
 send(msg.chat_id_, msg.id_,' - الاذاعه معطله من قبل المطور الاساسي')
 return false
 end
