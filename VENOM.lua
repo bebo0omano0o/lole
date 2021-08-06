@@ -16247,10 +16247,10 @@ end
 
 if text == 'نزلني' or text == 'نزيلني' and GetChannelMember(msg) then 
 if not bot_data:get(ban_id..'Cick:Me'..msg.chat_id_) then 
-local Text = "قم بتأكيد العمليه الان"
+local Text = ": هل انت متاكد  من تنزيلك من جميع الرتب: "
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text="تأكيد الامر",callback_data="nzllne"..msg.sender_user_id_},{text="الغاء الامر",callback_data="noKikedMe"..msg.sender_user_id_}},
+{{text="نعم",callback_data="nzllne"..msg.sender_user_id_},{text="لا",callback_data="noKikedMe"..msg.sender_user_id_}},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
@@ -20325,7 +20325,7 @@ keyboard = {}
 keyboard.inline_keyboard = {
 {{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCEVENOM'}},
 }
-return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(" ● تم تنزيلك من جميع الرتب")..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
 
 if Text == 'EndAddarray'..data.sender_user_id_ then  
@@ -20335,7 +20335,7 @@ keyboard = {}
 keyboard.inline_keyboard = {
 {{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCEVENOM'}},
 }
-return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(" ●︙تم حفظ الردود بنجاح*")..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(" ●︙تم حفظ الردود بنجاح")..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 else
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -20378,32 +20378,6 @@ end,nil)
 end
 if Text == 'noKikedMe'..data.sender_user_id_ then  
 local Text ="● تم الغاء الطرد بنجاح "
-keyboard = {} 
-keyboard.inline_keyboard = {
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCEVENOM'}},
-}
-return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
-end
-if Text == '/opkla' and msg.reply_to_message_id_ == 0 and SudoBot(msg) then   
-if bot_data:get(ban_id..'Bc:Bots') and not Devban(msg) then 
-send(msg.chat_id_, msg.id_,' - الاذاعه معطله من قبل المطور الاساسي')
-return false
-end
-bot_data:setex(ban_id.."Send:Bc:Grops" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
-local Text =" - للخروج ارسل الغاء » - ارسل الان اذاعتك؟"
-keyboard = {} 
-keyboard.inline_keyboard = {
-{{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCEVENOM'}},
-}
-return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
-end
-if Text == 'noay63'..data.sender_user_id_ then  
-if bot_data:get(ban_id..'Bc:Bots') and not Devban(msg) then 
-send(msg.chat_id_, msg.id_,' - الاذاعه معطله من قبل المطور الاساسي')
-return false
-end
-bot_data:setex(ban_id.."Send:Bc:Pv" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
-local Text =" - للخروج ارسل الغاء » - ارسل الان اذاعتك؟"
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCEVENOM'}},
