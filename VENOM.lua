@@ -20386,7 +20386,6 @@ return https.request("https://api.telegram.org/bot"..token..'/editMessageText?ch
 end
 if Text and Text:match("^opkla(.*)$") and msg.reply_to_message_id_ == 0 and SudoBot(msg) then     
 local delallph = Text:match("^opkla(.*)$")
-and msg.reply_to_message_id_ == 0 and SudoBot(msg) then   
 if bot_data:get(ban_id..'Bc:Bots') and not Devban(msg) then 
 send(msg.chat_id_, msg.id_,' - الاذاعه معطله من قبل المطور الاساسي')
 return false
