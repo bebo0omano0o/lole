@@ -13098,7 +13098,7 @@ Text = '\n ● بالتاكيد تم تعطيل رتبتي'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text == 'تفعيل رتبتي صوره' and Manager(msg) then   
+if text == 'تفعيل رتبتي بالصور' and Manager(msg) then   
 if bot_data:get(ban_id..'ban:ss:Photo'..msg.chat_id_)  then
 bot_data:del(ban_id..'ban:ss:Photo'..msg.chat_id_) 
 Text = '\n ● تم تفعيل الايدي بالصور' 
@@ -13107,7 +13107,7 @@ Text = '\n ● بالتاكيد تم تفعيل الايدي بالصوره'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text == 'نعطيل رتبتي بالصور' and Manager(msg) then  
+if text == 'تعطيل رتبتي بالصور' and Manager(msg) then  
 if not bot_data:get(ban_id..'ban:ss:Photo'..msg.chat_id_)  then
 bot_data:set(ban_id..'ban:ss:Photo'..msg.chat_id_,true) 
 Text = '\n ● تم تعطيل رتبتي بالصوره' 
@@ -13236,6 +13236,20 @@ if text == "تعطيل انا مين"  then
 if Constructor(msg) then  
 bot_data:del(ban_id.."my_anamen:status"..msg.chat_id_) 
 send(msg.chat_id_, msg.id_," ● تـم تـعـطـيل انا مين") 
+return false end
+end
+
+if text == "تفعيل رتبتي"  then
+if Constructor(msg) then  
+bot_data:set(ban_id.."annoying"..msg.chat_id_,true) 
+send(msg.chat_id_, msg.id_," ") 
+return false  
+end
+end
+if text == "تعطيل رتبتي"  then
+if Constructor(msg) then  
+bot_data:del(ban_id.."annoying"..msg.chat_id_) 
+send(msg.chat_id_, msg.id_," ") 
 return false end
 end
 
@@ -14206,7 +14220,7 @@ end,nil)
 end
 end
 if text == ("رتبتي") and msg.reply_to_message_id_ == 0 and not bot_data:get(ban_id..'ban:ss'..msg.chat_id_) then    
-local my_ph = bot_data:get(ban_id.."ban:ss"..msg.chat_id_)
+local my_ph = bot_data:get(ban_id.."annoying"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_," ● رتبتي معطله") 
 return false  
@@ -14613,7 +14627,7 @@ local List = {
 [[
 金 - 𝓾𝓼𝓮𝓻𝓷𝓪𝓶𝓮 . #username ⸙ 
 金 - 𝓼𝓽𝓪𝓼𝓽  . #stast ⸙ 
-金 - 𝓲𝓭 . #id ⸙ 
+金 - 𝓲?? . #id ⸙ 
 金 - 𝓰𝓶𝓪𝓼 . #gmas ⸙ 
 金 - 𝓶𝓼𝓰𝓼 . #msgs ⸙
 ]],
@@ -15465,7 +15479,7 @@ Msᴀɢ ~ #msgs
 • ❉ 𝑺𝑻𝑨 : #stast .
 • ❉ 𝑰𝑫 : #id  ‌‌‏.
 • ❉  𝑴𝑺𝑮 : #msgs 𓆊.
-• ❉ 𝑾𝒆𝒍𝒄𝒐𝒎𝒆  ⁞ .
+• ❉ 𝑾𝒆𝒍𝒄??𝒎𝒆  ⁞ .
 • ❉ 𝗖𝗛 - 「@SOURCEVENOM」 ●
 ]],
 [[
