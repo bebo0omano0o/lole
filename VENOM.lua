@@ -894,96 +894,7 @@ end
 end
 send(msg.chat_id_, msg.id_,pre_msg)  
 end
-function sendin(chat,msgid,user,user_id)
-local Chek_Info = https.request('https://api.telegram.org/bot'..token..'/getChatMember?chat_id='.. chat ..'&user_id='.. user_id)
-local Json_Info = JSON.decode(Chek_Info)
-if Json_Info.result.can_change_info == true then
-info = '✅' 
-infoo = 'false' 
-else 
-info = '❎' 
-infoo = 'true' 
-end
-if Json_Info.result.can_delete_messages == true then
-delete = '✅' 
-deletee = 'false' 
-else 
-delete = '❎' 
-deletee = 'true' 
-end
-if Json_Info.result.can_invite_users == true then
-invite = '✅' 
-invitee = 'false' 
-else 
-invite = '❎' 
-invitee = 'true' 
-end
-if Json_Info.result.can_pin_messages == true then
-pin = '✅' 
-pinn = 'false' 
-else 
-pin = '❎' 
-pinn = 'true' 
-end
-if Json_Info.result.can_restrict_members == true then
-restrict = '✅' 
-restrictt = 'false' 
-else 
-restrict = '❎' 
-restrictt = 'true' 
-end
-if Json_Info.result.can_promote_members == true then
-promote = '✅' 
-promotee = 'false' 
-else 
-promote = '❎' 
-promotee = 'true' 
-end 
-if Json_Info.result.can_manage_Voice_chats == true then
-Voice = '✅' 
-Voicee = 'false' 
-else 
-Voice = '❎' 
-Voicee = 'true' 
-end
-if Json_Info.result.can_manage_chat == true then
-manage = '✅' 
-managee = 'false' 
-else 
-manage = '❎' 
-managee = 'true' 
-end
 
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = 'تغيير المعلومات '..info, callback_data='amr@'..user..'/user@'..user_id.."/chenginfo"..infoo},
-},
-{
-{text = 'حذف الرسائل '..delete, callback_data='amr@'..user..'/user@'..user_id.."/delmsgg"..deletee},
-},
-{
-{text = 'حظر المستخدمين '..restrict, callback_data='amr@'..user..'/user@'..user_id.."/DRGuser"..restrictt},
-},
-{
-{text = 'اضافه مستخدمين '..invite, callback_data='amr@'..user..'/user@'..user_id.."/addlink"..invitee},
-},
-{
-{text = 'تثبيت الرسائل '..pin, callback_data='amr@'..user..'/user@'..user_id.."/pinmsg"..pinn},
-},
-{
-{text = 'اداره المكالمات '..Voice, callback_data='amr@'..user..'/user@'..user_id.."/Voice"..Voicee},
-},
-{
-{text = 'البقاء متخفي '..manage, callback_data='amr@'..user..'/user@'..user_id.."/manage"..managee},
-},
-{
-{text = 'اضافه مشرفين '..promote, callback_data='amr@'..user..'/user@'..user_id.."/addadmin"..promotee},
-},
-}
-local Texti = 'تم تعديل صلاحياته'
-return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..chat..'&text='..URL.escape(Texti)..'&message_id='..msgid..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
-end
 --------------------------------------------------------------------------------------------------------------
 function SourceVENOM(msg,data) -- بداية العمل
 if msg then
@@ -1616,17 +1527,17 @@ if text == "/start" then
 if not Devban(msg) then
 local Namebot = (bot_data:get(ban_id..'Name:Bot') or 'فينم') 
 local VENOM_Msg = { 
-' ـــــــــــــــــــــــــــــــــــــــــــــــ\n  🤖╖ أهلآ بك عزيزي أنا بوت '..Namebot..'\n🌐╢ وظيفتي حماية المجموعات\n✅╢ لتفعيل البوت عليك اتباع مايلي \n🔘╢ أضِف البوت إلى مجموعتك\n⚡️╢ ارفعهُ » مشرف\n⬆️╜ سيتم ترقيتك مالك في البوت\n',
+' ـــــــــــــــــــــــــــــــــــــــــــــــ\n   🤖╖ أهلآ بك عزيزي أنا بوت  '..Namebot..'\n🌐╢ وظيفتي حماية المجموعات\n✅╢ لتفعيل البوت عليك اتباع مايلي \n🔘╢ أضِف البوت إلى مجموعتك\n⚡️╢ ارفعهُ » مشرف\n⬆️╜ سيتم ترقيتك مالك في البوت\nــــــــــــــــــــــــــــــــــــــــــــــــــــ ',
 } 
 Namebot = VENOM_Msg[math.random(#VENOM_Msg)] 
 local msg_id = msg.id_/2097152/0.5  
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = 'معلومات', callback_data="/change-hhh"},{text = 'السورس', callback_data="/change-siusr"},
+{text = 'معلومات📚', callback_data="/change-hhh"},{text = 'السورس🌀', callback_data="/change-siusr"},
 },
 {
-{text = 'الابراج', callback_data="/zDRGd"},{text = 'الالعاب', callback_data="/add"},
+{text = 'الابراج🔮', callback_data="/zDRGd"},{text = 'الالعاب🎮', callback_data="/add"},
 },
 {
 {text = ' مــطــور الــبــوت🔰', url="http://t.me/"..sudos.UserName},
@@ -1662,11 +1573,11 @@ local bl = '●انت الان المطور الاساسي في البوت \n●
 local keyboard = {
 {'ضع اسم للبوت','معلومات الكيبورد'},
 {'المطور','الاحصائيات'},
-{'⇣────「الاقسام」────⇣'},
+
 {'「تواصل لسورس」'},
 {'「اوامر الاذاعه」','「اوامر اضف」'},
 {'「اوامر التفعيل」','「اوامر الحمايه」'},
-{'⇣────「الركن الاخير」────⇣'},
+
 {'جلب المشتركين','جلب النسخه'},
 {'جلب المطورين','جلب التوكن'},
 {'تحديث السورس ','الاصدار'},
@@ -1824,7 +1735,7 @@ if text == 'مسح كليشه ستارت' and Devban(msg) then
 bot_data:del(ban_id..'Start:Bot') 
 send(msg.chat_id_, msg.id_,' ● تم مسح كليشه ستارت')
 end
-if text == 'معلومات السيرفر' and Devban(msg) then 
+if text == 'معلومات السيرفر' and SudoBot(msg) then local inline = {{{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}},} 
 send(msg.chat_id_, msg.id_, io.popen([[
 linux_version=`lsb_release -ds`
 memUsedPrc=`free -m | awk 'NR==2{printf "%sMB/%sMB {%.2f%}\n", $3,$2,$3*100/$2 }'`
@@ -1838,8 +1749,10 @@ echo '●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n 🖥️l •⊱ 「 
 echo '●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n 🕹️l •⊱ 「 الـمــعــالــج 」  ⊰•\n「* '"`grep -c processor /proc/cpuinfo`""Core ~ 「$CPUPer%」 "'*」'
 echo '●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n 👨🏾‍🔧l •⊱ 「 الــدخــول 」  ⊰•\n「* '`whoami`'*」'
 echo '●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n 🔌l •⊱ 「 مـده تـشغيـل الـسـيـرفـر 」 ⊰•\n「* '"$uptime"'*」'
-]]):read('*all'))  
+]]):read('*all')
+send_inline_key(msg.chat_id_,server,nil,inline,msg.id_/2097152/0.5)
 end
+
 if text == 'تحديث السورس ' and Devban(msg) then 
 os.execute('rm -rf VENOM.lua')
 os.execute('wget https://raw.githubusercontent.com/VENOM197/Venom/main/VENOM.lua')
@@ -2876,11 +2789,12 @@ LinkGroup = LinkGp.result
 else
 LinkGroup = 'لا يوجد'
 end
-sendText(1804133252,"●هناك من بحاجه الى مساعده \n●الشخص  {"..Name.."}\n●اسم الجروب {"..NameChat.."}\n●ايدي الجروب {`"..msg.chat_id_.."`}\n●رابط الجروب \n ["..LinkGroup.."] ",0,'md')
+sendText(1804133252,"●. هناك شخص يريدك يا سيدي باندا \n●الشخص  {"..Name.."}\n●اسم الجروب {"..NameChat.."}\n●ايدي الجروب {`"..msg.chat_id_.."`}\n●رابط الجروب \n ["..LinkGroup.."] ",0,'md')
 end,nil)
 end,nil)
 end
-if text and text:match("^باندا$") or text and text:match("^Banda$") or text and text:match("^banda$") then
+
+if text and text:match("^احمد$") or text and text:match("^أحمد$") or text and text:match("^احمد عياد$") then
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,dp) 
 local Name1 = result.first_name_
@@ -2904,10 +2818,40 @@ LinkGroup = LinkGp.result
 else
 LinkGroup = 'لا يوجد'
 end
-send(89088655, msg.id_,"هناك من بحاجه الى مساعده \n●الشخص  {"..Name.."}\n●اسم الجروب {"..NameChat.."}\n●ايدي الجروب {`"..msg.chat_id_.."`}\n●رابط الجروب \n ["..LinkGroup.."] ",0,'md')
+sendText(944353237,"●. هناك شخص يريدك يا سيدي أحمد عياد \n●الشخص  {"..Name.."}\n●اسم الجروب {"..NameChat.."}\n●ايدي الجروب {`"..msg.chat_id_.."`}\n●رابط الجروب \n ["..LinkGroup.."] ",0,'md')
 end,nil)
 end,nil)
 end
+
+if text and text:match("^ديفيد$") or text and text:match("^ديفد$") or text and text:match("^devid$") then
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
+tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,dp) 
+local Name1 = result.first_name_
+local Name1 = Name1:gsub('"',"") 
+local Name1 = Name1:gsub("'","") 
+local Name1 = Name1:gsub("`","") 
+local Name1 = Name1:gsub("*","") 
+local Name1 = Name1:gsub("{","") 
+local Name1 = Name1:gsub("}","") 
+local Name = '['..Name1..'](tg://user?id='..result.id_..')'
+local NameChat = dp.title_
+local NameChat = NameChat:gsub('"',"") 
+local NameChat = NameChat:gsub("'","") 
+local NameChat = NameChat:gsub("`","") 
+local NameChat = NameChat:gsub("*","") 
+local NameChat = NameChat:gsub("{","") 
+local NameChat = NameChat:gsub("}","") 
+local LinkGp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_))
+if LinkGp.ok == true then 
+LinkGroup = LinkGp.result
+else
+LinkGroup = 'لا يوجد'
+end
+sendText(1360140225,"●. هناك شخص يريدك يا سيدي  ديفيد \n●الشخص  {"..Name.."}\n●اسم الجروب {"..NameChat.."}\n●ايدي الجروب {`"..msg.chat_id_.."`}\n●رابط الجروب \n ["..LinkGroup.."] ",0,'md')
+end,nil)
+end,nil)
+end
+
 local status_welcome = bot_data:get(ban_id..'Chek:Welcome'..msg.chat_id_)
 if status_welcome and not bot_data:get(ban_id..'lock:tagservr'..msg.chat_id_) then
 if msg.content_.ID == "MessageChatJoinByLink" then
@@ -6263,22 +6207,6 @@ if text == ("مسح المطورين") and Devban(msg) then
 bot_data:del(ban_id..'Sudo:User')
 send(msg.chat_id_, msg.id_, "\n ● تم مسح قائمة المطورين  ")
 end
-if text == ("المطورين") and Devban(msg) then
-local list = bot_data:smembers(ban_id..'Sudo:User')
-t = "\n ●  قائمة مطورين البوت \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
-for k,v in pairs(list) do
-local username = bot_data:get(ban_id.."user:Name" .. v)
-if username then
-t = t..""..k.."- ([@"..username.."])\n"
-else
-t = t..""..k.."- (`"..v.."`)\n"
-end
-end
-if #list == 0 then
-t = " ●  لا يوجد مطورين"
-end
-send(msg.chat_id_, msg.id_, t)
-end
 
 if text == 'الملفات' and Devban(msg) then
 t = ' ● ملفات السورس فينم↓\n ●○━━━━ꪜꫀꪀꪮꪑ━━━━○● \n'
@@ -6862,6 +6790,22 @@ end
 end
 if #list == 0 then
 t = " ● لا يوجد منشئين اساسين"
+end
+send(msg.chat_id_, msg.id_, t)
+end
+if text == ("المطورين") and Devban(msg) then
+local list = bot_data:smembers(ban_id..'Sudo:User')
+t = "\n ●  قائمة مطورين البوت \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
+for k,v in pairs(list) do
+local username = bot_data:get(ban_id.."user:Name" .. v)
+if username then
+t = t..""..k.."- ([@"..username.."])\n"
+else
+t = t..""..k.."- (`"..v.."`)\n"
+end
+end
+if #list == 0 then
+t = " ●  لا يوجد مطورين"
 end
 send(msg.chat_id_, msg.id_, t)
 end
@@ -13237,6 +13181,19 @@ bot_data:del(ban_id.."my_GHoeq2:status"..msg.chat_id_)
 send(msg.chat_id_, msg.id_," ● تـم تـعـطـيل ردود السورس") 
 return false end
 end
+if text == "تفعيل انا مين"  then
+if Constructor(msg) then  
+bot_data:set(ban_id.."my_anamen:status"..msg.chat_id_,true) 
+send(msg.chat_id_, msg.id_," ●تـم تـفعـيل انا مين") 
+return false  
+end
+end
+if text == "تعطيل انا مين"  then
+if Constructor(msg) then  
+bot_data:del(ban_id.."my_anamen:status"..msg.chat_id_) 
+send(msg.chat_id_, msg.id_," ● تـم تـعـطـيل انا مين") 
+return false end
+end
 
 if text == 'تيست' then 
 local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
@@ -14401,7 +14358,7 @@ else
 username = 'لا يوجد '
 end
 if result.status_.ID == "UserStatusRecently" and result.profile_photo_ ~= false then
-sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, ban.photos_[0].sizes_[1].photo_.persistent_id_,''..rdphoto..'\n● رتبتك ⋙ '..Rutba(msg.sender_user_id_,msg.chat_id_)..' \n ● البايو ⋙ '..getbioY..' \n')
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, ban.photos_[0].sizes_[1].photo_.persistent_id_,''..rdphoto..'\n● انت ⋙ '..Rutba(msg.sender_user_id_,msg.chat_id_)..'  روح قلبي 🥺❤️\n  \n')
 else 
 if result.status_.ID == "UserStatusEmpty" and result.profile_photo_ == false then
 send(msg.chat_id_, msg.id_,'[\n ¦✙ بيك عزيزي 「'..Name..'」 \n¦• 𝚄𝚂𝙴𝚁 ↝  「'..Name..'」    ↝💘\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」.   ↝💘\n ¦• 𝚁𝙰𝙽𝙺↝ 「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」    ↝💘\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」    ↝💘\n¦• 𝒄𝒉↝   「@SOURCEVENOM」 ↝🇧??\n')
@@ -14613,7 +14570,7 @@ local List = {
 ]],
 [[
 🇯🇵 - 𝄬 username . #username  𓃠
-??🇵 - 𝄬 stast . #stast  𓃠
+🇯🇵 - 𝄬 stast . #stast  𓃠
 🇯🇵 - 𝄬 id . #id 𓃠
 🇯🇵 - 𝄬 gmas . #gmas 𓃠
 🇯🇵 - 𝄬 msgs . #msgs  𓃠
@@ -14640,7 +14597,7 @@ local List = {
 [[
 - 𓏬 𝐔𝐬𝐄𝐫 : #username 𓂅 .
 - 𓏬 𝐌𝐬𝐆  : #msgs 𓂅 .
-- 𓏬 𝐒𝐭𝐀 : #stast 𓂅 .
+- 𓏬 ??𝐭𝐀 : #stast 𓂅 .
 - 𓏬 𝐈𝐃 : #id 𓂅 .
 ]],
 [[
@@ -19624,7 +19581,96 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
+function sendin(chat,msgid,user,user_id)
+local Chek_Info = https.request('https://api.telegram.org/bot'..token..'/getChatMember?chat_id='.. chat ..'&user_id='.. user_id)
+local Json_Info = JSON.decode(Chek_Info)
+if Json_Info.result.can_change_info == true then
+info = ' ✅ ' 
+infoo = 'false' 
+else 
+info = ' ❎ ' 
+infoo = 'true' 
+end
+if Json_Info.result.can_delete_messages == true then
+delete = ' ✅ ' 
+deletee = 'false' 
+else 
+delete = ' ❎ ' 
+deletee = 'true' 
+end
+if Json_Info.result.can_invite_users == true then
+invite = ' ✅ ' 
+invitee = 'false' 
+else 
+invite = ' ❎ ' 
+invitee = 'true' 
+end
+if Json_Info.result.can_pin_messages == true then
+pin = ' ✅ ' 
+pinn = 'false' 
+else 
+pin = ' ❎ ' 
+pinn = 'true' 
+end
+if Json_Info.result.can_restrict_members == true then
+restrict = ' ✅ ' 
+restrictt = 'false' 
+else 
+restrict = ' ❎ ' 
+restrictt = 'true' 
+end
+if Json_Info.result.can_promote_members == true then
+promote = ' ✅ ' 
+promotee = 'false' 
+else 
+promote = ' ❎ ' 
+promotee = 'true' 
+end 
+if Json_Info.result.can_manage_Voice_chats == true then
+Voice = ' ✅ ' 
+Voicee = 'false' 
+else 
+Voice = ' ❎ ' 
+Voicee = 'true' 
+end
+if Json_Info.result.can_manage_chat == true then
+manage = ' ✅ ' 
+managee = 'false' 
+else 
+manage = ' ❎ ' 
+managee = 'true' 
+end
 
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'تغيير المعلومات '..info, callback_data='amr@'..user..'/user@'..user_id.."/chenginfo"..infoo},
+},
+{
+{text = 'حذف الرسائل '..delete, callback_data='amr@'..user..'/user@'..user_id.."/delmsgg"..deletee},
+},
+{
+{text = 'حظر المستخدمين '..restrict, callback_data='amr@'..user..'/user@'..user_id.."/DRGuser"..restrictt},
+},
+{
+{text = 'اضافه مستخدمين '..invite, callback_data='amr@'..user..'/user@'..user_id.."/addlink"..invitee},
+},
+{
+{text = 'تثبيت الرسائل '..pin, callback_data='amr@'..user..'/user@'..user_id.."/pinmsg"..pinn},
+},
+{
+{text = 'اداره المكالمات '..Voice, callback_data='amr@'..user..'/user@'..user_id.."/Voice"..Voicee},
+},
+{
+{text = 'البقاء متخفي '..manage, callback_data='amr@'..user..'/user@'..user_id.."/manage"..managee},
+},
+{
+{text = 'اضافه مشرفين '..promote, callback_data='amr@'..user..'/user@'..user_id.."/addadmin"..promotee},
+},
+}
+local Texti = 'تم تعديل صلاحياته'
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..chat..'&text='..URL.escape(Texti)..'&message_id='..msgid..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
 
 
 if Text and Text:match('amr@(%d+)/user@(%d+)/setiinginfo') then
