@@ -3785,9 +3785,10 @@ end
 
 if text == 'باندا' or text == 'Banda' or text == 'banda' then
 local Text = [[
-ᴘʀᴏɢʀᴀᴍᴍᴇʀ [ᴘᴀɴᴅᴀ](t.me/QSban)
+ᴘʀᴏɢʀᴀᴍᴍᴇʀ ᴘᴀɴᴅᴀ
  ᴛᴏ ᴄᴏᴍᴍụɴɪᴄᴀᴛᴇ ᴛᴏɢᴇᴛʜᴇʀ, 
-ғᴏʟʟᴏᴡ ᴛʜᴇ ʙụᴛᴛᴏɴѕ ʟᴏᴡᴇʀ 𝅘𝅥𝅯 
+ғᴏʟʟᴏᴡ ᴛʜᴇ ʙụᴛᴛᴏɴѕ ʟᴏᴡᴇʀ  
+:- @QSban 𝅘𝅥𝅯
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -3824,7 +3825,6 @@ return false
 end
 if text == "£¢€$$__€€¢¥^^¥€" and SudoBot(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-
 return false
 end
 tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000
@@ -13098,21 +13098,21 @@ Text = '\n ● بالتاكيد تم تعطيل رتبتي'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text == 'تفعيل رتبتي بالصور' and Manager(msg) then   
-if bot_data:get(ban_id..'ban:ss:Photo'..msg.chat_id_)  then
+if text == 'تفعيل رتبتي' and Manager(msg) then   
+if bot_data:get(ban_id..'ban:ss'..msg.chat_id_)  then
 bot_data:del(ban_id..'ban:ss:Photo'..msg.chat_id_) 
-Text = '\n ● تم تفعيل الايدي بالصور' 
+Text = '\n ' 
 else
-Text = '\n ● بالتاكيد تم تفعيل الايدي بالصوره'
+Text = '\n '
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text == 'تعطيل رتبتي بالصور' and Manager(msg) then  
-if not bot_data:get(ban_id..'ban:ss:Photo'..msg.chat_id_)  then
-bot_data:set(ban_id..'ban:ss:Photo'..msg.chat_id_,true) 
-Text = '\n ● تم تعطيل رتبتي بالصوره' 
+if text == 'تعطيل رتبتي' and Manager(msg) then  
+if not bot_data:get(ban_id..'ban:ss'..msg.chat_id_)  then
+bot_data:set(ban_id..'ban:ss'..msg.chat_id_,true) 
+Text = '\n ' 
 else
-Text = '\n ● بالتاكيد تم تعطيل رتبتي بالصوره'
+Text = '\n '
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
@@ -14269,7 +14269,7 @@ local bana = {
 
 }
 local rdphoto = bana[math.random(#bana)]
-if not bot_data:get(ban_id..'ban:ss:Photo'..msg.chat_id_) then      
+if not bot_data:get(ban_id..'ban:ss'..msg.chat_id_) then      
 local get_id_text = bot_data:get(ban_id.."KLISH:ID"..msg.chat_id_)
 if get_id_text then
 if result.username_ then
@@ -16911,6 +16911,9 @@ keyboard.inline_keyboard = {
 {text = 'تفعيل التحقق2', callback_data="/lockCAPTAIN"},{text = 'تعطيل التحقق 2', callback_data="/opCAPTAIN"},
 },
 {
+{text = 'تفعيل رتبتي', callback_data="/lockss"},{text = 'تعطيل رتبتي', callback_data="/opass"},
+},
+{
 {text = 'تفعيل الرابط', callback_data="/locklinka"},{text = 'تعطيل الرابط', callback_data="/opalinka"},
 },
 {
@@ -19122,6 +19125,28 @@ end
 if Text == '/opaid' then
 local Text = '• تم تعطيل الايدي '
 bot_data:del(ban_id.."Bot:Id"..Chat_id)  
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
+},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
+end
+if Text == '/lockss' then
+local Text = '• تم تفعيل رتبتي '
+bot_data:set(ban_id.."ban:ss"..Chat_id,true)  
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
+},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
+end
+if Text == '/opass' then
+local Text = '• تم تعطيل رتبتي '
+bot_data:del(ban_id.."ban:ss"..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
