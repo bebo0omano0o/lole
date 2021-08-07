@@ -2721,7 +2721,7 @@ end,nil)
 end,nil)
 end
 
-د
+
 if text ==("تفعيل") and Sudo(msg) then
 tdcli_function ({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 100},function(arg,data) 
 local num2 = 0
@@ -15078,7 +15078,7 @@ local List = {
 🇪?? - 𝄬 ᴵᴰ . #id 𓃠
 🇪🇬 - 𝄬 ᴳᴹᴬˢ . #gmas 𓃠
 🇪🇬 - 𝄬 ᴹˢᴳˢ . #msgs  𓃠
-🇪🇬 - 𝄬 𝗖𝗛 - 「@SOURCEVENOM」 ●.
+🇪?? - 𝄬 𝗖𝗛 - 「@SOURCEVENOM」 ●.
 ]],
 [[
 𓄼🇪🇬 𝑼𝒔𝒆𝒓𝑵𝒂𝒎𝒆 : #username ♕
@@ -15497,7 +15497,7 @@ Msᴀɢ ~ #msgs
 ↣• 𝗖𝗛 - 「@SOURCEVENOM」 🍬
 ]],
 [[
-➫✿: S #stast 𓍯➟♡.
+➫✿: S #stast ??➟♡.
 ➫✿: U𓂅 #username 𓍯➟♡.
 ➫✿: M𓂅 #msgs 𓍯➟♡.
 ➫✿:  I  #id ➟♡.
