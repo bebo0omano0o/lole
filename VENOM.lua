@@ -2620,7 +2620,6 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://mode-pro.tk/niggax/captcha.php?c='..captcha..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end 
 end
-
 if msg.content_.ID == "MessageChatAddMembers" then 
 if msg.content_.members_[0].id_ == tonumber(ban_id) then 
 print("it is Bot")
@@ -3344,8 +3343,6 @@ sendText(SUDO,"● تم طرد البوت من جروب \n\n● بواسطة  {"
 end,nil)
 end,nil)
 end
-
-
 -------------------------------------------------------------------------------------------------------------
 if text == 'تفعيل' and Sudo(msg) then
 if AddChannel(msg.sender_user_id_) == false then
@@ -3498,6 +3495,69 @@ end,nil)
 end,nil)
 end
 
+if text  and not bot_data:sadd(ban_id..'Chek:Groups',msg.chat_id_)  then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = bot_data:get(ban_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n  ● يرجى الاشتراك بالقناه اولا \n  ● اشترك هنا ['..bot_data:get(ban_id..'add:ch:username')..']')
+end
+return false
+end
+if msg.can_be_deleted_ == false then 
+send(msg.chat_id_, msg.id_,' ● عذرا يرجى ترقيه البوت مشرف !')
+return false  
+end
+tdcli_function ({ ID = "GetChannelFull", channel_id_ = getChatId(msg.chat_id_).ID }, function(arg,data)  
+if tonumber(data.member_count_) < tonumber(bot_data:get(ban_id..'Num:Add:Bot') or 0) and not Devban(msg) then
+send(msg.chat_id_, msg.id_,' ● عدد اعضاء الجروب قليله يرجى جمع >> {'..(bot_data:get(ban_id..'Num:Add:Bot') or 0)..'} عضو')
+return false
+end
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
+tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,chat)  
+tdcli_function ({ID = "GetChatMember",chat_id_ = msg.chat_id_,user_id_ = msg.sender_user_id_},function(arg,da) 
+if da and da.status_.ID == "ChatMemberStatusEditor" or da and da.status_.ID == "ChatMemberStatusCreator" then
+if da and da.user_id_ == msg.sender_user_id_ then
+if da.status_.ID == "ChatMemberStatusCreator" then
+var = 'المالك'
+elseif da.status_.ID == "ChatMemberStatusEditor" then
+var = 'مشرف'
+end
+if bot_data:sismember(ban_id..'Chek:Groups',msg.chat_id_) then
+send(msg.chat_id_, msg.id_,' ● تم تفعيل الجروب')
+else
+sendText(msg.chat_id_,'\n ● بواسطه ⤌ ['..string.sub(result.first_name_,0, 70)..'](tg://user?id='..result.id_..')\n ● تم تفعيل الجروب {'..chat.title_..'}',msg.id_/2097152/0.5,'md')
+bot_data:sadd(ban_id..'Chek:Groups',msg.chat_id_)  
+bot_data:sadd(ban_id..'CoSu'..msg.chat_id_, msg.sender_user_id_)
+local Name = '['..result.first_name_..'](tg://user?id='..result.id_..')'
+local NumMember = data.member_count_
+local NameChat = chat.title_
+local IdChat = msg.chat_id_
+local AddPy = var
+local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_))
+if linkgpp.ok == true then 
+LinkGp = linkgpp.result
+else
+LinkGp = 'لا يوجد'
+end
+Text = ' ● تم تفعيل كروب جديده\n'..
+'\n ● بواسطة {'..Name..'}'..
+'\n ● موقعه في الجروب {'..AddPy..'}' ..
+'\n ● ايدي الجروب {'..IdChat..'}'..
+'\n ● عدد اعضاء الجروب *{'..NumMember..'}*'..
+'\n ● اسم الجروب {['..NameChat..']}'..
+'\n ● الرابط {['..LinkGp..']}'
+sendText(SUDO,Text,0,'md')
+end
+end
+end
+end,nil)   
+end,nil) 
+end,nil) 
+end,nil)
+end
+
 if text ==("تفعيل") and Sudo(msg) then
 tdcli_function ({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 100},function(arg,data) 
 local num2 = 0
@@ -3523,35 +3583,6 @@ else
 send(msg.chat_id_, msg.id_,"● تمت ترقيه ❮ "..num2.." ❯ من الادمنيه") 
 end
 end,nil)   
-end
-
-if text and text:match("^المطور$") or text and text:match("^مطور$") or text and text:match("^الدعم$") then
-tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
-tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,dp) 
-local Name1 = result.first_name_
-local Name1 = Name1:gsub('"',"") 
-local Name1 = Name1:gsub("'","") 
-local Name1 = Name1:gsub("`","") 
-local Name1 = Name1:gsub("*","") 
-local Name1 = Name1:gsub("{","") 
-local Name1 = Name1:gsub("}","") 
-local Name = '['..Name1..'](tg://user?id='..result.id_..')'
-local NameChat = dp.title_
-local NameChat = NameChat:gsub('"',"") 
-local NameChat = NameChat:gsub("'","") 
-local NameChat = NameChat:gsub("`","") 
-local NameChat = NameChat:gsub("*","") 
-local NameChat = NameChat:gsub("{","") 
-local NameChat = NameChat:gsub("}","") 
-local LinkGp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_))
-if LinkGp.ok == true then 
-LinkGroup = LinkGp.result
-else
-LinkGroup = 'لا يوجد'
-end
-sendText(SUDO,"●هناك من بحاجه الى مساعده \n●الشخص  {"..Name.."}\n●اسم الجروب {"..NameChat.."}\n●ايدي الجروب {`"..msg.chat_id_.."`}\n●رابط الجروب \n ["..LinkGroup.."] ",0,'md')
-end,nil)
-end,nil)
 end
 if text and text:match("^ضع عدد الاعضاء (%d+)$") and Devban(msg) then
 local Num = text:match("ضع عدد الاعضاء (%d+)$") 
@@ -3709,10 +3740,10 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/63&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
-if text and text:match('^بحث (.*)$') then 
-local search = text:match('^بحث (.*)$') 
+if text and text:match('^بحث (.*)$') and not bot_data:get(ban_id..'dw:bot:api'..msg.chat_id_) then            
+local Text = text:match('^بحث (.*)$') 
 local msgin = msg.id_/2097152/0.5 
-http.request('http://78.141.220.60/Yahya.php?token='..token..'&chat_id='..msg.chat_id_..'&Text='..URL.escape(search)..'&msg='..msgin)
+http.request('http://devstorm.ml/tshake/tahaj200.php?token='..token..'&chat_id='..msg.chat_id_..'&Text='..URL.escape(Text)..'&msg='..msgin)
 end
 if text == 'يوتيوب' or text == 'بحث' or text == 'اليوتيوب' then
 local Text = [[
@@ -4799,6 +4830,75 @@ bot_data:del(ban_id.."LoMsg"..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '●  مـن قبـل  ⋙ [「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」](T.ME/'..(data.username_ or 'textchuser')..') \n● تم تعطيل التنظيف التلقائي ')
 return false
 end
+if text == "@all" or text == "تاك للكل" or text == "all" and CoSu(msg) then
+if not bot_data:get(ban_id..'Cick:all'..msg.chat_id_) then
+if bot_data:get(ban_id.."S00F4:all:Time"..msg.chat_id_..':'..msg.sender_user_id_) then  
+return 
+send(msg.chat_id_, msg.id_,"انتظر دقيقه من فضلك")
+end
+bot_data:setex(ban_id..'S00F4:all:Time'..msg.chat_id_..':'..msg.sender_user_id_,300,true)
+tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(argg,dataa) 
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = dataa.member_count_},function(ta,sofi)
+x = 0
+tags = 0
+local list = sofi.members_
+for k, v in pairs(list) do
+tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data)
+if x == 5 or x == tags or k == 0 then
+tags = x + 5
+t = "#all"
+end
+x = x + 1
+tagname = data.first_name_
+tagname = tagname:gsub("]","")
+tagname = tagname:gsub("[[]","")
+t = t..", ["..tagname.."](tg://user?id="..v.user_id_..")"
+if x == 5 or x == tags or k == 0 then
+local Text = t:gsub('#all,','#all\n')
+sendText(msg.chat_id_,Text,0,'md')
+end
+end,nil)
+end
+end,nil)
+end,nil)
+end
+end
+
+if text and text:match("^all (.*)$") or text:match("^@all (.*)$") and CoSu(msg) then 
+local ttag = text:match("^all (.*)$") or text:match("^@all (.*)$") 
+if not bot_data:get(ban_id..'Cick:all'..msg.chat_id_) then 
+if bot_data:get(ban_id.."banda:all:Time"..msg.chat_id_..':'..msg.sender_user_id_) then   
+return  
+send(msg.chat_id_, msg.id_,"انتظر دقيقه من فضلك") 
+end 
+bot_data:setex(ban_id..'banda:all:Time'..msg.chat_id_..':'..msg.sender_user_id_,300,true) 
+tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(argg,dataa)  
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = dataa.member_count_},function(ta,ban) 
+x = 0 
+tags = 0 
+local list = ban.members_ 
+for k, v in pairs(list) do 
+tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data) 
+if x == 5 or x == tags or k == 0 then 
+tags = x + 5 
+t = "#all "..ttag.."" 
+end 
+x = x + 1 
+tagname = data.first_name_ 
+tagname = tagname:gsub("]","") 
+tagname = tagname:gsub("[[]","") 
+t = t..", ["..tagname.."](tg://user?id="..v.user_id_..")" 
+if x == 5 or x == tags or k == 0 then 
+local Text = t:gsub('#all '..ttag..',','#all '..ttag..'\n') 
+sendText(msg.chat_id_,Text,0,'md') 
+end 
+end,nil) 
+end 
+end,nil) 
+end,nil) 
+end 
+end
+
 
 if text == 'تفعيل الحمايه'and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 bot_data:set(ban_id.."lock:Contact"..msg.chat_id_,'del')  
@@ -6072,77 +6172,6 @@ send(msg.chat_id_, msg.id_, usertext..status)
 end;end,nil)
 return false
 end
-
-------------------------------------------------------------------------
-if text == "@all" or text == "تاك للكل" or text == "all" and CoSu(msg) then
-if not bot_data:get(ban_id..'Cick:all'..msg.chat_id_) then
-if bot_data:get(ban_id.."S00F4:all:Time"..msg.chat_id_..':'..msg.sender_user_id_) then  
-return 
-send(msg.chat_id_, msg.id_,"انتظر دقيقه من فضلك")
-end
-bot_data:setex(ban_id..'S00F4:all:Time'..msg.chat_id_..':'..msg.sender_user_id_,300,true)
-tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(argg,dataa) 
-tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = dataa.member_count_},function(ta,sofi)
-x = 0
-tags = 0
-local list = sofi.members_
-for k, v in pairs(list) do
-tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data)
-if x == 5 or x == tags or k == 0 then
-tags = x + 5
-t = "#all"
-end
-x = x + 1
-tagname = data.first_name_
-tagname = tagname:gsub("]","")
-tagname = tagname:gsub("[[]","")
-t = t..", ["..tagname.."](tg://user?id="..v.user_id_..")"
-if x == 5 or x == tags or k == 0 then
-local Text = t:gsub('#all,','#all\n')
-sendText(msg.chat_id_,Text,0,'md')
-end
-end,nil)
-end
-end,nil)
-end,nil)
-end
-end
-if text and text:match("^all (.*)$") or text:match("^@all (.*)$") and CoSu(msg) then 
-local ttag = text:match("^all (.*)$") or text:match("^@all (.*)$") 
-if not bot_data:get(ban_id..'Cick:all'..msg.chat_id_) then 
-if bot_data:get(ban_id.."banda:all:Time"..msg.chat_id_..':'..msg.sender_user_id_) then   
-return  
-send(msg.chat_id_, msg.id_,"انتظر دقيقه من فضلك") 
-end 
-bot_data:setex(ban_id..'banda:all:Time'..msg.chat_id_..':'..msg.sender_user_id_,300,true) 
-tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(argg,dataa)  
-tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = dataa.member_count_},function(ta,ban) 
-x = 0 
-tags = 0 
-local list = ban.members_ 
-for k, v in pairs(list) do 
-tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data) 
-if x == 5 or x == tags or k == 0 then 
-tags = x + 5 
-t = "#all "..ttag.."" 
-end 
-x = x + 1 
-tagname = data.first_name_ 
-tagname = tagname:gsub("]","") 
-tagname = tagname:gsub("[[]","") 
-t = t..", ["..tagname.."](tg://user?id="..v.user_id_..")" 
-if x == 5 or x == tags or k == 0 then 
-local Text = t:gsub('#all '..ttag..',','#all '..ttag..'\n') 
-sendText(msg.chat_id_,Text,0,'md') 
-end 
-end,nil) 
-end 
-end,nil) 
-end,nil) 
-end 
-end
-
-
 ------------------------------------------------------------------------
 if text == ("مسح المطورين") and Devban(msg) then
 bot_data:del(ban_id..'Sudo:User')
@@ -11380,7 +11409,7 @@ local linkgp = '• 🖤 |ＬＩＮＫ ＧＲＯＵＰ.\nـــــــــــ�
 local inline = {{{text = ta.title_, url=linkgpp.result}},} 
 send_inline_key(msg.chat_id_,linkgp,nil,inline,msg.id_/2097152/0.5) 
 else 
-send(msg.chat_id_, msg.id_,'✧لا يوجد رابط ارسل ضع رابط') 
+send(msg.chat_id_, msg.id_,'● لا يوجد رابط ارسل ضع رابط') 
 end 
 end,nil) 
 end
@@ -12905,8 +12934,8 @@ send(msg.chat_id_, msg.id_,ramsesj20)
 end
 --------------
 
-if text == ""..(bot_data:get(ban_id..'Name:Bot') or 'فينم').." غادر" or text == 'غادر' and Devban(msg) then     
-if SudoBot(msg) then 
+if text == ""..(bot_data:get(ban_id..'Name:Bot') or 'فينم').." غادر" or text == 'غادر' then  
+if Sudo(msg) and not bot_data:get(ban_id..'Left:Bot'..msg.chat_id_)  then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=ban_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
 send(msg.chat_id_, msg.id_,'● تم مغادرة المجموعه') 
 bot_data:srem(ban_id..'Chek:Groups',msg.chat_id_)  
@@ -13717,7 +13746,7 @@ local iduser = userid
 send(msg.chat_id_, msg.id_,'*- الـعـضو  ↭ 「*'..username..'*」\n- الرتبه ↭ 「'..rtp..'」*\n')
 end,nil) 
 else 
-send(msg.chat_id_, msg.id_,' ✧الايدي غير صحيح') 
+send(msg.chat_id_, msg.id_,' ● الايدي غير صحيح') 
 end 
 end 
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil) 
@@ -13728,7 +13757,7 @@ tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(extr
 local rtp = Rutba(result.sender_user_id_,msg.chat_id_)
 local username = ('[@'..data.username_..']' or 'لا يوجد')
 local iduser = result.sender_user_id_
-send(msg.chat_id_, msg.id_,'✧الايدي ↭ 「'..iduser..'」\n✧المعرف ↭ 「'..username..'」\n✧الرتبه ↭ 「'..rtp..'」\n✧نوع الكشف ↭ بالرد')
+send(msg.chat_id_, msg.id_,'● الايدي ↭ 「'..iduser..'」\n● المعرف ↭ 「'..username..'」\n● الرتبه ↭ 「'..rtp..'」\n● نوع الكشف ↭ بالرد')
 end,nil)
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
@@ -13742,10 +13771,10 @@ tdcli_function ({ID = "GetUser",user_id_ = result.id_},function(extra,data)
 local rtp = Rutba(result.id_,msg.chat_id_)
 local username = ('[@'..data.username_..']' or 'لا يوجد')
 local iduser = result.id_
-send(msg.chat_id_, msg.id_,'✧الايدي ↭ 「'..iduser..'」\n✧المعرف ↭ 「'..username..'」\n✧الرتبه ↭ 「'..rtp..'」\n✧نوع الكشف ↭ بالمعرف')
+send(msg.chat_id_, msg.id_,'● الايدي ↭ 「'..iduser..'」\n● المعرف ↭ 「'..username..'」\n● الرتبه ↭ 「'..rtp..'」\n● نوع الكشف ↭ بالمعرف')
 end,nil)
 else
-send(msg.chat_id_, msg.id_,'✧المعرف غير صحيح')
+send(msg.chat_id_, msg.id_,'● المعرف غير صحيح')
 end
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
@@ -13758,10 +13787,10 @@ tdcli_function ({ID = "GetUser",user_id_ = userid},function(extra,data)
 local rtp = Rutba(userid,msg.chat_id_) 
 local username = ('[@'..data.username_..']' or 'لا يوجد') 
 local iduser = userid 
-send(msg.chat_id_, msg.id_,'✧الايدي ↭ 「'..iduser..'」\n✧المعرف ↭ 「'..username..'」\n✧الرتبه ↭ 「'..rtp..'」\n✧نوع الكشف↭ الايدي')
+send(msg.chat_id_, msg.id_,'● الايدي ↭ 「'..iduser..'」\n● المعرف ↭ 「'..username..'」\n● الرتبه ↭ 「'..rtp..'」\n● نوع الكشف↭ الايدي')
 end,nil) 
 else 
-send(msg.chat_id_, msg.id_,' ✧الايدي غير صحيح') 
+send(msg.chat_id_, msg.id_,' ● الايدي غير صحيح') 
 end 
 end 
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil) 
@@ -13796,20 +13825,6 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
-end
-
-if text=="قائمه الاذاعه" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
-if bot_data:get(ban_id..'Bc:Bots') and not Devban(msg) then 
-send(msg.chat_id_, msg.id_,' - الاذاعه معطله من قبل المطور الاساسي')
-return false
-end  
-local Text = "قم بتأكيد العمليه الان"
-keyboard = {} 
-keyboard.inline_keyboard = {
-{{text = 'اذاعه', callback_data="/opkla"},{text="اذاعه خاص",callback_data="noay63"..msg.sender_user_id_}},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 if text and text:match("^صيح (.*)$") then
 local username = text:match("^صيح (.*)$") 
@@ -13854,7 +13869,7 @@ local Added_Me = bot_data:get(ban_id.."Who:Added:Me"..msg.chat_id_..':'..msg.sen
 if Added_Me then 
 tdcli_function ({ID = "GetUser",user_id_ = Added_Me},function(extra,result,success)
 local Name = '['..result.first_name_..'](tg://user?id='..result.id_..')'
-Text = ' ● ◍ الشخص الذى قام باضافتك هو ـࣧࣧࣧࣧࣧࣧࣧ√ ⋙ '..Name
+Text = ' ● هوا ابن القمر دا الي ضافك😹 ⋙ '..Name
 sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 end,nil)
 else
@@ -14031,7 +14046,7 @@ local bana = {
 	
 "⚕ 𓆰 𝑾𝒆𝒍𝒄𝒐𝒎𝒆 𝑻𝒐 𝑮𝒓𝒐𝒖𝒑 ★",
 
-"• 🖤 |𝑾𝒆𝒍𝒄𝒐𝒎𝒆 𝑻𝒐 𝑮𝒓𝒐𝒖𝒑| 🖤 •",
+"• 🖤 |𝑾𝒆𝒍??𝒐𝒎𝒆 𝑻𝒐 𝑮𝒓𝒐𝒖𝒑| 🖤 •",
 
 }
 local rdphoto = bana[math.random(#bana)]
@@ -14103,7 +14118,119 @@ end,nil)
 end,nil)
 end
 end
+if text == ("رتبتي بالصور") and msg.reply_to_message_id_ == 0 and not bot_data:get(ban_id..'Bot:Id'..msg.chat_id_) then     
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = bot_data:get(ban_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n ●  يرجى الاشتراك بالقناه اولا \n ●  اشترك هنا ['..bot_data:get(ban_id..'add:ch:username')..']')
+end
+return false
+end
+if not bot_data:sismember(ban_id..'Spam:Texting'..msg.sender_user_id_,text) then
+bot_data:sadd(ban_id..'Spam:Texting'..msg.sender_user_id_,text) 
+tdcli_function ({ID = "GetChatMember",chat_id_ = msg.chat_id_,user_id_ = msg.sender_user_id_},function(arg,da)  tdcli_function ({ ID = "SendChatAction",  chat_id_ = msg.sender_user_id_, action_ = {  ID = "SendMessageTypingAction", progress_ = 100}  },function(arg,ta)  tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)  tdcli_function ({ID = "GetUserProfilePhotos",user_id_ = msg.sender_user_id_,offset_ = 0,limit_ = 1},function(extra,ban,success) 
+if da.status_.ID == "ChatMemberStatusCreator" then 
+rtpa = 'المالك'
+elseif da.status_.ID == "ChatMemberStatusEditor" then 
+rtpa = 'مشرف' 
+elseif da.status_.ID == "ChatMemberStatusMember" then 
+rtpa = 'عضو'
+end
+local getbioY = getbio(msg.sender_user_id_)
+local Msguser = tonumber(bot_data:get(ban_id..'Msg_User'..msg.chat_id_..':'..msg.sender_user_id_) or 1) 
+local nummsggp = tonumber(msg.id_/2097152/0.5)
+local nspatfa = tonumber(Msguser / nummsggp * 100)
+local Contact = tonumber(bot_data:get(ban_id..'Add:Contact'..msg.chat_id_..':'..msg.sender_user_id_) or 0) 
+local NUMPGAME = tonumber(bot_data:get(ban_id..'NUM:GAMES'..msg.chat_id_..msg.sender_user_id_) or 0)
+local rtp = Rutba(msg.sender_user_id_,msg.chat_id_)
+if result.username_ then
+username = '@'..result.username_ 
+else
+username = 'لا يوجد ' 
+end
+local iduser = msg.sender_user_id_
+local edit = tonumber(bot_data:get(ban_id..'edits'..msg.chat_id_..msg.sender_user_id_) or 0)
+local photps = (ban.total_count_ or 0)
+local interaction = Total_Msg(Msguser)
+local rtpg = rtpa
+local bana = {
+	
+" ",
 
+" ",
+
+}
+local rdphoto = bana[math.random(#bana)]
+if not bot_data:get(ban_id..'Bot:Id:Photo'..msg.chat_id_) then      
+local get_id_text = bot_data:get(ban_id.."KLISH:ID"..msg.chat_id_)
+if get_id_text then
+if result.username_ then
+username = '@'..result.username_ 
+else
+username = 'لا يوجد '
+end
+get_id_text = get_id_text:gsub('#rdphoto',rdphoto) 
+get_id_text = get_id_text:gsub('#bio',getbioY) 
+get_id_text = get_id_text:gsub('#id',iduser) 
+get_id_text = get_id_text:gsub('#username',username) 
+get_id_text = get_id_text:gsub('#msgs',Msguser) 
+get_id_text = get_id_text:gsub('#edit',edit) 
+get_id_text = get_id_text:gsub('#stast',rtp) 
+get_id_text = get_id_text:gsub('#auto',interaction) 
+get_id_text = get_id_text:gsub('#game',NUMPGAME) 
+get_id_text = get_id_text:gsub('#photos',photps) 
+if result.status_.ID == "UserStatusRecently" and result.profile_photo_ ~= false then   
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, ban.photos_[0].sizes_[1].photo_.persistent_id_,get_id_text)       
+else 
+if result.status_.ID == "UserStatusEmpty" and result.profile_photo_ == false then
+send(msg.chat_id_, msg.id_,'['..get_id_text..']')   
+else
+send(msg.chat_id_, msg.id_, '\n     ꙰🦅 ليس لديك صور في حسابك \n['..get_id_text..']')      
+end 
+end
+else
+if result.username_ then
+username = '@'..result.username_ 
+else
+username = 'لا يوجد '
+end
+if result.status_.ID == "UserStatusRecently" and result.profile_photo_ ~= false then
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, ban.photos_[0].sizes_[1].photo_.persistent_id_,''..rdphoto..'\n● رتبتك ⋙ '..Rutba(msg.sender_user_id_,msg.chat_id_)..' \n ● البايو ⋙ '..getbioY..' \n')
+else 
+if result.status_.ID == "UserStatusEmpty" and result.profile_photo_ == false then
+send(msg.chat_id_, msg.id_,'[\n ¦✙ بيك عزيزي 「'..Name..'」 \n¦• 𝚄𝚂𝙴𝚁 ↝  「'..Name..'」    ↝💘\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」.   ↝💘\n ¦• 𝚁𝙰𝙽𝙺↝ 「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」    ↝💘\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」    ↝💘\n¦• 𝒄𝒉↝   「@SOURCEVENOM」 ↝🇧??\n')
+else
+send(msg.chat_id_, msg.id_, '\n ● الصوره ⇜ ليس لديك صور في حسابك'..'[\n¦• 𝚄𝚂𝙴𝚁 ↝ 「'..username..'」\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」\n¦• 𝒄𝒉↝  「@SOURCEVENOM」\n')
+end 
+end
+end
+else
+local get_id_text = bot_data:get(ban_id.."KLISH:ID"..msg.chat_id_)
+if get_id_text then
+get_id_text = get_id_text:gsub('#rdphoto',rdphoto) 
+get_id_text = get_id_text:gsub('#bio',getbioY) 
+get_id_text = get_id_text:gsub('#id',iduser) 
+get_id_text = get_id_text:gsub('#username',username) 
+get_id_text = get_id_text:gsub('#msgs',Msguser) 
+get_id_text = get_id_text:gsub('#edit',edit) 
+get_id_text = get_id_text:gsub('#stast',rtp) 
+get_id_text = get_id_text:gsub('#auto',interaction) 
+get_id_text = get_id_text:gsub('#game',NUMPGAME) 
+get_id_text = get_id_text:gsub('#photos',photps) 
+send(msg.chat_id_, msg.id_,'['..get_id_text..']')   
+else
+send(msg.chat_id_, msg.id_,'[\n¦• 𝚄𝚂𝙴𝚁 ↝  '..username..' \n¦• 𝙼𝚂𝙶𝚂↝ '..Msguser..' \n¦• 𝚁𝙰𝙽𝙺↝ '..Rutba(msg.sender_user_id_,msg.chat_id_)..'  \n¦• 𝙸𝙳↝  '..msg.sender_user_id_..' \n¦• 𝒄𝒉↝ @SOURCEVENOM  \n')
+end
+end
+
+end,nil)
+end,nil)
+end,nil)
+end,nil)
+end
+end
 if text == ("Id") and msg.reply_to_message_id_ == 0 and not bot_data:get(ban_id..'Bot:Id'..msg.chat_id_) then     
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
@@ -14221,7 +14348,7 @@ if text == 'تغير الايدي' and Manager(msg) then
 local List = {
 [[
 ゠𝚄𝚂𝙴𝚁 𖨈 #username 𖥲 .
-゠??𝚂𝙶 ?? #msgs 𖥲 .
+゠??𝚂𝙶 𖨈 #msgs 𖥲 .
 ゠𝚂𝚃𝙰 𖨈 #stast 𖥲 .
 ゠𝙸𝙳 𖨈 #id 𖥲 .
 ]],
@@ -14337,7 +14464,7 @@ local List = {
 ]],
 [[
 🇪🇬≪💎≫ #username • メ
-🇪🇬≪💎≫ #stast  •メ
+??🇬≪💎≫ #stast  •メ
 🇪🇬≪💎≫ #id  • メ
 🇪🇬≪💎≫ #msgs  •メ
 🇪🇬≪💎≫ #game •メ
@@ -15510,7 +15637,7 @@ Msᴀɢ ~ #msgs
 𝟓 𝟔 𖡻 𝗖𝗛 - 「@SOURCEVENOM」 ●
 ]],
 [[
-► 𝗨𝗦𝗘𝗥??𝗔𝗠𝗘 #username 𓃚  ꙰
+► 𝗨𝗦𝗘𝗥𝗡𝗔𝗠𝗘 #username 𓃚  ꙰
 ► 𝗜𝗗 #id 𓃚 ꙰
 ► 𝗦𝗧𝗔𝗦 #stast 𓃚 ꙰
 ► 𝗠𝗦𝗔𝗚 #msgs 𓃚 ꙰
@@ -16242,22 +16369,6 @@ keyboard.inline_keyboard = {
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/36&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end
-if text == 'رفع راتبه' or text == 'رفع رتبه' and GetChannelMember(msg) then 
-function start_function(extra, result, success)
-if result.id_ then
-if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
-send(msg.chat_id_,msg.id_," ● عذرا عزيزي المستخدم هاذا معرف قناة يرجى استخدام الامر بصوره صحيحه !")
-return false 
-end      
-local Text = ": هل انت متاكد  من تنزيلك من جميع الرتب: "
-keyboard = {} 
-keyboard.inline_keyboard = {
-{{text="نعم",callback_data="nzllne"..msg.sender_user_id_},{text="لا",callback_data="noKikedMe"..msg.sender_user_id_}},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end 
 end
 if text == 'نزلني' or text == 'نزيلني' and GetChannelMember(msg) then 
 if not bot_data:get(ban_id..'Cick:Me'..msg.chat_id_) then 
@@ -19317,38 +19428,7 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
-if Text and Text:match('@id/(.*)') then
-local Id_Link = Text:match('@id/(.*)') 
-tdcli_function ({ID = "GetUser",user_id_ = ban_id,},function(arg,data) 
-DeleteMessage(Chat_id,{[0] = Msg_id})  
-local textt = '- من فضلك اختر نوع التنزيل'
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = 'تنزيل صوت', callback_data="mp3/"..Id_Link},
-},
-{
-{text = 'تنزيل بصمه', callback_data="ogg/"..Id_Link},
-},
-{
-{text = 'تنزيل فيديو', callback_data="mp4/"..Id_Link},
-},
-}
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id='..Chat_id..'&photo='..'https://youtu.be/'..Id_Link..'&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
-end,nil)
-elseif Text and Text:match('mp3/(.*)') then
-local Id_Link = Text:match('mp3/(.*)') 
-DeleteMessage(Chat_id,{[0] = Msg_id})    
-http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=mp3&msg=0')
-elseif Text and Text:match('ogg/(.*)') then
-local Id_Link = Text:match('ogg/(.*)') 
-DeleteMessage(Chat_id,{[0] = Msg_id})    
-http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=ogg&msg=0')
-elseif Text and Text:match('mp4/(.*)') then
-local Id_Link = Text:match('mp4/(.*)') 
-DeleteMessage(Chat_id,{[0] = Msg_id})    
-http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=mp4&msg=0')
-end
+
 
 
 if Text and Text:match('amr@(%d+)/user@(%d+)/setiinginfo') then
@@ -20314,7 +20394,6 @@ https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='
 return false
 end
 end
-
 if Text == 'nzllne'..data.sender_user_id_ then if bot_data:sismember(ban_id.."Sudo:User",data.sender_user_id_) then dev = "المطور ،" else dev = "" end
 if bot_data:sismember(ban_id.."CoSu",data.sender_user_id_) then cu = "بكار،" else cu = "" end
 if bot_data:sismember(ban_id.."Basic:Constructor"..msg.chat_id_, data.sender_user_id_) then crr = "منشئ اساسي ،" else crr = "" end
@@ -20349,7 +20428,7 @@ keyboard = {}
 keyboard.inline_keyboard = {
 {{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCEVENOM'}},
 }
-return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(" ●︙تم حفظ الردود بنجاح")..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(" ●︙تم حفظ الردود بنجاح*")..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 else
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -20391,7 +20470,7 @@ end
 end,nil)   
 end
 if Text == 'noKikedMe'..data.sender_user_id_ then  
-local Text ="● تم الغاء الطرد بنجاح "
+local Text ="● تم الغاء الأمر بنجاح "
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ',url='http://t.me/SOURCEVENOM'}},
