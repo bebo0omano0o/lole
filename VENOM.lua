@@ -3785,7 +3785,7 @@ end
 
 if text == 'باندا' or text == 'Banda' or text == 'banda' then
 local Text = [[
-ᴘʀᴏɢʀᴀᴍᴍᴇʀ ᴘᴀɴᴅᴀ
+ᴘʀᴏɢʀᴀᴍᴍᴇʀ [ᴘᴀɴᴅᴀ](t.me/QSban)
  ᴛᴏ ᴄᴏᴍᴍụɴɪᴄᴀᴛᴇ ᴛᴏɢᴇᴛʜᴇʀ, 
 ғᴏʟʟᴏᴡ ᴛʜᴇ ʙụᴛᴛᴏɴѕ ʟᴏᴡᴇʀ 𝅘𝅥𝅯 
 ]]
@@ -13080,21 +13080,39 @@ Text = '\n ● بالتاكيد تم تعطيل الايدي'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text == 'تفعيل ايدي صوره' and Manager(msg) then   
-if bot_data:get(ban_id..'Bot:Id:Photo'..msg.chat_id_)  then
-bot_data:del(ban_id..'Bot:Id:Photo'..msg.chat_id_) 
+if text == 'تفعيل رتبتي' and Manager(msg) then   
+if bot_data:get(ban_id..'ban:ss'..msg.chat_id_)  then
+bot_data:del(ban_id..'ban:ss'..msg.chat_id_) 
+Text = '\n ● تم تفعيل رتبتي' 
+else
+Text = '\n ●  بالتاكيد تم تفعيل رتبتي'
+end
+send(msg.chat_id_, msg.id_,Text) 
+end
+if text == 'تعطيل رتبتي' and Manager(msg) then  
+if not bot_data:get(ban_id..'ban:ss'..msg.chat_id_)  then
+bot_data:set(ban_id..'ban:ss'..msg.chat_id_,true) 
+Text = '\n ● تم تعطيل رتبتي' 
+else
+Text = '\n ● بالتاكيد تم تعطيل رتبتي'
+end
+send(msg.chat_id_, msg.id_,Text) 
+end
+if text == 'تفعيل رتبتي صوره' and Manager(msg) then   
+if bot_data:get(ban_id..'ban:ss:Photo'..msg.chat_id_)  then
+bot_data:del(ban_id..'ban:ss:Photo'..msg.chat_id_) 
 Text = '\n ● تم تفعيل الايدي بالصور' 
 else
 Text = '\n ● بالتاكيد تم تفعيل الايدي بالصوره'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text == 'تعطيل ايدي صوره' and Manager(msg) then  
-if not bot_data:get(ban_id..'Bot:Id:Photo'..msg.chat_id_)  then
-bot_data:set(ban_id..'Bot:Id:Photo'..msg.chat_id_,true) 
-Text = '\n ● تم تعطيل الايدي بالصوره' 
+if text == 'نعطيل رتبتي بالصور' and Manager(msg) then  
+if not bot_data:get(ban_id..'ban:ss:Photo'..msg.chat_id_)  then
+bot_data:set(ban_id..'ban:ss:Photo'..msg.chat_id_,true) 
+Text = '\n ● تم تعطيل رتبتي بالصوره' 
 else
-Text = '\n ● بالتاكيد تم تعطيل الايدي بالصوره'
+Text = '\n ● بالتاكيد تم تعطيل رتبتي بالصوره'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
@@ -14187,7 +14205,12 @@ end,nil)
 end,nil)
 end
 end
-if text == ("رتبتي") and msg.reply_to_message_id_ == 0 and not bot_data:get(ban_id..'fkooll'..msg.chat_id_) then     
+if text == ("رتبتي") and msg.reply_to_message_id_ == 0 and not bot_data:get(ban_id..'ban:ss'..msg.chat_id_) then    
+local my_ph = bot_data:get(ban_id.."ban:ss"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_," ● رتبتي معطله") 
+return false  
+end 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
 if textchuser then
@@ -14232,7 +14255,7 @@ local bana = {
 
 }
 local rdphoto = bana[math.random(#bana)]
-if not bot_data:get(ban_id..'Bot:Id:back'..msg.chat_id_) then      
+if not bot_data:get(ban_id..'ban:ss:Photo'..msg.chat_id_) then      
 local get_id_text = bot_data:get(ban_id.."KLISH:ID"..msg.chat_id_)
 if get_id_text then
 if result.username_ then
@@ -15078,7 +15101,7 @@ local List = {
 🇪?? - 𝄬 ᴵᴰ . #id 𓃠
 🇪🇬 - 𝄬 ᴳᴹᴬˢ . #gmas 𓃠
 🇪🇬 - 𝄬 ᴹˢᴳˢ . #msgs  𓃠
-??🇬 - 𝄬 𝗖𝗛 - 「@SOURCEVENOM」 ●.
+🇪🇬 - 𝄬 𝗖𝗛 - 「@SOURCEVENOM」 ●.
 ]],
 [[
 𓄼🇪🇬 𝑼𝒔𝒆𝒓𝑵𝒂𝒎𝒆 : #username ♕
