@@ -12549,7 +12549,7 @@ end
 if bot_data:sismember(ban_id.."Sudo:User",result.id_) then
 dev = "المطور ،" else dev = "" end
 if bot_data:sismember(ban_id.."CoSu",result.id_) then
-cu = "بكار،" else cu = "" end
+cu = "مالك ،" else cu = "" end
 if bot_data:sismember(ban_id.."Basic:Constructor"..msg.chat_id_, result.id_) then
 crr = "منشئ اساسي ،" else crr = "" end
 if bot_data:sismember(ban_id..'Constructor'..msg.chat_id_, result.id_) then
@@ -12564,7 +12564,7 @@ if bot_data:sismember(ban_id..'Special:User'..msg.chat_id_, result.id_) then
 vip = "مميز ،" else vip = ""
 end
 if Can_or_NotCan(result.id_,msg.chat_id_) ~= false then
-send(msg.chat_id_, msg.id_,"\n ⦁ تم تنزيل الشخص من الرتب التاليه \n ⦁  { "..dev..""..crr..""..cr..""..own..""..mod..""..mn..""..vip.." } \n")
+send(msg.chat_id_, m sg.id_,"\n ⦁ تم تنزيل الشخص من الرتب التاليه \n ⦁  { "..dev..""..crr..""..cr..""..own..""..mod..""..mn..""..vip.." } \n")
 else
 send(msg.chat_id_, msg.id_,"\n ⦁  عذرا الـعـضو  لايملك رتبه \n")
 end
@@ -12630,7 +12630,7 @@ end
 if bot_data:sismember(ban_id..'Sudo:User',result.sender_user_id_) then
 dev = 'المطور ،' else dev = '' end
 if bot_data:sismember(ban_id..'CoSu'..msg.chat_id_, result.sender_user_id_) then
-cu = 'بكار،' else cu = '' end
+cu = 'مالك ،' else cu = '' end
 if bot_data:sismember(ban_id..'Basic:Constructor'..msg.chat_id_, result.sender_user_id_) then
 crr = 'منشئ اساسي ،' else crr = '' end
 if bot_data:sismember(ban_id..'Constructor'..msg.chat_id_, result.sender_user_id_) then
@@ -15078,7 +15078,7 @@ local List = {
 🇪?? - 𝄬 ᴵᴰ . #id 𓃠
 🇪🇬 - 𝄬 ᴳᴹᴬˢ . #gmas 𓃠
 🇪🇬 - 𝄬 ᴹˢᴳˢ . #msgs  𓃠
-🇪?? - 𝄬 𝗖𝗛 - 「@SOURCEVENOM」 ●.
+🇪🇬 - 𝄬 𝗖𝗛 - 「@SOURCEVENOM」 ●.
 ]],
 [[
 𓄼🇪🇬 𝑼𝒔𝒆𝒓𝑵𝒂𝒎𝒆 : #username ♕
@@ -15497,7 +15497,7 @@ Msᴀɢ ~ #msgs
 ↣• 𝗖𝗛 - 「@SOURCEVENOM」 🍬
 ]],
 [[
-➫✿: S #stast ??➟♡.
+➫✿: S #stast 𓍯➟♡.
 ➫✿: U𓂅 #username 𓍯➟♡.
 ➫✿: M𓂅 #msgs 𓍯➟♡.
 ➫✿:  I  #id ➟♡.
@@ -16530,7 +16530,7 @@ keyboard.inline_keyboard = {
 {text = '• الاسد ،🦁', callback_data="/zking"},{text = '• الثور 🐂', callback_data="/zzor"},
 },
 {
-{text = '• العقرب 🦂', callback_data="/zakrb"},{text = '• القوس 🏹', callback_data="/zkos"},
+{text = '• العقرب 🦂', callback_data="/zakrb"},{text = '• القوس ??', callback_data="/zkos"},
 },
 {
 {text = '• الحمل 🐐', callback_data="/zBanda"},
@@ -20573,7 +20573,7 @@ return false
 end
 end
 if Text == 'nzllne'..data.sender_user_id_ then if bot_data:sismember(ban_id.."Sudo:User",data.sender_user_id_) then dev = "المطور ،" else dev = "" end
-if bot_data:sismember(ban_id.."CoSu",data.sender_user_id_) then cu = "بكار،" else cu = "" end
+if bot_data:sismember(ban_id..'CoSu'..msg.chat_id_, data.sender_user_id_) then cu = 'مالك ،' else cu = "" end
 if bot_data:sismember(ban_id.."Basic:Constructor"..msg.chat_id_, data.sender_user_id_) then crr = "منشئ اساسي ،" else crr = "" end
 if bot_data:sismember(ban_id..'Constructor'..msg.chat_id_, data.sender_user_id_) then cr = "منشئ ،" else cr = "" end
 if bot_data:sismember(ban_id..'Manager'..msg.chat_id_, data.sender_user_id_) then own = "مدير ،" else own = "" end
@@ -20585,7 +20585,7 @@ else
 local text = "\n ⦁ انت لاتمتلك رتبه \n"
 end
 bot_data:srem(ban_id.."Sudo:User", data.sender_user_id_)
-bot_data:srem(ban_id.."CoSu", data.sender_user_id_)
+bot_data:srem(ban_id.."CoSu"..msg.chat_id_,data.sender_user_id_)
 bot_data:srem(ban_id.."Basic:Constructor"..msg.chat_id_,data.sender_user_id_)
 bot_data:srem(ban_id..'Constructor'..msg.chat_id_, data.sender_user_id_)
 bot_data:srem(ban_id..'Manager'..msg.chat_id_, data.sender_user_id_)
@@ -20829,7 +20829,7 @@ return false
 end
 end
 if text and text ~="صراحه" and bot_data:get(ban_id..":"..msg.sender_user_id_..":rkko_Bots"..msg.chat_id_) == "sendrkkoe" then
-numj = {"اما قله ادب صحيح كلو كدب فى كدب💔😔"," ده مظبوط🙂😹"," اقلك الكلام ده كدب واللى قالولك كداب وانت كداب واللى بيتفرج كمان كداب??😂"," ده برجوله وموثق كمان❤️😁","فعلا بتتكلم صح🤗","يجدع قول كلام غير دا😹","احس هل شي كذب🌚💕","طب عيني ف عينك كدا ??","انت صح",};
+numj = {"اما قله ادب صحيح كلو كدب فى كدب💔😔"," ده مظبوط??😹"," اقلك الكلام ده كدب واللى قالولك كداب وانت كداب واللى بيتفرج كمان كداب??😂"," ده برجوله وموثق كمان❤️😁","فعلا بتتكلم صح🤗","يجدع قول كلام غير دا😹","احس هل شي كذب🌚💕","طب عيني ف عينك كدا ??","انت صح",};
 sendnuj = numj[math.random(#numj)]
 xl = ' ⟨  '..text..'  ⟩ \n '..sendnuj..'.'
 send(msg.chat_id_, msg.id_,xl) 
