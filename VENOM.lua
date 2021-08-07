@@ -3346,30 +3346,30 @@ end
 -------------------------------------------------------------------------------------------------------------
 if text == 'تفعيل' and Sudo(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-local textchuser = bot_data:get(ban_id..'text:ch:user')
+local textchuser = bot_data :get(ban_id ..'text:ch:user')
 if textchuser then
 send(msg.chat_id_, msg.id_,'['..textchuser..']')
 else
-send(msg.chat_id_, msg.id_,' ●لا تستطيع استخدام البوت \n ● يرجى الاشتراك بالقناه اولا \n ● اشترك هنا ['..bot_data:get(ban_id..'add:ch:username')..']')
+send(msg.chat_id_, msg.id_,' ●  لا تستطيع استخدام البوت \n  ●  يرجى الاشتراك بالقناه اولا \n  ●  اشترك هنا ['..bot_data :get(ban_id ..'add:ch:username')..']')
 end
 return false
 end
 if msg.can_be_deleted_ == false then 
-send(msg.chat_id_, msg.id_,' ●عذرا يرجى ترقيه البوت مشرف !')
+send(msg.chat_id_, msg.id_,' ●  عذرا يرجى ترقيه البوت مشرف !')
 return false  
 end
 tdcli_function ({ ID = "GetChannelFull", channel_id_ = getChatId(msg.chat_id_).ID }, function(arg,data)  
-if tonumber(data.member_count_) < tonumber(bot_data:get(ban_id..'Num:Add:Bot') or 0) and not Devban(msg) then
-send(msg.chat_id_, msg.id_,' ●عدد اعضاء الجروب قليله يرجى جمع >> {'..(bot_data:get(ban_id..'Num:Add:Bot') or 0)..'} عضو')
+if tonumber(data.member_count_) < tonumber(bot_data :get(ban_id ..'Num:Add:Bot') or 0) and not DevSoFi(msg) then
+send(msg.chat_id_, msg.id_,' ●  عدد اعضاء الكروب قليله يرجى جمع >> {'..(bot_data :get(ban_id ..'Num:Add:Bot') or 0)..'} عضو')
 return false
 end
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,chat)  
-if bot_data:sismember(ban_id..'Chek:Groups',msg.chat_id_) then
+if bot_data :sismember(ban_id ..'Chek:Groups',msg.chat_id_) then
 send(msg.chat_id_, msg.id_,' ● الـجـروب مـفعـل مـن قبـل')
 else
 sendText(msg.chat_id_,'\n ● مـن قبـل ↭ ['..string.sub(result.first_name_,0, 70)..'](tg://user?id='..result.id_..')\n ●تـم تـشغـيل الـبوت فـي الـجـروب  {'..chat.title_..'}',msg.id_/2097152/0.5,'md')
-bot_data:sadd(ban_id..'Chek:Groups',msg.chat_id_)
+bot_data :sadd(ban_id ..'Chek:Groups',msg.chat_id_)
 local Name = '['..result.first_name_..'](tg://user?id='..result.id_..')'
 local NameChat = chat.title_
 local IdChat = msg.chat_id_
@@ -3380,11 +3380,10 @@ LinkGp = linkgpp.result
 else
 LinkGp = 'لا يوجد'
 end
-Text = ' ● تـم تـشغـيل الـبوت فـي الـجـروب جـديد\n'..
+Text = '\n ● تـم تـشغـيل الـبوت فـي الـجـروب جـديد'..
 '\n ●بواسطة {「'..Name..'」}'..
 '\n ●ايدي الجروب {'..IdChat..'}'..
 '\n ●اسم الجروب {['..NameChat..']}'..
-'\n ●عدد اعضاء الجروب *{'..NumMember..'}*'..
 '\n ●الرابط {['..LinkGp..']}'
 sendText(SUDO,Text,0,'md')
 end
@@ -3392,24 +3391,23 @@ end,nil)
 end,nil) 
 end,nil)
 end
-
 if text == 'تعطيل' and Sudo(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-local textchuser = bot_data:get(ban_id..'text:ch:user')
+local textchuser = bot_data :get(ban_id ..'text:ch:user')
 if textchuser then
 send(msg.chat_id_, msg.id_,'['..textchuser..']')
 else
-send(msg.chat_id_, msg.id_,' ●لا تستطيع استخدام البوت \n ● يرجى الاشتراك بالقناه اولا \n ● اشترك هنا ['..bot_data:get(ban_id..'add:ch:username')..']')
+send(msg.chat_id_, msg.id_,' ●  لا تستطيع استخدام البوت \n  ●  يرجى الاشتراك بالقناه اولا \n  ●  اشترك هنا ['..bot_data :get(ban_id ..'add:ch:username')..']')
 end
 return false
 end
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,chat)  
-if not bot_data:sismember(ban_id..'Chek:Groups',msg.chat_id_) then
+if not bot_data :sismember(ban_id ..'Chek:Groups',msg.chat_id_) then
 send(msg.chat_id_, msg.id_,' ● الـبوت مـعطـل مـن قبـل')
 else
 sendText(msg.chat_id_,'\n ● مـن قبـل ↭ ['..string.sub(result.first_name_,0, 70)..'](tg://user?id='..result.id_..')\n ● تـم تـعـطيل الـبوت   {'..chat.title_..'}',msg.id_/2097152/0.5,'md')
-bot_data:srem(ban_id..'Chek:Groups',msg.chat_id_)  
+bot_data :srem(ban_id ..'Chek:Groups',msg.chat_id_)  
 local Name = '['..result.first_name_..'](tg://user?id='..result.id_..')'
 local NameChat = chat.title_
 local IdChat = msg.chat_id_
@@ -3430,23 +3428,23 @@ end
 end,nil) 
 end,nil) 
 end
-if text == 'تفعيل' and not Sudo(msg) and not bot_data:get(ban_id..'Free:Bots') then
+if text == 'تفعيل' and not Sudo(msg) and not bot_data :get(ban_id ..'Free:Bots') then
 if AddChannel(msg.sender_user_id_) == false then
-local textchuser = bot_data:get(ban_id..'text:ch:user')
+local textchuser = bot_data :get(ban_id ..'text:ch:user')
 if textchuser then
 send(msg.chat_id_, msg.id_,'['..textchuser..']')
 else
-send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n  ● يرجى الاشتراك بالقناه اولا \n  ● اشترك هنا ['..bot_data:get(ban_id..'add:ch:username')..']')
+send(msg.chat_id_, msg.id_,' ●  لا تستطيع استخدام البوت \n  ●  يرجى الاشتراك بالقناه اولا \n  ●  اشترك هنا ['..bot_data :get(ban_id ..'add:ch:username')..']')
 end
 return false
 end
 if msg.can_be_deleted_ == false then 
-send(msg.chat_id_, msg.id_,' ● عذرا يرجى ترقيه البوت مشرف !')
+send(msg.chat_id_, msg.id_,' ●  عذرا يرجى ترقيه البوت مشرف !')
 return false  
 end
 tdcli_function ({ ID = "GetChannelFull", channel_id_ = getChatId(msg.chat_id_).ID }, function(arg,data)  
-if tonumber(data.member_count_) < tonumber(bot_data:get(ban_id..'Num:Add:Bot') or 0) and not Devban(msg) then
-send(msg.chat_id_, msg.id_,' ● عدد اعضاء الجروب قليله يرجى جمع >> {'..(bot_data:get(ban_id..'Num:Add:Bot') or 0)..'} عضو')
+if tonumber(data.member_count_) < tonumber(bot_data :get(ban_id ..'Num:Add:Bot') or 0) and not DevSoFi(msg) then
+send(msg.chat_id_, msg.id_,' ●  عدد اعضاء الكروب قليله يرجى جمع >> {'..(bot_data :get(ban_id ..'Num:Add:Bot') or 0)..'} عضو')
 return false
 end
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
@@ -3459,12 +3457,12 @@ var = 'المالك'
 elseif da.status_.ID == "ChatMemberStatusEditor" then
 var = 'مشرف'
 end
-if text    and not bot_data:sismember(ban_id..'Chek:Groups',msg.chat_id_) then
-send(msg.chat_id_, msg.id_,' ● تم تفعيل الجروب')
+if bot_data :sismember(ban_id ..'Chek:Groups',msg.chat_id_) then
+send(msg.chat_id_, msg.id_,' ● الـجـروب مـفعـل مـن قبـل')
 else
-sendText(msg.chat_id_,'\n ● بواسطه ⤌ ['..string.sub(result.first_name_,0, 70)..'](tg://user?id='..result.id_..')\n ● تم تفعيل الجروب {'..chat.title_..'}',msg.id_/2097152/0.5,'md')
-bot_data:sadd(ban_id..'Chek:Groups',msg.chat_id_)  
-bot_data:sadd(ban_id..'CoSu'..msg.chat_id_, msg.sender_user_id_)
+sendText(msg.chat_id_,'\n ● مـن قبـل ↭ ['..string.sub(result.first_name_,0, 70)..'](tg://user?id='..result.id_..')\n ●تـم تـشغـيل الـبوت فـي الـجـروب  {'..chat.title_..'}',msg.id_/2097152/0.5,'md')
+bot_data :sadd(ban_id ..'Chek:Groups',msg.chat_id_)  
+bot_data :sadd(ban_id ..'CoSu'..msg.chat_id_, msg.sender_user_id_)
 local Name = '['..result.first_name_..'](tg://user?id='..result.id_..')'
 local NumMember = data.member_count_
 local NameChat = chat.title_
@@ -3476,16 +3474,12 @@ LinkGp = linkgpp.result
 else
 LinkGp = 'لا يوجد'
 end
-Text = ' ● تم تفعيل كروب جديده\n'..
-'\n ● بواسطة {'..Name..'}'..
-'\n ● موقعه في الجروب {'..AddPy..'}' ..
-'\n ● ايدي الجروب {'..IdChat..'}'..
-'\n ● عدد اعضاء الجروب *{'..NumMember..'}*'..
-'\n ● اسم الجروب {['..NameChat..']}'..
-'\n ● الرابط {['..LinkGp..']}'
-if not Devban(msg) then
+Text = '\n ● تـم تـشغـيل الـبوت فـي الـجـروب جـديد'..
+'\n ●بواسطة {「'..Name..'」}'..
+'\n ●ايدي الجروب {'..IdChat..'}'..
+'\n ●اسم الجروب {['..NameChat..']}'..
+'\n ●الرابط {['..LinkGp..']}'
 sendText(SUDO,Text,0,'md')
-end
 end
 end
 end
@@ -13124,12 +13118,12 @@ tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, 
 end
 
 
-if text == 'رتبتي' then
+if text == 't89' then
 local rtp = Rutba(msg.sender_user_id_,msg.chat_id_)
 send(msg.chat_id_, msg.id_,' رتبتك ● 「 '..rtp..' 」 \n    √') 
 end
 
-if text == 'انا مين' then 
+if text == '678' then 
 local my_ph = bot_data:get(ban_id.."my_anamen:status"..msg.chat_id_)
 if not my_ph then
 send(msg.chat_id_, msg.id_," ●انا مين معطله") 
@@ -14046,7 +14040,7 @@ local bana = {
 	
 "⚕ 𓆰 𝑾𝒆𝒍𝒄𝒐𝒎𝒆 𝑻𝒐 𝑮𝒓𝒐𝒖𝒑 ★",
 
-"• 🖤 |𝑾𝒆𝒍𝒄𝒐𝒎𝒆 𝑻𝒐 𝑮𝒓𝒐??𝒑| 🖤 •",
+"• 🖤 |𝑾𝒆𝒍𝒄𝒐𝒎𝒆 𝑻𝒐 𝑮𝒓𝒐𝒖𝒑| 🖤 •",
 
 }
 local rdphoto = bana[math.random(#bana)]
@@ -14118,7 +14112,7 @@ end,nil)
 end,nil)
 end
 end
-if text == ("رتبتي بالصور") and msg.reply_to_message_id_ == 0 and not bot_data:get(ban_id..'Bot:Id'..msg.chat_id_) then     
+if text == ("رتبتي") and msg.reply_to_message_id_ == 0 and not bot_data:get(ban_id..'fkooll'..msg.chat_id_) then     
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
 if textchuser then
@@ -14163,7 +14157,125 @@ local bana = {
 
 }
 local rdphoto = bana[math.random(#bana)]
-if not bot_data:get(ban_id..'Bot:Id:Photo'..msg.chat_id_) then      
+if not bot_data:get(ban_id..'Bot:Id:back'..msg.chat_id_) then      
+local get_id_text = bot_data:get(ban_id.."KLISH:ID"..msg.chat_id_)
+if get_id_text then
+if result.username_ then
+username = '@'..result.username_ 
+else
+username = 'لا يوجد '
+end
+get_id_text = get_id_text:gsub('#rdphoto',rdphoto) 
+get_id_text = get_id_text:gsub('#bio',getbioY) 
+get_id_text = get_id_text:gsub('#id',iduser) 
+get_id_text = get_id_text:gsub('#username',username) 
+get_id_text = get_id_text:gsub('#msgs',Msguser) 
+get_id_text = get_id_text:gsub('#edit',edit) 
+get_id_text = get_id_text:gsub('#stast',rtp) 
+get_id_text = get_id_text:gsub('#auto',interaction) 
+get_id_text = get_id_text:gsub('#game',NUMPGAME) 
+get_id_text = get_id_text:gsub('#photos',photps) 
+if result.status_.ID == "UserStatusRecently" and result.profile_photo_ ~= false then   
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, ban.photos_[0].sizes_[1].photo_.persistent_id_,get_id_text)       
+else 
+if result.status_.ID == "UserStatusEmpty" and result.profile_photo_ == false then
+send(msg.chat_id_, msg.id_,'['..get_id_text..']')   
+else
+send(msg.chat_id_, msg.id_, '\n     ꙰🦅 ليس لديك صور في حسابك \n['..get_id_text..']')      
+end 
+end
+else
+if result.username_ then
+username = '@'..result.username_ 
+else
+username = 'لا يوجد '
+end
+if result.status_.ID == "UserStatusRecently" and result.profile_photo_ ~= false then
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, ban.photos_[0].sizes_[1].photo_.persistent_id_,''..rdphoto..'\n● رتبتك ⋙ '..Rutba(msg.sender_user_id_,msg.chat_id_)..' \n ● البايو ⋙ '..getbioY..' \n')
+else 
+if result.status_.ID == "UserStatusEmpty" and result.profile_photo_ == false then
+send(msg.chat_id_, msg.id_,'[\n ¦✙ بيك عزيزي 「'..Name..'」 \n¦• 𝚄𝚂𝙴𝚁 ↝  「'..Name..'」    ↝💘\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」.   ↝💘\n ¦• 𝚁𝙰𝙽𝙺↝ 「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」    ↝💘\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」    ↝💘\n¦• 𝒄𝒉↝   「@SOURCEVENOM」 ↝🇧??\n')
+else
+send(msg.chat_id_, msg.id_, '\n ● الصوره ⇜ ليس لديك صور في حسابك'..'[\n¦• 𝚄𝚂𝙴𝚁 ↝ 「'..username..'」\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」\n¦• 𝒄𝒉↝  「@SOURCEVENOM」\n')
+end 
+end
+end
+else
+local get_id_text = bot_data:get(ban_id.."KLISH:ID"..msg.chat_id_)
+if get_id_text then
+get_id_text = get_id_text:gsub('#rdphoto',rdphoto) 
+get_id_text = get_id_text:gsub('#bio',getbioY) 
+get_id_text = get_id_text:gsub('#id',iduser) 
+get_id_text = get_id_text:gsub('#username',username) 
+get_id_text = get_id_text:gsub('#msgs',Msguser) 
+get_id_text = get_id_text:gsub('#edit',edit) 
+get_id_text = get_id_text:gsub('#stast',rtp) 
+get_id_text = get_id_text:gsub('#auto',interaction) 
+get_id_text = get_id_text:gsub('#game',NUMPGAME) 
+get_id_text = get_id_text:gsub('#photos',photps) 
+send(msg.chat_id_, msg.id_,'['..get_id_text..']')   
+else
+send(msg.chat_id_, msg.id_,'[\n¦• 𝚄𝚂𝙴𝚁 ↝  '..username..' \n¦• 𝙼𝚂𝙶𝚂↝ '..Msguser..' \n¦• 𝚁𝙰𝙽𝙺↝ '..Rutba(msg.sender_user_id_,msg.chat_id_)..'  \n¦• 𝙸𝙳↝  '..msg.sender_user_id_..' \n¦• 𝒄𝒉↝ @SOURCEVENOM  \n')
+end
+end
+
+end,nil)
+end,nil)
+end,nil)
+end,nil)
+end
+end
+if text == ("انا مين") and msg.reply_to_message_id_ == 0 and not bot_data:get(ban_id..'fkooll'..msg.chat_id_) then     
+local my_ph = bot_data:get(ban_id.."my_anamen:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_," ●انا مين معطله") 
+return false  
+end
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = bot_data:get(ban_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n ●  يرجى الاشتراك بالقناه اولا \n ●  اشترك هنا ['..bot_data:get(ban_id..'add:ch:username')..']')
+end
+return false
+end
+if not bot_data:sismember(ban_id..'Spam:Texting'..msg.sender_user_id_,text) then
+bot_data:sadd(ban_id..'Spam:Texting'..msg.sender_user_id_,text) 
+tdcli_function ({ID = "GetChatMember",chat_id_ = msg.chat_id_,user_id_ = msg.sender_user_id_},function(arg,da)  tdcli_function ({ ID = "SendChatAction",  chat_id_ = msg.sender_user_id_, action_ = {  ID = "SendMessageTypingAction", progress_ = 100}  },function(arg,ta)  tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)  tdcli_function ({ID = "GetUserProfilePhotos",user_id_ = msg.sender_user_id_,offset_ = 0,limit_ = 1},function(extra,ban,success) 
+if da.status_.ID == "ChatMemberStatusCreator" then 
+rtpa = 'المالك'
+elseif da.status_.ID == "ChatMemberStatusEditor" then 
+rtpa = 'مشرف' 
+elseif da.status_.ID == "ChatMemberStatusMember" then 
+rtpa = 'عضو'
+end
+local getbioY = getbio(msg.sender_user_id_)
+local Msguser = tonumber(bot_data:get(ban_id..'Msg_User'..msg.chat_id_..':'..msg.sender_user_id_) or 1) 
+local nummsggp = tonumber(msg.id_/2097152/0.5)
+local nspatfa = tonumber(Msguser / nummsggp * 100)
+local Contact = tonumber(bot_data:get(ban_id..'Add:Contact'..msg.chat_id_..':'..msg.sender_user_id_) or 0) 
+local NUMPGAME = tonumber(bot_data:get(ban_id..'NUM:GAMES'..msg.chat_id_..msg.sender_user_id_) or 0)
+local rtp = Rutba(msg.sender_user_id_,msg.chat_id_)
+if result.username_ then
+username = '@'..result.username_ 
+else
+username = 'لا يوجد ' 
+end
+local iduser = msg.sender_user_id_
+local edit = tonumber(bot_data:get(ban_id..'edits'..msg.chat_id_..msg.sender_user_id_) or 0)
+local photps = (ban.total_count_ or 0)
+local interaction = Total_Msg(Msguser)
+local rtpg = rtpa
+local bana = {
+	
+" ",
+
+" ",
+
+}
+local rdphoto = bana[math.random(#bana)]
+if not bot_data:get(ban_id..'Bot:Id:back'..msg.chat_id_) then      
 local get_id_text = bot_data:get(ban_id.."KLISH:ID"..msg.chat_id_)
 if get_id_text then
 if result.username_ then
@@ -14465,7 +14577,7 @@ local List = {
 [[
 🇪🇬≪💎≫ #username • メ
 🇪🇬≪💎≫ #stast  •メ
-??🇬≪💎≫ #id  • メ
+🇪🇬≪💎≫ #id  • メ
 🇪🇬≪💎≫ #msgs  •メ
 🇪🇬≪💎≫ #game •メ
 🇪🇬𝗖𝗛 - 「@SOURCEVENOM」 💞.
@@ -14611,7 +14723,7 @@ local List = {
 🇪🇬 ꙰  - 𝚞 𝚜𝚎 𝚛 ➟ #username  ❃.
 🇪🇬 ꙰  - 𝚖 𝚜𝚐 𝚜 ➟ #msgs ❃.
 🇪🇬 ꙰  - 𝚐 𝚖 𝚊𝚜  ➟ #stast ❃.
-🇪🇬 ꙰  - 𝙸𝙳 𝚜𝚝𝚊   ➟ #id ❃.
+🇪🇬 ꙰  - 𝙸𝙳 𝚜𝚝??   ➟ #id ❃.
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 🇪🇬 ꙰  - 𝗖𝗛 - 「@SOURCEVENOM」 ●.
 ]],
@@ -14896,7 +15008,7 @@ local List = {
 [[
 𓄼🇪🇬 𝑼𝒔𝒆𝒓𝑵𝒂𝒎𝒆 : #username ♕
 𓄼🇪🇬 𝑺𝒕𝒂𝒔𝒕 : #stast    ☥
-??🇪🇬 𝐢𝐝 : #id ‌‌‏⚚
+𓄼🇪🇬 𝐢𝐝 : #id ‌‌‏⚚
 𓄼🇪🇬 𝑮𝒂𝒎𝒆𝑺 : #edit ⚚
 𓄼🇪🇬 𝑴𝒔𝒈𝒔 : #msgs 𓆊
 𓄼🇪🇬 𝗖𝗛 - 「@SOURCEVENOM」 ●.
@@ -15039,7 +15151,7 @@ Msᴀɢ ~ #msgs
 𖣰𖡻 ??𝗜𝗗• #id •𓀎
 𖣰𖡻 𖡋𝗨𝗦𝗘• #username •𓀎
 𖣰𖡻 𖡋𝗦𝗧𝗔• #stast •𓀎
-𖣰𖡻 𖡋𝗠𝗦𝗚• #msgs •𓀎
+𖣰𖡻 𖡋??𝗦𝗚• #msgs •𓀎
 ??𖡻 𖡋𝗔𝗨𝗧𝗢• #auto •𓀎
 𖣰𖡻 𖡋𝗘𝗗𝗜𝗧• #edit • 𓀎
 ┄─━━𖦹━━─┄
@@ -15479,7 +15591,7 @@ Msᴀɢ ~ #msgs
 [[
 • 🇪🇬 - 𝚄𝚂𝙴𝚁 « #username  🍭
 • 🇪🇬 - 𝙸𝙳 « #id  🍭
-• 🇪🇬 - 𝙼𝚂𝙶𝚂 « #msgs  🍭
+• 🇪🇬 - ??𝚂𝙶𝚂 « #msgs  🍭
 • 🇪🇬 - 𝚂𝚃𝙰𝚂𝚃 « #stast  🍭
 • 🇪🇬 - 𝗖𝗛 - 「@SOURCEVENOM」 ●
 ]],
