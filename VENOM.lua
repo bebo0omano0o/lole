@@ -2721,69 +2721,7 @@ end,nil)
 end,nil)
 end
 
-if text  and not bot_data:sadd(ban_id..'Chek:Groups',msg.chat_id_)  then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = bot_data:get(ban_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n  ● يرجى الاشتراك بالقناه اولا \n  ● اشترك هنا ['..bot_data:get(ban_id..'add:ch:username')..']')
-end
-return false
-end
-if msg.can_be_deleted_ == false then 
-send(msg.chat_id_, msg.id_,' ● عذرا يرجى ترقيه البوت مشرف !')
-return false  
-end
-tdcli_function ({ ID = "GetChannelFull", channel_id_ = getChatId(msg.chat_id_).ID }, function(arg,data)  
-if tonumber(data.member_count_) < tonumber(bot_data:get(ban_id..'Num:Add:Bot') or 0) and not Devban(msg) then
-send(msg.chat_id_, msg.id_,' ● عدد اعضاء الجروب قليله يرجى جمع >> {'..(bot_data:get(ban_id..'Num:Add:Bot') or 0)..'} عضو')
-return false
-end
-tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
-tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,chat)  
-tdcli_function ({ID = "GetChatMember",chat_id_ = msg.chat_id_,user_id_ = msg.sender_user_id_},function(arg,da) 
-if da and da.status_.ID == "ChatMemberStatusEditor" or da and da.status_.ID == "ChatMemberStatusCreator" then
-if da and da.user_id_ == msg.sender_user_id_ then
-if da.status_.ID == "ChatMemberStatusCreator" then
-var = 'المالك'
-elseif da.status_.ID == "ChatMemberStatusEditor" then
-var = 'مشرف'
-end
-if bot_data:sismember(ban_id..'Chek:Groups',msg.chat_id_) then
-send(msg.chat_id_, msg.id_,' ● تم تفعيل الجروب')
-else
-sendText(msg.chat_id_,'\n ● بواسطه ⤌ ['..string.sub(result.first_name_,0, 70)..'](tg://user?id='..result.id_..')\n ● تم تفعيل الجروب {'..chat.title_..'}',msg.id_/2097152/0.5,'md')
-bot_data:sadd(ban_id..'Chek:Groups',msg.chat_id_)  
-bot_data:sadd(ban_id..'CoSu'..msg.chat_id_, msg.sender_user_id_)
-local Name = '['..result.first_name_..'](tg://user?id='..result.id_..')'
-local NumMember = data.member_count_
-local NameChat = chat.title_
-local IdChat = msg.chat_id_
-local AddPy = var
-local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_))
-if linkgpp.ok == true then 
-LinkGp = linkgpp.result
-else
-LinkGp = 'لا يوجد'
-end
-Text = ' ● تم تفعيل كروب جديده\n'..
-'\n ● بواسطة {'..Name..'}'..
-'\n ● موقعه في الجروب {'..AddPy..'}' ..
-'\n ● ايدي الجروب {'..IdChat..'}'..
-'\n ● عدد اعضاء الجروب *{'..NumMember..'}*'..
-'\n ● اسم الجروب {['..NameChat..']}'..
-'\n ● الرابط {['..LinkGp..']}'
-sendText(SUDO,Text,0,'md')
-end
-end
-end
-end,nil)   
-end,nil) 
-end,nil) 
-end,nil)
-end
-
+د
 if text ==("تفعيل") and Sudo(msg) then
 tdcli_function ({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 100},function(arg,data) 
 local num2 = 0
@@ -14999,7 +14937,7 @@ local List = {
 - ᴇᴅɪᴛ ᴍsɢ ➣ #edit .
 - ᴅᴇᴛᴀɪʟs ➣ #auto . 
 -  ɢᴀᴍᴇ ➣ #game .
-- ??𝗛 - 「@SOURCEVENOM」 💞.
+- 𝗖𝗛 - 「@SOURCEVENOM」 💞.
 ]],
 [[
 ⚕𝙐𝙎𝙀𝙍𝙉𝘼𝙈𝙀 : #username
@@ -15858,7 +15796,7 @@ Msᴀɢ ~ #msgs
 𓄼 ѕᴛᴀ : #stast  ☥
 𓄼 ɪᴅ : #id ‌‌‏⚚
 𓄼 ᴍѕɢ : #msgs 𓆊 
-𓐀 𝑾𝒆𝒍𝒄𝒐𝒎?? 𓀃.
+𓐀 𝑾𝒆𝒍𝒄𝒐𝒎𝒆 𓀃.
 𓄼 𝗖𝗛 - 「@SOURCEVENOM」 ●
 ]],
 [[
