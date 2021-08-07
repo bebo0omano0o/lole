@@ -660,6 +660,96 @@ Send(chat,msg.id_,'\n- الرتبة : مشرف  '..'\n- والصلاحيات ه�
 end
 end
 end
+function sendin(chat,msgid,user,user_id)
+local Chek_Info = https.request('https://api.telegram.org/bot'..token..'/getChatMember?chat_id='.. chat ..'&user_id='.. user_id)
+local Json_Info = JSON.decode(Chek_Info)
+if Json_Info.result.can_change_info == true then
+info = ' ✅ ' 
+infoo = 'false' 
+else 
+info = ' ❎ ' 
+infoo = 'true' 
+end
+if Json_Info.result.can_delete_messages == true then
+delete = ' ✅ ' 
+deletee = 'false' 
+else 
+delete = ' ❎ ' 
+deletee = 'true' 
+end
+if Json_Info.result.can_invite_users == true then
+invite = ' ✅ ' 
+invitee = 'false' 
+else 
+invite = ' ❎ ' 
+invitee = 'true' 
+end
+if Json_Info.result.can_pin_messages == true then
+pin = ' ✅ ' 
+pinn = 'false' 
+else 
+pin = ' ❎ ' 
+pinn = 'true' 
+end
+if Json_Info.result.can_restrict_members == true then
+restrict = ' ✅ ' 
+restrictt = 'false' 
+else 
+restrict = ' ❎ ' 
+restrictt = 'true' 
+end
+if Json_Info.result.can_promote_members == true then
+promote = ' ✅ ' 
+promotee = 'false' 
+else 
+promote = ' ❎ ' 
+promotee = 'true' 
+end 
+if Json_Info.result.can_manage_Voice_chats == true then
+Voice = ' ✅ ' 
+Voicee = 'false' 
+else 
+Voice = ' ❎ ' 
+Voicee = 'true' 
+end
+if Json_Info.result.can_manage_chat == true then
+manage = ' ✅ ' 
+managee = 'false' 
+else 
+manage = ' ❎ ' 
+managee = 'true' 
+end
+
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'تغيير المعلومات '..info, callback_data='amr@'..user..'/user@'..user_id.."/chenginfo"..infoo},
+},
+{
+{text = 'حذف الرسائل '..delete, callback_data='amr@'..user..'/user@'..user_id.."/delmsgg"..deletee},
+},
+{
+{text = 'حظر المستخدمين '..restrict, callback_data='amr@'..user..'/user@'..user_id.."/DRGuser"..restrictt},
+},
+{
+{text = 'اضافه مستخدمين '..invite, callback_data='amr@'..user..'/user@'..user_id.."/addlink"..invitee},
+},
+{
+{text = 'تثبيت الرسائل '..pin, callback_data='amr@'..user..'/user@'..user_id.."/pinmsg"..pinn},
+},
+{
+{text = 'اداره المكالمات '..Voice, callback_data='amr@'..user..'/user@'..user_id.."/Voice"..Voicee},
+},
+{
+{text = 'البقاء متخفي '..manage, callback_data='amr@'..user..'/user@'..user_id.."/manage"..managee},
+},
+{
+{text = 'اضافه مشرفين '..promote, callback_data='amr@'..user..'/user@'..user_id.."/addadmin"..promotee},
+},
+}
+local Texti = 'تم تعديل صلاحياته'
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..chat..'&text='..URL.escape(Texti)..'&message_id='..msgid..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
 
 function GetFile_Bot(msg)
 local list = bot_data:smembers(ban_id..'Chek:Groups') 
@@ -14909,7 +14999,7 @@ local List = {
 - ᴇᴅɪᴛ ᴍsɢ ➣ #edit .
 - ᴅᴇᴛᴀɪʟs ➣ #auto . 
 -  ɢᴀᴍᴇ ➣ #game .
-- 𝗖𝗛 - 「@SOURCEVENOM」 💞.
+- ??𝗛 - 「@SOURCEVENOM」 💞.
 ]],
 [[
 ⚕𝙐𝙎𝙀𝙍𝙉𝘼𝙈𝙀 : #username
@@ -15768,7 +15858,7 @@ Msᴀɢ ~ #msgs
 𓄼 ѕᴛᴀ : #stast  ☥
 𓄼 ɪᴅ : #id ‌‌‏⚚
 𓄼 ᴍѕɢ : #msgs 𓆊 
-𓐀 𝑾𝒆𝒍𝒄𝒐𝒎𝒆 𓀃.
+𓐀 𝑾𝒆𝒍𝒄𝒐𝒎?? 𓀃.
 𓄼 𝗖𝗛 - 「@SOURCEVENOM」 ●
 ]],
 [[
@@ -19578,96 +19668,6 @@ keyboard.inline_keyboard = {
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
-end
-function sendin(chat,msgid,user,user_id)
-local Chek_Info = https.request('https://api.telegram.org/bot'..token..'/getChatMember?chat_id='.. chat ..'&user_id='.. user_id)
-local Json_Info = JSON.decode(Chek_Info)
-if Json_Info.result.can_change_info == true then
-info = ' ✅ ' 
-infoo = 'false' 
-else 
-info = ' ❎ ' 
-infoo = 'true' 
-end
-if Json_Info.result.can_delete_messages == true then
-delete = ' ✅ ' 
-deletee = 'false' 
-else 
-delete = ' ❎ ' 
-deletee = 'true' 
-end
-if Json_Info.result.can_invite_users == true then
-invite = ' ✅ ' 
-invitee = 'false' 
-else 
-invite = ' ❎ ' 
-invitee = 'true' 
-end
-if Json_Info.result.can_pin_messages == true then
-pin = ' ✅ ' 
-pinn = 'false' 
-else 
-pin = ' ❎ ' 
-pinn = 'true' 
-end
-if Json_Info.result.can_restrict_members == true then
-restrict = ' ✅ ' 
-restrictt = 'false' 
-else 
-restrict = ' ❎ ' 
-restrictt = 'true' 
-end
-if Json_Info.result.can_promote_members == true then
-promote = ' ✅ ' 
-promotee = 'false' 
-else 
-promote = ' ❎ ' 
-promotee = 'true' 
-end 
-if Json_Info.result.can_manage_Voice_chats == true then
-Voice = ' ✅ ' 
-Voicee = 'false' 
-else 
-Voice = ' ❎ ' 
-Voicee = 'true' 
-end
-if Json_Info.result.can_manage_chat == true then
-manage = ' ✅ ' 
-managee = 'false' 
-else 
-manage = ' ❎ ' 
-managee = 'true' 
-end
-
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = 'تغيير المعلومات '..info, callback_data='amr@'..user..'/user@'..user_id.."/chenginfo"..infoo},
-},
-{
-{text = 'حذف الرسائل '..delete, callback_data='amr@'..user..'/user@'..user_id.."/delmsgg"..deletee},
-},
-{
-{text = 'حظر المستخدمين '..restrict, callback_data='amr@'..user..'/user@'..user_id.."/DRGuser"..restrictt},
-},
-{
-{text = 'اضافه مستخدمين '..invite, callback_data='amr@'..user..'/user@'..user_id.."/addlink"..invitee},
-},
-{
-{text = 'تثبيت الرسائل '..pin, callback_data='amr@'..user..'/user@'..user_id.."/pinmsg"..pinn},
-},
-{
-{text = 'اداره المكالمات '..Voice, callback_data='amr@'..user..'/user@'..user_id.."/Voice"..Voicee},
-},
-{
-{text = 'البقاء متخفي '..manage, callback_data='amr@'..user..'/user@'..user_id.."/manage"..managee},
-},
-{
-{text = 'اضافه مشرفين '..promote, callback_data='amr@'..user..'/user@'..user_id.."/addadmin"..promotee},
-},
-}
-local Texti = 'تم تعديل صلاحياته'
-return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..chat..'&text='..URL.escape(Texti)..'&message_id='..msgid..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
 
 
