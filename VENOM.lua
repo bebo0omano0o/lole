@@ -11709,15 +11709,15 @@ bot_data:setex(ban_id.."CHENG:ID"..msg.chat_id_..""..msg.sender_user_id_,240,tru
 local Text= [[
  ● ارسل الان النص
  ● يمكنك اضافه :
- ● `#rdphoto` ⇜ تعليق الصوره
- ● `#username` ⇜ اسم 
- ● `#msgs` ⇜ عدد رسائل 
- ● `#photos` ⇜ عدد صور 
- ● `#id` ⇜ ايدي 
- ● `#auto` ⇜ تفاعل 
- ● `#stast` ⇜ موقع  
- ● `#edit` ⇜ السحكات
- ● `#game` ⇜ النقاط
+ ● `#rdphoto` ⋙ تعليق الصوره
+ ● `#username` ⋙ اسم 
+ ● `#msgs` ⋙ عدد رسائل 
+ ● `#photos` ⋙ عدد صور 
+ ● `#id` ⋙ ايدي 
+ ● `#auto` ⋙ تفاعل 
+ ● `#stast` ⋙ موقع  
+ ● `#edit` ⋙ السحكات
+ ● `#game` ⋙ النقاط
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false  
@@ -13054,42 +13054,7 @@ Text = '\n ● بالتاكيد تم تعطيل الايدي'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text == 'تفعيل رتبتي' and Manager(msg) then   
-if bot_data:get(ban_id..'ban:ss'..msg.chat_id_)  then
-bot_data:del(ban_id..'ban:ss'..msg.chat_id_) 
-Text = '\n ● تم تفعيل رتبتي' 
-else
-Text = '\n ●  بالتاكيد تم تفعيل رتبتي'
-end
-send(msg.chat_id_, msg.id_,Text) 
-end
-if text == 'تعطيل رتبتي' and Manager(msg) then  
-if not bot_data:get(ban_id..'ban:ss'..msg.chat_id_)  then
-bot_data:set(ban_id..'ban:ss'..msg.chat_id_,true) 
-Text = '\n ● تم تعطيل رتبتي' 
-else
-Text = '\n ● بالتاكيد تم تعطيل رتبتي'
-end
-send(msg.chat_id_, msg.id_,Text) 
-end
-if text == 'تفعيل رتبتي' and Manager(msg) then   
-if bot_data:get(ban_id..'ban:ss'..msg.chat_id_)  then
-bot_data:del(ban_id..'ban:ss:Photo'..msg.chat_id_) 
-Text = '\n ' 
-else
-Text = '\n '
-end
-send(msg.chat_id_, msg.id_,Text) 
-end
-if text == 'تعطيل رتبتي' and Manager(msg) then  
-if not bot_data:get(ban_id..'ban:ss'..msg.chat_id_)  then
-bot_data:set(ban_id..'ban:ss'..msg.chat_id_,true) 
-Text = '\n ' 
-else
-Text = '\n '
-end
-send(msg.chat_id_, msg.id_,Text) 
-end
+
 if text == 'تفعيل الحظر' and Constructor(msg) then   
 if bot_data:get(ban_id..'Lock:kick'..msg.chat_id_)  then
 bot_data:del(ban_id..'Lock:kick'..msg.chat_id_) 
@@ -13136,7 +13101,7 @@ local edit = tonumber(bot_data:get(ban_id..'edits'..msg.chat_id_..result.sender_
 local rtp = Rutba(result.sender_user_id_,msg.chat_id_)
 local username = ('[@'..data.username_..']' or 'لا يوجد')
 local iduser = result.sender_user_id_
-send(msg.chat_id_, msg.id_,' ● ايديه ⇜ '..iduser..'\n ● معرفه ⇜ 「'..username..'」\n ● رتبته ⇜ '..rtp..'\n ● تعديلاته ⇜ '..edit..'\n ● نقاطه ⇜ '..NUMPGAME..'\n ● جهاته ⇜ '..Contact..'\n ● رسائله ⇜ 「'..Msguser..'」')
+send(msg.chat_id_, msg.id_,' ● ايديه ⋙ '..iduser..'\n ● معرفه ⋙ 「'..username..'」\n ● رتبته ⋙ '..rtp..'\n ● تعديلاته ⋙ '..edit..'\n ● نقاطه ⋙ '..NUMPGAME..'\n ● جهاته ⋙ '..Contact..'\n ● رسائله ⋙ 「'..Msguser..'」')
 end,nil)
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
@@ -13162,7 +13127,7 @@ local edit = tonumber(bot_data:get(ban_id..'edits'..msg.chat_id_..result.id_) or
 local rtp = Rutba(result.id_,msg.chat_id_)
 local username = ('[@'..data.username_..']' or 'لا يوجد')
 local iduser = result.id_
-send(msg.chat_id_, msg.id_,' ● ايديه ⇜「'..iduser..'」\n ● معرفه ⇜「'..username..'」\n ● رتبته ⇜「'..rtp..'」\n ● تعديلاته ⇜('..edit..')\n ● نقاطه ⇜('..NUMPGAME..')\n ● جهاته ⇜('..Contact..')\n ● رسائله ⇜(「'..Msguser..'」)')
+send(msg.chat_id_, msg.id_,' ● ايديه ⋙「'..iduser..'」\n ● معرفه ⋙「'..username..'」\n ● رتبته ⋙「'..rtp..'」\n ● تعديلاته ⋙('..edit..')\n ● نقاطه ⋙('..NUMPGAME..')\n ● جهاته ⋙('..Contact..')\n ● رسائله ⋙(「'..Msguser..'」)')
 end,nil)
 else
 send(msg.chat_id_, msg.id_,' ● المعرف غير صحيح ')
@@ -13172,9 +13137,9 @@ tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, 
 end
 
 
-if text == 't89' then
+if text == 'رتبتي' then
 local rtp = Rutba(msg.sender_user_id_,msg.chat_id_)
-send(msg.chat_id_, msg.id_,' رتبتك ● 「 '..rtp..' 」 \n    √') 
+send(msg.chat_id_, msg.id_,' ● رتبتك ⋙ 「 '..rtp..' 」 \n    √') 
 end
 
 if text == '678' then 
@@ -13213,19 +13178,6 @@ send(msg.chat_id_, msg.id_," ● تـم تـعـطـيل انا مين")
 return false end
 end
 
-if text == "تفعيل رتبتي"  then
-if Constructor(msg) then  
-bot_data:set(ban_id.."annoying"..msg.chat_id_,true) 
-send(msg.chat_id_, msg.id_," ") 
-return false  
-end
-end
-if text == "تعطيل رتبتي"  then
-if Constructor(msg) then  
-bot_data:del(ban_id.."annoying"..msg.chat_id_) 
-send(msg.chat_id_, msg.id_," ") 
-return false end
-end
 
 if text == 'تيست' then 
 local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
@@ -14047,7 +13999,7 @@ return false
 end
 local function getpro(extra, result, success)
 if result.photos_[0] then
-sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_," ● عدد صورك ⇜ "..result.total_count_.." صوره‌‏", msg.id_, msg.id_, "md")
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_," ● عدد صورك ⋙ "..result.total_count_.." صوره‌‏", msg.id_, msg.id_, "md")
 else
 send(msg.chat_id_, msg.id_,'لا تمتلك صوره في حسابك', 1, 'md')
   end end
@@ -14164,7 +14116,7 @@ else
 if result.status_.ID == "UserStatusEmpty" and result.profile_photo_ == false then
 send(msg.chat_id_, msg.id_,'[\n ¦✙ بيك عزيزي 「'..Name..'」 \n¦• 𝚄𝚂𝙴𝚁 ↝  「'..Name..'」    ↝💘\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」.   ↝💘\n ¦• 𝚁𝙰𝙽𝙺↝ 「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」    ↝💘\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」    ↝💘\n¦• 𝒄𝒉↝   「@SOURCEVENOM」 ↝🇧??\n')
 else
-send(msg.chat_id_, msg.id_, '\n ● الصوره ⇜ ليس لديك صور في حسابك'..'[\n¦• 𝚄𝚂𝙴𝚁 ↝ 「'..username..'」\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」\n¦• 𝒄𝒉↝  「@SOURCEVENOM」\n')
+send(msg.chat_id_, msg.id_, '\n ● الصوره ⋙ ليس لديك صور في حسابك'..'[\n¦• 𝚄𝚂𝙴𝚁 ↝ 「'..username..'」\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」\n¦• 𝒄𝒉↝  「@SOURCEVENOM」\n')
 end 
 end
 end
@@ -14193,124 +14145,7 @@ end,nil)
 end,nil)
 end
 end
-if text == ("رتبتي") and msg.reply_to_message_id_ == 0 and not bot_data:get(ban_id..'ban:ss'..msg.chat_id_) then    
-local my_ph = bot_data:get(ban_id.."annoying"..msg.chat_id_)
-if not my_ph then
-send(msg.chat_id_, msg.id_," ● رتبتي معطله") 
-return false  
-end 
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = bot_data:get(ban_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n ●  يرجى الاشتراك بالقناه اولا \n ●  اشترك هنا ['..bot_data:get(ban_id..'add:ch:username')..']')
-end
-return false
-end
-if not bot_data:sismember(ban_id..'Spam:Texting'..msg.sender_user_id_,text) then
-bot_data:sadd(ban_id..'Spam:Texting'..msg.sender_user_id_,text) 
-tdcli_function ({ID = "GetChatMember",chat_id_ = msg.chat_id_,user_id_ = msg.sender_user_id_},function(arg,da)  tdcli_function ({ ID = "SendChatAction",  chat_id_ = msg.sender_user_id_, action_ = {  ID = "SendMessageTypingAction", progress_ = 100}  },function(arg,ta)  tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)  tdcli_function ({ID = "GetUserProfilePhotos",user_id_ = msg.sender_user_id_,offset_ = 0,limit_ = 1},function(extra,ban,success) 
-if da.status_.ID == "ChatMemberStatusCreator" then 
-rtpa = 'المالك'
-elseif da.status_.ID == "ChatMemberStatusEditor" then 
-rtpa = 'مشرف' 
-elseif da.status_.ID == "ChatMemberStatusMember" then 
-rtpa = 'عضو'
-end
-local getbioY = getbio(msg.sender_user_id_)
-local Msguser = tonumber(bot_data:get(ban_id..'Msg_User'..msg.chat_id_..':'..msg.sender_user_id_) or 1) 
-local nummsggp = tonumber(msg.id_/2097152/0.5)
-local nspatfa = tonumber(Msguser / nummsggp * 100)
-local Contact = tonumber(bot_data:get(ban_id..'Add:Contact'..msg.chat_id_..':'..msg.sender_user_id_) or 0) 
-local NUMPGAME = tonumber(bot_data:get(ban_id..'NUM:GAMES'..msg.chat_id_..msg.sender_user_id_) or 0)
-local rtp = Rutba(msg.sender_user_id_,msg.chat_id_)
-if result.username_ then
-username = '@'..result.username_ 
-else
-username = 'لا يوجد ' 
-end
-local iduser = msg.sender_user_id_
-local edit = tonumber(bot_data:get(ban_id..'edits'..msg.chat_id_..msg.sender_user_id_) or 0)
-local photps = (ban.total_count_ or 0)
-local interaction = Total_Msg(Msguser)
-local rtpg = rtpa
-local bana = {
-	
-" ",
 
-" ",
-
-}
-local rdphoto = bana[math.random(#bana)]
-if not bot_data:get(ban_id..'ban:ss'..msg.chat_id_) then      
-local get_id_text = bot_data:get(ban_id.."KLISH:ID"..msg.chat_id_)
-if get_id_text then
-if result.username_ then
-username = '@'..result.username_ 
-else
-username = 'لا يوجد '
-end
-get_id_text = get_id_text:gsub('#rdphoto',rdphoto) 
-get_id_text = get_id_text:gsub('#bio',getbioY) 
-get_id_text = get_id_text:gsub('#id',iduser) 
-get_id_text = get_id_text:gsub('#username',username) 
-get_id_text = get_id_text:gsub('#msgs',Msguser) 
-get_id_text = get_id_text:gsub('#edit',edit) 
-get_id_text = get_id_text:gsub('#stast',rtp) 
-get_id_text = get_id_text:gsub('#auto',interaction) 
-get_id_text = get_id_text:gsub('#game',NUMPGAME) 
-get_id_text = get_id_text:gsub('#photos',photps) 
-if result.status_.ID == "UserStatusRecently" and result.profile_photo_ ~= false then   
-sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, ban.photos_[0].sizes_[1].photo_.persistent_id_,get_id_text)       
-else 
-if result.status_.ID == "UserStatusEmpty" and result.profile_photo_ == false then
-send(msg.chat_id_, msg.id_,'['..get_id_text..']')   
-else
-send(msg.chat_id_, msg.id_, '\n     ꙰🦅 ليس لديك صور في حسابك \n['..get_id_text..']')      
-end 
-end
-else
-if result.username_ then
-username = '@'..result.username_ 
-else
-username = 'لا يوجد '
-end
-if result.status_.ID == "UserStatusRecently" and result.profile_photo_ ~= false then
-sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, ban.photos_[0].sizes_[1].photo_.persistent_id_,''..rdphoto..'\n● رتبتك ⋙ '..Rutba(msg.sender_user_id_,msg.chat_id_)..' \n ● البايو ⋙ '..getbioY..' \n')
-else 
-if result.status_.ID == "UserStatusEmpty" and result.profile_photo_ == false then
-send(msg.chat_id_, msg.id_,'[\n ¦✙ بيك عزيزي 「'..Name..'」 \n¦• 𝚄𝚂𝙴𝚁 ↝  「'..Name..'」    ↝💘\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」.   ↝💘\n ¦• 𝚁𝙰𝙽𝙺↝ 「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」    ↝💘\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」    ↝💘\n¦• 𝒄𝒉↝   「@SOURCEVENOM」 ↝🇧??\n')
-else
-send(msg.chat_id_, msg.id_, '\n ● الصوره ⇜ ليس لديك صور في حسابك'..'[\n¦• 𝚄𝚂𝙴𝚁 ↝ 「'..username..'」\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」\n¦• 𝒄𝒉↝  「@SOURCEVENOM」\n')
-end 
-end
-end
-else
-local get_id_text = bot_data:get(ban_id.."KLISH:ID"..msg.chat_id_)
-if get_id_text then
-get_id_text = get_id_text:gsub('#rdphoto',rdphoto) 
-get_id_text = get_id_text:gsub('#bio',getbioY) 
-get_id_text = get_id_text:gsub('#id',iduser) 
-get_id_text = get_id_text:gsub('#username',username) 
-get_id_text = get_id_text:gsub('#msgs',Msguser) 
-get_id_text = get_id_text:gsub('#edit',edit) 
-get_id_text = get_id_text:gsub('#stast',rtp) 
-get_id_text = get_id_text:gsub('#auto',interaction) 
-get_id_text = get_id_text:gsub('#game',NUMPGAME) 
-get_id_text = get_id_text:gsub('#photos',photps) 
-send(msg.chat_id_, msg.id_,'['..get_id_text..']')   
-else
-send(msg.chat_id_, msg.id_,'[\n¦• 𝚄𝚂𝙴𝚁 ↝  '..username..' \n¦• 𝙼𝚂𝙶𝚂↝ '..Msguser..' \n¦• 𝚁𝙰𝙽𝙺↝ '..Rutba(msg.sender_user_id_,msg.chat_id_)..'  \n¦• 𝙸𝙳↝  '..msg.sender_user_id_..' \n¦• 𝒄𝒉↝ @SOURCEVENOM  \n')
-end
-end
-
-end,nil)
-end,nil)
-end,nil)
-end,nil)
-end
-end
 if text == ("انا مين") and msg.reply_to_message_id_ == 0 and not bot_data:get(ban_id..'fkooll'..msg.chat_id_) then     
 local my_ph = bot_data:get(ban_id.."my_anamen:status"..msg.chat_id_)
 if not my_ph then
@@ -14400,7 +14235,7 @@ else
 if result.status_.ID == "UserStatusEmpty" and result.profile_photo_ == false then
 send(msg.chat_id_, msg.id_,'[\n ¦✙ بيك عزيزي 「'..Name..'」 \n¦• 𝚄𝚂𝙴𝚁 ↝  「'..Name..'」    ↝💘\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」.   ↝💘\n ¦• 𝚁𝙰𝙽𝙺↝ 「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」    ↝💘\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」    ↝💘\n¦• 𝒄𝒉↝   「@SOURCEVENOM」 ↝🇧??\n')
 else
-send(msg.chat_id_, msg.id_, '\n ● الصوره ⇜ ليس لديك صور في حسابك'..'[\n¦• 𝚄𝚂𝙴𝚁 ↝ 「'..username..'」\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」\n¦• 𝒄𝒉↝  「@SOURCEVENOM」\n')
+send(msg.chat_id_, msg.id_, '\n ● الصوره ⋙ ليس لديك صور في حسابك'..'[\n¦• 𝚄𝚂𝙴𝚁 ↝ 「'..username..'」\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」\n¦• 𝒄𝒉↝  「@SOURCEVENOM」\n')
 end 
 end
 end
@@ -14513,7 +14348,7 @@ else
 if result.status_.ID == "UserStatusEmpty" and result.profile_photo_ == false then
 send(msg.chat_id_, msg.id_,'[\n ¦✙ بيك عزيزي 「'..Name..'」 \n¦• 𝚄𝚂𝙴𝚁 ↝  「'..Name..'」    ↝💘\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」.   ↝💘\n ¦• 𝚁𝙰𝙽𝙺↝ 「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」    ↝💘\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」    ↝💘\n¦• 𝒄𝒉↝   「@SOURCEVENOM」 ↝🇧??\n')
 else
-send(msg.chat_id_, msg.id_, '\n ● الصوره ⇜ ليس لديك صور في حسابك'..'[\n¦• 𝚄??𝙴𝚁 ↝ 「'..username..'」\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」\n¦• 𝒄𝒉↝  「@SOURCEVENOM」\n')
+send(msg.chat_id_, msg.id_, '\n ● الصوره ⋙ ليس لديك صور في حسابك'..'[\n¦• 𝚄??𝙴𝚁 ↝ 「'..username..'」\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」\n¦• 𝒄𝒉↝  「@SOURCEVENOM」\n')
 end 
 end
 end
@@ -14670,7 +14505,7 @@ local List = {
 ]],
 [[
  𝚄𝚂𝙴𝚁 𓄹𓄼 #username
- 𝙸??  ??𓄼 #id 
+ 𝙸𝙳  ??𓄼 #id 
  𝚂𝚃𝙰 𓄹𓄼 #stast 
  𝙼𝚂𝙶𝚂𓄹𓄼 #msgs
  𝗖𝗛 - 「@SOURCEVENOM」 ??.
@@ -16883,9 +16718,6 @@ keyboard.inline_keyboard = {
 },
 {
 {text = 'تفعيل التحقق2', callback_data="/lockCAPTAIN"},{text = 'تعطيل التحقق 2', callback_data="/opCAPTAIN"},
-},
-{
-{text = 'تفعيل رتبتي', callback_data="/lockss"},{text = 'تعطيل رتبتي', callback_data="/opass"},
 },
 {
 {text = 'تفعيل الرابط', callback_data="/locklinka"},{text = 'تعطيل الرابط', callback_data="/opalinka"},
@@ -19170,28 +19002,7 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
-if Text == '/lockss' then
-local Text = '• تم تفعيل رتبتي '
-bot_data:set(ban_id.."ban:ss"..Chat_id,true)  
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
-},
-}
-return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
-end
-if Text == '/opass' then
-local Text = '• تم تعطيل رتبتي '
-bot_data:del(ban_id.."ban:ss"..Chat_id)  
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
-},
-}
-return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
-end
+
 if Text == '/lockgams' then
 local Text = '• تم تفعيل الالعاب '
 bot_data:set(ban_id.."Lock:Games"..Chat_id,true)  
