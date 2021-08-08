@@ -12964,12 +12964,14 @@ send(msg.chat_id_, msg.id_,ramsesj20)
 end
 --------------
 if text == ""..(bot_data:get(ban_id..'Name:Bot') or 'فينم').." غادر" or text == 'غادر' and Sudo(msg) then     
+if Sudo(msg) and not database:get(bot_id..'Left:Bot'..msg.chat_id_)  then 
 if not Bot(msg) then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=ban_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
 send(msg.chat_id_, msg.id_,'● تم مغادرة المجموعه') 
 bot_data:srem(ban_id..'Chek:Groups',msg.chat_id_)  
 end
 return false  
+end
 end
 
 if text == 'الاحصائيات' then
