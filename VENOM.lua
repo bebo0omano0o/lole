@@ -2820,34 +2820,6 @@ end,nil)
 end,nil)
 end
 
-if text and text:match("^احمد$") or text and text:match("^أحمد$") or text and text:match("^احمد عياد$") then
-tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
-tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,dp) 
-local Name1 = result.first_name_
-local Name1 = Name1:gsub('"',"") 
-local Name1 = Name1:gsub("'","") 
-local Name1 = Name1:gsub("`","") 
-local Name1 = Name1:gsub("*","") 
-local Name1 = Name1:gsub("{","") 
-local Name1 = Name1:gsub("}","") 
-local Name = '['..Name1..'](tg://user?id='..result.id_..')'
-local NameChat = dp.title_
-local NameChat = NameChat:gsub('"',"") 
-local NameChat = NameChat:gsub("'","") 
-local NameChat = NameChat:gsub("`","") 
-local NameChat = NameChat:gsub("*","") 
-local NameChat = NameChat:gsub("{","") 
-local NameChat = NameChat:gsub("}","") 
-local LinkGp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_))
-if LinkGp.ok == true then 
-LinkGroup = LinkGp.result
-else
-LinkGroup = 'لا يوجد'
-end
-sendText(944353237,"●. هناك شخص يريدك يا سيدي أحمد عياد \n●الشخص  {"..Name.."}\n●اسم الجروب {"..NameChat.."}\n●ايدي الجروب {`"..msg.chat_id_.."`}\n●رابط الجروب \n ["..LinkGroup.."] ",0,'md')
-end,nil)
-end,nil)
-end
 
 if text and text:match("^ديفيد$") or text and text:match("^ديفد$") or text and text:match("^devid$") then
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
@@ -3792,7 +3764,9 @@ local Text = [[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '˹ʙᴀɴᴅᴀ ғᴜᴄᴋ σғғ↺˼',url="t.me/Q_0_ll"}},
+{{text = 'ʙᴀɴᴅᴀ ғᴜᴄᴋ σғғ↺',url="t.me/Q_0_ll"}},
+{{text = '•الــقــنــوات♪', callback_data="/Ajobanf"},{text = '•الــبــارات♪', callback_data="/banfai"}},  
+{{text = '•الــبــوتــات♪', callback_data="/gqjik"}},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/63&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
@@ -14696,7 +14670,7 @@ local List = {
 ]],
 [[
  𝚄𝚂𝙴𝚁 𓄹𓄼 #username
- 𝙸𝙳  ??𓄼 #id 
+ 𝙸??  ??𓄼 #id 
  𝚂𝚃𝙰 𓄹𓄼 #stast 
  𝙼𝚂𝙶𝚂𓄹𓄼 #msgs
  𝗖𝗛 - 「@SOURCEVENOM」 ??.
@@ -18484,6 +18458,69 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
+if Text == '/bnada-yquio' then
+local Teext =[[
+ᴘʀᴏɢʀᴀᴍᴍᴇʀ ᴘᴀɴᴅᴀ
+ ᴛᴏ ᴄᴏᴍᴍụɴɪᴄᴀᴛᴇ ᴛᴏɢᴇᴛʜᴇʀ, 
+ғᴏʟʟᴏᴡ ᴛʜᴇ ʙụᴛᴛᴏɴѕ ʟᴏᴡᴇʀ  
+:- @QSban 𝅘𝅥𝅯
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'ʙᴀɴᴅᴀ ғᴜᴄᴋ σғғ↺',url="t.me/Q_0_ll"}},
+{{text = '•الــقــنــوات♪', callback_data="/Ajobanf"},{text = '•الــبــارات♪', callback_data="/banfai"}},  
+{{text = '•الــبــوتــات♪', callback_data="/gqjik"}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
+end
+if Text == '/Ajobanf' then
+local Teext =[[
+ᴘʀᴏɢʀᴀᴍᴍᴇʀ ᴘᴀɴᴅᴀ
+ ᴛᴏ ᴄᴏᴍᴍụɴɪᴄᴀᴛᴇ ᴛᴏɢᴇᴛʜᴇʀ, 
+ғᴏʟʟᴏᴡ ᴛʜᴇ ʙụᴛᴛᴏɴѕ ʟᴏᴡᴇʀ  
+:- @QSban 𝅘𝅥𝅯
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'معاك قلبي 🖤',url="t.me/amrhaj"},{text = '𝑆𝐸𝐸 𝑃𝑂𝑆𝑇',url="t.me/see_post7"}},
+{{text = 'Different 🇪🇬 مختلف',url="t.me/viwo_zx"},{text = '𝙱𝙻𝙰𝙲𝙺 🖤 𝙱𝙾𝙾𝙺 ⚚',url="t.me/black_bookl"}},
+{{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/bnada-yquio"}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
+end
+if Text == '/banfai' then
+local Teext =[[
+ᴘʀᴏɢʀᴀᴍᴍᴇʀ ᴘᴀɴᴅᴀ
+ ᴛᴏ ᴄᴏᴍᴍụɴɪᴄᴀᴛᴇ ᴛᴏɢᴇᴛʜᴇʀ, 
+ғᴏʟʟᴏᴡ ᴛʜᴇ ʙụᴛᴛᴏɴѕ ʟᴏᴡᴇʀ  
+:- @QSban 𝅘𝅥𝅯
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'ғᴜᴄᴋ σғғ🥀',url="t.me/Team0j"}},
+{{text = 'جروب دردشه وضحك🥷🖤',url="t.me/Quick0k"}},
+{{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/bnada-yquio"}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
+end
+if Text == '/gqjik' then
+local Teext =[[
+ᴘʀᴏɢʀᴀᴍᴍᴇʀ ᴘᴀɴᴅᴀ
+ ᴛᴏ ᴄᴏᴍᴍụɴɪᴄᴀᴛᴇ ᴛᴏɢᴇᴛʜᴇʀ, 
+ғᴏʟʟᴏᴡ ᴛʜᴇ ʙụᴛᴛᴏɴѕ ʟᴏᴡᴇʀ  
+:- @QSban 𝅘𝅥𝅯
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'بوت زخرفه اسماء ✅',url="t.me/Quick_1bot"}},
+{{text = 'بوت تعليم اوامر السيرفر ✅',url="t.me/Qrao_bot"}},
+{{text = 'بوت دعم قنوات ✅',url="t.me/Qdja_bot"}},
+{{text = 'بوت حمايه الجروبات ✅',url="t.me/Qdja_bot"}},
+{{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/bnada-yquio"}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
+end
+
 
 if Text == '/HHH' then
 local Teext =[[
