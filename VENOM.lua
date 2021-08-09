@@ -16417,22 +16417,7 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end 
 end
-if text == 'تست' then
-local Text = [[
-تست
-]]
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = 'تست', callback_data="/guilthsi"},
-},
-{
-{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
-},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/36&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end
+
 ----------------------------------------------------------------- انتهئ الاوامر الجديدة
 if text == "تعطيل الابراج" and Manager(msg) then
 send(msg.chat_id_, msg.id_, ' ● تم تعطيل الابراج')
@@ -16965,24 +16950,6 @@ keyboard.inline_keyboard = {
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
-end
-if Text == '/guilthsi' then
-if not Mod(data) then
-local notText = '✘ عذرا الاوامر هذه لا تخصك'
-https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
-return false
-end
-local Teext =[[
- تست
-]]
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = 'كس', callback_data="/gajo999"},
-},
-{
-DeleteMessage(Chat_id, msg_idd)
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/63&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 if Text == '/help5' then
 if not Mod(data) then
