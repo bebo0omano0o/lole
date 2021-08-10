@@ -12961,7 +12961,7 @@ send(msg.chat_id_, msg.id_,ramsesj20)
 end
 --------------
 if text == ""..(bot_data:get(ban_id..'Name:Bot') or 'فينم').." غادر" or text == 'غادر' and Sudo(msg) then     
-if Sudo(msg) and not database:get(bot_id..'Left:Bot'..msg.chat_id_)  then 
+if Sudo(msg) and not bot_data:get(ban_id..'Left:Bot'..msg.chat_id_)  then 
 if not Bot(msg) then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=ban_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
 send(msg.chat_id_, msg.id_,'● تم مغادرة المجموعه') 
@@ -16609,7 +16609,7 @@ end -- end msg
 function tdcli_update_callback(data)  -- clback
 if data.ID == "UpdateChannel" then 
 if data.channel_.status_.ID == "ChatMemberStatusKicked" then 
-database:srem(bot_id..'Chek:Groups','-100'..data.channel_.id_)  
+bot_data:srem(ban_id..'Chek:Groups','-100'..data.channel_.id_)  
 end
 end
 if data.ID == "UpdateNewCallbackQuery" then
@@ -19200,7 +19200,33 @@ DeleteMessage(Chat_id,{[0] = Msg_id})
 http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=mp4&msg=0')
 end    
 
-
+vardump(data)
+if Text and Text:match('@id/(.*)') then
+local Id_Link = Text:match('@id/(.*)') 
+tdcli_function ({ID = "GetUser",user_id_ = ban_id,},function(arg,data) 
+DeleteMessage(Chat_id,{[0] = Msg_id})  
+local textt = '  .'
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'ʙᴀɴᴅᴀ ғᴜᴄᴋ σғғ↺',url="t.me/Q_0_ll"},
+},
+}
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id='..Chat_id..'&photo='..'https://youtu.be/'..Id_Link..'&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end,nil)
+elseif Text and Text:match('mp3/(.*)') then
+local Id_Link = Text:match('mp3/(.*)') 
+DeleteMessage(Chat_id,{[0] = Msg_id})    
+http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=mp3&msg=0')
+elseif Text and Text:match('ogg/(.*)') then
+local Id_Link = Text:match('ogg/(.*)') 
+DeleteMessage(Chat_id,{[0] = Msg_id})    
+http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=ogg&msg=0')
+elseif Text and Text:match('mp4/(.*)') then
+local Id_Link = Text:match('mp4/(.*)') 
+DeleteMessage(Chat_id,{[0] = Msg_id})    
+http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=mp4&msg=0')
+end      
 
 
 if Text == '/Loumarem' then
@@ -19608,7 +19634,7 @@ http.request('http://78.141.220.60/Yahya.php?token='..token..'&chat_id='..msg.ch
 end
 if Text and Text:match('@id/(.*)') then
 local Id_Link = Text:match('@id/(.*)') 
-tdcli_function ({ID = "GetUser",user_id_ = bot_id,},function(arg,data) 
+tdcli_function ({ID = "GetUser",user_id_ = ban_id,},function(arg,data) 
 DeleteMessage(Chat_id,{[0] = Msg_id})  
 local textt = '- من فضلك اختر نوع التنزيل'
 keyboard = {} 
