@@ -3771,11 +3771,7 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/63&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
-if text and text:match('^بحث (.*)$') and not bot_data:get(ban_id..'dw:bot:api'..msg.chat_id_) then            
-local Text = text:match('^بحث (.*)$') 
-local msgin = msg.id_/2097152/0.5 
-http.request('http://devstorm.ml/tshake/tahaj200.php?token='..token..'&chat_id='..msg.chat_id_..'&Text='..URL.escape(Text)..'&msg='..msgin)
-end
+
 if text == 'يوتيوب' or text == 'بحث' or text == 'اليوتيوب' then
 local Text = [[
 اليك بوتات تحميل 🛑
@@ -16690,6 +16686,42 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
+if text and text:match("^بحث (.*)$") then
+local m = text:match("^بحث (.*)$")
+tgg = https.request('https://mahmoudm50.xyz/7oda/ytsearch.php?search='..URL.escape(m)..'')
+gg = JSON.decode(tgg)
+S = '٭ العنوان = '..gg.title
+A = '٭ مدتها = '..gg.time
+V = '٭ عدد المشاهدات = '..gg.view
+P = gg.image
+ttx = ''..S..'\n'..A..'\n'..V..''
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'تنزيل صوت', callback_data="mp3/"..gg.url},
+},
+{
+{text = 'تنزيل بصمه', callback_data="ogg/"..gg.url},
+},
+{
+{text = 'تنزيل فيديو', callback_data="mp4/"..gg.url},
+},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo='..P..'&caption=' .. URL.escape(ttx).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+elseif Text and Text:match('mp3/(.*)') then
+local Id_Link = Text:match('mp3/(.*)') 
+DeleteMessage(Chat_id,{[0] = Msg_id})    
+http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=mp3&msg=0')
+elseif Text and Text:match('ogg/(.*)') then
+local Id_Link = Text:match('ogg/(.*)') 
+DeleteMessage(Chat_id,{[0] = Msg_id})    
+http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=ogg&msg=0')
+elseif Text and Text:match('mp4/(.*)') then
+local Id_Link = Text:match('mp4/(.*)') 
+DeleteMessage(Chat_id,{[0] = Msg_id})    
+http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=mp4&msg=0')
+end    
 if Text == '/GPhah' then
 local Teext =[[
 شيء لا يمشي إلا بالضرب فمن يكون؟
@@ -19131,7 +19163,42 @@ return https.request("https://api.telegram.org/bot"..token..'/editMessageText?ch
 end
 
 
-
+if text and text:match("^بحث (.*)$") then
+local m = text:match("^بحث (.*)$")
+tgg = https.request('https://mahmoudm50.xyz/7oda/ytsearch.php?search='..URL.escape(m)..'')
+gg = JSON.decode(tgg)
+S = '٭ العنوان = '..gg.title
+A = '٭ مدتها = '..gg.time
+V = '٭ عدد المشاهدات = '..gg.view
+P = gg.image
+ttx = ''..S..'\n'..A..'\n'..V..''
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'تنزيل صوت', callback_data="mp3/"..gg.url},
+},
+{
+{text = 'تنزيل بصمه', callback_data="ogg/"..gg.url},
+},
+{
+{text = 'تنزيل فيديو', callback_data="mp4/"..gg.url},
+},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo='..P..'&caption=' .. URL.escape(ttx).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+elseif Text and Text:match('mp3/(.*)') then
+local Id_Link = Text:match('mp3/(.*)') 
+DeleteMessage(Chat_id,{[0] = Msg_id})    
+http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=mp3&msg=0')
+elseif Text and Text:match('ogg/(.*)') then
+local Id_Link = Text:match('ogg/(.*)') 
+DeleteMessage(Chat_id,{[0] = Msg_id})    
+http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=ogg&msg=0')
+elseif Text and Text:match('mp4/(.*)') then
+local Id_Link = Text:match('mp4/(.*)') 
+DeleteMessage(Chat_id,{[0] = Msg_id})    
+http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=mp4&msg=0')
+end    
 
 
 
@@ -19534,6 +19601,46 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
 
+if text and text:match('^بحث (.*)$') then 
+local search = text:match('^بحث (.*)$') 
+local msgin = msg.id_/2097152/0.5 
+http.request('http://78.141.220.60/Yahya.php?token='..token..'&chat_id='..msg.chat_id_..'&Text='..URL.escape(search)..'&msg='..msgin)
+end
+if Text and Text:match('@id/(.*)') then
+local Id_Link = Text:match('@id/(.*)') 
+tdcli_function ({ID = "GetUser",user_id_ = bot_id,},function(arg,data) 
+DeleteMessage(Chat_id,{[0] = Msg_id})  
+local textt = '- من فضلك اختر نوع التنزيل'
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'تنزيل صوت', callback_data="mp3/"..Id_Link},
+},
+{
+{text = 'تنزيل بصمه', callback_data="ogg/"..Id_Link},
+},
+{
+{text = 'تنزيل فيديو', callback_data="mp4/"..Id_Link},
+},
+{
+{text = 'اضف البوت لمجموعتك', url = "https://t.me/"..data.username_.."?startgroup=new"},
+},
+}
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id='..Chat_id..'&photo='..'https://youtu.be/'..Id_Link..'&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end,nil)
+elseif Text and Text:match('mp3/(.*)') then
+local Id_Link = Text:match('mp3/(.*)') 
+DeleteMessage(Chat_id,{[0] = Msg_id})    
+http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=mp3&msg=0')
+elseif Text and Text:match('ogg/(.*)') then
+local Id_Link = Text:match('ogg/(.*)') 
+DeleteMessage(Chat_id,{[0] = Msg_id})    
+http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=ogg&msg=0')
+elseif Text and Text:match('mp4/(.*)') then
+local Id_Link = Text:match('mp4/(.*)') 
+DeleteMessage(Chat_id,{[0] = Msg_id})    
+http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=mp4&msg=0')
+end 
 
 if Text and Text:match('amr@(%d+)/user@(%d+)/setiinginfo') then
 local users = {string.match(Text,"^amr@(%d+)/user@(%d+)/setiinginfo$")}
