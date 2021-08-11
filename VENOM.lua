@@ -3814,6 +3814,11 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id_/2097152/0.5 
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/dfk9apa/'..ght..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
+if text and text:match('^بحث (.*)$') then 
+local search = text:match('^بحث (.*)$') 
+local msgin = msg.id_/2097152/0.5 
+http.request('http://78.141.220.60/Yahya.php?token='..token..'&chat_id='..msg.chat_id_..'&Text='..URL.escape(search)..'&msg='..msgin)
+end
 if text == "تويت" or text == "كت تويت" then 
 local TWEET_Msg = { 
 "مرتبط؟ ", 
@@ -14480,7 +14485,7 @@ local List = {
 [[
 🇪🇬≪💎≫ #username • メ
 🇪🇬≪💎≫ #stast  •メ
-🇪🇬≪??≫ #id  • メ
+🇪🇬≪💎≫ #id  • メ
 🇪🇬≪💎≫ #msgs  •メ
 🇪🇬≪💎≫ #game •メ
 🇪🇬𝗖𝗛 - 「@SOURCEVENOM」 💞.
@@ -14901,7 +14906,7 @@ local List = {
 • 𝗖𝗛 - 「@SOURCEVENOM」 💞.
 ]],
 [[
-🇪🇬 - 𝄬 𝐔ˢᴱᴿᴺᴬᴹᴱ . #username  𓃠
+??🇬 - 𝄬 𝐔ˢᴱᴿᴺᴬᴹᴱ . #username  𓃠
 🇪🇬 - 𝄬 ˢᵀᴬˢᵀ . #stast  𓃠
 🇪?? - 𝄬 ᴵᴰ . #id 𓃠
 🇪🇬 - 𝄬 ᴳᴹᴬˢ . #gmas 𓃠
@@ -19629,11 +19634,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
 
-if text and text:match('^بحث (.*)$') then 
-local search = text:match('^بحث (.*)$') 
-local msgin = msg.id_/2097152/0.5 
-http.request('http://78.141.220.60/Yahya.php?token='..token..'&chat_id='..msg.chat_id_..'&Text='..URL.escape(search)..'&msg='..msgin)
-end
+
 if Text and Text:match('@id/(.*)') then
 local Id_Link = Text:match('@id/(.*)') 
 tdcli_function ({ID = "GetUser",user_id_ = ban_id,},function(arg,data) 
