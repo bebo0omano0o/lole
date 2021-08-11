@@ -6,6 +6,7 @@ json = dofile("./library/JSON.lua")
 JSON  = dofile("./library/dkjson.lua")
 URL = require('socket.url')  
 utf8 = require ('lua-utf8') 
+http = require("socket.http")
 bot_data= redis.connect('127.0.0.1', 6379) 
 id_server = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
 --------------------------------------------------------------------------------------------------------------
@@ -2868,24 +2869,6 @@ end
 end 
 if bot_data:get(ban_id.."CAPTCHA"..msg.chat_id_) then
 if msg.content_.ID == "MessageChatJoinByLink" then 
-https.request("https://api.telegram.org/bot"..token.."/restrictChatMember?chat_id="..msg.chat_id_.."&user_id="..msg.sender_user_id_)
-captcha = math.random(4567,8907);
-cap = math.random(10,50);
-capt = math.random(60,90);
-capc = math.random(100,500);
-local Text ='• قم بختيار الرقم الصحيح الموجود في الصوره\n• ليتم الغاء تقييدك الان'
-keyboard = {} 
-keyboard.inline_keyboard = {
-{{text = '9'..capt..'5', callback_data=capt..msg.sender_user_id_},{text =capc..'2', callback_data=capc..msg.sender_user_id_}},
-{{text = '4'..cap..'8', callback_data=cap},{text = captcha, callback_data='okCaptcha'..msg.sender_user_id_}},
-{{text = '1'..capt..'2', callback_data=capt},{text = '7'..capc, callback_data=capc}},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://mode-pro.tk/niggax/captcha.php?c='..captcha..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end 
-end
-if bot_data:get(ban_id.."CAPTAIN"..msg.chat_id_) then
-if msg.content_.ID == "MessageChatAddMembers" then 
 https.request("https://api.telegram.org/bot"..token.."/restrictChatMember?chat_id="..msg.chat_id_.."&user_id="..msg.sender_user_id_)
 captcha = math.random(4567,8907);
 cap = math.random(10,50);
@@ -14497,7 +14480,7 @@ local List = {
 [[
 🇪🇬≪💎≫ #username • メ
 🇪🇬≪💎≫ #stast  •メ
-🇪🇬≪💎≫ #id  • メ
+🇪🇬≪??≫ #id  • メ
 🇪🇬≪💎≫ #msgs  •メ
 🇪🇬≪💎≫ #game •メ
 🇪🇬𝗖𝗛 - 「@SOURCEVENOM」 💞.
@@ -16722,6 +16705,49 @@ local Id_Link = Text:match('mp4/(.*)')
 DeleteMessage(Chat_id,{[0] = Msg_id})    
 http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=mp4&msg=0')
 end    
+if Text and Text:match('(%d+)/UnKed@(%d+):(%d+)') then
+local ramsesadd = {string.match(Text,"^(%d+)/UnKed@(%d+):(%d+)$")}
+if tonumber(ramsesadd[2]) == tonumber(ramsesadd[3]) then
+if tonumber(ramsesadd[1]) == tonumber(data.sender_user_id_) then
+DeleteMessage(data.chat_id_, {[0] = Msg_id}) 
+https.request("https://api.telegram.org/bot" .. token .. "/restrictChatMember?chat_id=" .. data.chat_id_ .. "&user_id=" .. data.sender_user_id_ .. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")
+end
+end
+end
+vardump(data)
+if Text and Text:match('@id/(.*)') then
+local Id_Link = Text:match('@id/(.*)') 
+tdcli_function ({ID = "GetUser",user_id_ = bot_id,},function(arg,data) 
+DeleteMessage(Chat_id,{[0] = Msg_id})  
+local textt = '- من فضلك اختر نوع التنزيل'
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'تنزيل صوت', callback_data="mp3/"..Id_Link},
+},
+{
+{text = 'تنزيل بصمه', callback_data="ogg/"..Id_Link},
+},
+{
+{text = 'تنزيل فيديو', callback_data="mp4/"..Id_Link},
+},
+}
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id='..Chat_id..'&photo='..'https://youtu.be/'..Id_Link..'&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end,nil)
+elseif Text and Text:match('mp3/(.*)') then
+local Id_Link = Text:match('mp3/(.*)') 
+DeleteMessage(Chat_id,{[0] = Msg_id})    
+http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=mp3&msg=0')
+elseif Text and Text:match('ogg/(.*)') then
+local Id_Link = Text:match('ogg/(.*)') 
+DeleteMessage(Chat_id,{[0] = Msg_id})    
+http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=ogg&msg=0')
+elseif Text and Text:match('mp4/(.*)') then
+local Id_Link = Text:match('mp4/(.*)') 
+DeleteMessage(Chat_id,{[0] = Msg_id})    
+http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=mp4&msg=0')
+end
+
 if Text == '/GPhah' then
 local Teext =[[
 شيء لا يمشي إلا بالضرب فمن يكون؟
@@ -16750,10 +16776,7 @@ keyboard.inline_keyboard = {
 {text = 'تفعيل اطردني', callback_data="/opCick"},{text = 'تعطيل اطردني', callback_data="/lockCick"},
 },
 {
-{text = 'تفعيل التحقق1', callback_data="/lockCickp"},{text = 'تعطيل التحقق1', callback_data="/opCickp"},
-},
-{
-{text = 'تفعيل التحقق2', callback_data="/lockCAPTAIN"},{text = 'تعطيل التحقق 2', callback_data="/opCAPTAIN"},
+{text = 'تفعيل التحقق', callback_data="/lockCickp"},{text = 'تعطيل التحقق', callback_data="/opCickp"},
 },
 {
 {text = 'تفعيل الرابط', callback_data="/locklinka"},{text = 'تعطيل الرابط', callback_data="/opalinka"},
@@ -18852,28 +18875,7 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
-if Text == '/lockCAPTAIN' then
-local Text = '• تم تفعيل التحقق عند الاضافه'
-bot_data:set(ban_id.."CAPTAIN"..Chat_id,true)  
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
-},
-}
-return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
-end
-if Text == '/opCAPTAIN' then
-local Text = '• تم تعطيل التحقق عند دخول '
-bot_data:del(ban_id.."CAPTAIN"..Chat_id)  
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
-},
-}
-return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
-end
+
 if Text == '/lockreb' then
 local Text = '• تم تفعيل ردود السورس '
 bot_data:set(ban_id.."my_GHoeq2:status"..Chat_id,true)  
