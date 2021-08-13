@@ -661,6 +661,7 @@ Send(chat,msg.id_,'\n- الرتبة : مشرف  '..'\n- والصلاحيات ه�
 end
 end
 end
+
 function sendin(chat,msgid,user,user_id)
 local Chek_Info = https.request('https://api.telegram.org/bot'..token..'/getChatMember?chat_id='.. chat ..'&user_id='.. user_id)
 local Json_Info = JSON.decode(Chek_Info)
@@ -706,12 +707,12 @@ else
 promote = ' ❎ ' 
 promotee = 'true' 
 end 
-if Json_Info.result.can_manage_Voice_chats == true then
-Voice = ' ✅ ' 
-Voicee = 'false' 
+if Json_Info.result.can_manage_voice_chats == true then
+voice = ' ✅ ' 
+voicee = 'false' 
 else 
-Voice = ' ❎ ' 
-Voicee = 'true' 
+voice = ' ❎ ' 
+voicee = 'true' 
 end
 if Json_Info.result.can_manage_chat == true then
 manage = ' ✅ ' 
@@ -730,7 +731,7 @@ keyboard.inline_keyboard = {
 {text = 'حذف الرسائل '..delete, callback_data='amr@'..user..'/user@'..user_id.."/delmsgg"..deletee},
 },
 {
-{text = 'حظر المستخدمين '..restrict, callback_data='amr@'..user..'/user@'..user_id.."/DRGuser"..restrictt},
+{text = 'حظر المستخدمين '..restrict, callback_data='amr@'..user..'/user@'..user_id.."/banuser"..restrictt},
 },
 {
 {text = 'اضافه مستخدمين '..invite, callback_data='amr@'..user..'/user@'..user_id.."/addlink"..invitee},
@@ -739,7 +740,7 @@ keyboard.inline_keyboard = {
 {text = 'تثبيت الرسائل '..pin, callback_data='amr@'..user..'/user@'..user_id.."/pinmsg"..pinn},
 },
 {
-{text = 'اداره المكالمات '..Voice, callback_data='amr@'..user..'/user@'..user_id.."/Voice"..Voicee},
+{text = 'اداره المكالمات '..voice, callback_data='amr@'..user..'/user@'..user_id.."/voice"..voicee},
 },
 {
 {text = 'البقاء متخفي '..manage, callback_data='amr@'..user..'/user@'..user_id.."/manage"..managee},
@@ -1616,7 +1617,7 @@ end
 ------by-banda--
 if text == "/start" then
 if not Devban(msg) then
-local Namebot = (bot_data:get(ban_id..'Name:Bot') or 'فينم') 
+local Namebot = (bot_data:get(ban_id..'Name:Bot') or 'فينوم') 
 local VENOM_Msg = { 
 ' ـــــــــــــــــــــــــــــــــــــــــــــــ\n   🤖╖ أهلآ بك عزيزي أنا بوت  '..Namebot..'\n🌐╢ وظيفتي حماية المجموعات\n✅╢ لتفعيل البوت عليك اتباع مايلي \n🔘╢ أضِف البوت إلى مجموعتك\n⚡️╢ ارفعهُ » مشرف\n⬆️╜ سيتم ترقيتك مالك في البوت\nــــــــــــــــــــــــــــــــــــــــــــــــــــ ',
 } 
@@ -1660,7 +1661,7 @@ end
 return false
 end
 if Devban(msg) then
-local bl = '●انت الان المطور الاساسي في البوت \n● سورس فينم\n ●يمكنك تحكم في البوتات من الكيبورد أسفل \n[تابع جديدنا](t.me/ch_nasa)'
+local bl = '●انت الان المطور الاساسي في البوت \n● سورس فينوم\n ●يمكنك تحكم في البوتات من الكيبورد أسفل \n[تابع جديدنا](t.me/SOURCEVENOM)'
 local keyboard = {
 {'ضع اسم للبوت','معلومات الكيبورد'},
 {'المطور','الاحصائيات'},
@@ -2007,7 +2008,7 @@ tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = tonu
 end
 if text == 'الاصدار' and Devban(msg) then 
 bot_data:del(ban_id..'Srt:Bot') 
-send(msg.chat_id_, msg.id_,' ● اصدار سورس فينم{ S:1✓}')
+send(msg.chat_id_, msg.id_,' ● اصدار سورس فينوم{ S:1✓}')
 end
 if text == '⇣───「 قـناه المطورين」───⇣' then
 local Text = [[ 
@@ -2078,7 +2079,7 @@ end
 if text == 'قناه السورس' and Devban(msg) then
 bot_data:del(ban_id..'Srt:Bot') 
 local Text = [[ 
- ● من أحسن السورسات على التليجرام سورس فينم ●
+ ● من أحسن السورسات على التليجرام سورس فينوم ●
 بجد سورس أمان جدا وفي مميزات جامده
 تع نصب بوتك عندنا لو محظور
 خش على تواصل هيدخلك لروم التواصل 
@@ -3873,7 +3874,7 @@ local TWEET_Msg = {
 "اخر اغنية سمعتها ?", 
 "تكلم عن نفسك", 
 "ليه انت مش سالك", 
-"ما هيا عيوب سورس فينم؟ ", 
+"ما هيا عيوب سورس فينوم؟ ", 
 "اخر كتاب قرآته", 
 "روايتك المفضله ?", 
 "اخر اكله اكلتها", 
@@ -3889,13 +3890,13 @@ local TWEET_Msg = {
 " ما السيء في هذه الحياة ؟ ", 
 "أجمل شيء حصل معك خلال هذا الاسبوع ؟ ", 
 "سؤال ينرفزك ؟ ", 
-" هل يعجبك سورس فينم؟؟ ", 
+" هل يعجبك سورس فينوم؟؟ ", 
 " اكثر ممثل تحبه ؟ ", 
 "قد تخيلت شي في بالك وصار ؟ ", 
 "شيء عندك اهم من الناس ؟ ", 
 "تفضّل النقاش الطويل او تحب الاختصار ؟ ", 
 "وش أخر شي ضيعته؟ ", 
-"اي رايك في سورس فينم؟ ", 
+"اي رايك في سورس فينوم؟ ", 
 "كم مره حبيت؟ ", 
 " اكثر المتابعين عندك باي برنامج؟", 
 " آخر مره ضربت عشره كانت متى ؟", 
@@ -4570,7 +4571,7 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id_/2097152/0.5 
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/34&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
-if text == 'العاب فينم' or text == 'العاب مطوره' or text == 'العاب متطوره' then  
+if text == 'العاب فينوم' or text == 'العاب مطوره' or text == 'العاب متطوره' then  
 local Text = [[  
  ● اهلا في قائمه الالعاب المتطوره سورس الديب● 
 تفضل اختر لعبه من القائمه 
@@ -6194,7 +6195,7 @@ send(msg.chat_id_, msg.id_, "\n ● تم مسح قائمة المطورين  ")
 end
 
 if text == 'الملفات' and Devban(msg) then
-t = ' ● ملفات السورس فينم↓\n ●○━━━━ꪜꫀꪀꪮꪑ━━━━○● \n'
+t = ' ● ملفات السورس فينوم↓\n ●○━━━━ꪜꫀꪀꪮꪑ━━━━○● \n'
 i = 0
 for v in io.popen('ls File_Bot'):lines() do
 if v:match(".lua$") then
@@ -6211,8 +6212,8 @@ if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 vardump(res.plugins_)
 if Get_info then
-local TextS = "\n ● اهلا بك في متجر ملفات فينم\n ● ملفات السورس ↓\n◤━───━??𝗼𝗼𝗼𝗻━───━◥\n\n"
-local TextE = "\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n ● علامة تعني { ✔️ } ملف مفعل\n ● علامة تعني { ✖ } ملف معطل\n ● قناة سورس فينم↓\n".." ● [اضغط هنا لدخول](t.me/SOURCEVENOM) \n"
+local TextS = "\n ● اهلا بك في متجر ملفات فينوم\n ● ملفات السورس ↓\n◤━───━??𝗼𝗼𝗼𝗻━───━◥\n\n"
+local TextE = "\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n ● علامة تعني { ✔️ } ملف مفعل\n ● علامة تعني { ✖ } ملف معطل\n ● قناة سورس فينوم↓\n".." ● [اضغط هنا لدخول](t.me/SOURCEVENOM) \n"
 local NumFile = 0
 for name,Info in pairs(res.plugins_) do
 local Check_File_is_Found = io.open("File_Bot/"..name,"r")
@@ -6250,7 +6251,7 @@ os.execute("rm -fr File_Bot/"..file)
 send(msg.chat_id_, msg.id_,t) 
 dofile('VENOM.lua')  
 else
-send(msg.chat_id_, msg.id_," ● عذرا الملف لايدعم سورس فينم\n") 
+send(msg.chat_id_, msg.id_," ● عذرا الملف لايدعم سورس فينوم\n") 
 end
 return false
 end
@@ -6272,7 +6273,7 @@ chek:close()
 send(msg.chat_id_, msg.id_,t) 
 dofile('VENOM.lua')  
 else
-send(msg.chat_id_, msg.id_," ● عذرا الملف لايدعم سورس فينم\n") 
+send(msg.chat_id_, msg.id_," ● عذرا الملف لايدعم سورس فينوم\n") 
 end
 return false
 end
@@ -9212,9 +9213,9 @@ t = "\n ● قائمة القلوب في الجروب\n●○━━━━ꪜꫀ�
 for k,v in pairs(list) do
 local username = bot_data:get(ban_id.."user:Name" .. v)
 if username then
-t = t..""..k.."← قلبي [@"..username.."]\n"
+t = t..""..k.."⋙ قلبي [@"..username.."]\n"
 else
-t = t..""..k.."← قلبي "..v.."\n"
+t = t..""..k.."⋙ قلبي "..v.."\n"
 end
 end
 if #list == 0 then
@@ -9240,7 +9241,7 @@ end
 function start_function(extra, result, success)
 bot_data:sadd(ban_id..'Zahf:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n ● الـعـضو  ← ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
+usertext = '\n ● الـعـضو  ⋙ ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
 local  statuss  = '\n ● تم رفع قلبي في الجروب\n'
 send(msg.chat_id_, msg.id_, usertext..statuss)
 end,nil)
@@ -9262,7 +9263,7 @@ end
 function start_function(extra, result, success)
 bot_data:srem(ban_id..'Zahf:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n ● الـعـضو  ← ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
+usertext = '\n ● الـعـضو  ⋙ ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
 status  = '\n ● تم تنزيل قلبي من الجروب\n'
 send(msg.chat_id_, msg.id_, usertext..status)
 end,nil)
@@ -9281,9 +9282,9 @@ t = "\n ● قائمة كساس الجروب \n●○━━━━ꪜꫀꪀꪮꪑ
 for k,v in pairs(list) do
 local username = bot_data:get(ban_id.."user:Name" .. v)
 if username then
-t = t..""..k.."← ابني [@"..username.."]\n"
+t = t..""..k.."⋙ ابني [@"..username.."]\n"
 else
-t = t..""..k.."← ابني "..v.."\n"
+t = t..""..k.."⋙ ابني "..v.."\n"
 end
 end
 if #list == 0 then
@@ -9309,7 +9310,7 @@ end
 function start_function(extra, result, success)
 bot_data:sadd(ban_id..'Zahf:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n ● الـعـضو  ← ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
+usertext = '\n ● الـعـضو  ⋙ ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
 local  statuss  = '\n ● تم رفع ابني في الجروب\n'
 send(msg.chat_id_, msg.id_, usertext..statuss)
 end,nil)
@@ -9331,7 +9332,7 @@ end
 function start_function(extra, result, success)
 bot_data:srem(ban_id..'Zahf:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n ● الـعـضو  ← ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
+usertext = '\n ● الـعـضو  ⋙ ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
 status  = '\n ● تم تنزيل ابني من الجروب\n'
 send(msg.chat_id_, msg.id_, usertext..status)
 end,nil)
@@ -9350,9 +9351,9 @@ t = "\n ● قائمة بناتي الجروب \n●○━━━━ꪜꫀꪀꪮ�
 for k,v in pairs(list) do
 local username = bot_data:get(ban_id.."user:Name" .. v)
 if username then
-t = t..""..k.."← بنتي [@"..username.."]\n"
+t = t..""..k.."⋙ بنتي [@"..username.."]\n"
 else
-t = t..""..k.."← بنتي"..v.."\n"
+t = t..""..k.."⋙ بنتي"..v.."\n"
 end
 end
 if #list == 0 then
@@ -9378,7 +9379,7 @@ end
 function start_function(extra, result, success)
 bot_data:sadd(ban_id..'Zahf:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n ● الـعـضو  ← ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
+usertext = '\n ● الـعـضو  ⋙ ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
 local  statuss  = '\n ● تم رفع بنتي في الجروب\n'
 send(msg.chat_id_, msg.id_, usertext..statuss)
 end,nil)
@@ -9400,7 +9401,7 @@ end
 function start_function(extra, result, success)
 bot_data:srem(ban_id..'Zahf:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n ● الـعـضو  ← ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
+usertext = '\n ● الـعـضو  ⋙ ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
 status  = '\n ● تم تنزيل بنتي من الجروب\n'
 send(msg.chat_id_, msg.id_, usertext..status)
 end,nil)
@@ -9419,9 +9420,9 @@ t = "\n ● قائمة الخاينين الجروب \n●○━━━━ꪜꫀ�
 for k,v in pairs(list) do
 local username = bot_data:get(ban_id.."user:Name" .. v)
 if username then
-t = t..""..k.."← خاين [@"..username.."]\n"
+t = t..""..k.."⋙ خاين [@"..username.."]\n"
 else
-t = t..""..k.."← خاين"..v.."\n"
+t = t..""..k.."⋙ خاين"..v.."\n"
 end
 end
 if #list == 0 then
@@ -9447,7 +9448,7 @@ end
 function start_function(extra, result, success)
 bot_data:sadd(ban_id..'Zahf:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n ● الـعـضو  ← ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
+usertext = '\n ● الـعـضو  ⋙ ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
 local  statuss  = '\n ● تم رفع خاين في الجروب\n'
 send(msg.chat_id_, msg.id_, usertext..statuss)
 end,nil)
@@ -9469,7 +9470,7 @@ end
 function start_function(extra, result, success)
 bot_data:srem(ban_id..'Zahf:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n ● الـعـضو  ← ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
+usertext = '\n ● الـعـضو  ⋙ ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
 status  = '\n ● تم تنزيل خاين من الجروب\n'
 send(msg.chat_id_, msg.id_, usertext..status)
 end,nil)
@@ -9626,9 +9627,9 @@ t = "\n ● قائمة حكاكين الجروب \n●○━━━━ꪜꫀꪀ�
 for k,v in pairs(list) do
 local username = bot_data:get(ban_id.."user:Name" .. v)
 if username then
-t = t..""..k.."← الحكاك [@"..username.."]\n"
+t = t..""..k.."⋙ الحكاك [@"..username.."]\n"
 else
-t = t..""..k.."← الحكاك `"..v.."`\n"
+t = t..""..k.."⋙ الحكاك `"..v.."`\n"
 end
 end
 if #list == 0 then
@@ -9654,7 +9655,7 @@ end
 function start_function(extra, result, success)
 bot_data:sadd(ban_id..'Zahf:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n ● الـعـضو  ← ['..data.first_name_..'](t.me/'..(data.username_ or 's_o_op')..')'
+usertext = '\n ● الـعـضو  ⋙ ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
 local  statuss  = '\n ● تم رفع حكاك في الجروب\n ● احمرت ولا لسا'
 send(msg.chat_id_, msg.id_, usertext..statuss)
 end,nil)
@@ -9676,7 +9677,7 @@ end
 function start_function(extra, result, success)
 bot_data:srem(ban_id..'Zahf:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n ● الـعـضو  ← ['..data.first_name_..'](t.me/'..(data.username_ or 's_o_op')..')'
+usertext = '\n ● الـعـضو  ⋙ ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
 status  = '\n ● تم تنزيل حكاك من الجروب\n ● لا يسطت هيفضل حكاك رسمي'
 send(msg.chat_id_, msg.id_, usertext..status)
 end,nil)
@@ -9694,9 +9695,9 @@ t = "\n ● قائمة نسوان الجروب \n●○━━━━ꪜꫀꪀꪮ�
 for k,v in pairs(list) do
 local username = bot_data:get(ban_id.."user:Name" .. v)
 if username then
-t = t..""..k.."← المره [@"..username.."]\n"
+t = t..""..k.."⋙ المره [@"..username.."]\n"
 else
-t = t..""..k.."← المره `"..v.."`\n"
+t = t..""..k.."⋙ المره `"..v.."`\n"
 end
 end
 if #list == 0 then
@@ -9722,7 +9723,7 @@ end
 function start_function(extra, result, success)
 bot_data:sadd(ban_id..'Girl:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n ● الـعـضو  ← ['..data.first_name_..'](t.me/'..(data.username_ or 's_o_op')..')'
+usertext = '\n ● الـعـضو  ⋙ ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
 local  statuss  = '\n ● تم رفع مره في الجروب\n ● ها صرتي من نسواني تعي ندخل'
 send(msg.chat_id_, msg.id_, usertext..statuss)
 end,nil)
@@ -9744,7 +9745,7 @@ end
 function start_function(extra, result, success)
 bot_data:srem(ban_id..'Girl:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n ● الـعـضو  ← ['..data.first_name_..'](t.me/'..(data.username_ or 's_o_op')..')'
+usertext = '\n ● الـعـضو  ⋙ ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
 status  = '\n ● تم تنزيل مره من الجروب\n ● بتاعي غضبان عليكي ليوم الدين'
 send(msg.chat_id_, msg.id_, usertext..status)
 end,nil)
@@ -9762,9 +9763,9 @@ t = "\n ● قائمه ازواج الجروب \n●○━━━━ꪜꫀꪀꪮ�
 for k,v in pairs(list) do
 local username = bot_data:get(ban_id.."user:Name" .. v)
 if username then
-t = t..""..k.."← الزوج [@"..username.."]\n"
+t = t..""..k.."⋙ الزوج [@"..username.."]\n"
 else
-t = t..""..k.."← الزوجه `"..v.."`\n"
+t = t..""..k.."⋙ الزوجه `"..v.."`\n"
 end
 end
 if #list == 0 then
@@ -9790,7 +9791,7 @@ end
 function start_function(extra, result, success)
 bot_data:sadd(ban_id..'Mode:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n ● العضــو ← ['..data.first_name_..'](t.me/'..(data.username_ or 'DEVBESSO')..')'
+usertext = '\n ● العضــو ⋙ ['..data.first_name_..'](t.me/'..(data.username_ or 'DEVBESSO')..')'
 local  statuss  = '\n ● تم زواجكم بنجاح في الجروب \n ● الطلاق امتي عشان ابقي موجود '
 send(msg.chat_id_, msg.id_, usertext..statuss)
 end,nil)
@@ -9812,7 +9813,7 @@ end
 function start_function(extra, result, success)
 bot_data:srem(ban_id..'Mode:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n ● العضــو ← ['..data.first_name_..'](t.me/'..(data.username_ or 's_o_op')..')'
+usertext = '\n ● العضــو ⋙ ['..data.first_name_..'](t.me/'..(data.username_ or 'textchuser')..')'
 status  = '\n ● تم طلاقكم بنجاح في الجروب\n ● اوجعو تاني ونبي'
 send(msg.chat_id_, msg.id_, usertext..status)
 end,nil)
@@ -9979,7 +9980,7 @@ send(msg.chat_id_, msg.id_,' ● البوت ليس ادمن يرجى ترقيت�
 return false  
 end
 bot_data:sadd(ban_id..'DRG:User'..msg.chat_id_, result.id_)
-usertext = '\n ●  المستخدم  ⋙ ['..result.title_..'](t.me/'..(username or 'GLOBLA')..')'
+usertext = '\n ●  المستخدم  ⋙ ['..result.title_..'](t.me/'..(username or 'textchuser')..')'
 status  = '\n ● تم حظره'
 texts = usertext..status
 chat_kick(msg.chat_id_, result.id_)
@@ -11237,7 +11238,7 @@ local text =
 ' }\n'..' ●  الايدي  ⋙ { '..idgp..
 ' }\n'..' ●  الايدي بالصوره  ⋙ { '..idph..
 ' }\n'..' ●  الرفع  ⋙ { '..setadd..
-' }\n'..' ●  الحظر  ⋙ { '..DRGm..' }\n\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n ● قناة سورس فينم↓\n━━━━━━━\n'
+' }\n'..' ●  الحظر  ⋙ { '..DRGm..' }\n\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n ● قناة سورس فينوم↓\n━━━━━━━\n'
 send(msg.chat_id_, msg.id_,text)     
 end
 if text ==('تثبيت') and msg.reply_to_message_id_ ~= 0 and Mod(msg) then  
@@ -11411,6 +11412,7 @@ bot_data:del(ban_id.."pp_photo:status"..msg.chat_id_)
 send(msg.chat_id_, msg.id_," ● تم تعطيل نسبه جمالك") 
 return false end
 end
+
 if text == "الرابط" then 
 local status_Link = bot_data:get(ban_id.."Link_Group:status"..msg.chat_id_) 
 if not status_Link then 
@@ -11421,8 +11423,9 @@ tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta)
 local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_)) or bot_data:get(ban_id.."Private:Group:Link"..msg.chat_id_) 
 if linkgpp.ok == true then 
 local linkgp = '• 🖤 |ＬＩＮＫ ＧＲＯＵＰ.\nـــــــــــــــــــــــــ\n ['..ta.title_..']('..linkgpp.result..')\nـــــــــــــــــــــــــ\n  ['..linkgpp.result..']'
-local inline = {{{text = ta.title_, url=linkgpp.result}},} 
-send_inline_key(msg.chat_id_,linkgp,nil,inline,msg.id_/2097152/0.5) 
+keyboard = {} 
+keyboard.inline_keyboard = {{{text = ta.title_, url=linkgpp.result}},}
+https.request("https://api.telegram.org/bot"..token..'/sendmessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(linkgp).."&parse_mode=markdown&reply_markup="..JSON.encode(keyboard)) 
 else 
 send(msg.chat_id_, msg.id_,'● لا يوجد رابط ارسل ضع رابط') 
 end 
@@ -12323,8 +12326,8 @@ msg_type = 'MSG:NewUser'
 end
 
 
-if text == ""..(bot_data:get(ban_id..'Name:Bot') or 'فينم').."" then  
-Namebot = (bot_data:get(ban_id..'Name:Bot') or 'فينم')
+if text == ""..(bot_data:get(ban_id..'Name:Bot') or 'فينوم').."" then  
+Namebot = (bot_data:get(ban_id..'Name:Bot') or 'فينوم')
 local VENOM_Msg = {
 'ننعم يروحي 😻??',
 'نعم يا قلب  '..Namebot..'',
@@ -12359,7 +12362,7 @@ end
 tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = ban_id, offset_ = 0, limit_ = 1 }, getpro, nil) 
 end
 if text == "بوت" then
-local Namebot = (bot_data:get(ban_id..'Name:Bot') or 'فينم') 
+local Namebot = (bot_data:get(ban_id..'Name:Bot') or 'فينوم') 
 local VENOM_Msg = { 
 'اسمي  '..Namebot..' يا قلبي 🤤💚',
 'اسمي '..Namebot..' يا روحي🙈❤️',
@@ -12918,7 +12921,7 @@ if b.username_ then
 User_id = "@"..b.username_
 else
 User_id = msg.sender_user_id_
-end --الكود حصري سورس فينميعني لو بكتهن راح اعرفك انت الاخذتهن
+end --الكود حصري سورس فينوميعني لو بكتهن راح اعرفك انت الاخذتهن
 local t = "\n ●المستخدم ~ ["..User_id .."] يصيح المشرفين \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 k = 0
 for i,v in pairs(data.members_) do
@@ -12948,7 +12951,7 @@ local ramsesj20 =  "\n التاريخ : "..os.date("%Y/%m/%d")
 send(msg.chat_id_, msg.id_,ramsesj20)
 end
 --------------
-if text == ""..(bot_data:get(ban_id..'Name:Bot') or 'فينم').." غادر" or text == 'غادر' and Sudo(msg) then     
+if text == ""..(bot_data:get(ban_id..'Name:Bot') or 'فينوم').." غادر" or text == 'غادر' and Sudo(msg) then     
 if Sudo(msg) and not bot_data:get(ban_id..'Left:Bot'..msg.chat_id_)  then 
 if not Bot(msg) then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=ban_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
@@ -17022,11 +17025,11 @@ local Teext =[[
 اوامر المطورين ⇊
 「المطور 」  ⇊
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
- ●تفعيل ← تعطيل 
- ●المجموعات ← المشتركين ← الاحصائيات
- ●رفع ← تنزيل منشئ اساسي
- ●مسح الاساسين ← المنشئين الاساسين
- ●مسح المنشئين ← المنشئين
+ ●تفعيل ⋙ تعطيل 
+ ●المجموعات ⋙ المشتركين ⋙ الاحصائيات
+ ●رفع ⋙ تنزيل منشئ اساسي
+ ●مسح الاساسين ⋙ المنشئين الاساسين
+ ●مسح المنشئين ⋙ المنشئين
  ●اسم ~ ايدي + بوت غادر 
  ●اذاعه 
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
@@ -17148,53 +17151,53 @@ local Teext =[[
 اوامر 「التسليه」  ⇊
 رفع ⇔ تنزيل + الامر
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
- ●رفع + تنزيل ← متوحد
+ ●رفع + تنزيل ⋙ متوحد
  ●تاك للمتوحدين
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
- ●رفع + تنزيل ← كلب
+ ●رفع + تنزيل ⋙ كلب
  ●تاك للكلاب
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
- ●رفع + تنزيل ← قرد
+ ●رفع + تنزيل ⋙ قرد
  ●تاك للقرود
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
- ●رفع + تنزيل ← زوجتي
+ ●رفع + تنزيل ⋙ زوجتي
  ●تاك للزوجات
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
- ●رفع + تنزيل ← قلبي
+ ●رفع + تنزيل ⋙ قلبي
  ●تاك لقلبي
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
- ●رفع + تنزيل ← بقره
+ ●رفع + تنزيل ⋙ بقره
  ●تاك للبقرات
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
- ●رفع + تنزيل ← ارمله
+ ●رفع + تنزيل ⋙ ارمله
  ●تاك للارامل
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
- ●رفع + تنزيل ← خول
+ ●رفع + تنزيل ⋙ خول
  ●تاك للخولات
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
- ●رفع + تنزيل ← حمار
+ ●رفع + تنزيل ⋙ حمار
  ●تاك للحمير
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
- ●رفع + تنزيل ← مزه
+ ●رفع + تنزيل ⋙ مزه
  ●تاك للمزز
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
- ●رفع + تنزيل ← وتكه
+ ●رفع + تنزيل ⋙ وتكه
  ●تاك للوتكات
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
- ●رفع + تنزيل ← كس
+ ●رفع + تنزيل ⋙ كس
  ●تاك للاكساس
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
- ●رفع + تنزيل ← ابني
+ ●رفع + تنزيل ⋙ ابني
  ●تاك لولادي 
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
- ●رفع + تنزيل ← بنتي
+ ●رفع + تنزيل ⋙ بنتي
  ●تاك لبناتي
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
- ●رفع + تنزيل ← خاين
+ ●رفع + تنزيل ⋙ خاين
  ●تاك للخاينين
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
- ●رفع  ← علي زبي
- ●تنزيل ←من زبي 
+ ●رفع  ⋙ علي زبي
+ ●تنزيل ⋙من زبي 
  ●تاك للمتناكين
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
 ]]
@@ -17255,7 +17258,7 @@ return false
 end
 local Teext =[[
 ● 「 m 5 」 Orders of developers ⇊
-● Developer ←⇊
+● Developer ⋙⇊
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
 ● Lifting «download 「 owner 」
 ● Change the group link
@@ -18302,7 +18305,7 @@ return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption
 end
 if Text == '/change-hklp' then
 local Teext =[[
- سعر التنصيب علي سورس فينم
+ سعر التنصيب علي سورس فينوم
  سعر التنصيب العادي 25ج
  سعر التنصيب المميز 35 ج
 تواصل مع المطورين لتنصيب
@@ -18739,7 +18742,7 @@ local Teext =[[
 
 يتوافق مع : برج العقرب ، برج الحوت ،برج الجدي ،برج الثور
 
-الاعمال الملائمة : أطباء، صيادلة، مدرفينم، أخصائيو تغذية، شيف، سماسرة
+الاعمال الملائمة : أطباء، صيادلة، مدرفينوم، أخصائيو تغذية، شيف، سماسرة
 
 ايجابيات برج السرطان : عاطفي، محب، صاحب حدس وبديهة، صاحب خيال واسع
  ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
@@ -19677,8 +19680,8 @@ if tonumber(users[1]) == tonumber(data.sender_user_id_) then
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
 end
 end
-if Text and Text:match('amr@(%d+)/user@(%d+)/Voicetrue') then
-local users = {string.match(Text,"^amr@(%d+)/user@(%d+)/Voicetrue$")}
+if Text and Text:match('amr@(%d+)/user@(%d+)/voicetrue') then
+local users = {string.match(Text,"^amr@(%d+)/user@(%d+)/voicetrue$")}
 if tonumber(users[1]) == tonumber(data.sender_user_id_) then
 local Chek_Info = https.request('https://api.telegram.org/bot'..token..'/getChatMember?chat_id='.. data.chat_id_ ..'&user_id='.. users[2])
 local Json_Info = JSON.decode(Chek_Info)
@@ -19712,23 +19715,23 @@ promotee = '&can_promote_members=true'
 else 
 promotee = '&can_promote_members=false' 
 end 
-if Json_Info.can_manage_Voice_chats == true then
-Voice = '&can_manage_Voice_chats=True' 
+if Json_Info.can_manage_voice_chats == true then
+voice = '&can_manage_voice_chats=True' 
 else 
-Voice = '&can_manage_Voice_chats=false' 
+voice = '&can_manage_voice_chats=false' 
 end
 if Json_Info.can_manage_chat == true then
 manage = '&can_manage_chat=True' 
 else 
 manage = '&can_manage_chat=false' 
 end
-local ListGruoup = '&can_manage_Voice_chats=True'..manage..infoo..deletee..invitee..restrictt..pinn..promotee
+local ListGruoup = '&can_manage_voice_chats=True'..manage..infoo..deletee..invitee..restrictt..pinn..promotee
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id="..data.chat_id_ .."&user_id="..users[2]..ListGruoup)
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
 end
 end
-if Text and Text:match('amr@(%d+)/user@(%d+)/Voicefalse') then
-local users = {string.match(Text,"^amr@(%d+)/user@(%d+)/Voicefalse$")}
+if Text and Text:match('amr@(%d+)/user@(%d+)/voicefalse') then
+local users = {string.match(Text,"^amr@(%d+)/user@(%d+)/voicefalse$")}
 if tonumber(users[1]) == tonumber(data.sender_user_id_) then
 local Chek_Info = https.request('https://api.telegram.org/bot'..token..'/getChatMember?chat_id='.. data.chat_id_ ..'&user_id='.. users[2])
 local Json_Info = JSON.decode(Chek_Info)
@@ -19762,17 +19765,17 @@ promotee = '&can_promote_members=true'
 else 
 promotee = '&can_promote_members=false' 
 end 
-if Json_Info.can_manage_Voice_chats == true then
-Voice = '&can_manage_Voice_chats=True' 
+if Json_Info.can_manage_voice_chats == true then
+voice = '&can_manage_voice_chats=True' 
 else 
-Voice = '&can_manage_Voice_chats=false' 
+voice = '&can_manage_voice_chats=false' 
 end
 if Json_Info.can_manage_chat == true then
 manage = '&can_manage_chat=True' 
 else 
 manage = '&can_manage_chat=false' 
 end
-local ListGruoup = '&can_manage_Voice_chats=false'..manage..infoo..deletee..invitee..restrictt..pinn..promotee
+local ListGruoup = '&can_manage_voice_chats=false'..manage..infoo..deletee..invitee..restrictt..pinn..promotee
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id="..data.chat_id_ .."&user_id="..users[2]..ListGruoup)
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
 end
@@ -19812,17 +19815,17 @@ promotee = '&can_promote_members=true'
 else 
 promotee = '&can_promote_members=false' 
 end 
-if Json_Info.can_manage_Voice_chats == true then
-Voice = '&can_manage_Voice_chats=True' 
+if Json_Info.can_manage_voice_chats == true then
+voice = '&can_manage_voice_chats=True' 
 else 
-Voice = '&can_manage_Voice_chats=false' 
+voice = '&can_manage_voice_chats=false' 
 end
 if Json_Info.can_manage_chat == true then
 manage = '&can_manage_chat=True' 
 else 
 manage = '&can_manage_chat=false' 
 end
-local ListGruoup = Voice..'&can_manage_chat=True'..infoo..deletee..invitee..restrictt..pinn..promotee
+local ListGruoup = voice..'&can_manage_chat=True'..infoo..deletee..invitee..restrictt..pinn..promotee
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id="..data.chat_id_ .."&user_id="..users[2]..ListGruoup)
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
 end
@@ -19862,17 +19865,17 @@ promotee = '&can_promote_members=true'
 else 
 promotee = '&can_promote_members=false' 
 end 
-if Json_Info.can_manage_Voice_chats == true then
-Voice = '&can_manage_Voice_chats=True' 
+if Json_Info.can_manage_voice_chats == true then
+voice = '&can_manage_voice_chats=True' 
 else 
-Voice = '&can_manage_Voice_chats=false' 
+voice = '&can_manage_voice_chats=false' 
 end
 if Json_Info.can_manage_chat == true then
 manage = '&can_manage_chat=True' 
 else 
 manage = '&can_manage_chat=false' 
 end
-local ListGruoup = Voice..'&can_manage_chat=false'..infoo..deletee..invitee..restrictt..pinn..promotee
+local ListGruoup = voice..'&can_manage_chat=false'..infoo..deletee..invitee..restrictt..pinn..promotee
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id="..data.chat_id_ .."&user_id="..users[2]..ListGruoup)
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
 end
@@ -19912,17 +19915,17 @@ promotee = '&can_promote_members=true'
 else 
 promotee = '&can_promote_members=false' 
 end 
-if Json_Info.can_manage_Voice_chats == true then
-Voice = '&can_manage_Voice_chats=True' 
+if Json_Info.can_manage_voice_chats == true then
+voice = '&can_manage_voice_chats=True' 
 else 
-Voice = '&can_manage_Voice_chats=false' 
+voice = '&can_manage_voice_chats=false' 
 end
 if Json_Info.can_manage_chat == true then
 manage = '&can_manage_chat=True' 
 else 
 manage = '&can_manage_chat=false' 
 end
-local ListGruoup = Voice..manage..infoo..deletee..invitee..restrictt..pinn..'&can_promote_members=true' 
+local ListGruoup = voice..manage..infoo..deletee..invitee..restrictt..pinn..'&can_promote_members=true' 
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id="..data.chat_id_ .."&user_id="..users[2]..ListGruoup)
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
 end
@@ -19962,17 +19965,17 @@ promotee = '&can_promote_members=true'
 else 
 promotee = '&can_promote_members=false' 
 end 
-if Json_Info.can_manage_Voice_chats == true then
-Voice = '&can_manage_Voice_chats=True' 
+if Json_Info.can_manage_voice_chats == true then
+voice = '&can_manage_voice_chats=True' 
 else 
-Voice = '&can_manage_Voice_chats=false' 
+voice = '&can_manage_voice_chats=false' 
 end
 if Json_Info.can_manage_chat == true then
 manage = '&can_manage_chat=True' 
 else 
 manage = '&can_manage_chat=false' 
 end
-local ListGruoup = Voice..manage..'&can_change_info=True' ..deletee..invitee..restrictt..pinn..promotee
+local ListGruoup = voice..manage..'&can_change_info=True' ..deletee..invitee..restrictt..pinn..promotee
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id="..data.chat_id_ .."&user_id="..users[2]..ListGruoup)
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
 end
@@ -20012,23 +20015,23 @@ promotee = '&can_promote_members=true'
 else 
 promotee = '&can_promote_members=false' 
 end 
-if Json_Info.can_manage_Voice_chats == true then
-Voice = '&can_manage_Voice_chats=True' 
+if Json_Info.can_manage_voice_chats == true then
+voice = '&can_manage_voice_chats=True' 
 else 
-Voice = '&can_manage_Voice_chats=false' 
+voice = '&can_manage_voice_chats=false' 
 end
 if Json_Info.can_manage_chat == true then
 manage = '&can_manage_chat=True' 
 else 
 manage = '&can_manage_chat=false' 
 end
-local ListGruoup = Voice..manage.. infoo..'&can_delete_messages=True' ..invitee..restrictt..pinn..promotee
+local ListGruoup = voice..manage.. infoo..'&can_delete_messages=True' ..invitee..restrictt..pinn..promotee
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id="..data.chat_id_ .."&user_id="..users[2]..ListGruoup)
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
 end
 end
-if Text and Text:match('amr@(%d+)/user@(%d+)/DRGusertrue') then
-local users = {string.match(Text,"^amr@(%d+)/user@(%d+)/DRGusertrue$")}
+if Text and Text:match('amr@(%d+)/user@(%d+)/banusertrue') then
+local users = {string.match(Text,"^amr@(%d+)/user@(%d+)/banusertrue$")}
 if tonumber(users[1]) == tonumber(data.sender_user_id_) then
 local Chek_Info = https.request('https://api.telegram.org/bot'..token..'/getChatMember?chat_id='.. data.chat_id_ ..'&user_id='.. users[2])
 local Json_Info = JSON.decode(Chek_Info)
@@ -20062,17 +20065,17 @@ promotee = '&can_promote_members=true'
 else 
 promotee = '&can_promote_members=false' 
 end 
-if Json_Info.can_manage_Voice_chats == true then
-Voice = '&can_manage_Voice_chats=True' 
+if Json_Info.can_manage_voice_chats == true then
+voice = '&can_manage_voice_chats=True' 
 else 
-Voice = '&can_manage_Voice_chats=false' 
+voice = '&can_manage_voice_chats=false' 
 end
 if Json_Info.can_manage_chat == true then
 manage = '&can_manage_chat=True' 
 else 
 manage = '&can_manage_chat=false' 
 end
-local ListGruoup = Voice..manage.. infoo..deletee..invitee..'&can_restrict_members=True' ..pinn..promotee
+local ListGruoup = voice..manage.. infoo..deletee..invitee..'&can_restrict_members=True' ..pinn..promotee
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id="..data.chat_id_ .."&user_id="..users[2]..ListGruoup)
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
 end
@@ -20112,17 +20115,17 @@ promotee = '&can_promote_members=true'
 else 
 promotee = '&can_promote_members=false' 
 end 
-if Json_Info.can_manage_Voice_chats == true then
-Voice = '&can_manage_Voice_chats=True' 
+if Json_Info.can_manage_voice_chats == true then
+voice = '&can_manage_voice_chats=True' 
 else 
-Voice = '&can_manage_Voice_chats=false' 
+voice = '&can_manage_voice_chats=false' 
 end
 if Json_Info.can_manage_chat == true then
 manage = '&can_manage_chat=True' 
 else 
 manage = '&can_manage_chat=false' 
 end
-local ListGruoup = Voice..manage.. infoo..deletee..invitee..restrictt..'&can_pin_messages=True' ..promotee
+local ListGruoup = voice..manage.. infoo..deletee..invitee..restrictt..'&can_pin_messages=True' ..promotee
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id="..data.chat_id_ .."&user_id="..users[2]..ListGruoup)
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
 end
@@ -20162,17 +20165,17 @@ promotee = '&can_promote_members=true'
 else 
 promotee = '&can_promote_members=false' 
 end 
-if Json_Info.can_manage_Voice_chats == true then
-Voice = '&can_manage_Voice_chats=True' 
+if Json_Info.can_manage_voice_chats == true then
+voice = '&can_manage_voice_chats=True' 
 else 
-Voice = '&can_manage_Voice_chats=false' 
+voice = '&can_manage_voice_chats=false' 
 end
 if Json_Info.can_manage_chat == true then
 manage = '&can_manage_chat=True' 
 else 
 manage = '&can_manage_chat=false' 
 end
-local ListGruoup = Voice..manage.. infoo..deletee..'&can_invite_users=True' ..restrictt..pinn..promotee
+local ListGruoup = voice..manage.. infoo..deletee..'&can_invite_users=True' ..restrictt..pinn..promotee
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id="..data.chat_id_ .."&user_id="..users[2]..ListGruoup)
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
 end
@@ -20214,10 +20217,10 @@ promotee = '&can_promote_members=true'
 else 
 promotee = '&can_promote_members=false' 
 end 
-if Json_Info.can_manage_Voice_chats == true then
-Voice = '&can_manage_Voice_chats=True' 
+if Json_Info.can_manage_voice_chats == true then
+voice = '&can_manage_voice_chats=True' 
 else 
-Voice = '&can_manage_Voice_chats=false' 
+voice = '&can_manage_voice_chats=false' 
 end
 if Json_Info.can_manage_chat == true then
 manage = '&can_manage_chat=True' 
@@ -20225,7 +20228,7 @@ else
 manage = '&can_manage_chat=false' 
 end
 if manage then
-local ListGruoup = Voice..manage.. infoo..deletee..invitee..restrictt..pinn..'&can_promote_members=false'
+local ListGruoup = voice..manage.. infoo..deletee..invitee..restrictt..pinn..'&can_promote_members=false'
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id="..data.chat_id_ .."&user_id="..users[2]..ListGruoup)
 end
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
@@ -20266,17 +20269,17 @@ promotee = '&can_promote_members=true'
 else 
 promotee = '&can_promote_members=false' 
 end 
-if Json_Info.can_manage_Voice_chats == true then
-Voice = '&can_manage_Voice_chats=True' 
+if Json_Info.can_manage_voice_chats == true then
+voice = '&can_manage_voice_chats=True' 
 else 
-Voice = '&can_manage_Voice_chats=false' 
+voice = '&can_manage_voice_chats=false' 
 end
 if Json_Info.can_manage_chat == true then
 manage = '&can_manage_chat=True' 
 else 
 manage = '&can_manage_chat=false' 
 end
-local ListGruoup = Voice..manage.. '&can_change_info=false' ..deletee..invitee..restrictt..pinn..promotee
+local ListGruoup = voice..manage.. '&can_change_info=false' ..deletee..invitee..restrictt..pinn..promotee
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id="..data.chat_id_ .."&user_id="..users[2]..ListGruoup)
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
 end
@@ -20316,23 +20319,23 @@ promotee = '&can_promote_members=true'
 else 
 promotee = '&can_promote_members=false' 
 end 
-if Json_Info.can_manage_Voice_chats == true then
-Voice = '&can_manage_Voice_chats=True' 
+if Json_Info.can_manage_voice_chats == true then
+voice = '&can_manage_voice_chats=True' 
 else 
-Voice = '&can_manage_Voice_chats=false' 
+voice = '&can_manage_voice_chats=false' 
 end
 if Json_Info.can_manage_chat == true then
 manage = '&can_manage_chat=True' 
 else 
 manage = '&can_manage_chat=false' 
 end
-local ListGruoup = Voice..manage.. infoo..'&can_delete_messages=false'..invitee..restrictt..pinn..promotee
+local ListGruoup = voice..manage.. infoo..'&can_delete_messages=false'..invitee..restrictt..pinn..promotee
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id="..data.chat_id_ .."&user_id="..users[2]..ListGruoup)
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
 end
 end
-if Text and Text:match('amr@(%d+)/user@(%d+)/DRGuserfalse') then
-local users = {string.match(Text,"^amr@(%d+)/user@(%d+)/DRGuserfalse$")}
+if Text and Text:match('amr@(%d+)/user@(%d+)/banuserfalse') then
+local users = {string.match(Text,"^amr@(%d+)/user@(%d+)/banuserfalse$")}
 if tonumber(users[1]) == tonumber(data.sender_user_id_) then
 local Chek_Info = https.request('https://api.telegram.org/bot'..token..'/getChatMember?chat_id='.. data.chat_id_ ..'&user_id='.. users[2])
 local Json_Info = JSON.decode(Chek_Info)
@@ -20366,17 +20369,17 @@ promotee = '&can_promote_members=true'
 else 
 promotee = '&can_promote_members=false' 
 end 
-if Json_Info.can_manage_Voice_chats == true then
-Voice = '&can_manage_Voice_chats=True' 
+if Json_Info.can_manage_voice_chats == true then
+voice = '&can_manage_voice_chats=True' 
 else 
-Voice = '&can_manage_Voice_chats=false' 
+voice = '&can_manage_voice_chats=false' 
 end
 if Json_Info.can_manage_chat == true then
 manage = '&can_manage_chat=True' 
 else 
 manage = '&can_manage_chat=false' 
 end
-local ListGruoup = Voice..manage.. infoo..deletee..invitee..'&can_restrict_members=false' ..pinn..promotee
+local ListGruoup = voice..manage.. infoo..deletee..invitee..'&can_restrict_members=false' ..pinn..promotee
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id="..data.chat_id_ .."&user_id="..users[2]..ListGruoup)
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
 end
@@ -20416,17 +20419,17 @@ promotee = '&can_promote_members=true'
 else 
 promotee = '&can_promote_members=false' 
 end 
-if Json_Info.can_manage_Voice_chats == true then
-Voice = '&can_manage_Voice_chats=True' 
+if Json_Info.can_manage_voice_chats == true then
+voice = '&can_manage_voice_chats=True' 
 else 
-Voice = '&can_manage_Voice_chats=false' 
+voice = '&can_manage_voice_chats=false' 
 end
 if Json_Info.can_manage_chat == true then
 manage = '&can_manage_chat=True' 
 else 
 manage = '&can_manage_chat=false' 
 end
-local ListGruoup = Voice..manage.. infoo..deletee..invitee..restrictt..'&can_pin_messages=false' ..promotee
+local ListGruoup = voice..manage.. infoo..deletee..invitee..restrictt..'&can_pin_messages=false' ..promotee
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id="..data.chat_id_ .."&user_id="..users[2]..ListGruoup)
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
 end
@@ -20466,17 +20469,17 @@ promotee = '&can_promote_members=true'
 else 
 promotee = '&can_promote_members=false' 
 end 
-if Json_Info.can_manage_Voice_chats == true then
-Voice = '&can_manage_Voice_chats=True' 
+if Json_Info.can_manage_voice_chats == true then
+voice = '&can_manage_voice_chats=True' 
 else 
-Voice = '&can_manage_Voice_chats=false' 
+voice = '&can_manage_voice_chats=false' 
 end
 if Json_Info.can_manage_chat == true then
 manage = '&can_manage_chat=True' 
 else 
 manage = '&can_manage_chat=false' 
 end
-local ListGruoup = Voice..manage.. infoo..deletee..'&can_invite_users=false'  ..restrictt..pinn..promotee
+local ListGruoup = voice..manage.. infoo..deletee..'&can_invite_users=false'  ..restrictt..pinn..promotee
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id="..data.chat_id_ .."&user_id="..users[2]..ListGruoup)
 sendin(Chat_id,msg_idd,data.sender_user_id_,users[2])
 end
@@ -20754,7 +20757,7 @@ if (text and text == "تفعيل اوامر التسليه") then
 send(msg.chat_id_, msg.id_, ' ●  تم تفعيل اوامر التسليه')
 bot_data:del(ban_id.."Fun_Bots:"..msg.chat_id_)
 end
-local Name_Bot = (bot_data:get(ban_id..'Name:Bot') or 'فينم')
+local Name_Bot = (bot_data:get(ban_id..'Name:Bot') or 'فينوم')
 if not bot_data:get(ban_id.."Fun_Bots:"..msg.chat_id_) then
 if text ==  ""..Name_Bot..' شنو رئيك بهاذا' and tonumber(msg.reply_to_message_id_) > 0 then     
 function FunBot(extra, result, success) 
