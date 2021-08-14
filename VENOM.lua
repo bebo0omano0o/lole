@@ -3769,22 +3769,8 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/68&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 
-if text == 'يوتيوب' or text == 'بحث' or text == 'اليوتيوب' then
-local Text = [[
-اليك بوتات تحميل 🛑
-من جميع المواقع 🛑
 
-]]
-keyboard = {} 
-keyboard.inline_keyboard = {
-{{text = 'بوت اليوتيوب 🇲🇦',url="t.me/Qeaa_bot"}},
-{{text = 'بوت تيك توك ●',url="t.me/K0XBOT"}},
-{{text = 'بوت انستقرام 🎌',url="t.me/J33Bot"}},
-{{text = 'بوت قران 🏳️',url="t.me/quran_lbot"}},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/8&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end
+
 if text=="اذاعه بالتثبيت" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
 bot_data:setex(ban_id.."Bc:Grops:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 send(msg.chat_id_, msg.id_," ● ارسل الان اذاعتك؟ \n ● للخروج ارسل الغاء ")
@@ -13416,7 +13402,15 @@ end
 send(msg.chat_id_,msg.id_, '[انت الي حلو ياقمر..♥️🦋](t.me/SOURCEVENOM)')
 return false
 end
-
+if text == 'يوتيوب' or text == 'بحث' or text == 'اليوتيوب' then
+local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"  ") 
+return false  
+end
+send(msg.chat_id_,msg.id_, '[اكتب بحث+ الكلمه او ارسل الرابط](t.me/SOURCEVENOM)')
+return false
+end
 if text then 
 list = {'💋'}
 for k,v in pairs(list) do
