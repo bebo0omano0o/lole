@@ -2067,9 +2067,9 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id_/2097152/0.5 
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
-if text == "توكن البوت" and SudoBot(msg) or text == 'جلب التوكن' and SudoBot(msg) then 
-if not Devban(msg) then
-send(msg.chat_id_, msg.id_,'هذا الامر خاص بمطور البوت')
+if text == "توكن البوت" and Developers(msg) or text == 'جلب التوكن' and Developers(msg) then 
+if not SudoBot(msg) then
+send(msg.chat_id_, msg.id_,'هذا الامر خاص بي باندا فقط')
 return false
 end
 local msg_id = msg.id_/2097152/0.5 
@@ -3761,7 +3761,7 @@ local Text = [[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'ʙᴀɴᴅᴀ ғᴜᴄᴋ σғғ↺',url="t.me/Q_0_ll"}},
+{{text = 'Ᏼ Ꭺ Ν Ꭰ Ꭺ~"𖥕𝖋_𝖔𝖋𝖋🇬🇺',url="t.me/Q_0_ll"}},
 {{text = '•الــقــنــوات♪', callback_data="/Ajobanf"},{text = '•الــبــارات♪', callback_data="/banfai"}},  
 {{text = '•الــبــوتــات♪', callback_data="/gqjik"}},
 }
@@ -18502,7 +18502,7 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'ʙᴀɴᴅᴀ ғᴜᴄᴋ σғғ↺',url="t.me/Q_0_ll"}},
+{{text = 'Ᏼ Ꭺ Ν Ꭰ Ꭺ~"𖥕𝖋_𝖔𝖋𝖋🇬🇺',url="t.me/Q_0_ll"}},
 {{text = '•الــقــنــوات♪', callback_data="/Ajobanf"},{text = '•الــبــارات♪', callback_data="/banfai"}},  
 {{text = '•الــبــوتــات♪', callback_data="/gqjik"}},
 }
@@ -19342,7 +19342,7 @@ local textt = '  .'
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = 'ʙᴀɴᴅᴀ ғᴜᴄᴋ σғғ↺',url="t.me/Q_0_ll"},
+{text = 'Ᏼ Ꭺ Ν Ꭰ Ꭺ~"𖥕𝖋_𝖔𝖋𝖋🇬🇺',url="t.me/Q_0_ll"},
 },
 }
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id='..Chat_id..'&photo='..'https://youtu.be/'..Id_Link..'&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
