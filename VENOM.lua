@@ -3702,7 +3702,235 @@ ID = "GetUser",
 user_id_ = user_id
 }, cb, nil)
 end
+---------------------- الاوامر الجديدة
+if text == 'الاوامر' then
+if not Mod(msg) then
+send(msg.chat_id_, msg.id_,' ● هذا الامر خدد ليس لك\n  اكتب 「اوامر الاعضاء」لعرض اوامر الاعضاء')
+return false
+end
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = bot_data:get(ban_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,' ●لا تستطيع استخدام البوت \n ●يرجى الاشتراك بالقناه اولا \n ●اشترك هنا ['..bot_data:get(ban_id..'add:ch:username')..']')
+end
+return false
+end
+local Text =[[
+● اهلا بك في قسم الاوامر ..↑↓
+اختر الامر الذي تريدها .↑↓
+ده من الازرار بلاسفل . ↓
+●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
 
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '◗اوامر المطورين◖', callback_data="/help5"},{text = '◗اوامر التسليه◖', callback_data="/help7"},
+},
+{
+{text = '◗اوامر الاعضاء◖', callback_data="/help6"},
+},
+{
+{text = '◗اوامر التعطيل◖', callback_data="/help2"},{text = '◗اوامر القفل◖', callback_data="/help1"},
+},
+{
+{text = '•تــغــير الــلــغــه•', callback_data="/help90"},
+},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+return false
+end
+----------------------------------------------------------------------------
+if text == 'الالعاب' then
+local Text = [[
+ اهلا بك في قسم الالعاب ..↑↓
+ اختر العبه الذي تريدها .↑↓
+ده من الازرار بلاسفل . ↓
+●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
+ 
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '◗العاب السورس◖', callback_data="/mute-name"},{text = '◗الاضافات◖', callback_data="/change-photo"},
+},
+{
+{text = '◗ متطوره◖', callback_data="/DRG"},
+},
+{
+{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
+},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/35&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+if text == 'امر الـعـضو ' or text == 'اوامر الأعضاء' or text == 'اوامر الاعضاء' then
+local Text = [[
+ اتبع الاوامر الاعضاء
+ تحت لي في الزر الأسفل↓
+ 
+ ..
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'اوامر الاعضاء', callback_data="/change-names"},
+},
+{
+{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
+},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+if text == 'اصنع يوزر' or text == 'اصنع' then
+local Text = [[
+-اختار يوزرك من الأسفل-
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '@jjjx33', callback_data="/jjjx33"},{text = '@Xccp', callback_data="/Xccp"},
+},
+{
+{text = '@Lj_llIll', callback_data="/Lj_llIll"},{text = '@pivsn', callback_data="/pivsn"},
+},
+{
+{text = '•@k1op', callback_data="/k1op"},{text = '@Q10d', callback_data="/Q10d"},
+},
+{
+{text = '@llll_iiij', callback_data="/whoop"},{text = '@Xjak', callback_data="/Xjak"},
+},
+{
+{text = '@Xjljlj', callback_data="/Xjljlj"},{text = '@jk1bn', callback_data="/jk1bn"},
+},
+{
+{text = '@A0op', callback_data="/A0op"},{text = '@vip_iij', callback_data="/vip_iij"},
+},
+{
+{text = '@iii_llij', callback_data="/iii_llij"},{text = '@YtIIIl', callback_data="/YtIIIl"},
+},
+{
+{text = '@hjljilj', callback_data="/hjljilj"},{text = '@vbvy', callback_data="/vbvy"},
+},
+{
+{text = '@Diiolk', callback_data="/Diiolk"},{text = '@Bi01j', callback_data="/Bi01j"},
+},
+{
+{text = '@frrili', callback_data="/frrili"},{text = '@Xcvb', callback_data="/Xcvb"},
+},
+{
+{text = '@Dlik', callback_data="/Dlik"},
+},
+{
+{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
+},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+
+if text == 'مريم' then
+local my_ph = bot_data:get(ban_id.."my_maryam:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_," ● مريم  معطله") 
+return false  
+end
+local Text = [[
+🥀اطفي النور واستمتع بلعبه •
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'حسنا', callback_data="/may"},
+},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/37&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+
+if text == 'اسالني' or text == 'اختار' or text == 'لغز' or text == 'الغاز' then
+local Text = [[
+⍆ هل انت جهاز للعب ⍆
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'ابدا العب', callback_data="/guitar"},
+},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/40&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+if text == 'اختبار الذكاء' or text == 'نسبه الذكاء' then
+local Text = [[
+رجل اشترى جهاز كهربائي بخصم 20% من إجمالي قيمة الجهاز، وهي نسبة تساوي 150 ريال؟.ما هي قيمة الجهاز؟.
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '600', callback_data="/verp"},{text = '700', callback_data="/plling"},
+},
+{
+{text = '550', callback_data="/pullin"},{text = '237', callback_data="/pulng"},
+},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/38&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+if text == 'الابراج' then
+local Text = [[
+• أختر برجك عزيزي •📮،⍆
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '• الاسد ،🦁', callback_data="/zking"},{text = '• الثور 🐂', callback_data="/zzor"},
+},
+{
+{text = '• العقرب 🦂', callback_data="/zakrb"},{text = '• القوس 🏹', callback_data="/zkos"},
+},
+{
+{text = '• الحمل 🐐', callback_data="/zBanda"},
+},
+{
+{text = '• السرطان 🦀', callback_data="/zsltan"},{text = '• العذراء 🦋', callback_data="/zazra"},
+},
+{
+{text = '• الميزان ⚖', callback_data="/zmezan"},{text = '• الجدي 🦌', callback_data="/zgagy"},
+},
+{
+{text = ' معرفة برجك 🧭', callback_data="/zporg"},
+},
+{
+{text = '• الحوت 🐋', callback_data="/zhot"},
+},
+{
+{text = '• الجوزاء 🌩', callback_data="/zguza"},{text = '• الدلو 🦯', callback_data="/zdlu"},
+},
+{
+{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
+},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/36&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+if text == 'نزلني' or text == 'نزيلني' and GetChannelMember(msg) then 
+if not bot_data:get(ban_id..'Cick:Me'..msg.chat_id_) then 
+local Text = ": هل انت متاكد  من تنزيلك من جميع الرتب: "
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text="نعم",callback_data="nzllne"..msg.sender_user_id_},{text="لا",callback_data="noKikedMe"..msg.sender_user_id_}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end 
+end
+
+----------------------------------------------------------------- انتهئ الاوامر الجديدة
 if text == 'السورس' or text == 'سورس' or text == 'يا سورس' or text == 'source' then
 local Text = [[
 •𝚆𝙴𝙻𝙲𝙾𝙼𝙴 𝚃𝙾 𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼⇣
@@ -16018,7 +16246,7 @@ Msᴀɢ ~ #msgs
 𓄼🇪🇬 𝑺𝒕𝒂𝒔𝒕 : #stast    ☥
 𓄼🇪🇬 𝐢𝐝 : #id ‌‌‏⚚
 𓄼🇪🇬 𝑮𝒂𝒎𝒆𝑺 : #edit ⚚
-𓄼🇪🇬 ??𝒔𝒈𝒔 : #msgs 𓆊
+𓄼🇪🇬 𝑴𝒔𝒈𝒔 : #msgs 𓆊
 𓄼🇪🇬 𝗖𝗛 - 「@SOURCEVENOM」 ●
 ]],
 [[
@@ -16640,235 +16868,8 @@ send(msg.chat_id_, msg.id_, ' ● الان يمكنك ارسال الكليشه 
 bot_data:set(ban_id..'help10'..msg.sender_user_id_,'true')
 return false 
 end
----------------------- الاوامر الجديدة
-if text == 'الاوامر' then
-if not Mod(msg) then
-send(msg.chat_id_, msg.id_,' ● هذا الامر خدد ليس لك\n  اكتب 「اوامر الاعضاء」لعرض اوامر الاعضاء')
-return false
-end
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = bot_data:get(ban_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,' ●لا تستطيع استخدام البوت \n ●يرجى الاشتراك بالقناه اولا \n ●اشترك هنا ['..bot_data:get(ban_id..'add:ch:username')..']')
-end
-return false
-end
-local Text =[[
-● اهلا بك في قسم الاوامر ..↑↓
-اختر الامر الذي تريدها .↑↓
-ده من الازرار بلاسفل . ↓
-●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
 
-]]
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = '◗اوامر المطورين◖', callback_data="/help5"},{text = '◗اوامر التسليه◖', callback_data="/help7"},
-},
-{
-{text = '◗اوامر الاعضاء◖', callback_data="/help6"},
-},
-{
-{text = '◗اوامر التعطيل◖', callback_data="/help2"},{text = '◗اوامر القفل◖', callback_data="/help1"},
-},
-{
-{text = '•تــغــير الــلــغــه•', callback_data="/help90"},
-},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-return false
-end
-----------------------------------------------------------------------------
-if text == 'الالعاب' then
-local Text = [[
- اهلا بك في قسم الالعاب ..↑↓
- اختر العبه الذي تريدها .↑↓
-ده من الازرار بلاسفل . ↓
-●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
- 
-]]
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = '◗العاب السورس◖', callback_data="/mute-name"},{text = '◗الاضافات◖', callback_data="/change-photo"},
-},
-{
-{text = '◗ متطوره◖', callback_data="/DRG"},
-},
-{
-{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
-},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/35&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end
-if text == 'امر الـعـضو ' or text == 'اوامر الأعضاء' or text == 'اوامر الاعضاء' then
-local Text = [[
- اتبع الاوامر الاعضاء
- تحت لي في الزر الأسفل↓
- 
- ..
-]]
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = 'اوامر الاعضاء', callback_data="/change-names"},
-},
-{
-{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
-},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end
-if text == 'اصنع يوزر' or text == 'اصنع' then
-local Text = [[
--اختار يوزرك من الأسفل-
-]]
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = '@jjjx33', callback_data="/jjjx33"},{text = '@Xccp', callback_data="/Xccp"},
-},
-{
-{text = '@Lj_llIll', callback_data="/Lj_llIll"},{text = '@pivsn', callback_data="/pivsn"},
-},
-{
-{text = '•@k1op', callback_data="/k1op"},{text = '@Q10d', callback_data="/Q10d"},
-},
-{
-{text = '@llll_iiij', callback_data="/whoop"},{text = '@Xjak', callback_data="/Xjak"},
-},
-{
-{text = '@Xjljlj', callback_data="/Xjljlj"},{text = '@jk1bn', callback_data="/jk1bn"},
-},
-{
-{text = '@A0op', callback_data="/A0op"},{text = '@vip_iij', callback_data="/vip_iij"},
-},
-{
-{text = '@iii_llij', callback_data="/iii_llij"},{text = '@YtIIIl', callback_data="/YtIIIl"},
-},
-{
-{text = '@hjljilj', callback_data="/hjljilj"},{text = '@vbvy', callback_data="/vbvy"},
-},
-{
-{text = '@Diiolk', callback_data="/Diiolk"},{text = '@Bi01j', callback_data="/Bi01j"},
-},
-{
-{text = '@frrili', callback_data="/frrili"},{text = '@Xcvb', callback_data="/Xcvb"},
-},
-{
-{text = '@Dlik', callback_data="/Dlik"},
-},
-{
-{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
-},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end
 
-if text == 'مريم' then
-local my_ph = bot_data:get(ban_id.."my_maryam:status"..msg.chat_id_)
-if not my_ph then
-send(msg.chat_id_, msg.id_," ● مريم  معطله") 
-return false  
-end
-local Text = [[
-🥀اطفي النور واستمتع بلعبه •
-]]
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = 'حسنا', callback_data="/may"},
-},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/37&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end
-
-if text == 'اسالني' or text == 'اختار' or text == 'لغز' or text == 'الغاز' then
-local Text = [[
-⍆ هل انت جهاز للعب ⍆
-]]
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = 'ابدا العب', callback_data="/guitar"},
-},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/40&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end
-if text == 'اختبار الذكاء' or text == 'نسبه الذكاء' then
-local Text = [[
-رجل اشترى جهاز كهربائي بخصم 20% من إجمالي قيمة الجهاز، وهي نسبة تساوي 150 ريال؟.ما هي قيمة الجهاز؟.
-]]
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = '600', callback_data="/verp"},{text = '700', callback_data="/plling"},
-},
-{
-{text = '550', callback_data="/pullin"},{text = '237', callback_data="/pulng"},
-},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/38&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end
-if text == 'الابراج' then
-local Text = [[
-• أختر برجك عزيزي •📮،⍆
-]]
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = '• الاسد ،🦁', callback_data="/zking"},{text = '• الثور 🐂', callback_data="/zzor"},
-},
-{
-{text = '• العقرب 🦂', callback_data="/zakrb"},{text = '• القوس 🏹', callback_data="/zkos"},
-},
-{
-{text = '• الحمل 🐐', callback_data="/zBanda"},
-},
-{
-{text = '• السرطان 🦀', callback_data="/zsltan"},{text = '• العذراء 🦋', callback_data="/zazra"},
-},
-{
-{text = '• الميزان ⚖', callback_data="/zmezan"},{text = '• الجدي 🦌', callback_data="/zgagy"},
-},
-{
-{text = ' معرفة برجك 🧭', callback_data="/zporg"},
-},
-{
-{text = '• الحوت 🐋', callback_data="/zhot"},
-},
-{
-{text = '• الجوزاء 🌩', callback_data="/zguza"},{text = '• الدلو 🦯', callback_data="/zdlu"},
-},
-{
-{text = 'Sꪮꪊ𝘳ᥴꫀ Vꫀꪀꪮꪑ', url="t.me/SOURCEVENOM"},
-},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/36&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end
-if text == 'نزلني' or text == 'نزيلني' and GetChannelMember(msg) then 
-if not bot_data:get(ban_id..'Cick:Me'..msg.chat_id_) then 
-local Text = ": هل انت متاكد  من تنزيلك من جميع الرتب: "
-keyboard = {} 
-keyboard.inline_keyboard = {
-{{text="نعم",callback_data="nzllne"..msg.sender_user_id_},{text="لا",callback_data="noKikedMe"..msg.sender_user_id_}},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end 
-end
-
------------------------------------------------------------------ انتهئ الاوامر الجديدة
 if text == "تعطيل الابراج" and Manager(msg) then
 send(msg.chat_id_, msg.id_, ' ● تم تعطيل الابراج')
 bot_data:set(ban_id.." ban:brj_Bots"..msg.chat_id_,"close")
