@@ -3792,29 +3792,26 @@ end
  
 end,nil)
 end
-
 if text == "استوري" and not  bot_data:get(ban_id.."sing:for:me"..msg.chat_id_) then 
-ban = math.random(4,74); 
-local Text ='دوس علي الزرار لاختيار استوري أخري 🍁' 
+ght = math.random(4,74); 
+local Text ='اكتب  وسيتم البوت باختيار استوري عشوائي' 
 keyboard = {}  
-keyboard.inline_keyboard = {
-{{text = 'استوري أخري', callback_data="/lklpo"}}, 
+keyboard.inline_keyboard = { 
 {{text = 'اضغط لاضافه البوت لمجمعتك✅' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}}, 
 } 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..token..'/sendvideo?chat_id=' .. msg.chat_id_ .. '&video=https://t.me/Qapplu/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..token..'/sendvideo?chat_id=' .. msg.chat_id_ .. '&video=https://t.me/Qapplu/'..ght..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 
 if text == "كتبات بالصور" and not  bot_data:get(ban_id.."sing:for:me"..msg.chat_id_) then 
-ban = math.random(3,49); 
+ght = math.random(3,49); 
 local Text ='✨🌻' 
 keyboard = {}  
 keyboard.inline_keyboard = { 
-{{text = 'استوري أخري', callback_data="/lp8qy"}}, 
 {{text = 'اضغط لاضافه البوت لمجمعتك✅' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}}, 
 } 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/dfk9apa/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/dfk9apa/'..ght..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 
 if text == "توكن البوت" and Developers(msg) then 
@@ -4502,61 +4499,7 @@ send(msg.chat_id_, msg.id_,'['..vBandav_Msg[math.random(#vBandav_Msg)]..']')
 return false 
 end
 
-if text == "اشتمو" or text == "اشتمو" or text == "نيكو" then 
-local vBandav_Msg = { 
-"  كسمك يبن الوسخه", 
-" كسمسكك ",
-" هنيكك",
-" اركب امك❤. ",
-" ي ابن الاحبه😁:]] ",
-" هنيك امك فله^^ ",
-" يعرص",
-" ي ابن الوتس",
-" ابوك خول😁:]]",
-" تيزك😁:]]",
-" لا حبيبي❤.",
-" خلاص كسمك😁:]]",
-" كس اختك🙂 ",
-" بز امك^^",
-"ناك ابوك عل وتس🥺⚡...!؟",
-"انيكك🤝🏻😂...!؟",
-" كسمك ي هقر🤾🏻‍♂️😂...!؟",
-" ابوك عرص🏃🏻‍♀️😂...!؟",
-" امك لبوه🏂😂...!؟",
-" بيب بيب هنيك امك عند بتاع الانبيب 😂🤭...!؟",
-" انت بتناك ليه 😂...!؟",
-" كسمك ي خول😂...!؟",
-" هديك زبي 😂...!؟",
-" شششش مراتي🤭♥️...!؟",
-" كتفمك يخول🙂...!؟",
-" يبن الفيس😂...!؟",
-" ههينك ي ود مراتي😂...!؟ ",
-" بهزر معاك🙂...!؟",
-" خد زبي😉...!؟",
-" امك لبوه ياه🙂...!؟",
-" وه ي كسمك😂♥️...!؟",
-" ي ابن المتناكه🤝🏻😂...!؟",
-" تيزك فيها كام خرمه😂...!؟",
-" كسك🤾🏻‍♂️😂...!؟",
-" كسمك تاني😂😂...!؟ ",
-" هنيك امك😂...!؟",
-" كسمين امك😂...!؟ ",
-" كس اختك تاني😂🏂...!؟",
-" ي متناك😂⚡...!؟",
-" ي شرموط ",
-" ي مايح  ",
-" يبن الزانيه ",
-" ي كسمك  ",
-" ي منيوك ",
-" ي ابن المتناكة ",
-" يا لي امك احبهه ",
-" كسمينك",
-" كفياك كدا❤'✓",
 
-} 
-send(msg.chat_id_, msg.reply_to_message_id_,'['..vBandav_Msg[math.random(#vBandav_Msg)]..']')  
-return false 
-end
 if text == "ثيم" and not  bot_data:get(ban_id.."sing:for:me"..msg.chat_id_) then 
 ght = math.random(1,57); 
 local Text ='اكتب ثيم وسيتم اختيار ثيم اخار' 
@@ -4842,13 +4785,11 @@ tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = SUDO, offset_ = 0, lim
 end,nil)
 end
 end
-
 if text == "غنيلي" and not  bot_data:get(ban_id.."sing:for:me"..msg.chat_id_) then 
 ban = math.random(3,42); 
-local Text ='دوس علي الزرار لاختيار أغنيه أخري 🍁' 
+local Text ='تم اختيار المقطع الصوتي لك' 
 keyboard = {}  
-keyboard.inline_keyboard = {
-{{text = 'اغنيه اخري', callback_data="/allstate"}}, 
+keyboard.inline_keyboard = { 
 {{text = 'اضغط لاضافه البوت لمجمعتك✅' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}}, 
 } 
 local msg_id = msg.id_/2097152/0.5 
@@ -4957,7 +4898,6 @@ ban = math.random(1,28);
 local Text ='مرحبا إليك تويت بالصوره✨🌚' 
 keyboard = {}  
 keyboard.inline_keyboard = { 
-{{text = 'كتبات أخري', callback_data="/ljljkj"}}, 
 {{text = 'اضغط لاضافه البوت لمجمعتك✅' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}}, 
 } 
 local msg_id = msg.id_/2097152/0.5 
@@ -4968,7 +4908,6 @@ ban = math.random(1,24);
 local Text ='مرحبا اليك لو خيروك بالصوره🍁🌝' 
 keyboard = {}  
 keyboard.inline_keyboard = { 
-{{text = 'كتبات أخري', callback_data="/asr4"}}, 
 {{text = 'اضغط لاضافه البوت لمجمعتك✅' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}}, 
 } 
 local msg_id = msg.id_/2097152/0.5 
@@ -16079,7 +16018,7 @@ Msᴀɢ ~ #msgs
 𓄼🇪🇬 𝑺𝒕𝒂𝒔𝒕 : #stast    ☥
 𓄼🇪🇬 𝐢𝐝 : #id ‌‌‏⚚
 𓄼🇪🇬 𝑮𝒂𝒎𝒆𝑺 : #edit ⚚
-𓄼🇪🇬 𝑴𝒔𝒈𝒔 : #msgs 𓆊
+𓄼🇪🇬 ??𝒔𝒈𝒔 : #msgs 𓆊
 𓄼🇪🇬 𝗖𝗛 - 「@SOURCEVENOM」 ●
 ]],
 [[
@@ -18566,7 +18505,6 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
-
 if Text == '/Xcvb' then
 local Text = 'لتجربه العلبه عليك ان تكتب حروف بالصور في الشات🔰'
 https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(Text).."&show_alert=true")
@@ -18843,7 +18781,6 @@ keyboard = {}
 keyboard.inline_keyboard = {
 {{text = '⌯ ˹𝙆𝙖𝙧𝙖˼',url="t.me/amrhaj"},{text = '𝑆𝐸𝐸 𝑃𝑂𝑆𝑇',url="t.me/see_post7"}},
 {{text = 'Different 🇪🇬 مختلف',url="t.me/viwo_zx"},{text = '𝙱𝙻𝙰𝙲𝙺 🖤 𝙱𝙾𝙾𝙺 ⚚',url="t.me/black_bookl"}},
-{{text = '𓆩ᏴᎪᎠ ΝᎥᏀᎻͲ𓆪',url="t.me/Sh_e_t_o_s1"},{text = '𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼 2⤶ 𝙱𝙾𝙾𝙺 ⚚',url="t.me/SOURCEVENOM2"}},
 {{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/bnada-yquio"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -19769,6 +19706,7 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
+
 
 
 if Text == '/Loumarem' then
