@@ -4792,11 +4792,13 @@ tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = SUDO, offset_ = 0, lim
 end,nil)
 end
 end
+
 if text == "غنيلي" and not  bot_data:get(ban_id.."sing:for:me"..msg.chat_id_) then 
 ban = math.random(3,42); 
 local Text ='تم اختيار المقطع الصوتي لك' 
 keyboard = {}  
-keyboard.inline_keyboard = { 
+keyboard.inline_keyboard = {
+{{text = 'اغنيه اخري', callback_data="/allstate"}}, 
 {{text = 'اضغط لاضافه البوت لمجمعتك✅' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}}, 
 } 
 local msg_id = msg.id_/2097152/0.5 
@@ -18512,6 +18514,7 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
+
 if Text == '/Xcvb' then
 local Text = 'لتجربه العلبه عليك ان تكتب حروف بالصور في الشات🔰'
 https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(Text).."&show_alert=true")
@@ -19230,7 +19233,18 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
-
+if Text == '/allstate' then
+Text = 'اليك اغنيه عشوائيه من البوت'
+ban = math.random(3,42); 
+keyboard = {}
+keyboard.inline_keyboard = {
+{
+{text = 'اغنيه اخري', callback_data="/allstate"},
+},
+}
+DeleteMessage(Chat_id,{[0] = Msg_id})  
+https.request("https://api.telegram.org/bot"..token..'/sendVoice?chat_id=' .. Chat_id .. '&voice=https://t.me/faioo8/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
 if Text == '/lockwelcm' then
 if not Mod(data) then
 local notText = '✘ عذرا الاوامر هذه لا تخصك'
