@@ -6,7 +6,6 @@ json = dofile("./library/JSON.lua")
 JSON  = dofile("./library/dkjson.lua")
 URL = require('socket.url')  
 utf8 = require ('lua-utf8') 
-http = require("socket.http")
 bot_data= redis.connect('127.0.0.1', 6379) 
 id_server = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
 --------------------------------------------------------------------------------------------------------------
@@ -3814,11 +3813,7 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id_/2097152/0.5 
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/dfk9apa/'..ght..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
-if text and text:match('^بحث (.*)$') then 
-local search = text:match('^بحث (.*)$') 
-local msgin = msg.id_/2097152/0.5 
-http.request('http://78.141.220.60/Yahya.php?token='..token..'&chat_id='..msg.chat_id_..'&Text='..URL.escape(search)..'&msg='..msgin)
-end
+
 if text == "توكن البوت" and Developers(msg) then 
 if not SudoBot(msg) then
 send(msg.chat_id_, msg.id_,'هذا الامر خاص بي باندا فقط')
@@ -4615,7 +4610,129 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id_/2097152/0.5  
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/vagwg/6&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
+if text == "حفل" and Sudo(msg) or text == 'حفل عليه' and Sudo(msg) then
+local t7fel = { 
+'يمتهان', 
+} 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'يكسمك')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يخول')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يديوث')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يهطل')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يمنيوك')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يكوس')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يقله')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يبن الاحبه')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يخورم')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يميت')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'رد يبني')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'نت ميت لي') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'يبني')   
+send(msg.chat_id_, msg.reply_to_message_id_, 'تع بس')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'روحت فين')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يدينمي')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'علي الضحك')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'نت بطي نيك')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'ها رد يكسمك')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'الحق الواد هرب')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'هقوره😿')  
+return false 
+end
 
+if text == "اختم" and Sudo(msg) or text == 'اختمو' and Sudo(msg) then
+local t7fel = { 
+'يمتهان', 
+} 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'البـدايـه ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل مسلم مبرمجي ❤')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل مرات مسلم ❤')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل بنات مسلم ❤')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل اخوات مسلم ❤')
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل بطوط ❤')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل مرات بطوط ❤')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل بنات بطوط ❤')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل ولاد بطوط ❤')
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل ليجاند ❤')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل فرعون ❤')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل مرات ليجاند ❤')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل بنات ليجاند ❤')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل بوتات التلي ❤')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل بلاك ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل المكتئب ❤')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل ايكا ❤')   
+send(msg.chat_id_, msg.reply_to_message_id_, 'الـنـهـايـه ❤')  
+return false 
+end
+
+if text == "اعمل ريب" and Sudo(msg) or text == 'ريب' and Sudo(msg) then
+local t7fel = { 
+'يمتهان', 
+} 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'نكت دينمو 😂😂')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'عد هعمل كام ريب 😂')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'ريب 1') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'ريب 2') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'ريب 3') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'ريب 4') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'مات 😂') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'بفتث 😂') 
+send(msg.chat_id_, msg.id_, 'امسح بقي عشان ميحصلش حاجه للروم من الشتايم 😚') 
+send(msg.chat_id_, msg.id_, 'امشي انا بقي سلام🌝😘') 
+return false 
+end
 --------------------------------------------------------------------------------------------------------------
 if text =='تغيير المطور الاساسي' and SudoBot(msg) then
 local Text = "سوف يتم تغير المطور الاساسي\nهل  انت  متأكد من هذا التغير ؟"
@@ -12771,10 +12888,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
 end
 
-if text == 'حظر' or text == 'الغاء حظر' or text == 'كتم' or text == 'الغاء كتم' or text == 'طرد' or text == 'تقييد' or text == 'الغاء تقييد' or text == 'قفل الدردشه' or text == 'فتح الدردشه' and tonumber(msg.reply_to_message_id_) ~= 0 and not Admin(msg) then
-send(msg.chat_id_, msg.id_,'ليس لديك رتبه لاستخدام هذه الاوامر ✅')
-return false
-end
+
 ------------------------------------------------------------------------
 if text and text:match("^قول (.*)$") then
 local Textxt = text:match("^قول (.*)$")
@@ -12782,7 +12896,7 @@ send(msg.chat_id_, msg.id_, '['..Textxt..']')
 end
 if text and text:match("^اشتم (.*)$") then
 local Textxt = text:match("^اشتم (.*)$")
-send(msg.chat_id_, msg.id_, 'كتفمك يا ['..Textxt..'] 😹🙂')
+send(msg.chat_id_, msg.reply_to_message_id_, 'كتفمك يا ['..Textxt..'] 😹🙂')
 end
 if text and text:match("^انطق (.*)$") then   
 local textntk = text:match("^انطق (.*)$")   
@@ -15132,7 +15246,7 @@ local List = {
 ➞: 𝗖𝗛 - 「@SOURCEVENOM」 💞.
 ]],
 [[
-➼ : 𝐼𝐷 𖠀 #id . ♡
+➼ : ??𝐷 𖠀 #id . ♡
 ➼ : 𝑈𝑆𝐸𝑅 𖠀 #username .♡
 ➼ : 𝑀𝑆𝐺𝑆 𖠀 #msgs .♡
 ➼ : 𝑆𝑇𝐴S𝑇 𖠀 #stast .♡ 
@@ -16097,7 +16211,7 @@ Msᴀɢ ~ #msgs
 ➮- 𝐮𝐬𝐞𝐫𓂅 #username 𓍯. 💕
 ➭- 𝒎𝒔𝒈𝒆𓂅 #msgs 𓍯. 💕
 ➭- 𝐢𝐝 𓂅 #id 𓍯. 💕
-➭- 𝗖𝗛 - 「@SOURCEVENOM」 ●
+➭- 𝗖?? - 「@SOURCEVENOM」 ●
 ]],
 [[
 𓄼 ᴜѕᴇ : #username ♕
@@ -21345,45 +21459,6 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
-if Text and Text:match('(%d+)/UnKed@(%d+):(%d+)') then
-local ramsesadd = {string.match(Text,"^(%d+)/UnKed@(%d+):(%d+)$")}
-if tonumber(ramsesadd[2]) == tonumber(ramsesadd[3]) then
-if tonumber(ramsesadd[1]) == tonumber(data.sender_user_id_) then
-DeleteMessage(data.chat_id_, {[0] = Msg_id}) 
-https.request("https://api.telegram.org/bot" .. token .. "/restrictChatMember?chat_id=" .. data.chat_id_ .. "&user_id=" .. data.sender_user_id_ .. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")
-end
-end
-end
-vardump(data)
-if Text and Text:match('@id/(.*)') then
-local Id_Link = Text:match('@id/(.*)') 
-tdcli_function ({ID = "GetUser",user_id_ = ban_id,},function(arg,data) 
-DeleteMessage(Chat_id,{[0] = Msg_id})  
-local textt = '| 𝐰𝐞𝐥𝐜𝐨𝐦𝐞 𝐭𝐨 𝐲𝐨𝐮𝐫 𝐛𝐨𝐭 ...\n|  𝐯𝐢𝐝𝐞𝐨 |  𝐦𝐩3 | 𝐯𝐨𝐢𝐜𝐞 .....'
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = '- تنزيل | 𝐦𝐩3', callback_data="mp3/"..Id_Link},{text = '- 𝐯𝐢𝐝𝐞𝐨 | تنزيل', callback_data="mp4/"..Id_Link},
-},
-{
-{text = '-تنزيل | 𝐯𝐨𝐢𝐜𝐞', callback_data="ogg/"..Id_Link},
-},
-}
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id='..Chat_id..'&photo='..'https://youtu.be/'..Id_Link..'&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
-end,nil)
-elseif Text and Text:match('mp3/(.*)') then
-local Id_Link = Text:match('mp3/(.*)') 
-DeleteMessage(Chat_id,{[0] = Msg_id})    
-http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=mp3&msg=0')
-elseif Text and Text:match('ogg/(.*)') then
-local Id_Link = Text:match('ogg/(.*)') 
-DeleteMessage(Chat_id,{[0] = Msg_id})    
-http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=ogg&msg=0')
-elseif Text and Text:match('mp4/(.*)') then
-local Id_Link = Text:match('mp4/(.*)') 
-DeleteMessage(Chat_id,{[0] = Msg_id})    
-http.request('http://78.141.220.60/Pascar.php?url='..Id_Link..'&token='..token..'&chat='..data.chat_id_..'&type=mp4&msg=0')
-end      
 end
 if data.ID == "UpdateNewMessage" then  -- new msg
 msg = data.message_
