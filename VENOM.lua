@@ -19286,54 +19286,7 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
-if Text == '/lp8qy' then
-Text = '✨🌻'
-ban = math.random(3,49); 
-keyboard = {}
-keyboard.inline_keyboard = {
-{
-{text = 'كتبات أخري', callback_data="/lp8qy"},
-},
-}
-DeleteMessage(Chat_id,{[0] = Msg_id})  
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. Chat_id .. '&photo=https://t.me/dfk9apa/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end
-if Text == '/asr4' then
-Text = 'مرحبا اليك لو خيروك بالصوره🍁🌝'
-ban = math.random(1,24); 
-keyboard = {}
-keyboard.inline_keyboard = {
-{
-{text = 'لوخيروك أخري', callback_data="/asr4"},
-},
-}
-DeleteMessage(Chat_id,{[0] = Msg_id})  
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. Chat_id .. '&photo=https://t.me/kbbnv/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end
-if Text == '/ljljkj' then
-Text = 'مرحبا إليك تويت بالصوره✨🌚'
-ban = math.random(1,28); 
-keyboard = {}
-keyboard.inline_keyboard = {
-{
-{text = 'تويت أخري', callback_data="/ljljkj"},
-},
-}
-DeleteMessage(Chat_id,{[0] = Msg_id})  
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. Chat_id .. '&photo=https://t.me/wffhvv/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end
-if Text == '/allstate' then
-Text = 'اليك اغنيه عشوائيه من البوت'
-ban = math.random(3,42); 
-keyboard = {}
-keyboard.inline_keyboard = {
-{
-{text = 'اغنيه اخري', callback_data="/allstate"},
-},
-}
-DeleteMessage(Chat_id,{[0] = Msg_id})  
-https.request("https://api.telegram.org/bot"..token..'/sendVoice?chat_id=' .. Chat_id .. '&voice=https://t.me/faioo8/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end
+
 if Text == '/lockwelcm' then
 if not Mod(data) then
 local notText = '✘ عذرا الاوامر هذه لا تخصك'
@@ -19817,18 +19770,6 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
 
-if Text == '/lklpo' then
-Text = 'دوس علي الزرار لاختيار استوري أخري 🍁'
-ban = math.random(4,74); 
-keyboard = {}
-keyboard.inline_keyboard = {
-{
-{text = 'استوري أخري', callback_data="/lklpo"},
-},
-}
-DeleteMessage(Chat_id,{[0] = Msg_id})  
-https.request("https://api.telegram.org/bot"..token..'/sendvideo?chat_id=' .. Chat_id .. '&video=https://t.me/Qapplu/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end
 
 if Text == '/Loumarem' then
 if not Mod(data) then
