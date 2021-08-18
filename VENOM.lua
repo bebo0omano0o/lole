@@ -13562,11 +13562,6 @@ if not my_ph then
 send(msg.chat_id_, msg.id_," ●انا مين معطله") 
 return false  
 end
-local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
-if not my_ph then
-send(msg.chat_id_, msg.id_,"  ") 
-return false  
-end
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
 if result.username_ then
 username = result.username_ 
@@ -13594,6 +13589,7 @@ end end
 tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = msg.sender_user_id_, offset_ = 0, limit_ = 1 }, getpro, nil) 
 end,nil)
 end
+
 if text == "تفعيل انا مين"  then
 if Constructor(msg) then  
 bot_data:set(ban_id.."my_anamen:status"..msg.chat_id_,true) 
@@ -20023,7 +20019,7 @@ bot_data:del(ban_id.."lock:AddMempar"..msg.chat_id_)
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
+{text = '●??𝙰𝙲𝙺↵', callback_data="/help8"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
