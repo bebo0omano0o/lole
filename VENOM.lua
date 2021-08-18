@@ -4719,7 +4719,7 @@ local vBandav_Msg = {
 send(msg.chat_id_, msg.id_,'['..vBandav_Msg[math.random(#vBandav_Msg)]..']')  
 return false 
 end
-if text == "اشتمو" or text == "اشتمو" or text == "نيكو" then 
+if text == "اشتمو" or text == "اشتم" or text == "نيكو" then 
 local vBandav_Msg = { 
 "  كسمك يبن الوسخه", 
 " كسمسكك ",
@@ -7195,10 +7195,11 @@ end
 end
 if #list == 0 then
 t = " ●  لا يوجد مطورين"
+keyboard = {} 
+keyboard.inline_keyboard = {{{text = 'مسح المطورين', callback_data="/help8"}},}
+https.request("https://api.telegram.org/bot"..token..'/sendmessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(t).."&parse_mode=markdown&reply_markup="..JSON.encode(keyboard)) 
+end 
 end
-send(msg.chat_id_, msg.id_, t)
-end
-
 if text == ("رفع منشئ اساسي") and msg.reply_to_message_id_ and CoSu(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
@@ -19252,7 +19253,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/zDRGd"},
+{text = '●𝙱𝙰??𝙺↵', callback_data="/zDRGd"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
