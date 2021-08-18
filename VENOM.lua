@@ -3824,7 +3824,7 @@ https.request("https://api.telegram.org/bot"..token..'/sendmessage?chat_id=' .. 
 send(msg.chat_id_, msg.id_,' ') 
 end
 if text == "تويت" or text == "كت تويت" then 
-local TWEET_Msg = { 
+local vBandav_Msg = { 
 "مرتبط؟ ", 
 " هل بتكراش ع حد في حياتك؟", 
 " ينفع نرتبط؟", 
@@ -4189,11 +4189,11 @@ local TWEET_Msg = {
   "عادي تتزوج من برا القبيلة؟ ",
   "أجمل شي بحياتك وش هو؟ ",
 } 
-send(msg.chat_id_, msg.id_,'['..TWEET_Msg[math.random(#TWEET_Msg)]..']')  
+send(msg.chat_id_, msg.id_,'['..vBandav_Msg[math.random(#vBandav_Msg)]..']')  
 return false 
 end
 if text == "كتبات" or text == "حكمه" or text == "قصيده" then 
-local TWEET_Msg = { 
+local vBandav_Msg = { 
 "‏من ترك أمرهُ لله، أعطاه الله فوق ما يتمنَّاه💙 ", 
 "‏من علامات جمال المرأة .. بختها المايل ! ",
 "‏ انك الجميع و كل من احتل قلبي🫀🤍",
@@ -4251,11 +4251,11 @@ local TWEET_Msg = {
 "فى احتمال كبير انها ليلة القدر ادعوا لنفسكم كتير وأدعو ربنا يشفى كل مريض. 💙 ",
 "أنِر ظُلمتي، وامحُ خطيئتي، واقبل توبتي وأعتِق رقبتي يا اللّٰه. إنكَ عفوٌّ تُحِبُّ العفوَ؛ فاعفُ عني 💛 ", 
 } 
-send(msg.chat_id_, msg.id_,'['..TWEET_Msg[math.random(#TWEET_Msg)]..']')  
+send(msg.chat_id_, msg.id_,'['..vBandav_Msg[math.random(#vBandav_Msg)]..']')  
 return false 
 end
 if text == "انصحني" or text == "انصحنى" or text == "انصح" then 
-local TWEET_Msg = { 
+local vBandav_Msg = { 
 "عامل الناس بأخلاقك ولا بأخلاقهم", 
 "الجمال يلفت الأنظار لكن الطيبه تلفت القلوب ", 
 "الاعتذار عن الأخطاء لا يجرح كرامتك بل يجعلك كبير في نظر الناس ",
@@ -4317,11 +4317,11 @@ local TWEET_Msg = {
 " انصح نفسك بنفسك بمت😆",
 " كنت نصحت نفسي ياخويا😹", 
 } 
-send(msg.chat_id_, msg.id_,'['..TWEET_Msg[math.random(#TWEET_Msg)]..']')  
+send(msg.chat_id_, msg.id_,'['..vBandav_Msg[math.random(#vBandav_Msg)]..']')  
 return false 
 end
 if text == "نكته" or text == "قولي نكته" or text == "عايز اضحك" then 
-local TWEET_Msg = { 
+local vBandav_Msg = { 
 " مرة واحد مصري دخل سوبر ماركت في الكويت عشان يشتري ولاعة..    راح عشان يحاسب بيقوله الولاعة ديه بكام؟   قاله دينار..  قاله منا عارف ان هي نار بس بكام 🤓😂", 
 "بنت حبت تشتغل مع رئيس عصابة..   شغلها في غسيل الأموال 🤓😂 ", 
 "واحد بيشتكي لصاحبه بيقوله أنا مافيش حد بيحبني ولا يفتكرني أبدًا، ومش عارف أعمل إيه.. قاله سهلة.. استلف من الناس فلوس هيسألوا عليك كل يوم! 🤓😂",
@@ -4337,11 +4337,11 @@ local TWEET_Msg = {
 "مره واحد شاط كرة فى المقص..   اتخرمت. 🤓😂",
 "مرة واحد رايح لواحد صاحبه.. فا البواب وقفه بيقول له انت طالع لمين.. قاله طالع أسمر شوية لبابايا.. قاله يا أستاذ طالع لمين في العماره 🤓😂",
 } 
-send(msg.chat_id_, msg.id_,'['..TWEET_Msg[math.random(#TWEET_Msg)]..']')  
+send(msg.chat_id_, msg.id_,'['..vBandav_Msg[math.random(#vBandav_Msg)]..']')  
 return false 
 end
 if text == "خيرني" or text == "لو خيروك" or text == "خيروك" then 
-local TWEET_Msg = { 
+local vBandav_Msg = { 
 "لو خيروك |  بين الإبحار لمدة أسبوع كامل أو السفر على متن طائرة لـ 3 أيام متواصلة؟ ",
 "لو خيروك |  بين شراء منزل صغير أو استئجار فيلا كبيرة بمبلغ معقول؟ ",
 "لو خيروك |  أن تعيش قصة فيلم هل تختار الأكشن أو الكوميديا؟ ",
@@ -4439,11 +4439,11 @@ local TWEET_Msg = {
 "لو خيروك |  بين تناول الشوكولا التي تحبين طوال حياتك ولكن لا يمكنك الاستماع إلى الموسيقى وبين الاستماع إلى الموسيقى ولكن لا يمكن لك تناول الشوكولا أبدًا؟ ",
 "لو خيروك |  بين مشاركة المنزل مع عائلة من الفئران أو عائلة من الأشخاص المزعجين الفضوليين الذين يتدخلون في كل كبيرة وصغيرة؟ ",
 } 
-send(msg.chat_id_, msg.id_,'['..TWEET_Msg[math.random(#TWEET_Msg)]..']')  
+send(msg.chat_id_, msg.id_,'['..vBandav_Msg[math.random(#vBandav_Msg)]..']')  
 return false 
 end
 if text == "حروف" or text == "حرف" or text == "الحروف" then 
-local TWEET_Msg = { 
+local vBandav_Msg = { 
 " جماد بحرف ⋙ ر  ", 
 " مدينة بحرف ⋙ ع  ",
 " حيوان ونبات بحرف ⋙ خ  ", 
@@ -4495,7 +4495,16 @@ local TWEET_Msg = {
 "مدينة بحرف ⋙ ع  ",
 "دولة واسم بحرف ⋙ ب  ",
 } 
-send(msg.chat_id_, msg.id_,'['..TWEET_Msg[math.random(#TWEET_Msg)]..']')  
+send(msg.chat_id_, msg.id_,'['..vBandav_Msg[math.random(#vBandav_Msg)]..']')  
+return false 
+end
+
+if text == "اشتمو"  then 
+local vBandav_Msg = { 
+"  كسمك يبن الوسخه", 
+
+} 
+send(msg.chat_id_, msg.reply_to_message_id_,'['..vBandav_Msg[math.random(#vBandav_Msg)]..']')  
 return false 
 end
 if text == "ثيم" and not  bot_data:get(ban_id.."sing:for:me"..msg.chat_id_) then 
@@ -4610,129 +4619,7 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id_/2097152/0.5  
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/vagwg/6&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
-if text == "حفل" and Sudo(msg) or text == 'حفل عليه' and Sudo(msg) then
-local t7fel = { 
-'يمتهان', 
-} 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_, msg.reply_to_message_id_, 'يكسمك')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'يخول')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'يديوث')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'يهطل')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'يمنيوك')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'يكوس')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'يقله')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'يبن الاحبه')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'يخورم')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'يميت')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'رد يبني')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'نت ميت لي') 
-send(msg.chat_id_, msg.reply_to_message_id_, 'يبني')   
-send(msg.chat_id_, msg.reply_to_message_id_, 'تع بس')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'روحت فين')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'يدينمي')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'علي الضحك')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'نت بطي نيك')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'ها رد يكسمك')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'الحق الواد هرب')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'هقوره😿')  
-return false 
-end
 
-if text == "اختم" and Sudo(msg) or text == 'اختمو' and Sudo(msg) then
-local t7fel = { 
-'يمتهان', 
-} 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_, msg.reply_to_message_id_, 'البـدايـه ❤') 
-send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل مسلم مبرمجي ❤')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل مرات مسلم ❤')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل بنات مسلم ❤')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل اخوات مسلم ❤')
-send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل بطوط ❤')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل مرات بطوط ❤')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل بنات بطوط ❤')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل ولاد بطوط ❤')
-send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل ليجاند ❤')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل فرعون ❤')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل مرات ليجاند ❤')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل بنات ليجاند ❤')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل بوتات التلي ❤')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل بلاك ❤') 
-send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل المكتئب ❤')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل ايكا ❤')   
-send(msg.chat_id_, msg.reply_to_message_id_, 'الـنـهـايـه ❤')  
-return false 
-end
-
-if text == "اعمل ريب" and Sudo(msg) or text == 'ريب' and Sudo(msg) then
-local t7fel = { 
-'يمتهان', 
-} 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
-send(msg.chat_id_, msg.reply_to_message_id_, 'نكت دينمو 😂😂')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'عد هعمل كام ريب 😂')  
-send(msg.chat_id_, msg.reply_to_message_id_, 'ريب 1') 
-send(msg.chat_id_, msg.reply_to_message_id_, 'ريب 2') 
-send(msg.chat_id_, msg.reply_to_message_id_, 'ريب 3') 
-send(msg.chat_id_, msg.reply_to_message_id_, 'ريب 4') 
-send(msg.chat_id_, msg.reply_to_message_id_, 'مات 😂') 
-send(msg.chat_id_, msg.reply_to_message_id_, 'بفتث 😂') 
-send(msg.chat_id_, msg.id_, 'امسح بقي عشان ميحصلش حاجه للروم من الشتايم 😚') 
-send(msg.chat_id_, msg.id_, 'امشي انا بقي سلام🌝😘') 
-return false 
-end
 --------------------------------------------------------------------------------------------------------------
 if text =='تغيير المطور الاساسي' and SudoBot(msg) then
 local Text = "سوف يتم تغير المطور الاساسي\nهل  انت  متأكد من هذا التغير ؟"
@@ -12894,10 +12781,7 @@ if text and text:match("^قول (.*)$") then
 local Textxt = text:match("^قول (.*)$")
 send(msg.chat_id_, msg.id_, '['..Textxt..']')
 end
-if text and text:match("^اشتم (.*)$") then
-local Textxt = text:match("^اشتم (.*)$")
-send(msg.chat_id_, msg.reply_to_message_id_, 'كتفمك يا ['..Textxt..'] 😹🙂')
-end
+
 if text and text:match("^انطق (.*)$") then   
 local textntk = text:match("^انطق (.*)$")   
 UrlAntk = https.request('https://apiabs.ml/Antk.php?abs='..URL.escape(textntk)..'')   
@@ -16211,7 +16095,7 @@ Msᴀɢ ~ #msgs
 ➮- 𝐮𝐬𝐞𝐫𓂅 #username 𓍯. 💕
 ➭- 𝒎𝒔𝒈𝒆𓂅 #msgs 𓍯. 💕
 ➭- 𝐢𝐝 𓂅 #id 𓍯. 💕
-➭- 𝗖?? - 「@SOURCEVENOM」 ●
+➭- 𝗖𝗛 - 「@SOURCEVENOM」 ●
 ]],
 [[
 𓄼 ᴜѕᴇ : #username ♕
