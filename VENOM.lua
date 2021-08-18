@@ -7194,16 +7194,14 @@ t = t..""..k.."- (`"..v.."`)\n"
 end
 end
 if #list == 0 then
-t = " ●  لا يوجد مطورين"
-end
-send(msg.chat_id_, msg.id_, t)
-end
 t = "●  لا يوجد مطورين"
  Banda = {
 {{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/bnada-yquio"}},
 }
 send_inlin_key(msg.chat_id_,t,Banda,msg.id_)
-end  
+end
+end
+  
 
 if text == ("رفع منشئ اساسي") and msg.reply_to_message_id_ and CoSu(msg) then
 if AddChannel(msg.sender_user_id_) == false then
@@ -18765,7 +18763,7 @@ keyboard = {}
 keyboard.inline_keyboard = {
 {{text = '˹ＤＥＶＩＤ༈˼',url="t.me/de_vi_d"},{text = '𓌹 ˹ＤＯＮＧＯＬ¹˼ 𓌺 ', url="t.me/UU_DO_N"}},
 {{text = '˹ᴛᴀᴡᴏsʟ˼',url="t.me/T_fuck_off"}}, 
-{{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/change-hhh"}},
+{{text = '●𝙱𝙰𝙲??↵', callback_data="/change-hhh"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
