@@ -1041,5 +1041,5 @@ end
 
 end
 return {
-VENOM = games
+VENOM = VENOM
 }
