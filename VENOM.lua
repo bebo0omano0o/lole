@@ -1839,7 +1839,7 @@ if text == 'مسح كليشه ستارت' and Devban(msg) then
 bot_data:del(ban_id..'Start:Bot') 
 send(msg.chat_id_, msg.id_,' ● تم مسح كليشه ستارت')
 end
-if text == 'معلومات السيرفر' and SudoBot(msg) then 
+if text == 'معلومات السيرفر' and Devban(msg) then 
 send(msg.chat_id_, msg.id_, io.popen([[
 linux_version=`lsb_release -ds`
 memUsedPrc=`free -m | awk 'NR==2{printf "%sMB/%sMB {%.2f%}\n", $3,$2,$3*100/$2 }'`
@@ -4932,24 +4932,6 @@ end
 return false
 end
 GetFile_Bot(msg)
-end
-if text == 'جهاتي' or text == 'شكد ضفت' then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = bot_data:get(ban_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n ●  يرجى الاشتراك بالقناه اولا \n ●  اشترك هنا ['..bot_data:get(ban_id..'add:ch:username')..']')
-end
-return false
-end
-local Num = tonumber(bot_data:get(ban_id..'Add:Contact'..msg.chat_id_..':'..msg.sender_user_id_) or 0) 
-if Num == 0 then 
-Text = ' ● لم تقم بأضافه احد'
-else
-Text = ' ● عدد جهاتك * ⋙ 「 '..Num..' 」 '
-end
-send(msg.chat_id_, msg.id_,Text) 
 end
 if text == 'الاوامر المضافه' and Constructor(msg) then
 local list = bot_data:smembers(ban_id..'List:Cmd:Group:New'..msg.chat_id_..'')
@@ -13470,24 +13452,7 @@ Text = '\n ● بالتاكيد تم تعطيل الايدي'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text == 'تفعيل ايدي صوره' and Manager(msg) then   
-if bot_data:get(ban_id..'Bot:Id:Photo'..msg.chat_id_)  then
-bot_data:del(ban_id..'Bot:Id:Photo'..msg.chat_id_) 
-Text = '\n ● تم تفعيل الايدي بالصور' 
-else
-Text = '\n ● بالتاكيد تم تفعيل الايدي بالصوره'
-end
-send(msg.chat_id_, msg.id_,Text) 
-end
-if text == 'تعطيل ايدي صوره' and Manager(msg) then  
-if not bot_data:get(ban_id..'Bot:Id:Photo'..msg.chat_id_)  then
-bot_data:set(ban_id..'Bot:Id:Photo'..msg.chat_id_,true) 
-Text = '\n ● تم تعطيل الايدي بالصوره' 
-else
-Text = '\n ● بالتاكيد تم تعطيل الايدي بالصوره'
-end
-send(msg.chat_id_, msg.id_,Text) 
-end
+
 if text == 'تفعيل الحظر' and Constructor(msg) then   
 if bot_data:get(ban_id..'Lock:kick'..msg.chat_id_)  then
 bot_data:del(ban_id..'Lock:kick'..msg.chat_id_) 
@@ -15345,7 +15310,7 @@ local List = {
 -›   𝚂𝚃𝙰𝚂𝚃 . #stast 🇪🇬 ꙰
 -›   𝙸𝙳 . #id 🇪🇬 ꙰ 
 -›   𝙶𝙼𝙰𝚂 . #stast 🇪🇬 ꙰ 
--›   𝙼𝚂𝙶𝚂 . #msgs 🇪?? ꙰
+-›   𝙼𝚂𝙶𝚂 . #msgs 🇪🇬 ꙰
 -›   ??𝗛 - 「@SOURCEVENOM」 🇪🇬 ꙰.
 ]],
 [[
@@ -15779,7 +15744,7 @@ Msᴀɢ ~ #msgs
 ᯓ 𝗖𝗛 - 「@SOURCEVENOM」 ●.
 ]],
 [[
-.?? ??𝙨𝙚𝙧𝙣𝙖𝙢𝙚 , #username  🖤 ↴
+.𖣂 𝙪𝙨𝙚𝙧𝙣𝙖𝙢𝙚 , #username  🖤 ↴
 .𖣂 𝙨𝙩𝙖𝙨𝙩 , #stast  🖤 ↴
 .𖣂 𝙡𝘿 , #id  🖤 ↴
 .𖣂 𝘼𝙪𝙩𝙤 , #auto  🖤 ↴
@@ -16496,7 +16461,24 @@ if text == "مسح جهاتي" or text == "مسح جهاتي" then
 send(msg.chat_id_, msg.id_,' ● تم مسح جهاتك'  )  
 bot_data:del(ban_id..'Add:Contact'..msg.chat_id_..':'..msg.sender_user_id_)
 end
-
+if text == 'جهاتي' or text == 'شكد ضفت' then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = bot_data:get(ban_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n ●  يرجى الاشتراك بالقناه اولا \n ●  اشترك هنا ['..bot_data:get(ban_id..'add:ch:username')..']')
+end
+return false
+end
+local Num = tonumber(bot_data:get(ban_id..'Add:Contact'..msg.chat_id_..':'..msg.sender_user_id_) or 0) 
+if Num == 0 then 
+Text = ' ● لم تقم بأضافه احد'
+else
+Text = ' ● عدد جهاتك * ⋙ 「 '..Num..' 」 *'
+end
+send(msg.chat_id_, msg.id_,Text) 
+end
 if text == "تنظيف المشتركين" and Devban(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
@@ -18781,7 +18763,7 @@ keyboard = {}
 keyboard.inline_keyboard = {
 {{text = '˹ＤＥＶＩＤ༈˼',url="t.me/de_vi_d"},{text = '𓌹 ˹ＤＯＮＧＯＬ¹˼ 𓌺 ', url="t.me/UU_DO_N"}},
 {{text = '˹ᴛᴀᴡᴏsʟ˼',url="t.me/T_fuck_off"}}, 
-{{text = '●𝙱??𝙲??↵', callback_data="/change-hhh"}},
+{{text = '●𝙱𝙰𝙲??↵', callback_data="/change-hhh"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
