@@ -16490,7 +16490,7 @@ local Num = tonumber(bot_data:get(ban_id..'Add:Contact'..msg.chat_id_..':'..msg.
 if Num == 0 then 
 Text = ' ● لم تقم بأضافه احد'
 else
-Text = ' ● عدد جهاتك * ⋙ 「 '..Num..' 」 *'
+Text = ' ● عدد جهاتك * ⋙ 「 '..Num..' 」 '
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
