@@ -5042,6 +5042,7 @@ tdcli_function ({ID = "GetUser",user_id_ = SUDO,},function(arg,result)
 local function taha(extra, taha, success)
 if taha.photos_[0] then
 local Name = '〈 المطور 〉 -  \n['..result.first_name_..'](tg://user?id='..result.id_..')\n'
+local Banda = 'https://t.me/Qtdao/71'
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
@@ -5053,6 +5054,8 @@ keyboard.inline_keyboard = {
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id='..msg.chat_id_..'&caption='..URL.escape(Name)..'&photo='..taha.photos_[0].sizes_[1].photo_.persistent_id_..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+else 
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=' .. URL.escape(Banda).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 else
 sendText(msg.chat_id_,Name,msg.id_/2097152/0.5,'md')
  end end
@@ -7194,14 +7197,10 @@ t = t..""..k.."- (`"..v.."`)\n"
 end
 end
 if #list == 0 then
-t = "●  لا يوجد مطورين"
- Banda = {
-{{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/bnada-yquio"}},
-}
-send_inlin_key(msg.chat_id_,t,Banda,msg.id_)
+t = " ●  لا يوجد مطورين"
 end
+send(msg.chat_id_, msg.id_, t)
 end
-  
 
 if text == ("رفع منشئ اساسي") and msg.reply_to_message_id_ and CoSu(msg) then
 if AddChannel(msg.sender_user_id_) == false then
@@ -13452,7 +13451,24 @@ Text = '\n ● بالتاكيد تم تعطيل الايدي'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-
+if text == 'تفعيل ايدي صوره' and Manager(msg) then   
+if database:get(bot_id..'Bot:Id:Photo'..msg.chat_id_)  then
+database:del(bot_id..'Bot:Id:Photo'..msg.chat_id_) 
+Text = '\n ● تم تفعيل الايدي بالصور' 
+else
+Text = '\n ● بالتاكيد تم تفعيل الايدي بالصوره'
+end
+send(msg.chat_id_, msg.id_,Text) 
+end
+if text == 'تعطيل ايدي صوره' and Manager(msg) then  
+if not database:get(bot_id..'Bot:Id:Photo'..msg.chat_id_)  then
+database:set(bot_id..'Bot:Id:Photo'..msg.chat_id_,true) 
+Text = '\n ● تم تعطيل الايدي بالصوره' 
+else
+Text = '\n ● بالتاكيد تم تعطيل الايدي بالصوره'
+end
+send(msg.chat_id_, msg.id_,Text) 
+end
 if text == 'تفعيل الحظر' and Constructor(msg) then   
 if bot_data:get(ban_id..'Lock:kick'..msg.chat_id_)  then
 bot_data:del(ban_id..'Lock:kick'..msg.chat_id_) 
@@ -13533,7 +13549,6 @@ end
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
 end
-
 
 if text == "رتبتي" then
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
@@ -14245,7 +14260,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_," ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[مع الف سلامه يقلبي متجيش تاني..😹💔🎶](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[مع الف سلامه يقلبي متجيش تاني..😹💔🎶](t.me/SOURCEVENOM)')
 return false
 end
 
@@ -14255,7 +14270,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_," ☆معطله") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[باي..😺💜](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[باي..😺💜](t.me/SOURCEVENOM)')
 return false
 end
 
@@ -14268,7 +14283,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[خدوني معاكم برايفت والنبي..🥺💜](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[خدوني معاكم برايفت والنبي..🥺💜](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14283,7 +14298,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[عليه الصلاه والسلام..💛🙂](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[عليه الصلاه والسلام..💛🙂](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14313,7 +14328,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[نزل عينك تحت كدا علشان هتخاد علي قفاك..☆♥️](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[نزل عينك تحت كدا علشان هتخاد علي قفاك..☆♥️](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14339,7 +14354,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[انت الي حلو ياقمر..♥️🦋](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[انت الي حلو ياقمر..♥️🦋](t.me/SOURCEVENOM)')
 return false
 end
 
@@ -14352,7 +14367,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[انا عايز مح انا كمان 🥺💛](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[انا عايز مح انا كمان 🥺💛](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14367,7 +14382,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[وحيات امك ياكبتن خدوني معاكو بيف...🥺💔](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[وحيات امك ياكبتن خدوني معاكو بيف...🥺💔](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14382,7 +14397,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[بتعيط تيب لي طيب..😥](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[بتعيط تيب لي طيب..😥](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14396,7 +14411,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[ونجيب اشخاص ...😂😜](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[ونجيب اشخاص ...😂😜](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14411,7 +14426,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[بـعشـقق .🥰❤️](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[بـعشـقق .🥰❤️](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14426,7 +14441,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[وحيات امك ياكبتن خدوني معاكو بيف...🥺💔](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[وحيات امك ياكبتن خدوني معاكو بيف...🥺💔](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14440,7 +14455,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[وعليكم السلام ..🖤☆](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[وعليكم السلام ..🖤☆](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14454,7 +14469,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[خخخ امال ..😹](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[خخخ امال ..😹](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14468,7 +14483,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[قامد قموده ..🌝♥️](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[قامد قموده ..🌝♥️](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14482,7 +14497,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[انا اجمد ..☆💕](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[انا اجمد ..☆💕](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14496,7 +14511,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[انا اجمد ..??💕](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[انا اجمد ..??💕](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14510,7 +14525,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[مش هروح ..😹👻](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[مش هروح ..😹👻](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14524,7 +14539,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[مش هتيجي مش هروح ..😹👻](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[مش هتيجي مش هروح ..😹👻](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14538,7 +14553,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[الود كبر وبقي عندو بنت ..😻💥](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[الود كبر وبقي عندو بنت ..😻💥](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14552,7 +14567,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[عندو كام سنه ..😹💥](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[عندو كام سنه ..😹💥](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14566,7 +14581,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[القمر مهو بيضكك اهوه ..☆💕](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[القمر مهو بيضكك اهوه ..☆💕](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -14580,7 +14595,7 @@ if not my_ph then
 send(msg.chat_id_, msg.id_,"  ") 
 return false  
 end
-send(msg.chat_id_,msg.id_, '[القمر مهو بيضكك اهوه ..☆💕](t.me/ABCDABCDL)')
+send(msg.chat_id_,msg.id_, '[القمر مهو بيضكك اهوه ..☆💕](t.me/SOURCEVENOM)')
 return false
 end
 end
@@ -18763,7 +18778,7 @@ keyboard = {}
 keyboard.inline_keyboard = {
 {{text = '˹ＤＥＶＩＤ༈˼',url="t.me/de_vi_d"},{text = '𓌹 ˹ＤＯＮＧＯＬ¹˼ 𓌺 ', url="t.me/UU_DO_N"}},
 {{text = '˹ᴛᴀᴡᴏsʟ˼',url="t.me/T_fuck_off"}}, 
-{{text = '●𝙱??𝙲??↵', callback_data="/change-hhh"}},
+{{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/change-hhh"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
 end
