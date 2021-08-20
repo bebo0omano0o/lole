@@ -1839,7 +1839,7 @@ if text == 'مسح كليشه ستارت' and Devban(msg) then
 bot_data:del(ban_id..'Start:Bot') 
 send(msg.chat_id_, msg.id_,' ● تم مسح كليشه ستارت')
 end
-if text == 'معلومات السيرفر' and Developers(msg) then 
+if text == 'معلومات السيرفر' and SudoBot(msg) then 
 send(msg.chat_id_, msg.id_, io.popen([[
 linux_version=`lsb_release -ds`
 memUsedPrc=`free -m | awk 'NR==2{printf "%sMB/%sMB {%.2f%}\n", $3,$2,$3*100/$2 }'`
@@ -15779,7 +15779,7 @@ Msᴀɢ ~ #msgs
 ᯓ 𝗖𝗛 - 「@SOURCEVENOM」 ●.
 ]],
 [[
-.?? 𝙪𝙨𝙚𝙧𝙣𝙖𝙢𝙚 , #username  🖤 ↴
+.?? ??𝙨𝙚𝙧𝙣𝙖𝙢𝙚 , #username  🖤 ↴
 .𖣂 𝙨𝙩𝙖𝙨𝙩 , #stast  🖤 ↴
 .𖣂 𝙡𝘿 , #id  🖤 ↴
 .𖣂 𝘼𝙪𝙩𝙤 , #auto  🖤 ↴
