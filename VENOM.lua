@@ -13471,8 +13471,8 @@ end
 send(msg.chat_id_, msg.id_,Text) 
 end
 if text == 'تفعيل ايدي صوره' and Manager(msg) then   
-if database:get(bot_id..'Bot:Id:Photo'..msg.chat_id_)  then
-database:del(bot_id..'Bot:Id:Photo'..msg.chat_id_) 
+if bot_data:get(ban_id..'Bot:Id:Photo'..msg.chat_id_)  then
+bot_data:del(ban_id..'Bot:Id:Photo'..msg.chat_id_) 
 Text = '\n ● تم تفعيل الايدي بالصور' 
 else
 Text = '\n ● بالتاكيد تم تفعيل الايدي بالصوره'
@@ -13480,8 +13480,8 @@ end
 send(msg.chat_id_, msg.id_,Text) 
 end
 if text == 'تعطيل ايدي صوره' and Manager(msg) then  
-if not database:get(bot_id..'Bot:Id:Photo'..msg.chat_id_)  then
-database:set(bot_id..'Bot:Id:Photo'..msg.chat_id_,true) 
+if not bot_data:get(ban_id..'Bot:Id:Photo'..msg.chat_id_)  then
+bot_data:set(ban_id..'Bot:Id:Photo'..msg.chat_id_,true) 
 Text = '\n ● تم تعطيل الايدي بالصوره' 
 else
 Text = '\n ● بالتاكيد تم تعطيل الايدي بالصوره'
