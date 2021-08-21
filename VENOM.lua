@@ -5125,7 +5125,7 @@ else
 username = 'لا يوجد '
 end
 if result.status_.ID == "UserStatusRecently" and result.profile_photo_ ~= false then
-sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, ban.photos_[0].sizes_[1].photo_.persistent_id_,''..rdphoto..'\n• 🖤 | 𝑼𝑬𝑺 : '..username..' \n• 🖤 | 𝑴𝑺𝑮 : '..Msguser..' \n• 🖤 | 𝑺𝑻𝑨 : '..Rutba(msg.sender_user_id_,msg.chat_id_)..'  \n• 🖤 | 𝑰?? :  '..msg.sender_user_id_..' \n• 🖤 | b𝐼𝑂 : '..getbioY..' \n• 🖤 | 𝐶𝐻 : @SOURCEVENOM \n')
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, ban.photos_[0].sizes_[1].photo_.persistent_id_,''..rdphoto..'\n• 🖤 | 𝑼𝑬𝑺 : `'..username..'`\n• 🖤 | 𝑴𝑺𝑮 : '..Msguser..' \n• 🖤 | 𝑺𝑻𝑨 : '..Rutba(msg.sender_user_id_,msg.chat_id_)..'  \n• 🖤 | 𝑰𝑫 :  `'..msg.sender_user_id_..'` \n• 🖤 | b𝐼𝑂 : '..getbioY..' \n• 🖤 | 𝐶𝐻 : @SOURCEVENOM \n')
 else 
 if result.status_.ID == "UserStatusEmpty" and result.profile_photo_ == false then
 send(msg.chat_id_, msg.id_,'[\n ¦✙ بيك عزيزي 「'..Name..'」 \n¦• 𝚄𝚂𝙴𝚁 ↝  「'..Name..'」    ↝💘\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」.   ↝💘\n ¦• 𝚁𝙰𝙽𝙺↝ 「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」    ↝💘\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」    ↝💘\n¦• 𝒄𝒉↝   「@SOURCEVENOM」 ↝🇧??\n')
@@ -5243,7 +5243,7 @@ if result.status_.ID == "UserStatusRecently" and result.profile_photo_ ~= false 
 sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, ban.photos_[0].sizes_[1].photo_.persistent_id_,''..rdphoto..'\n• 🖤 | 𝑼𝑬𝑺 : '..username..' \n• 🖤 | 𝑴𝑺𝑮 : '..Msguser..' \n• 🖤 | 𝑺𝑻𝑨 : '..Rutba(msg.sender_user_id_,msg.chat_id_)..'  \n• 🖤 | 𝑰𝑫 :  '..msg.sender_user_id_..' \n• 🖤 | b𝐼𝑂 : '..getbioY..' \n• 🖤 | 𝐶𝐻 : @SOURCEVENOM \n')
 else 
 if result.status_.ID == "UserStatusEmpty" and result.profile_photo_ == false then
-send(msg.chat_id_, msg.id_,'[\n ¦✙ بيك عزيزي 「'..Name..'」 \n¦• 𝚄𝚂𝙴𝚁 ↝  「'..Name..'」    ↝💘\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」.   ↝💘\n ¦• 𝚁𝙰𝙽𝙺↝ 「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」    ↝💘\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」    ↝💘\n¦• 𝒄𝒉↝   「@SOURCEVENOM」 ↝🇧??\n')
+send(msg.chat_id_, msg.id_,'[\n ¦✙ بيك عزيزي 「'..Name..'」 \n¦• 𝚄𝚂𝙴𝚁 ↝  「'..Name..'」    ↝💘\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」.   ↝💘\n ¦• 𝚁??𝙽𝙺↝ 「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」    ↝💘\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」    ↝💘\n¦• 𝒄𝒉↝   「@SOURCEVENOM」 ↝🇧??\n')
 else
 send(msg.chat_id_, msg.id_, '\n ● الصوره ⋙ ليس لديك صور في حسابك'..'[\n¦• 𝚄??𝙴𝚁 ↝ 「'..username..'」\n¦• 𝙼𝚂𝙶𝚂↝ 「'..Msguser..'」\n¦• 𝙸𝙳↝  「'..msg.sender_user_id_..'」\n¦• 𝒄𝒉↝  「@SOURCEVENOM」\n')
 end 
@@ -13706,7 +13706,7 @@ if b.username_ then
 User_id = "@"..b.username_
 else
 User_id = msg.sender_user_id_
-end --الكود حصري سورس فينوميعني لو بكتهن راح اعرفك انت الاخذتهن
+end 
 local t = "\n ●المستخدم ~ ["..User_id .."] يصيح المشرفين \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 k = 0
 for i,v in pairs(data.members_) do
@@ -13724,6 +13724,31 @@ send(msg.chat_id_, msg.id_,t)
 end,nil)
 end,nil)
 end
+end
+if text == 'مشرفين' or text == "تاك للمشرفين" or text == "الادمنه" or text == "المشرفين" then
+tdcli_function ({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 100},function(arg,data)
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,b)  
+if b.username_ then 
+User_id = "@"..b.username_
+else
+User_id = msg.sender_user_id_
+end 
+local t = "\n ●المستخدم ~ ["..User_id .."] يصيح المشرفين \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
+k = 0
+for i,v in pairs(data.members_) do
+if ban_id ~= v.user_id_ then 
+k = k + 1
+local username = bot_data:get(ban_id.."user:Name"..v.user_id_)
+if bot_data:get(ban_id..'user:Name'..v.user_id_) then
+t = t..""..k.." → {[@"..bot_data:get(ban_id..'user:Name'..v.user_id_).."]}\n"
+else
+t = t..""..k.." → {`"..v.user_id_.."`}\n"
+end
+end
+end
+send(msg.chat_id_, msg.id_,t)
+end,nil)
+end,nil)
 end
 
 if text == "الساعه" then
