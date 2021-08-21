@@ -1,105 +1,19 @@
 local function VENOM(msg)
 local text = msg.content_.text_
-if text == "رتبتي" then
-tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
-if result.username_ then
-username = result.username_ 
-else
-username = 'SOURCEVENOM'
-end
-local msg_id = msg.id_/2097152/0.5  
-local textt = ' 🌚❤️ رتبتك في البوت⤌ '..Rutba(msg.sender_user_id_,msg.chat_id_)
-local Banda = 'https://t.me/Qtdao/71'
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = textt, url="http://t.me/"..username},
-},
-}
-local function getpro(extra, result, success) 
-if result.photos_[0] then 
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo='..result.photos_[0].sizes_[1].photo_.persistent_id_..'&photo=' .. URL.escape(textt).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-else 
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=' .. URL.escape(Banda).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-end end 
-tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = msg.sender_user_id_, offset_ = 0, limit_ = 1 }, getpro, nil) 
-end,nil)
-end
-if text == "انا مين" then
-local my_ph = bot_data:get(ban_id.."my_anamen:status"..msg.chat_id_)
-if not my_ph then
-send(msg.chat_id_, msg.id_," ●انا مين معطله") 
-return false  
-end
-tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
-if result.username_ then
-username = result.username_ 
-else
-username = 'SOURCEVENOM'
-end
-local msg_id = msg.id_/2097152/0.5  
-local textt = ' ❤️ انت يا قلبي '..Rutba(msg.sender_user_id_,msg.chat_id_)
-local Banda = 'https://t.me/Qtdao/71'
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = textt, url="http://t.me/"..username},
-},
-{
-{text = 'اضف البوت الي مجموعتك' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"},
-},
-}
-local function getpro(extra, result, success) 
-if result.photos_[0] then 
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo='..result.photos_[0].sizes_[1].photo_.persistent_id_..'&photo=' .. URL.escape(textt).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-else 
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=' .. URL.escape(Banda).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-end end 
-tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = msg.sender_user_id_, offset_ = 0, limit_ = 1 }, getpro, nil) 
-end,nil)
-end
 
-if text == "تفعيل انا مين"  then
+if text == "تفعيل ردود السورس"  then
 if Constructor(msg) then  
-bot_data:set(ban_id.."my_anamen:status"..msg.chat_id_,true) 
-send(msg.chat_id_, msg.id_," ● تـم تـفعـيل انا مين") 
+bot_data:set(ban_id.."my_GHoeq2:status"..msg.chat_id_,true) 
+send(msg.chat_id_, msg.id_," ●تـم تـفعـيل ردود السورس") 
 return false  
 end
 end
-
-
-
-if text == "تعطيل انا مين"  then
+if text == "تعطيل ردود السورس"  then
 if Constructor(msg) then  
-bot_data:del(ban_id.."my_anamen:status"..msg.chat_id_) 
-send(msg.chat_id_, msg.id_," ● تـم تـعـطـيل انا مين") 
+bot_data:del(ban_id.."my_GHoeq2:status"..msg.chat_id_) 
+send(msg.chat_id_, msg.id_," ● تـم تـعـطـيل ردود السورس") 
 return false end
 end
-
-if text == '678' then 
-local my_ph = bot_data:get(ban_id.."my_anamen:status"..msg.chat_id_)
-if not my_ph then
-send(msg.chat_id_, msg.id_," ●انا مين معطله") 
-return false  
-end
-local rtp = Rutba(msg.sender_user_id_,msg.chat_id_) 
-send(msg.chat_id_, msg.id_,' انت 「 '..rtp..' 」 روح قلبي 🥺❤️\n  ⋆') 
-end
-
-if text == "تفعيل انا مين"  then
-if Constructor(msg) then  
-bot_data:set(ban_id.."my_anamen:status"..msg.chat_id_,true) 
-send(msg.chat_id_, msg.id_," ●تـم تـفعـيل انا مين") 
-return false  
-end
-end
-if text == "تعطيل انا مين"  then
-if Constructor(msg) then  
-bot_data:del(ban_id.."my_anamen:status"..msg.chat_id_) 
-send(msg.chat_id_, msg.id_," ● تـم تـعـطـيل انا مين") 
-return false end
-end
-
 
 if text == 'عامل اي' then 
 local my_ph = bot_data:get(ban_id.."my_GHoeq2:status"..msg.chat_id_)
@@ -1041,5 +955,5 @@ end
 
 end
 return {
-VENOM = VENOM
+VENOM = games
 }
