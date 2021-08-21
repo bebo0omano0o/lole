@@ -13969,7 +13969,12 @@ end end
 tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = msg.sender_user_id_, offset_ = 0, limit_ = 1 }, getpro, nil) 
 end,nil)
 end
-
+if text == "تعطيل انا مين"  then
+if Constructor(msg) then  
+bot_data:del(ban_id.."my_anamen:status"..msg.chat_id_) 
+send(msg.chat_id_, msg.id_," ● تـم تـعـطـيل انا مين") 
+return false end
+end
 if text == "تفعيل انا مين"  then
 if Constructor(msg) then  
 bot_data:set(ban_id.."my_anamen:status"..msg.chat_id_,true) 
@@ -13977,20 +13982,6 @@ send(msg.chat_id_, msg.id_," ● تـم تـفعـيل انا مين")
 return false  
 end
 end
-
-
-
-if text == "تعطيل انا مين"  then
-if Constructor(msg) then  
-bot_data:del(ban_id.."my_anamen:status"..msg.chat_id_) 
-send(msg.chat_id_, msg.id_," ● تـم تـعـطـيل انا مين") 
-return false end
-end
-end
-
-
-
-
 if string.find(text,"ضافني") or string.find(text,"ضفني") then
 if not bot_data:get(ban_id..'Added:Me'..msg.chat_id_) then
 tdcli_function ({ID = "GetChatMember",chat_id_ = msg.chat_id_,user_id_ = msg.sender_user_id_},function(arg,da) 
