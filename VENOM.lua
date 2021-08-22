@@ -5705,6 +5705,7 @@ bot_data:set(ban_id..'lock:Fshar'..msg.chat_id_,true)
 bot_data:set(ban_id..'lock:Fars'..msg.chat_id_,true) 
 bot_data:set(ban_id.."my_anamen:status"..msg.chat_id_,true) 
 bot_data:set(ban_id..'Bot:Id:Photo'..msg.chat_id_,true) 
+bot_data:set(ban_id..'ghiktr'..msg.chat_id_,true) 
 bot_data:set(ban_id.."lock:Bot:kick"..msg.chat_id_,'kick')  
 bot_data:set(ban_id..'lock_edit_med'..msg.chat_id_,true) 
 bot_data:set(ban_id.."lock:inline"..msg.chat_id_,'del')  
@@ -5734,6 +5735,7 @@ bot_data:del(ban_id.."lock:Animation"..msg.chat_id_)
 bot_data:del(ban_id.."lock:forward"..msg.chat_id_)  
 bot_data:del(ban_id..'Bot:Id'..msg.chat_id_) 
 bot_data:del(ban_id..'Bot:Id:Photo'..msg.chat_id_) 
+bot_data:del(ban_id..'ghiktr'..msg.chat_id_) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,' ● تم تفعيل جلب الصوره ،\n ● تم  فتح البوتات  ،\n ● تم  فتح التكرار ،\n ● تم  فتح الروابط ،\n ● تم  فتح التوجيه ،\n ● تم  فتح الملصقات ،\n ● تم  فتح المتحركه ،\n ?? تم  فتح الفيديو ،\n ● تم  فتح الفشار ،\n ● تم  فتح الانلاين ،\n ● تم  فتح تعديل المديا ،\n ● تم وضع التكرار  ،\n ● تم  فتح الفارسيه  ،\n ● تم وضع الايدي بصوره،n \n ● تم تفعيل الحمايه  بواسطه ، [「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」](T.ME/'..(data.username_ or 'textchuser')..')  ')
 end,nil)   
@@ -5763,6 +5765,7 @@ bot_data:set(ban_id..'Bot:Id:Photo'..msg.chat_id_,true)
 bot_data:set(ban_id.."lock:Photo"..msg.chat_id_,'ked')  
 bot_data:set(ban_id.."lock:geam"..msg.chat_id_,'ked')  
 bot_data:set(ban_id.."lock:Sticker"..msg.chat_id_,'ktm')  
+bot_data:set(ban_id..'ghiktr'..msg.chat_id_,true) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'تم قفل الحمايه كامله\nتحظير هذا الحمايه تقفل كل حاجه بلتقييد\nتفعيل الحمايه دي بس عند التفليش او التحفيل\nلتعطيل الحمايه القصوه\nاكتب تعطيل الحمايه القوصه\n تم تفعيل الحمايه القصوه من قبل [「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」](T.ME/'..(data.username_ or 'textchuser')..')  ')
 end,nil)   
@@ -5787,6 +5790,7 @@ bot_data:del(ban_id.."lock:geam"..msg.chat_id_)
 bot_data:del(ban_id..'Bot:Id:Photo'..msg.chat_id_) 
 bot_data:set(ban_id.."pp_photo:status"..msg.chat_id_,true) 
 bot_data:set(ban_id.."my_photo:status"..msg.chat_id_,true) 
+bot_data:del(ban_id..'ghiktr'..msg.chat_id_) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'  تم تعطيل الحمايه القصوه من قبل    [「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」](T.ME/'..(data.username_ or 'textchuser')..')  ')
 end,nil)   
@@ -13944,7 +13948,7 @@ else
 username = 'SOURCEVENOM'
 end
 local msg_id = msg.id_/2097152/0.5  
-local textt = ' ⚡❤️ رتبتك في البوت⤌ '..Rutba(msg.sender_user_id_,msg.chat_id_)
+local textt = ' 🌚❤️ رتبتك في البوت⤌ '..Rutba(msg.sender_user_id_,msg.chat_id_)
 local Banda = 'https://t.me/Qtdao/71'
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -13961,46 +13965,22 @@ end end
 tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = msg.sender_user_id_, offset_ = 0, limit_ = 1 }, getpro, nil) 
 end,nil)
 end
-if text == "رتبتي" and  bot_data:get(ban_id..'mutyi'..msg.chat_id_) then     
-tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
-if result.username_ then
-username = result.username_ 
+
+if text == 'تفعيل رتبتي' and Manager(msg) then   
+if bot_data:get(ban_id..'ghiktr'..msg.chat_id_)  then
+bot_data:del(ban_id..'ghiktr'..msg.chat_id_) 
+Text = '\n ● تم تفعيل رتبتي' 
 else
-username = 'SOURCEVENOM'
-end
-local msg_id = msg.id_/2097152/0.5  
-local textt = ' 🦇❤️ رتبتك في البوت⤌ '..Rutba(msg.sender_user_id_,msg.chat_id_)
-local Banda = 'https://t.me/Qtdao/71'
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = textt, url="http://t.me/"..username},
-},
-}
-local function getpro(extra, result, success) 
-if result.photos_[0] then 
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo='..result.photos_[0].sizes_[1].photo_.persistent_id_..'&photo=' .. URL.escape(textt).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-else 
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=' .. URL.escape(Banda).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-end end 
-tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = msg.sender_user_id_, offset_ = 0, limit_ = 1 }, getpro, nil) 
-end,nil)
-end
-if text == 'تفعيل جج' and Manager(msg) then   
-if bot_data:get(ban_id..'mutyi'..msg.chat_id_)  then
-bot_data:del(ban_id..'mutyi'..msg.chat_id_) 
-Text = '\n ● تم تفعيل الايدي' 
-else
-Text = '\n ●  بالتاكيد تم تفعيل الايدي'
+Text = '\n ●  بالتاكيد تم تفعيل رتبتي'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text == 'تعطيل هه' and Manager(msg) then  
+if text == 'تعطيل رتبتي' and Manager(msg) then  
 if not bot_data:get(ban_id..'ghiktr'..msg.chat_id_)  then
 bot_data:set(ban_id..'ghiktr'..msg.chat_id_,true) 
-Text = '\n ● تم تعطيل الايدي' 
+Text = '\n ● تم تعطيل رتبتي' 
 else
-Text = '\n ● بالتاكيد تم تعطيل الايدي'
+Text = '\n ● بالتاكيد تم تعطيل رتبتي'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
@@ -14038,13 +14018,13 @@ end end
 tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = msg.sender_user_id_, offset_ = 0, limit_ = 1 }, getpro, nil) 
 end,nil)
 end
-if text == "تعطيل انا مين"  then
+if text == "تعطيل انا مين"  and Manager(msg) then   
 if Constructor(msg) then  
 bot_data:del(ban_id.."my_anamen:status"..msg.chat_id_) 
 send(msg.chat_id_, msg.id_," ● تـم تـعـطـيل انا مين") 
 return false end
 end
-if text == "تفعيل انا مين"  then
+if text == "تفعيل انا مين"  and Manager(msg) then   
 if Constructor(msg) then  
 bot_data:set(ban_id.."my_anamen:status"..msg.chat_id_,true) 
 send(msg.chat_id_, msg.id_," ● تـم تـفعـيل انا مين") 
@@ -14197,7 +14177,24 @@ send(msg.chat_id_, msg.id_,'لا تمتلك صوره في حسابك', 1, 'md')
 tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = msg.sender_user_id_, offset_ = 0, limit_ = 1 }, getpro, nil)
 end
 end
-
+if text == 'تفعيل ايدي صوره' and Manager(msg) then   
+if bot_data:get(ban_id..'Bot:Id:Photo'..msg.chat_id_)  then
+bot_data:del(ban_id..'Bot:Id:Photo'..msg.chat_id_) 
+Text = '\n ● تم تفعيل الايدي بالصور' 
+else
+Text = '\n ● بالتاكيد تم تفعيل الايدي بالصوره'
+end
+send(msg.chat_id_, msg.id_,Text) 
+end
+if text == 'تعطيل ايدي صوره' and Manager(msg) then  
+if not bot_data:get(ban_id..'Bot:Id:Photo'..msg.chat_id_)  then
+bot_data:set(ban_id..'Bot:Id:Photo'..msg.chat_id_,true) 
+Text = '\n ● تم تعطيل الايدي بالصوره' 
+else
+Text = '\n ● بالتاكيد تم تعطيل الايدي بالصوره'
+end
+send(msg.chat_id_, msg.id_,Text) 
+end
 
 if text == 'تغير الايدي' and Manager(msg) then 
 local List = {
@@ -17937,7 +17934,8 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = 'ＦＡＭＩＬＹ.."𖥕ＢＡＮＤＡ🇧🇿',url="t.me/Quick0k"}},
+{{text = '™ͲᎬᎪᎷ▷Ғ_ΌҒҒ🇨🇷',url="t.me/Quick0k"}},
+{{text = 'Ᏼ.Ꭺ.Ꭱ▷Ᏼ.Ꭺ.Ν.Ꭰ.Ꭺ🇱🇸',url="t.me/Quqsk"}},
 {{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/bnada-yquio"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -17954,7 +17952,7 @@ keyboard.inline_keyboard = {
 {{text = 'بوت زخرفه اسماء ✅',url="t.me/Quick_1bot"}},
 {{text = 'بوت تعليم اوامر السيرفر ✅',url="t.me/Qrao_bot"}},
 {{text = 'بوت دعم قنوات ✅',url="t.me/Qdja_bot"}},
-{{text = 'بوت حمايه الجروبات ✅',url="t.me/Qdja_bot"}},
+{{text = 'بوت حمايه الجروبات ✅',url="t.me/Qskr_bot"}},
 {{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/bnada-yquio"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -18651,7 +18649,7 @@ bot_data:del(ban_id.."Cick:krh"..Chat_id)
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲??↵', callback_data="/help8"},
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
