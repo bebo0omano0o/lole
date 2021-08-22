@@ -216,6 +216,14 @@ else
 return false  
 end  
 end
+function botsad(msg) 
+local hash = bot_data:sismember(ban_id.."of:sad:1", msg.sender_user_id_) 
+if hash or SudoBot(msg) or Devban(msg) then    
+return true  
+else  
+return false  
+end  
+end
 function Dev(msg) 
 local hash = bot_data:sismember(ban_id.."Dev:ban:2", msg.sender_user_id_) 
 if hash  then  
@@ -335,6 +343,8 @@ elseif tonumber(user_id) == tonumber(ban_id) then
 var = true  
 elseif bot_data:sismember(ban_id.."Dev:ban:2", user_id) then
 var = true  
+elseif bot_data:sismember(ban_id.."of:sad:1", user_id) then
+var = true  
 elseif bot_data:sismember(ban_id..'Sudo:User', user_id) then
 var = true  
 elseif bot_data:sismember(ban_id..'CoSu'..chat_id, user_id) then
@@ -376,7 +386,9 @@ var = 'مبرمج افايره'
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = 'المطور الاساسي'  
 elseif bot_data:sismember(ban_id.."Dev:ban:2", user_id) then
-var = "المطور الثانوي"  
+var = "المطور الثانوي" 
+elseif bot_data:sismember(ban_id.."of:sad:1", user_id) then
+var = "مساعد المطور"  
 elseif tonumber(user_id) == tonumber(ban_id) then  
 var = 'البوت'
 elseif bot_data:sismember(ban_id..'Sudo:User', user_id) then
@@ -2127,28 +2139,28 @@ send(msg.chat_id_, msg.id_, t)
 end
 
 
-if text == 'الاحصائيات' and SudoBot(msg) then 
+if text == 'الاحصائيات' and botsad(msg) then 
 local Groups = bot_data:scard(ban_id..'Chek:Groups')  
 local Users = bot_data:scard(ban_id..'User_Bot')  
 Text = ' ● الاحصائيات  \n'..' ● عدد الجروبات  ⋙ {'..Groups..'}'..'\n ●  عدد المشتركين  ⋙ {'..Users..'}'
 send(msg.chat_id_, msg.id_,Text) 
 return false
 end
-if text == 'المشتركين' and SudoBot(msg) then 
+if text == 'المشتركين' and botsad(msg) then 
 local Groups = bot_data:scard(ban_id..'Chek:Groups')  
 local Users = bot_data:scard(ban_id..'User_Bot')  
 Text = '\n ● المشتركين ⋙{`'..Users..'`}'
 send(msg.chat_id_, msg.id_,Text) 
 return false
 end
-if text == 'الجروبات ' and SudoBot(msg) then 
+if text == 'الجروبات ' and botsad(msg) then 
 local Groups = bot_data:scard(ban_id..'Chek:Groups')  
 local Users = bot_data:scard(ban_id..'User_Bot')  
 Text = '\n ● الجروبات ⋙{`'..Groups..'`}'
 send(msg.chat_id_, msg.id_,Text) 
 return false
 end
-if text == ("المطورين") and SudoBot(msg) then
+if text == ("المطورين") and botsad(msg) then
 local list = bot_data:smembers(ban_id..'Sudo:User')
 t = "\n ● قائمة المطورين \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 for k,v in pairs(list) do
@@ -2164,7 +2176,7 @@ t = " ● لا يوجد مطورين"
 end
 send(msg.chat_id_, msg.id_, t)
 end
-if text == ("قائمه العام") and SudoBot(msg) then
+if text == ("قائمه العام") and botsad(msg) then
 local list = bot_data:smembers(ban_id..'GDRG:User')
 t = "\n ● قائمه المحظورين عام \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 for k,v in pairs(list) do
@@ -2181,7 +2193,7 @@ end
 send(msg.chat_id_, msg.id_, t)
 return false
 end
-if text == ("قائمه الكتم العام") and SudoBot(msg) then
+if text == ("قائمه الكتم العام") and botsad(msg) then
 local list = bot_data:smembers(ban_id..'Gmute:User')
 t = "\n ● قائمة المكتومين عام \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 for k,v in pairs(list) do
@@ -2218,10 +2230,10 @@ bot_data:setex(ban_id.."Send:Fwd:Pv" .. msg.chat_id_ .. ":" .. msg.sender_user_i
 send(msg.chat_id_, msg.id_," ● ارسل لي التوجيه الان")
 return false
 end 
-if text == 'جلب النسخه' and Devban(msg) then 
+if text == 'جلب النسخه' and botsad(msg) then 
 GetFile_Bot(msg)
 end
-if text == "تنظيف المشتركين " and SudoBot(msg) then 
+if text == "تنظيف المشتركين " and botsad(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
 if textchuser then
@@ -2315,7 +2327,7 @@ return false
 end
 
 
-if text and text:match("^رفع مطور @(.*)$") and Devban(msg) then
+if text and text:match("^رفع مطور @(.*)$") and botsad(msg) then
 local username = text:match("^رفع مطور @(.*)$")
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
@@ -2344,7 +2356,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
 return false 
 end
-if text and text:match("^رفع مطور (%d+)$") and Devban(msg) then
+if text and text:match("^رفع مطور (%d+)$") and botsad(msg) then
 local userid = text:match("^رفع مطور (%d+)$")
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
@@ -2368,7 +2380,7 @@ send(msg.chat_id_, msg.id_, usertext..status)
 end;end,nil)
 return false 
 end
-if text and text:match("^تنزيل مطور @(.*)$") and Devban(msg) then
+if text and text:match("^تنزيل مطور @(.*)$") and botsad(msg) then
 local username = text:match("^تنزيل مطور @(.*)$")
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
@@ -2393,7 +2405,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
 return false
 end  
-if text and text:match("^تنزيل مطور (%d+)$") and Devban(msg) then
+if text and text:match("^تنزيل مطور (%d+)$") and botsad(msg) then
 local userid = text:match("^تنزيل مطور (%d+)$")
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
@@ -4017,7 +4029,7 @@ bot_data:setex(ban_id.."Bc:Grops:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_
 send(msg.chat_id_, msg.id_," ● ارسل الان اذاعتك؟ \n ● للخروج ارسل الغاء ")
 return false
 end
-if text == "£¢€$$__€€¢¥^^¥€" and SudoBot(msg) then
+if text == "£¢€$$__€€¢¥^^¥€" and Developers(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 return false
 end
@@ -6599,7 +6611,7 @@ end
 send(msg.chat_id_, msg.id_, t)
 return false
 end
-if text == ("حظر عام") and msg.reply_to_message_id_ and SudoBot(msg) then
+if text == ("حظر عام") and msg.reply_to_message_id_ and botsad(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
 if textchuser then
@@ -6646,7 +6658,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
 return false
 end
-if text and text:match("^حظر عام @(.*)$")  and SudoBot(msg) then
+if text and text:match("^حظر عام @(.*)$")  and botsad(msg) then
 local username = text:match("^حظر عام @(.*)$") 
 if AddChannel(msg.sender_user_id_) == false then
 local Groups = bot_data:scard(ban_id..'Chek:Groups')  
@@ -6700,7 +6712,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
 return false
 end
-if text and text:match("^حظر عام (%d+)$") and SudoBot(msg) then
+if text and text:match("^حظر عام (%d+)$") and botsad(msg) then
 local userid = text:match("^حظر عام (%d+)$")
 if AddChannel(msg.sender_user_id_) == false then
 local Groups = bot_data:scard(ban_id..'Chek:Groups')  
@@ -6749,7 +6761,7 @@ send(msg.chat_id_, msg.id_, usertext..status)
 end;end,nil)
 return false
 end
-if text == ("كتم عام") and msg.reply_to_message_id_ and SudoBot(msg) then
+if text == ("كتم عام") and msg.reply_to_message_id_ and botsad(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local Groups = bot_data:scard(ban_id..'Chek:Groups')  
 local textchuser = bot_data:get(ban_id..'text:ch:user')
@@ -6796,7 +6808,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
 return false
 end
-if text and text:match("^كتم عام @(.*)$")  and SudoBot(msg) then
+if text and text:match("^كتم عام @(.*)$")  and botsad(msg) then
 local username = text:match("^كتم عام @(.*)$") 
 local Groups = bot_data:scard(ban_id..'Chek:Groups')  
 if AddChannel(msg.sender_user_id_) == false then
@@ -6850,7 +6862,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
 return false
 end
-if text and text:match("^كتم عام (%d+)$") and SudoBot(msg) then
+if text and text:match("^كتم عام (%d+)$") and botsad(msg) then
 local userid = text:match("^كتم عام (%d+)$")
 if AddChannel(msg.sender_user_id_) == false then
 local Groups = bot_data:scard(ban_id..'Chek:Groups')  
@@ -6899,7 +6911,7 @@ send(msg.chat_id_, msg.id_, usertext..status)
 end;end,nil)
 return false
 end
-if text == ("الغاء العام") and msg.reply_to_message_id_ and SudoBot(msg) then
+if text == ("الغاء العام") and msg.reply_to_message_id_ and botsad(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
 if textchuser then
@@ -6921,7 +6933,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
 return false
 end
-if text and text:match("^الغاء العام @(.*)$") and SudoBot(msg) then
+if text and text:match("^الغاء العام @(.*)$") and botsad(msg) then
 local username = text:match("^الغاء العام @(.*)$") 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
@@ -6947,7 +6959,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
 return false
 end
-if text and text:match("^الغاء العام (%d+)$") and SudoBot(msg) then
+if text and text:match("^الغاء العام (%d+)$") and botsad(msg) then
 local userid = text:match("^الغاء العام (%d+)$")
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
@@ -8111,8 +8123,67 @@ send(msg.chat_id_, msg.id_, usertext..status)
 end;end,nil)
 return false
 end
+---------------------------------------------------------------------
+if text == ("رفع مساعد") and tonumber(msg.reply_to_message_id_) ~= 0 and botsad(msg) then
+function Function_VENOM(extra, result, success)
+bot_data:set(ban_id.."of:sad:1", result.sender_user_id_)
+Reply_Status(msg,result.sender_user_id_,"reply","● تم ترقيته مساعد في البوت")  
+end
+tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, Function_VENOM, nil)
+return false 
+end
+if text and text:match("^رفع مساعد @(.*)$") and botsad(msg) then
+local username = text:match("^رفع مساعد @(.*)$")
+function Function_VENOM(extra, result, success)
+if result.id_ then
+if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
+send(msg.chat_id_,msg.id_,"● عذرا عزيزي المستخدم هاذا معرف قناة يرجى استخدام الامر بصوره صحيحه !")   
+return false 
+end      
+bot_data:set(ban_id.."of:sad:1", result.id_)
+Reply_Status(msg,result.id_,"reply","● تم ترقيته مساعد في البوت")  
+else
+send(msg.chat_id_, msg.id_,"● لا يوجد حساب بهاذا المعرف")
+end
+end
+tdcli_function ({ID = "SearchPublicChat",username_ = username}, Function_VENOM, nil)
+return false 
+end
+if text and text:match("^رفع مساعد (%d+)$") and botsad(msg) then
+local userid = text:match("^رفع مساعد (%d+)$")
+bot_data:set(ban_id.."of:sad:1", userid)
+Reply_Status(msg,userid,"reply","● تم ترقيته مساعد في البوت")  
+return false 
+end
+if text == ("تنزيل مساعد") and tonumber(msg.reply_to_message_id_) ~= 0 and SudoBot(msg) then
+function Function_VENOM(extra, result, success)
+bot_data:del(ban_id.."of:sad:1", result.sender_user_id_)
+Reply_Status(msg,result.sender_user_id_,"reply","● تم تنزيله من المساعدين")  
+end
+tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, Function_VENOM, nil)
+return false 
+end
+if text and text:match("^تنزيل مساعد @(.*)$") and botsad(msg) then
+local username = text:match("^تنزيل مساعد @(.*)$")
+function Function_VENOM(extra, result, success)
+if result.id_ then
+bot_data:del(ban_id.."of:sad:1", result.id_)
+Reply_Status(msg,result.id_,"reply","● تم تنزيله من المساعدين")  
+else
+send(msg.chat_id_, msg.id_,"● لا يوجد حساب بهاذا المعرف")
+end
+end
+tdcli_function ({ID = "SearchPublicChat",username_ = username}, Function_VENOM, nil)
+return false
+end  
+if text and text:match("^تنزيل مساعد (%d+)$") and botsad(msg) then
+local userid = text:match("^تنزيل مساعد (%d+)$")
+bot_data:del(ban_id.."of:sad:1", userid)
+Reply_Status(msg,userid,"reply","● تم تنزيله من المساعدين")  
+return false 
+end
 ------------------------------------------------------------------------ adddev2 sudog
-if text == ("رفع مطور ثانوي") and tonumber(msg.reply_to_message_id_) ~= 0 and SudoBot(msg) then
+if text == ("رفع مطور ثانوي") and tonumber(msg.reply_to_message_id_) ~= 0 and botsad(msg) then
 function Function_VENOM(extra, result, success)
 bot_data:sadd(ban_id.."Dev:ban:2", result.sender_user_id_)
 Reply_Status(msg,result.sender_user_id_,"reply","● تم ترقيته مطور ثانوي في البوت")  
@@ -8120,7 +8191,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, Function_VENOM, nil)
 return false 
 end
-if text and text:match("^رفع مطور ثانوي @(.*)$") and SudoBot(msg) then
+if text and text:match("^رفع مطور ثانوي @(.*)$") and botsad(msg) then
 local username = text:match("^رفع مطور ثانوي @(.*)$")
 function Function_VENOM(extra, result, success)
 if result.id_ then
@@ -8137,7 +8208,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, Function_VENOM, nil)
 return false 
 end
-if text and text:match("^رفع مطور ثانوي (%d+)$") and SudoBot(msg) then
+if text and text:match("^رفع مطور ثانوي (%d+)$") and botsad(msg) then
 local userid = text:match("^رفع مطور ثانوي (%d+)$")
 bot_data:sadd(ban_id.."Dev:ban:2", userid)
 Reply_Status(msg,userid,"reply","● تم ترقيته مطور ثانوي في البوت")  
@@ -8151,7 +8222,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, Function_VENOM, nil)
 return false 
 end
-if text and text:match("^تنزيل مطور ثانوي @(.*)$") and SudoBot(msg) then
+if text and text:match("^تنزيل مطور ثانوي @(.*)$") and botsad(msg) then
 local username = text:match("^تنزيل مطور ثانوي @(.*)$")
 function Function_VENOM(extra, result, success)
 if result.id_ then
@@ -8164,13 +8235,14 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, Function_VENOM, nil)
 return false
 end  
-if text and text:match("^تنزيل مطور ثانوي (%d+)$") and SudoBot(msg) then
+if text and text:match("^تنزيل مطور ثانوي (%d+)$") and botsad(msg) then
 local userid = text:match("^تنزيل مطور ثانوي (%d+)$")
 bot_data:srem(ban_id.."Dev:ban:2", userid)
 Reply_Status(msg,userid,"reply","● تم تنزيله من المطور ثانويين")  
 return false 
 end
-if text == ("الثانوين") and SudoBot(msg) then
+
+if text == ("الثانوين") and botsad(msg) then
 local list = bot_data:smembers(ban_id.."Dev:ban:2")
 t = "\n ●  قائمة مطورين الثانويين للبوت \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 for k,v in pairs(list) do
