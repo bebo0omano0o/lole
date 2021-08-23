@@ -16300,18 +16300,7 @@ return https.request("https://api.telegram.org/bot"..token..'/editMessageText?ch
 end
 
 
-if Text == '/GPhah' then
-local Teext =[[
-شيء لا يمشي إلا بالضرب فمن يكون؟
-]]
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = 'تست', callback_data="/Karen"},
-},
-}
-return https.request("https://api.telegram.org/bot"..token..'/editMessagePhoto?chat_id='..Chat_id..'&photo=https://t.me/Qtdao/41&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
-end
+
 if Text == '/help2' then
 if not Mod(data) then
 local notText = '✘ عذرا الاوامر هذه لا تخصك'
@@ -16445,8 +16434,7 @@ keyboard.inline_keyboard = {
 {text = 'اخفاء الاوامر', callback_data="/hide"},
 },
 }
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/37&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-DeleteMessage(Chat_id, msg_idd)
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
 if Text == '/help4' then
 if not Mod(data) then
@@ -16756,14 +16744,11 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
+
 if Text == '/hide' then
 local hide = 'تم اخفاء الاوامر'
 DeleteMessage(Chat_id,{[0] = Msg_id})  
 https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(hide)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true') 
-DeleteMessage(Chat_id, msg_idd)
-https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(hide).."&show_alert=false")
-DeleteMessage(Chat_id, msg_idd)
-return false
 end
 if Text == '/help8' then
 if not Mod(data) then
@@ -17981,7 +17966,7 @@ end
 
 if Text == '/HHH' then
 local Teext =[[
-•𝚆𝙴𝙻𝙲𝙾𝙼𝙴 𝚃𝙾 𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼⇣
+•𝚆𝙴𝙻𝙲𝙾𝙼𝙴 𝚃𝙾 𝚂𝙾𝚄𝚁𝙲𝙴 ??𝙴𝙽𝙾𝙼⇣
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
