@@ -2030,7 +2030,7 @@ local Text = [[
 ]]
 keyboard = {}  
 keyboard.inline_keyboard = { 
-{{text = 'مطورين السورس⚙', url="t.me/U880p"}}, 
+{{text = 'مطورين السورس⚙', url="t.me/SOURCEVENOM"}}, 
 } 
 local msg_id = msg.id_/2097152/0.5 
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/vagwg/8&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
@@ -12034,7 +12034,7 @@ local text =
 '\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●'..
 '\n'..' ●  امر صيح  ⋙ { '..kickme..
 ' }\n'..' ●  امر اطردني  ⋙ { '..sehuser..
-' }\n'..' ●  امر منو ضافني  ⋙ { '..addme..
+' }\n'..' ●  امر مين ضفني  ⋙ { '..addme..
 ' }\n'..' ●  الردود  ⋙ { '..rdmder..
 ' }\n'..' ●  الردود العامه  ⋙ { '..rdsudo..
 ' }\n'..' ●  الايدي  ⋙ { '..idgp..
@@ -15128,7 +15128,7 @@ Msᴀɢ ~ #msgs
 ]],
 [[
 |USERNAME #username 𓃚
-| YOUR -ID - #id 𓃚
+| YOUR -ID - #id ??
 | STAS-#stast 𓃚
  | MSAG - #msgs ??
  | 𝗖𝗛 - 「@SOURCEVENOM」 ●
@@ -19221,7 +19221,7 @@ bot_data:set(ban_id.."lock:tagservr"..msg.chat_id_,'del')
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲??↵', callback_data="/help8"},
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
