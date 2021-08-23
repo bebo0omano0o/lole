@@ -11994,10 +11994,10 @@ NUM_MSG_MAX = bot_data:hget(ban_id.."flooding:settings:"..msg.chat_id_,"floodmax
 local text = 
 '\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●'..
 '\n ● اعدادات الجروب كتالي √↓'..
-'\nء●○━━━━ꪜꫀꪀꪮꪑ━━━━○●'..
+'\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●'..
 '\n ●  علامة ال {✓} تعني مفعل'..
 '\n ●  علامة ال {✘} تعني معطل'..
-'\nء●○━━━━ꪜꫀꪀꪮꪑ━━━━○●'..
+'\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●'..
 '\n ●  الروابط  ⋙ { '..lock_links..
 ' }\n'..' ●  المعرفات  ⋙ { '..lock_user..
 ' }\n'..' ●  التاك  ⋙ { '..lock_hash..
@@ -12008,7 +12008,7 @@ local text =
 ' }\n'..' ●  الماركدون  ⋙ { '..lock_mark..
 ' }\n'..' ●  التعديل  ⋙ { '..lock_edit..
 ' }\n'..' ●  تعديل الميديا  ⋙ { '..lock_edit_med..
-' }\nء●○━━━━ꪜꫀꪀꪮꪑ━━━━○●'..
+' }\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●'..
 '\n'..' ●  الكلايش  ⋙ { '..lock_spam..
 ' }\n'..' ●  الكيبورد  ⋙ { '..lock_inlin..
 ' }\n'..' ●  الاغاني  ⋙ { '..lock_vico..
@@ -12017,7 +12017,7 @@ local text =
 ' }\n'..' ●  الدردشه  ⋙ { '..lock_text..
 ' }\n'..' ●   الفيديو  ⋙ { '..lock_ved..
 ' }\n'..' ●   الصور  ⋙ { '..lock_photo..
-' }\nء●○━━━━ꪜꫀꪀꪮꪑ━━━━○●'..
+' }\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●'..
 '\n'..' ●   الصوت  ⋙ { '..lock_muse..
 ' }\n'..' ●  الملصقات  ⋙ { '..lock_ste..
 ' }\n'..' ●  الجهات  ⋙ { '..lock_phon..
@@ -12028,10 +12028,10 @@ local text =
 ' }\n'..' ●  التكرار  ⋙ { '..flood..
 ' }\n'..' ●  الترحيب  ⋙ { '..welcome..
 ' }\n'..' ●  عدد التكرار  ⋙ { '..NUM_MSG_MAX..
-' }\nء●○━━━━ꪜꫀꪀꪮꪑ━━━━○●'..
+' }\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●'..
 '\n ●  علامة ال {✓} تعني مفعل'..
 '\n ●  علامة ال {✘} تعني معطل'..
-'\nء●○━━━━ꪜꫀꪀꪮꪑ━━━━○●'..
+'\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●'..
 '\n'..' ●  امر صيح  ⋙ { '..kickme..
 ' }\n'..' ●  امر اطردني  ⋙ { '..sehuser..
 ' }\n'..' ●  امر منو ضافني  ⋙ { '..addme..
@@ -12043,7 +12043,7 @@ local text =
 ' }\n'..' ●  الحظر  ⋙ { '..DRGm..' }\n\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n ● قناة سورس فينوم↓\n━━━━━━━\n'
 keyboard = {} 
 keyboard.inline_keyboard = {{{text = 'اخفاء الاوامر', callback_data="/hide"}},}
-https.request("https://api.telegram.org/bot"..token..'/sendmessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(text).."&reply_to_message_id=markdown&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..token..'/sendmessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 if text ==('تثبيت') and msg.reply_to_message_id_ ~= 0 and Mod(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
@@ -19221,7 +19221,7 @@ bot_data:set(ban_id.."lock:tagservr"..msg.chat_id_,'del')
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
+{text = '●𝙱𝙰𝙲??↵', callback_data="/help8"},
 },
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
