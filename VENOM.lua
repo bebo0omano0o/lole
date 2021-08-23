@@ -12034,7 +12034,7 @@ local text =
 '\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●'..
 '\n'..' ●  امر صيح  ⋙ { '..kickme..
 ' }\n'..' ●  امر اطردني  ⋙ { '..sehuser..
-' }\n'..' ●  امر مين ضفني  ⋙ { '..addme..
+' }\n'..' ●  امر منو ضفني  ⋙ { '..addme..
 ' }\n'..' ●  الردود  ⋙ { '..rdmder..
 ' }\n'..' ●  الردود العامه  ⋙ { '..rdsudo..
 ' }\n'..' ●  الايدي  ⋙ { '..idgp..
@@ -12043,7 +12043,7 @@ local text =
 ' }\n'..' ●  الحظر  ⋙ { '..DRGm..' }\n\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n ● قناة سورس فينوم↓\n━━━━━━━\n'
 keyboard = {} 
 keyboard.inline_keyboard = {{{text = 'اخفاء الاوامر', callback_data="/hide"}},}
-https.request("https://api.telegram.org/bot"..token..'/sendmessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+https.request("https://api.telegram.org/bot"..token..'/sendmessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(text).."&reply_to_message_id=markdown&reply_markup="..JSON.encode(keyboard)) 
 end
 if text ==('تثبيت') and msg.reply_to_message_id_ ~= 0 and Mod(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
@@ -15128,7 +15128,7 @@ Msᴀɢ ~ #msgs
 ]],
 [[
 |USERNAME #username 𓃚
-| YOUR -ID - #id ??
+| YOUR -ID - #id 𓃚
 | STAS-#stast 𓃚
  | MSAG - #msgs ??
  | 𝗖𝗛 - 「@SOURCEVENOM」 ●
@@ -17966,7 +17966,7 @@ end
 
 if Text == '/HHH' then
 local Teext =[[
-•𝚆𝙴𝙻𝙲𝙾𝙼𝙴 𝚃𝙾 𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼⇣
+•𝚆𝙴𝙻𝙲𝙾𝙼𝙴 𝚃𝙾 𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾??⇣
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
