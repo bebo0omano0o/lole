@@ -3108,7 +3108,7 @@ end
 end
 end
 if text and bot_data:get(ban_id..'lock:mahn'..msg.chat_id_) and not Special(msg) then 
-list = {"بحبك","مح","مواح","متيجي","ينوحي","يتي","متجيب مح","يا روحي","قلبي",روحي","بيف"}
+list = {"بحبك","مح","مواح","متيجي","ينوحي","يتي","متجيب مح","يا روحي","قلبي","بيف"}
 for k,v in pairs(list) do
 print(string.find(text,v))
 if string.find(text,v) ~= nil then
