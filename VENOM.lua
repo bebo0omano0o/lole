@@ -12021,7 +12021,9 @@ local text =
 ' }\n'..' ●  الايدي بالصوره  ⋙ { '..idph..
 ' }\n'..' ●  الرفع  ⋙ { '..setadd..
 ' }\n'..' ●  الحظر  ⋙ { '..DRGm..' }\n\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n ● قناة سورس فينوم↓\n━━━━━━━\n'
-send(msg.chat_id_, msg.id_,text)     
+keyboard = {} 
+keyboard.inline_keyboard = {{{text = '◗اوامر القفل◖', callback_data="/help1"}},}
+https.request("https://api.telegram.org/bot"..token..'/sendmessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(text).."&parse_mode=markdown&reply_markup="..JSON.encode(keyboard)) 
 end
 if text ==('تثبيت') and msg.reply_to_message_id_ ~= 0 and Mod(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
@@ -14318,7 +14320,7 @@ local List = {
 ]],
 [[
  𝚄𝚂𝙴𝚁 𓄹𓄼 #username
- 𝙸𝙳  ??𓄼 #id 
+ ??𝙳  ??𓄼 #id 
  𝚂𝚃𝙰 𓄹𓄼 #stast 
  𝙼𝚂𝙶𝚂𓄹𓄼 #msgs
  𝗖𝗛 - 「@SOURCEVENOM」 ??.
