@@ -3107,6 +3107,16 @@ return false
 end
 end
 end
+if text and bot_data:get(ban_id..'lock:mahn'..msg.chat_id_) and not Special(msg) then 
+list = {"بحبك","مح","مواح","متيجي","ينوحي","يتي","متجيب مح","يا روحي","قلبي",روحي","بيف",}
+for k,v in pairs(list) do
+print(string.find(text,v))
+if string.find(text,v) ~= nil then
+DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+return false
+end
+end
+end
 if text and bot_data:get(ban_id..'lock:Azag'..msg.chat_id_) and not Special(msg) then 
 list = {"ربج","خرب دينك","خرب دينج","عير بربك","جهات","كس ربك","رب الكواد","كسم ربك","خرب دينك","خرب دينج","عير بربك","سكسي","كس ربك","خرب الله","صوج الله","خرب محمد","الله الكواد","صوج الله","كسخت الله","ربك"}
 for k,v in pairs(list) do
@@ -5836,6 +5846,11 @@ bot_data:set(ban_id..'lock:Fshar'..msg.chat_id_,true)
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,' ●  مـن قبـل  ⋙ [「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」](T.ME/'..(data.username_ or 'textchuser')..') \n ● تـم قفـل السب ')
 end,nil)  
+elseif text == 'قفل المحن' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
+bot_data:set(ban_id..'lock:mahn'..msg.chat_id_,true) 
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,' ●  مـن قبـل  ⋙ [「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」](T.ME/'..(data.username_ or 'textchuser')..') \n ● تـم قفـل السب ')
+end,nil)  
 elseif text == 'قفل الازعاج' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
 bot_data:set(ban_id..'lock:Azag'..msg.chat_id_,true) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
@@ -5930,6 +5945,11 @@ send(msg.chat_id_, msg.id_,' ●  مـن قبـل  ⋙ [「'..Rutba(msg.sender_u
 end,nil)   
 elseif text == 'فتح السب' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
 bot_data:del(ban_id..'lock:Fshar'..msg.chat_id_) 
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,' ●  مـن قبـل  ⋙ [「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」](T.ME/'..(data.username_ or 'textchuser')..') \n ● تـم فـتح السب ')
+end,nil)   
+elseif text == 'فتح المحن' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
+bot_data:del(ban_id..'lock:mahn'..msg.chat_id_) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,' ●  مـن قبـل  ⋙ [「'..Rutba(msg.sender_user_id_,msg.chat_id_)..'」](T.ME/'..(data.username_ or 'textchuser')..') \n ● تـم فـتح السب ')
 end,nil)   
@@ -12022,8 +12042,8 @@ local text =
 ' }\n'..' ●  الرفع  ⋙ { '..setadd..
 ' }\n'..' ●  الحظر  ⋙ { '..DRGm..' }\n\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n ● قناة سورس فينوم↓\n━━━━━━━\n'
 keyboard = {} 
-keyboard.inline_keyboard = {{{text = '◗اوامر القفل◖', callback_data="/help1"}},}
-https.request("https://api.telegram.org/bot"..token..'/sendmessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(text).."&parse_mode=markdown&reply_markup="..JSON.encode(keyboard)) 
+keyboard.inline_keyboard = {{{text = 'اخفاء الاوامر', callback_data="/hide"}},}
+https.request("https://api.telegram.org/bot"..token..'/sendmessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(text).."&reply_to_message_id=markdown&reply_markup="..JSON.encode(keyboard)) 
 end
 if text ==('تثبيت') and msg.reply_to_message_id_ ~= 0 and Mod(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
@@ -14258,7 +14278,7 @@ local List = {
 [[
 🇯🇵 - 𝄬 username . #username  𓃠
 🇯🇵 - 𝄬 stast . #stast  𓃠
-🇯🇵 - 𝄬 id . #id 𓃠
+🇯?? - 𝄬 id . #id 𓃠
 🇯🇵 - 𝄬 gmas . #gmas 𓃠
 🇯🇵 - 𝄬 msgs . #msgs  𓃠
 ]],
@@ -14320,7 +14340,7 @@ local List = {
 ]],
 [[
  𝚄𝚂𝙴𝚁 𓄹𓄼 #username
- ??𝙳  ??𓄼 #id 
+ 𝙸𝙳  ??𓄼 #id 
  𝚂𝚃𝙰 𓄹𓄼 #stast 
  𝙼𝚂𝙶𝚂𓄹𓄼 #msgs
  𝗖𝗛 - 「@SOURCEVENOM」 ??.
@@ -16228,6 +16248,9 @@ keyboard.inline_keyboard = {
 {text = 'قفل الاباحي', callback_data="/lockdul"},{text = 'فتح الاباحي', callback_data="/oppor"},
 },
 {
+{text = 'قفل الازعاج', callback_data="/ayq79"},{text = 'فتح الازعاج', callback_data="/Andrew"},
+},
+{
 {text = 'قفل السب', callback_data="/Louis"},{text = 'فتح السب', callback_data="/tho"},
 },
 {
@@ -16735,6 +16758,7 @@ return https.request("https://api.telegram.org/bot"..token..'/editMessageText?ch
 end
 if Text == '/hide' then
 local hide = 'تم اخفاء الاوامر'
+DeleteMessage(Chat_id,{[0] = Msg_id})  
 https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(hide)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true') 
 DeleteMessage(Chat_id, msg_idd)
 https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(hide).."&show_alert=false")
@@ -19001,6 +19025,38 @@ return false
 end
 local Text = '• تم فتح السب '
 bot_data:del(ban_id.."lock:Fshar"..msg.chat_id_)  
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
+},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
+end
+if Text == '/ayq79' then
+if not Mod(data) then
+local notText = '✘ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
+local Text = '• تم قفل الازعاج '
+bot_data:set(ban_id.."lock:Azag"..msg.chat_id_,'del')  
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/help8"},
+},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
+end
+if Text == '/Andrew' then
+if not Mod(data) then
+local notText = '✘ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
+local Text = '• تم فتح الازعاج '
+bot_data:del(ban_id.."lock:Azag"..msg.chat_id_)  
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
