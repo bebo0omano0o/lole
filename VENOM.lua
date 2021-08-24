@@ -335,7 +335,7 @@ elseif tonumber(user_id) == tonumber(SUDO) then
 var = true  
 elseif tonumber(user_id) == tonumber(ban_id) then
 var = true  
-elseif tonumber(user_id) == bot_data:get(ban_id.."msa3d:YYYBD") then
+elseif bot_data:sismember(ban_id.."msa3d:YYYBD", user_id) then
 var = true  
 elseif bot_data:sismember(ban_id.."Dev:ban:2", user_id) then
 var = true  
@@ -379,7 +379,7 @@ elseif tonumber(user_id) == tonumber(1360140225) then
 var = 'مبرمج افايره'
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = 'المطور الاساسي'  
-elseif tonumber(user_id) == bot_data:get(ban_id.."msa3d:YYYBD") then
+elseif bot_data:get(ban_id.."msa3d:YYYBD", user_id) then
 var = "مساعد"
 elseif bot_data:sismember(ban_id.."Dev:ban:2", user_id) then
 var = "المطور الثانوي"
@@ -3977,7 +3977,7 @@ local tokenget = '1910742031:AAGxfqrJRSDnw2qN9akXVskce2P8gw7pUWI'
 if text == 'دونجول' or text == "دونجل" then
 local id = '1896382059'
 local url = JSON.decode(https.request('https://api.telegram.org/bot'..tokenget..'/getchat?chat_id='..id))
-local name = url.result.first_name
+local name = url.result.first_name..' '..url.result.last_name
 local user = url.result.username
 local bio = url.result.bio
 keyboard = {} 
@@ -3988,7 +3988,7 @@ end
 if text == 'ديفيد' or text == 'دفيد' then
 local id = '1360140225'
 local url = JSON.decode(https.request('https://api.telegram.org/bot'..tokenget..'/getchat?chat_id='..id))
-local name = url.result.first_name
+local name = url.result.first_name..' '..url.result.last_name
 local user = url.result.username
 local bio = url.result.bio
 keyboard = {} 
@@ -3999,7 +3999,7 @@ end
 if text == 'أحمد' or text == 'احمد' or text == 'احمد عياد' then
 local id = '944353237'
 local url = JSON.decode(https.request('https://api.telegram.org/bot'..tokenget..'/getchat?chat_id='..id))
-local name = url.result.first_name
+local name = url.result.first_name..' '..url.result.last_name
 local user = url.result.username
 local bio = url.result.bio
 keyboard = {} 
@@ -4010,7 +4010,7 @@ end
 if text == 'باندا' or text == 'Banda' or text == 'banda' then
 local id = '1804133252'
 local url = JSON.decode(https.request('https://api.telegram.org/bot'..tokenget..'/getchat?chat_id='..id))
-local name = url.result.first_name
+local name = url.result.first_name..' '..url.result.last_name
 local user = url.result.username
 local bio = url.result.bio
 keyboard = {} 
@@ -8217,7 +8217,7 @@ if text == ("المساعد") then
 local id = bot_data:get(ban_id.."msa3d:YYYBD")
 local username = bot_data:get(ban_id.."user:Name"..id)
 local url = JSON.decode(https.request('https://api.telegram.org/bot'..token..'/getchat?chat_id='..id))
-local name = url.result.first_name
+local name = url.result.first_name..' '..url.result.last_name
 local bio = url.result.bio
 if username then
 username = username
