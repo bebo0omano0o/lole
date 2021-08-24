@@ -12217,24 +12217,6 @@ send(msg.chat_id_, msg.id_," ● تم تعطيل نسبه جمالك")
 return false end
 end
 
-if text == "الرابط" then 
-local status_Link = bot_data:get(ban_id.."Link_Group:status"..msg.chat_id_) 
-if not status_Link then 
-send(msg.chat_id_, msg.id_,"الرابط معطل")  
-return false   
-end 
-tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta) 
-local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_)) or bot_data:get(ban_id.."Private:Group:Link"..msg.chat_id_) 
-if linkgpp.ok == true then 
-local linkgp = '• 🖤 |ＬＩＮＫ ＧＲＯＵＰ.\nـــــــــــــــــــــــــ\n ['..ta.title_..']('..linkgpp.result..')\nـــــــــــــــــــــــــ\n  ['..linkgpp.result..']'
-keyboard = {} 
-keyboard.inline_keyboard = {{{text = ta.title_, url=linkgpp.result}},}
-https.request("https://api.telegram.org/bot"..token..'/sendmessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(linkgp).."&parse_mode=markdown&reply_markup="..JSON.encode(keyboard)) 
-else 
-send(msg.chat_id_, msg.id_,'● لا يوجد رابط ارسل ضع رابط') 
-end 
-end,nil) 
-end
 
 if text == 'مسح الرابط' or text == 'مسح الرابط' then
 if Mod(msg) then     
@@ -14211,7 +14193,24 @@ Text = '\n ● بالتاكيد تم تعطيل الايدي بالصوره'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-
+if text == "الرابط" then 
+local status_Link = bot_data:get(ban_id.."Link_Group:status"..msg.chat_id_) 
+if not status_Link then 
+send(msg.chat_id_, msg.id_,"الرابط معطل")  
+return false   
+end 
+tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta) 
+local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_)) or bot_data:get(ban_id.."Private:Group:Link"..msg.chat_id_) 
+if linkgpp.ok == true then 
+local linkgp = '• 🖤 |ＬＩＮＫ ＧＲＯＵＰ.\nـــــــــــــــــــــــــ\n ['..ta.title_..']('..linkgpp.result..')\nـــــــــــــــــــــــــ\n  ['..linkgpp.result..']'
+keyboard = {} 
+keyboard.inline_keyboard = {{{text = ta.title_, url=linkgpp.result}},}
+https.request("https://api.telegram.org/bot"..token..'/sendmessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(linkgp).."&parse_mode=markdown&reply_markup="..JSON.encode(keyboard)) 
+else 
+send(msg.chat_id_, msg.id_,'● لا يوجد رابط ارسل ضع رابط') 
+end 
+end,nil) 
+end
 if text == 'تغير الايدي' and Manager(msg) then 
 local List = {
 [[
