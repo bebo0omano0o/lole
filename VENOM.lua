@@ -8203,7 +8203,8 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, Function_VENOM, nil)
 return false 
 end
-if text == ("المساعد") then
+
+if text == "المساعد" or text == "مساعد" then
 local id = bot_data:get(ban_id.."id:msa3d:ban")
 local urrl = https.request('https://api.telegram.org/bot'..token..'/getchat?chat_id='..id)
 local json = JSON.decode(urrl)
@@ -8213,15 +8214,11 @@ username = json.result.username
 else
 username = 'SOURCEVENOM'
 end
-if json.result.bio then
-bio = json.result.bio
-else
-bio = ''
-end
+local Name = '〈 المساعد مطور البوت 〉 \n'
 keyboard = {} 
 keyboard.inline_keyboard = {{{text = name, url="t.me/"..username}},}
 local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..username..'&caption=' .. URL.escape(bio).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..username..'&caption=' .. URL.escape(Name).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 ------------------------------------------------------------------------ adddev2 sudog
 if text == ("رفع مطور ثانوي") and tonumber(msg.reply_to_message_id_) ~= 0 and msa3d(msg) then
