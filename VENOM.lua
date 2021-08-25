@@ -2837,6 +2837,37 @@ end,nil)
 end,nil)
 end
 
+if text and text:match("^مساعد$") or text and text:match("^المساعد$") or text and text:match("^مساعد البوت$") then
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
+tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,dp) 
+local Name1 = result.first_name_
+local Name1 = Name1:gsub('"',"") 
+local Name1 = Name1:gsub("'","") 
+local Name1 = Name1:gsub("`","") 
+local Name1 = Name1:gsub("*","") 
+local Name1 = Name1:gsub("{","") 
+local Name1 = Name1:gsub("}","") 
+local Name = '['..Name1..'](tg://user?id='..result.id_..')'
+local NameChat = dp.title_
+local NameChat = NameChat:gsub('"',"") 
+local NameChat = NameChat:gsub("'","") 
+local NameChat = NameChat:gsub("`","") 
+local NameChat = NameChat:gsub("*","") 
+local NameChat = NameChat:gsub("{","") 
+local NameChat = NameChat:gsub("}","") 
+local chatid = msg.chat_id_:gsub("-100","") 
+local msg_id = msg.id_/2097152/0.5
+local LinkGp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_))
+if LinkGp.ok == true then 
+LinkGroup = LinkGp.result
+else
+LinkGroup = 'لا يوجد'
+end
+sendText(msa3d,"●. هناك شخص يريدك يا سيدي المساعد \n●الشخص  {"..Name.."}\n●اسم الجروب {"..NameChat.."}\n●ايدي الجروب {`"..msg.chat_id_.."`}\n●رابط الجروب \n ["..LinkGroup.."]\n●رابط الرساله \n https://t.me/c/"..chatid.."/"..msg_id.." ",0,'md')
+end,nil)
+end,nil)
+end
+
 
 if text and text:match("^ديفيد$") or text and text:match("^ديفد$") or text and text:match("^devid$") then
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
@@ -8218,10 +8249,13 @@ else
 username = 'SOURCEVENOM'
 end
 local Name = '〈 المساعد 〉 -  '..name..'\n'
+local Banda = 'لا يوجد مساعد'
 keyboard = {} 
 keyboard.inline_keyboard = {{{text = name, url="t.me/"..username}},}
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..username..'&caption=' .. URL.escape(Name).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+else 
+https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Banda).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 
 ------------------------------------------------------------------------ adddev2 sudog
@@ -14921,7 +14955,7 @@ Msᴀɢ ~ #msgs
 ]],
 [[
 𝒔𝒕𝒂𓂅 #stast 𓍯
-𝐮𝐬𝐞𝐫𓂅 #username 𓍯
+𝐮𝐬𝐞??𓂅 #username 𓍯
 𝒎𝒔𝒈𝒆𓂅 #msgs 𓍯
 𝐢𝐝 𓂅 #id 𓍯
 𓂅 𝗖𝗛 - 「@SOURCEVENOM」 💞.
