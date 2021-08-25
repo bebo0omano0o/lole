@@ -2837,36 +2837,6 @@ end,nil)
 end,nil)
 end
 
-if text and text:match("^مساعد$") or text and text:match("^المساعد$") or text and text:match("^مساعد البوت$") then
-tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
-tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,dp) 
-local Name1 = result.first_name_
-local Name1 = Name1:gsub('"',"") 
-local Name1 = Name1:gsub("'","") 
-local Name1 = Name1:gsub("`","") 
-local Name1 = Name1:gsub("*","") 
-local Name1 = Name1:gsub("{","") 
-local Name1 = Name1:gsub("}","") 
-local Name = '['..Name1..'](tg://user?id='..result.id_..')'
-local NameChat = dp.title_
-local NameChat = NameChat:gsub('"',"") 
-local NameChat = NameChat:gsub("'","") 
-local NameChat = NameChat:gsub("`","") 
-local NameChat = NameChat:gsub("*","") 
-local NameChat = NameChat:gsub("{","") 
-local NameChat = NameChat:gsub("}","") 
-local chatid = msg.chat_id_:gsub("-100","") 
-local msg_id = msg.id_/2097152/0.5
-local LinkGp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_))
-if LinkGp.ok == true then 
-LinkGroup = LinkGp.result
-else
-LinkGroup = 'لا يوجد'
-end
-sendText(msa3d:ban,"●. هناك شخص يريدك يا سيدي المساعد \n●الشخص  {"..Name.."}\n●اسم الجروب {"..NameChat.."}\n●ايدي الجروب {`"..msg.chat_id_.."`}\n●رابط الجروب \n ["..LinkGroup.."]\n●رابط الرساله \n https://t.me/c/"..chatid.."/"..msg_id.." ",0,'md')
-end,nil)
-end,nil)
-end
 
 
 if text and text:match("^ديفيد$") or text and text:match("^ديفد$") or text and text:match("^devid$") then
@@ -3985,7 +3955,7 @@ echo '●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n 🔌l •⊱ 「 م�
 end
 if text == 'السورس' or text == 'سورس' or text == 'يا سورس' or text == 'source' then
 local Text = [[
-•𝚆𝙴𝙻𝙲𝙾𝙼𝙴 𝚃𝙾 𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼⇣
+•𝚆𝙴𝙻𝙲𝙾𝙼𝙴 ??𝙾 𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼⇣
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -14955,7 +14925,7 @@ Msᴀɢ ~ #msgs
 ]],
 [[
 𝒔𝒕𝒂𓂅 #stast 𓍯
-𝐮??𝐞??𓂅 #username 𓍯
+𝐮𝐬𝐞??𓂅 #username 𓍯
 𝒎𝒔𝒈𝒆𓂅 #msgs 𓍯
 𝐢𝐝 𓂅 #id 𓍯
 𓂅 𝗖𝗛 - 「@SOURCEVENOM」 💞.
@@ -15020,7 +14990,7 @@ Msᴀɢ ~ #msgs
 𝐓𝐓• 𝐔??𝐞??𝐍𝐚 𖠰 #username .
 𝐓𝐓• 𝐒𝐓𝐀𝐒𝐓 𖠰 #stast .
 𝐓𝐓• 𝐀𝐔𝐓𝐎 𖠰 #auto .
-𝐓𝐓• 𝗘𝗗𝗜𝗧 𖠰 #edit .
+𝐓𝐓• 𝗘??𝗜𝗧 𖠰 #edit .
 𝐓𝐓• 𝗖𝗛 - 「@SOURCEVENOM」 ●.
 ]],
 [[
