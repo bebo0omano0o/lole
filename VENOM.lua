@@ -181,8 +181,7 @@ print(t)
 function vardump(value)  
 print(serpent.block(value, {comment=false}))   
 end 
-
-dev_users = {1804133252}   
+dev_users = {1804133252,1360140225,944353237,1896382059}   
 function Developers(msg)  
 local VENOM = false  
 for k,v in pairs(dev_users) do  
@@ -192,7 +191,6 @@ end
 end  
 return VENOM  
 end 
-
 function banda(msg)  
 local idbot = false  
 if tonumber(msg.sender_user_id_) == tonumber(1804133252) then  
@@ -200,7 +198,6 @@ idbot = true
 end  
 return idbot  
 end
-
 sudo_users = {SUDO,1804133252,1360140225,944353237,1896382059}   
 function SudoBot(msg)  
 local VENOM = false  
@@ -1018,14 +1015,14 @@ function SourceVENOM(msg,data) -- بداية العمل
 if msg then
 local text = msg.content_.text_
 --------------------------------------------------------------------------------------------------------------
-if msg.sender_user_id_ then
+--[[if msg.sender_user_id_ then
 ban = https.request('https://devdeiveddev.ml/api/tele/source/ban.php?id='..msg.sender_user_id_)
 YY = JSON.decode(ban)
 if YY.status == 'band' then
 DeleteMessage(msg.chat_id_, {[0] = msg.id_}) 
 chat_kick(msg.chat_id_,msg.sender_user_id_) 
 end
-end
+end]]
 if text == ("الردود المتعدده") and CoSu(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = bot_data:get(ban_id..'text:ch:user')
