@@ -8223,7 +8223,7 @@ username = json.result.username
 else
 username = 'SOURCEVENOM'
 end
-local Name = '〈 المساعد 〉 -  \n['..name..'](tg://user?id='..username..')\n'
+local Name = '〈 المساعد 〉 -  \n['..name..'](tg://user?id='..username)\n'
 keyboard = {} 
 keyboard.inline_keyboard = {{{text = name, url="t.me/"..username}},}
 local msg_id = msg.id_/2097152/0.5
