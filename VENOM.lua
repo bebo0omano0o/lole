@@ -3636,12 +3636,6 @@ end,nil)
 end
 -------------------------------------------------------------------------------------------------------------
 
-if text == 'تحديث السورس' and Devban(msg) then 
-os.execute('rm -rf VENOM.lua')
-os.execute('wget https://raw.githubusercontent.com/VENOM197/Venom/main/VENOM.lua')
-send(msg.chat_id_, msg.id_,' ● تم تحديث السورس')
-dofile('VENOM.lua')  
-end
 
 if text and text:match("^تغير الاشتراك$") and Devban(msg) then  
 bot_data:setex(ban_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
@@ -8223,7 +8217,7 @@ username = json.result.username
 else
 username = 'SOURCEVENOM'
 end
-local Name = '〈 المساعد 〉 -  \n['..name..'](tg://user?id='..username)\n'
+local Name = '〈 المساعد 〉 -  '..name..'\n'
 keyboard = {} 
 keyboard.inline_keyboard = {{{text = name, url="t.me/"..username}},}
 local msg_id = msg.id_/2097152/0.5
@@ -12339,6 +12333,12 @@ else
 send(msg.chat_id_, msg.id_,'● لا يوجد رابط ارسل ضع رابط') 
 end 
 end,nil) 
+end
+if text == 'تحديث السورس' and Devban(msg) then 
+os.execute('rm -rf VENOM.lua')
+os.execute('wget https://raw.githubusercontent.com/VENOM197/Venom/main/VENOM.lua')
+send(msg.chat_id_, msg.id_,' ● تم تحديث السورس')
+dofile('VENOM.lua')  
 end
 
 if text == 'مسح الرابط' or text == 'مسح الرابط' then
