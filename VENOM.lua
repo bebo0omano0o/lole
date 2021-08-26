@@ -182,7 +182,7 @@ function vardump(value)
 print(serpent.block(value, {comment=false}))   
 end 
 dev_users = {1804133252}   
-function Developers(msg)  
+function banda(msg)  
 local VENOM = false  
 for k,v in pairs(dev_users) do  
 if tonumber(msg.sender_user_id_) == tonumber(v) then  
@@ -191,13 +191,7 @@ end
 end  
 return VENOM  
 end 
-function banda(msg)  
-local idbot = false  
-if tonumber(msg.sender_user_id_) == tonumber(1804133252) then  
-idbot = true    
-end  
-return idbot  
-end
+
 sudo_users = {SUDO,1804133252,1360140225,944353237,1896382059}   
 function SudoBot(msg)  
 local VENOM = false  
@@ -208,21 +202,13 @@ end
 end  
 return VENOM  
 end 
-banall_users = {1804133252,1360140225,944353237,1896382059}   
-function sudoid(user_id) 
-local var = false 
-for k,v in pairs(banall_users) do 
-if user_id == v then 
-var = true 
-end
-end 
-if user_id == tonumber(SUDO) then 
-var = true 
-end 
-if user_id == tonumber(ban_id) then 
-var = true 
-end 
-return var 
+function Devban(msg) 
+local hash = bot_data:sismember(ban_id.."Dev:ban:2", msg.sender_user_id_) 
+if hash or SudoBot(msg) then  
+return true  
+else  
+return false  
+end  
 end
 function msa3d(msg) 
 local hash = bot_data:sismember(ban_id.."msa3d:ban", msg.sender_user_id_) 
@@ -232,17 +218,9 @@ else
 return false  
 end  
 end
-function Devban(msg) 
-local hash = bot_data:sismember(ban_id.."Dev:ban:2", msg.sender_user_id_) 
-if hash or SudoBot(msg) or msa3d(msg) then  
-return true  
-else  
-return false  
-end  
-end
 function Dev(msg) 
 local hash = bot_data:sismember(ban_id.."Dev:ban:2", msg.sender_user_id_) 
-if hash then  
+if hash  then  
 return true  
 else  
 return false  
@@ -257,7 +235,7 @@ return idbot
 end
 function Sudo(msg) 
 local hash = bot_data:sismember(ban_id..'Sudo:User', msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) then  
+if hash or SudoBot(msg) or Devban(msg) or Bot(msg)  then  
 return true  
 else  
 return false  
@@ -265,7 +243,7 @@ end
 end
 function moall(msg) 
 local hash = bot_data:sismember(ban_id..'Sudo:User', msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) then  
+if hash or SudoBot(msg) or Devban(msg) or Bot(msg)  then  
 return true  
 else  
 return false  
@@ -273,7 +251,7 @@ end
 end
 function onall(msg) 
 local hash = bot_data:sismember(ban_id..'Sudo:User', msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) then  
+if hash or SudoBot(msg) or Devban(msg) or Bot(msg)  then  
 return true  
 else  
 return false  
@@ -281,7 +259,7 @@ end
 end
 function CoSu(msg)
 local hash = bot_data:sismember(ban_id..'CoSu'..msg.chat_id_, msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) then   
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or Bot(msg)  then   
 return true 
 else 
 return false 
@@ -289,7 +267,7 @@ end
 end
 function BasicConstructor(msg)
 local hash = bot_data:sismember(ban_id..'Basic:Constructor'..msg.chat_id_, msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or CoSu(msg) then   
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or CoSu(msg) or Bot(msg)  then   
 return true 
 else 
 return false 
@@ -297,7 +275,7 @@ end
 end
 function Constructor(msg)
 local hash = bot_data:sismember(ban_id..'Constructor'..msg.chat_id_, msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or CoSu(msg) then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or CoSu(msg) or Bot(msg)  then       
 return true    
 else    
 return false    
@@ -305,7 +283,7 @@ end
 end
 function Manager(msg)
 local hash = bot_data:sismember(ban_id..'Manager'..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or CoSu(msg) then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or CoSu(msg) or Bot(msg)  then       
 return true    
 else    
 return false    
@@ -313,7 +291,7 @@ end
 end
 function onall(msg)
 local hash = bot_data:sismember(ban_id..'onall'..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or CoSu(msg) then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or CoSu(msg) or Bot(msg)  then       
 return true    
 else    
 return false    
@@ -321,7 +299,7 @@ end
 end
 function cleaner(msg)
 local hash = bot_data:sismember(ban_id.."banda:MN:TF"..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or CoSu(msg) then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or CoSu(msg) or Bot(msg)  then       
 return true    
 else    
 return false    
@@ -329,7 +307,7 @@ end
 end
 function Mod(msg)
 local hash = bot_data:sismember(ban_id..'Mod:User'..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or CoSu(msg) then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or CoSu(msg) or Bot(msg)  then       
 return true    
 else    
 return false    
@@ -337,18 +315,29 @@ end
 end
 function Special(msg)
 local hash = bot_data:sismember(ban_id..'Special:User'..msg.chat_id_,msg.sender_user_id_) 
-if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or Mod(msg) or CoSu(msg) then       
+if hash or SudoBot(msg) or Devban(msg) or Sudo(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or Mod(msg) or CoSu(msg) or Bot(msg)  then       
 return true 
 else 
 return false 
 end 
 end
+
 function Can_or_NotCan(user_id,chat_id)
-if sudoid(user_id) then
-var = true
-elseif bot_data:sismember(ban_id.."msa3d:ban", user_id) then
+if tonumber(user_id) == tonumber(1804133252) then  
+var = true 
+elseif tonumber(user_id) == tonumber(944353237) then
+var = true  
+elseif tonumber(user_id) == tonumber(1896382059) then
+var = true  
+elseif tonumber(user_id) == tonumber(1360140225) then
+var = true  
+elseif tonumber(user_id) == tonumber(SUDO) then
+var = true  
+elseif tonumber(user_id) == tonumber(ban_id) then
 var = true  
 elseif bot_data:sismember(ban_id.."Dev:ban:2", user_id) then
+var = true  
+elseif bot_data:sismember(ban_id.."msa3d:ban", user_id) then
 var = true  
 elseif bot_data:sismember(ban_id..'Sudo:User', user_id) then
 var = true  
@@ -390,14 +379,14 @@ elseif tonumber(user_id) == tonumber(1360140225) then
 var = 'مبرمج افايره'
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = 'المطور الاساسي'  
-elseif tonumber(user_id) == tonumber(ban_id) then  
-var = 'البوت'
+elseif bot_data:sismember(ban_id.."Dev:ban:2", user_id) then
+var = "المطور الثانوي"  
 elseif bot_data:sismember(ban_id.."msa3d:ban", user_id) then
 var = "مساعد"
-elseif bot_data:sismember(ban_id.."Dev:ban:2", user_id) then
-var = "المطور الثانوي"
+elseif tonumber(user_id) == tonumber(ban_id) then  
+var = 'البوت'
 elseif bot_data:sismember(ban_id..'Sudo:User', user_id) then
-var = bot_data:get(ban_id.."Sudo:Rd"..msg.chat_id_) or 'المطور'
+var = bot_data:get(ban_id.."Sudo:Rd"..msg.chat_id_) or 'المطور'  
 elseif bot_data:sismember(ban_id..'CoSu'..chat_id, user_id) then
 var = bot_data:get(ban_id.."CoSu:Rd"..msg.chat_id_) or 'مالك'
 elseif bot_data:sismember(ban_id..'Basic:Constructor'..chat_id, user_id) then
