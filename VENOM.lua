@@ -1640,8 +1640,7 @@ end
 
 ------by-banda--
 if Chat_Type == 'UserBot' then
-if text == '/start' or text == '『رجوع』' then  
-if Devban(msg) then
+if text == '/start' or text == '『رجوع』' and Devban(msg) then 
 if not msa3d(msg) then
 local bl = '●انت الان المطور الاساسي في البوت \n● سورس فينوم\n ●يمكنك تحكم في البوتات من الكيبورد أسفل \n[تابع جديدنا](t.me/SOURCEVENOM)'
 local keyboard = {
@@ -15097,7 +15096,7 @@ Msᴀɢ ~ #msgs
 ➼ : 𝑈𝑆𝐸𝑅 𖠀 #username .♡
 ➼ : 𝑀𝑆𝐺𝑆 𖠀 #msgs .♡
 ➼ : 𝑆𝑇𝐴S𝑇 𖠀 #stast .♡ 
-➼ : 𝐸𝐷𝐼𝑇  𖠀 #edit .♡
+➼ : ??𝐷𝐼𝑇  𖠀 #edit .♡
 ➼ : 𝗖𝗛 - 『@SOURCEVENOM』 ●
 ]],
 [[
