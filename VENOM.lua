@@ -1663,6 +1663,7 @@ end
 end
 if text == "/start" then
 if not msa3d(msg) then
+if not Devban(msg) then
 local Namebot = (bot_data:get(ban_id..'Name:Bot') or 'فينوم') 
 local VENOM_Msg = { 
 ' ـــــــــــــــــــــــــــــــــــــــــــــــ\n   🤖╖ أهلآ بك عزيزي أنا بوت  '..Namebot..'\n🌐╢ وظيفتي حماية المجموعات\n✅╢ لتفعيل البوت عليك اتباع مايلي \n🔘╢ أضِف البوت إلى مجموعتك\n⚡️╢ ارفعهُ » مشرف\n⬆️╜ سيتم ترقيتك مالك في البوت\nــــــــــــــــــــــــــــــــــــــــــــــــــــ ',
@@ -1692,6 +1693,7 @@ send(msg.chat_id_, msg.id_,Namebot, 1, 'md')
 end 
 end 
 tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = ban_id, offset_ = 0, limit_ = 1 }, getpro, nil) 
+end
 end
 end
 --------------------------------------------------------------------------------------------------------------
