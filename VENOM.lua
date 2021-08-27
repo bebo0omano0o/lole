@@ -1642,19 +1642,16 @@ end
 if Chat_Type == 'UserBot' then
 if text == '/start' or text == '『رجوع』' and Devban(msg) then 
 if not msa3d(msg) then
-local bl = '●انت الان المطور الاساسي في البوت \n● سورس فينوم\n ●يمكنك تحكم في البوتات من الكيبورد أسفل \n[تابع جديدنا](t.me/SOURCEVENOM)'
+local bl = '●انت الان المطور الثانوي في البوت \n● سورس فينوم\n ●يمكنك تحكم في البوتات من الكيبورد أسفل \n[تابع جديدنا](t.me/SOURCEVENOM)'
 local keyboard = {
-{'ضع اسم للبوت','معلومات الكيبورد'},
-{'المطور','الاحصائيات'},
-
-{'『تواصل لسورس』'},
-{'『اوامر الاذاعه』','『اوامر اضف』'},
+{'الاحصائيات'},
+{'المطور','المساعد'},
+{'معلومات الكيبورد'},
+{'『تواصل لسورس』','『اوامر اضف』'},
 {'『اوامر التفعيل』','『اوامر الحمايه』'},
-
 {'جلب المشتركين','جلب النسخه'},
-{'جلب المطورين','جلب التوكن'},
+{'جلب المطورين'},
 {'تحديث السورس ','الاصدار'},
-{'معلومات السيرفر'},
 {'الغاء'},
 }
 send_inline_key(msg.chat_id_,bl,keyboard)
@@ -1866,7 +1863,7 @@ if text == 'مسح كليشه ستارت' and Devban(msg) then
 bot_data:del(ban_id..'Start:Bot') 
 send(msg.chat_id_, msg.id_,' ● تم مسح كليشه ستارت')
 end
-if text == 'معلومات السيرفر' and Devban(msg) then 
+if text == 'معلومات السيرفر' and msa3d(msg) then 
 send(msg.chat_id_, msg.id_, io.popen([[
 linux_version=`lsb_release -ds`
 memUsedPrc=`free -m | awk 'NR==2{printf "%sMB/%sMB {%.2f%}\n", $3,$2,$3*100/$2 }'`
@@ -2131,7 +2128,7 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/41&caption=' .. URL.escape(Text).."&photo="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 
-if text == "ضع اسم للبوت" and Devban(msg) then  
+if text == "ضع اسم للبوت" and msa3d(msg) then  
 bot_data:setex(ban_id..'Set:Name:Bot'..msg.sender_user_id_,300,true) 
 send(msg.chat_id_, msg.id_," ● ارسل اليه الاسم الان ")
 return false
