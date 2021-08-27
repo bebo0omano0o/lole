@@ -3188,96 +3188,96 @@ end
 if msg.content_.caption_ then 
 if msg.content_.caption_:match("@[%a%d_]+") or msg.content_.caption_:match("@(.+)") then  
 if bot_data:get(ban_id.."lock:user:name"..msg.chat_id_) == "del" and not Special(msg) then    
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:user:name"..msg.chat_id_) == "ked" and not Special(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:user:name"..msg.chat_id_) == "kick" and not Special(msg) then    
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:user:name"..msg.chat_id_) == "ktm" and not Special(msg) then    
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 end
 --------------------------------------------------------------------------------------------------------------
 if text and text:match("@[%a%d_]+") or text and text:match("@(.+)") then    
 if bot_data:get(ban_id.."lock:user:name"..msg.chat_id_) == "del" and not Special(msg) then    
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:user:name"..msg.chat_id_) == "ked" and not Special(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:user:name"..msg.chat_id_) == "kick" and not Special(msg) then    
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:user:name"..msg.chat_id_) == "ktm" and not Special(msg) then    
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.caption_ then 
 if msg.content_.caption_:match("#[%a%d_]+") or msg.content_.caption_:match("#(.+)") then 
 if bot_data:get(ban_id.."lock:hashtak"..msg.chat_id_) == "del" and not Special(msg) then    
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:hashtak"..msg.chat_id_) == "ked" and not Special(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:hashtak"..msg.chat_id_) == "kick" and not Special(msg) then    
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:hashtak"..msg.chat_id_) == "ktm" and not Special(msg) then    
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 end
 --------------------------------------------------------------------------------------------------------------
 if text and text:match("#[%a%d_]+") or text and text:match("#(.+)") then
 if bot_data:get(ban_id.."lock:hashtak"..msg.chat_id_) == "del" and not Special(msg) then    
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:hashtak"..msg.chat_id_) == "ked" and not Special(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:hashtak"..msg.chat_id_) == "kick" and not Special(msg) then    
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:hashtak"..msg.chat_id_) == "ktm" and not Special(msg) then    
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.caption_ then 
 if msg.content_.caption_:match("/[%a%d_]+") or msg.content_.caption_:match("/(.+)") then  
 if bot_data:get(ban_id.."lock:Cmd"..msg.chat_id_) == "del" and not Special(msg) then    
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Cmd"..msg.chat_id_) == "ked" and not Special(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Cmd"..msg.chat_id_) == "kick" and not Special(msg) then    
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Cmd"..msg.chat_id_) == "ktm" and not Special(msg) then    
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 end
 --------------------------------------------------------------------------------------------------------------
 if text and text:match("/[%a%d_]+") or text and text:match("/(.+)") then
 if bot_data:get(ban_id.."lock:Cmd"..msg.chat_id_) == "del" and not Special(msg) then    
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Cmd"..msg.chat_id_) == "ked" and not Special(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Cmd"..msg.chat_id_) == "kick" and not Special(msg) then    
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Cmd"..msg.chat_id_) == "ktm" and not Special(msg) then    
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 --------------------------------------------------------------------------------------------------------------
@@ -3285,16 +3285,16 @@ if msg.content_.caption_ then
 if not Special(msg) then 
 if msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]/") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp][Ss]://") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp]://") or msg.content_.caption_:match("[Ww][Ww][Ww].") or msg.content_.caption_:match(".[Cc][Oo][Mm]") or msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Dd][Oo][Gg]/") or msg.content_.caption_:match(".[Pp][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]/") or msg.content_.caption_:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]/") or msg.content_.caption_:match("[Tt].[Mm][Ee]/") then 
 if bot_data:get(ban_id.."lock:Link"..msg.chat_id_) == "del" and not Special(msg) then
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Link"..msg.chat_id_) == "ked" and not Special(msg) then
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Link"..msg.chat_id_) == "kick" and not Special(msg) then
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Link"..msg.chat_id_) == "ktm" and not Special(msg) then
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 end
@@ -3302,199 +3302,199 @@ end
 --------------------------------------------------------------------------------------------------------------
 if text and text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]/") or text and text:match("[Hh][Tt][Tt][Pp][Ss]://") or text and text:match("[Hh][Tt][Tt][Pp]://") or text and text:match("[Ww][Ww][Ww].") or text and text:match(".[Cc][Oo][Mm]") or text and text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Dd][Oo][Gg]/") or text and text:match(".[Pp][Ee]") or text and text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]/") or text and text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]/") or text and text:match("[Tt].[Mm][Ee]/") and not Special(msg) then
 if bot_data:get(ban_id.."lock:Link"..msg.chat_id_) == "del" and not Special(msg) then
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Link"..msg.chat_id_) == "ked" and not Special(msg) then 
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Link"..msg.chat_id_) == "kick" and not Special(msg) then
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Link"..msg.chat_id_) == "ktm" and not Special(msg) then
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == 'MessagePhoto' and not Special(msg) then     
 if bot_data:get(ban_id.."lock:Photo"..msg.chat_id_) == "del" then
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Photo"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Photo"..msg.chat_id_) == "kick" then
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Photo"..msg.chat_id_) == "ktm" then
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == 'MessageVideo' and not Special(msg) then     
 if bot_data:get(ban_id.."lock:Video"..msg.chat_id_) == "del" then
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Video"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Video"..msg.chat_id_) == "kick" then
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Video"..msg.chat_id_) == "ktm" then
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == 'MessageAnimation' and not Special(msg) then     
 if bot_data:get(ban_id.."lock:Animation"..msg.chat_id_) == "del" then
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Animation"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Animation"..msg.chat_id_) == "kick" then
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Animation"..msg.chat_id_) == "ktm" then
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.game_ and not Special(msg) then     
 if bot_data:get(ban_id.."lock:geam"..msg.chat_id_) == "del" then
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:geam"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:geam"..msg.chat_id_) == "kick" then
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:geam"..msg.chat_id_) == "ktm" then
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == 'MessageAudio' and not Special(msg) then     
 if bot_data:get(ban_id.."lock:Audio"..msg.chat_id_) == "del" then
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Audio"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Audio"..msg.chat_id_) == "kick" then
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Audio"..msg.chat_id_) == "ktm" then
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == 'MessageVoice' and not Special(msg) then     
 if bot_data:get(ban_id.."lock:vico"..msg.chat_id_) == "del" then
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:vico"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:vico"..msg.chat_id_) == "kick" then
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:vico"..msg.chat_id_) == "ktm" then
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 --------------------------------------------------------------------------------------------------------------
 if msg.reply_markup_ and msg.reply_markup_.ID == 'ReplyMarkupInlineKeyboard' and not Special(msg) then     
 if bot_data:get(ban_id.."lock:Keyboard"..msg.chat_id_) == "del" then
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Keyboard"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Keyboard"..msg.chat_id_) == "kick" then
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Keyboard"..msg.chat_id_) == "ktm" then
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == 'MessageSticker' and not Special(msg) then     
 if bot_data:get(ban_id.."lock:Sticker"..msg.chat_id_) == "del" then
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Sticker"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Sticker"..msg.chat_id_) == "kick" then
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Sticker"..msg.chat_id_) == "ktm" then
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 if tonumber(msg.via_bot_user_id_) ~= 0 and not Special(msg) then
 if bot_data:get(ban_id.."lock:inline"..msg.chat_id_) == "del" then
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:inline"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:inline"..msg.chat_id_) == "kick" then
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:inline"..msg.chat_id_) == "ktm" then
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 --------------------------------------------------------------------------------------------------------------
 if msg.forward_info_ and not Special(msg) then     
 if bot_data:get(ban_id.."lock:forward"..msg.chat_id_) == "del" then
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 return false
 elseif bot_data:get(ban_id.."lock:forward"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 return false
 elseif bot_data:get(ban_id.."lock:forward"..msg.chat_id_) == "kick" then
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 return false
 elseif bot_data:get(ban_id.."lock:forward"..msg.chat_id_) == "ktm" then
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 return false
 end
 end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == 'MessageDocument' and not Special(msg) then     
 if bot_data:get(ban_id.."lock:Document"..msg.chat_id_) == "del" then
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Document"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Document"..msg.chat_id_) == "kick" then
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Document"..msg.chat_id_) == "ktm" then
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == "MessageUnsupported" and not Special(msg) then      
 if bot_data:get(ban_id.."lock:Unsupported"..msg.chat_id_) == "del" then
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Unsupported"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Unsupported"..msg.chat_id_) == "kick" then
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Unsupported"..msg.chat_id_) == "ktm" then
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 --------------------------------------------------------------------------------------------------------------
@@ -3503,16 +3503,16 @@ if msg.content_.entities_[0] then
 if msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityUrl" or msg.content_.entities_[0].ID == "MessageEntityTextUrl" then      
 if not Special(msg) then
 if bot_data:get(ban_id.."lock:Markdaun"..msg.chat_id_) == "del" then
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Markdaun"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Markdaun"..msg.chat_id_) == "kick" then
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Markdaun"..msg.chat_id_) == "ktm" then
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end  
 end 
@@ -3521,16 +3521,16 @@ end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == 'MessageContact' and not Special(msg) then      
 if bot_data:get(ban_id.."lock:Contact"..msg.chat_id_) == "del" then
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Contact"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Contact"..msg.chat_id_) == "kick" then
 chat_kick(msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 elseif bot_data:get(ban_id.."lock:Contact"..msg.chat_id_) == "ktm" then
 bot_data:sadd(ban_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
-DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
+ 
 end
 end
 --------------------------------------------------------------------------------------------------------------
@@ -20869,13 +20869,7 @@ PinMessage(msg.chat_id_,Msg_Pin)
 end
 end
 end
---------------------------------------------------------------------------------------------------------------
-if msg.content_.ID == "MessageChatDeletePhoto" or msg.content_.ID == "MessageChatChangePhoto" or msg.content_.ID == 'MessagePinMessage' or msg.content_.ID == "MessageChatJoinByLink" or msg.content_.ID == "MessageChatAddMembers" or msg.content_.ID == 'MessageChatChangeTitle' or msg.content_.ID == "MessageChatDeleteMember" then   
-if bot_data:get(ban_id..'lock:tagservr'..msg.chat_id_) then  
-DeleteMessage(msg.chat_id_,{[0] = msg.id_})       
-return false
-end    
-end   
+--------------------------------------------------------------------------------------------------------------٠
 --------------------------------------------------------------------------------------------------------------
 SourceVENOM(data.message_,data)
 plugin_VENOM(data.message_)
