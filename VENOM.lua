@@ -1660,6 +1660,7 @@ local keyboard = {
 send_inline_key(msg.chat_id_,bl,keyboard)
 end
 end
+end
 if text == "/start" then
 if not msa3d(msg) then
 local Namebot = (bot_data:get(ban_id..'Name:Bot') or 'فينوم') 
@@ -15096,7 +15097,7 @@ Msᴀɢ ~ #msgs
 ➼ : 𝑈𝑆𝐸𝑅 𖠀 #username .♡
 ➼ : 𝑀𝑆𝐺𝑆 𖠀 #msgs .♡
 ➼ : 𝑆𝑇𝐴S𝑇 𖠀 #stast .♡ 
-➼ : ??𝐷𝐼𝑇  𖠀 #edit .♡
+➼ : 𝐸𝐷𝐼𝑇  𖠀 #edit .♡
 ➼ : 𝗖𝗛 - 『@SOURCEVENOM』 ●
 ]],
 [[
