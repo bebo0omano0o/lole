@@ -1640,7 +1640,8 @@ end
 
 ------by-banda--
 if Chat_Type == 'UserBot' then
-if text == '/start' or text == '『رجوع』' and Devban(msg) then 
+if text == '/start' or text == '『رجوع』' then 
+if Devban(msg) then
 if not msa3d(msg) then
 local bl = '●انت الان المطور الثانوي في البوت \n● سورس فينوم\n ●يمكنك تحكم في البوتات من الكيبورد أسفل \n[تابع جديدنا](t.me/SOURCEVENOM)'
 local keyboard = {
@@ -1655,6 +1656,7 @@ local keyboard = {
 {'الغاء'},
 }
 send_inline_key(msg.chat_id_,bl,keyboard)
+end
 end
 end
 end
