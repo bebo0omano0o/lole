@@ -4940,8 +4940,12 @@ end
 return false
 end
 function start_function(extra, result, success)
-if sudoid(result.sender_user_id_) == true then
-send(msg.chat_id_, msg.id_, "*● لا تستطيع حظره او كتمه عام*")
+if result.sender_user_id_ == tonumber(SUDO) then
+send(msg.chat_id_, msg.id_, " ● لا يمكنك حظر المطور الاساسي \n")
+return false 
+end
+if tonumber(result.sender_user_id_) == tonumber(ban_id) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر البوت عام")
 return false 
 end
 if bot_data:sismember(ban_id..'msa3d:ban', result.sender_user_id_) then
@@ -4978,8 +4982,12 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 send(msg.chat_id_,msg.id_," ● عذرا عزيزي المستخدم هاذا معرف قناة يرجى استخدام الامر بصوره صحيحه !")   
 return false 
 end      
-if sudoid(result.id_) == true then
-send(msg.chat_id_, msg.id_, "*● لا تستطيع حظره او كتمه عام*")
+if tonumber(result.id_) == tonumber(ban_id) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر البوت عام")
+return false 
+end
+if result.id_ == tonumber(SUDO) then
+send(msg.chat_id_, msg.id_, " ● لا يمكنك حظر المطور الاساسي \n")
 return false 
 end
 if bot_data:sismember(ban_id.."msa3d:ban", result.id_) then
@@ -5010,8 +5018,12 @@ send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n 
 end
 return false
 end
-if sudoid(userid) == true then
-send(msg.chat_id_, msg.id_, "*● لا تستطيع حظره او كتمه عام*")
+if userid == tonumber(SUDO) then
+send(msg.chat_id_, msg.id_, " ● لا يمكنك حظر المطور الاساسي \n")
+return false 
+end
+if tonumber(userid) == tonumber(ban_id) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر البوت عام")
 return false 
 end
 if bot_data:sismember(ban_id.."msa3d:ban", userid) then
@@ -5084,8 +5096,12 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 send(msg.chat_id_,msg.id_," ● عذرا عزيزي المستخدم هاذا معرف قناة يرجى استخدام الامر بصوره صحيحه !")   
 return false 
 end      
-if sudoid(result.id_) == true then
-send(msg.chat_id_, msg.id_, "*● لا تستطيع حظره او كتمه عام*")
+if tonumber(result.id_) == tonumber(ban_id) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم البوت عام")
+return false 
+end
+if result.id_ == tonumber(SUDO) then
+send(msg.chat_id_, msg.id_, " ● لا يمكنك كتم المطور الاساسي \n")
 return false 
 end
 if bot_data:sismember(ban_id.."msa3d:ban", result.id_) then
@@ -5116,8 +5132,12 @@ send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n 
 end
 return false
 end
-if sudoid(userid) == true then
-send(msg.chat_id_, msg.id_, "*● لا تستطيع حظره او كتمه عام*")
+if userid == tonumber(SUDO) then
+send(msg.chat_id_, msg.id_, " ● لا يمكنك كتم المطور الاساسي \n")
+return false 
+end
+if tonumber(userid) == tonumber(ban_id) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم البوت عام")
 return false 
 end
 if bot_data:sismember(ban_id.."msa3d:ban", userid) then
