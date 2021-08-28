@@ -8213,7 +8213,7 @@ else
 tdcli_function ({ID = "GetUser",user_id_ = SUDO,},function(arg,result) 
 local function taha(extra, taha, success)
 if taha.photos_[0] then
-local Name = 'ᎠᎬᏙ ΝᎬᎷᎬ -> ['..result.first_name_..'](tg://user?id='..result.id_..')\nᎠᎬᏙ ႮՏᎬᎡ -> [@'..result.first_name_..']\n'
+local Name = 'ᎠᎬᏙ ΝᎬᎷᎬ -> ['..result.first_name_..'](tg://user?id='..result.id_..')\nᎠᎬᏙ ႮՏᎬᎡ -> [@"..result.username_.."]\n'
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
@@ -14585,7 +14585,7 @@ local List = {
 🇪🇬 ꙰  - 𝚞 𝚜𝚎 𝚛 ➟ #username  ❃.
 🇪🇬 ꙰  - 𝚖 𝚜𝚐 𝚜 ➟ #msgs ❃.
 🇪🇬 ꙰  - 𝚐 𝚖 𝚊𝚜  ➟ #stast ❃.
-🇪🇬 ꙰  - 𝙸𝙳 𝚜????   ➟ #id ❃.
+🇪🇬 ꙰  - 𝙸𝙳 𝚜𝚝??   ➟ #id ❃.
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 🇪🇬 ꙰  - 𝗖𝗛 - 『@SOURCEVENOM』 ●.
 ]],
@@ -15013,7 +15013,7 @@ Msᴀɢ ~ #msgs
 𖣰𖡻 ??𝗜𝗗• #id •𓀎
 𖣰𖡻 𖡋𝗨𝗦𝗘• #username •𓀎
 𖣰𖡻 𖡋𝗦𝗧𝗔• #stast •𓀎
-𖣰𖡻 ????𝗦𝗚• #msgs •𓀎
+𖣰𖡻 𖡋??𝗦𝗚• #msgs •𓀎
 ??𖡻 𖡋𝗔𝗨𝗧𝗢• #auto •𓀎
 𖣰𖡻 𖡋𝗘𝗗𝗜𝗧• #edit • 𓀎
 ┄─━━𖦹━━─┄
