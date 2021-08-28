@@ -4048,7 +4048,7 @@ keyboard = {}
 keyboard.inline_keyboard = {
 {{text = 'رابط اونلاين', callback_data="/ven2"},{text = 'رابط بالصور', callback_data="/ven1"}},   
 {{text = 'رابط بنص', callback_data="/ven3"}},
-{{text = '•ᴍʏ ᴄʜᴀɴɴᴇʟ♪', callback_data="/theytry"}},   
+{{text = '•ᴍʏ ᴄʜᴀɴɴᴇʟ♪', url="t.me/SOURCEVENOM"}},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
@@ -15504,7 +15504,7 @@ Msᴀɢ ~ #msgs
 ]],
 [[
 ➥• USE 𖦹 #username - 🇪??.
-➥• MSG 𖥳 #msgs  - 🇪🇬.
+➥• MSG 𖥳 #msgs  - ??🇬.
 ➥• STA 𖦹 #stast - 🇪??.
 ➥• iD 𖥳 #id - 🇪🇬.
 ➥• 𝗖𝗛 - 『@SOURCEVENOM』 ●
@@ -20655,6 +20655,11 @@ DeleteMessage(Chat_id,{[0] = Msg_id})
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. Chat_id .. '&photo=https://t.me/wffhvv/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 if Text == '/ven3' then
+if not CoSu(data) then
+local notText = '✘ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta) 
 local link = bot_data:get(ban_id.."Private:Group:Link"..msg.chat_id_)            
 if link then                              
@@ -20672,6 +20677,11 @@ end
 end,nil)
 end
 if Text == '/ven1' then
+if not CoSu(data) then
+local notText = '✘ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta) 
 local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_)) or bot_data:get(ban_id.."Private:Group:Link"..msg.chat_id_) 
 if linkgpp.ok == true then 
@@ -20686,11 +20696,11 @@ end
 end,nil) 
 end
 if Text == '/ven2' then
-local status_Link = bot_data:get(ban_id.."Link_Group:status"..msg.chat_id_) 
-if not status_Link then 
-send(msg.chat_id_, msg.id_,"الرابط معطل")  
-return false   
-end 
+if not CoSu(data) then
+local notText = '✘ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta) 
 local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_)) or bot_data:get(ban_id.."Private:Group:Link"..msg.chat_id_) 
 if linkgpp.ok == true then 
