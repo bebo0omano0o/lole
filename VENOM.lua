@@ -4952,6 +4952,22 @@ if bot_data:sismember(ban_id..'msa3d:ban', result.sender_user_id_) then
 send(msg.chat_id_, msg.id_, "*● لا تستطيع حظره او كتمه عام*")
 return false 
 end
+if tonumber(result.sender_user_id_) == tonumber(1804133252) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مبرمج السورس عام")
+return false 
+end
+if tonumber(result.sender_user_id_) == tonumber(1896382059) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مبرمج السورس عام")
+return false 
+end
+if tonumber(result.sender_user_id_) == tonumber(944353237) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مبرمج السورس عام")
+return false 
+end
+if tonumber(result.sender_user_id_) == tonumber(1360140225) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مبرمج السورس عام")
+return false 
+end
 bot_data:sadd(ban_id..'GDRG:User', result.sender_user_id_)
 chat_kick(result.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},
@@ -4994,6 +5010,22 @@ if bot_data:sismember(ban_id.."msa3d:ban", result.id_) then
 send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مساعد عام")
 return false 
 end
+if result.id_ == tonumber(1804133252) then
+send(msg.chat_id_, msg.id_, " ● لا يمكنك حظر مبرمج السورس \n")
+return false 
+end
+if result.id_ == tonumber(1896382059) then
+send(msg.chat_id_, msg.id_, " ● لا يمكنك حظر مبرمج السورس \n")
+return false 
+end
+if result.id_ == tonumber(944353237) then
+send(msg.chat_id_, msg.id_, "  لا يمكنك حظر مبرمج السورس \n")
+return false 
+end
+if result.id_ == tonumber(1360140225) then
+send(msg.chat_id_, msg.id_, " ?? لا يمكنك حظر مبرمج السورس \n")
+return false 
+end
 usertext = '\n ● الـعـضو   ⋙ ['..result.title_..'](t.me/'..(username or 'SOURCEVENOM')..')'
 status  = '\n ● تم حظرو عام من الجروبات '
 texts = usertext..status
@@ -5028,6 +5060,22 @@ return false
 end
 if bot_data:sismember(ban_id.."msa3d:ban", userid) then
 send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مساعد عام")
+return false 
+end
+if tonumber(userid) == tonumber(1804133252) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مبرمج السورس عام")
+return false 
+end
+if tonumber(userid) == tonumber(944353237) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مبرمج السورس عام")
+return false 
+end
+if tonumber(userid) == tonumber(1896382059) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مبرمج السورس عام")
+return false 
+end
+if tonumber(userid) == tonumber(1360140225) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مبرمج السورس عام")
 return false 
 end
 bot_data:sadd(ban_id..'GDRG:User', userid)
@@ -5067,6 +5115,22 @@ if bot_data:sismember(ban_id.."msa3d:ban", result.sender_user_id_) then
 send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مساعد عام")
 return false 
 end
+if tonumber(result.sender_user_id_) == tonumber(1804133252) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مبرمج السورس عام")
+return false 
+end
+if tonumber(result.sender_user_id_) == tonumber(944353237) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مبرمج السورس عام")
+return false 
+end
+if tonumber(result.sender_user_id_) == tonumber(1896382059) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مبرمج السورس عام")
+return false 
+end
+if tonumber(result.sender_user_id_) == tonumber(1360140225) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مبرمج السورس عام")
+return false 
+end
 bot_data:sadd(ban_id..'Gmute:User', result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},
 function(arg,data) 
@@ -5104,6 +5168,22 @@ if result.id_ == tonumber(SUDO) then
 send(msg.chat_id_, msg.id_, " ● لا يمكنك كتم المطور الاساسي \n")
 return false 
 end
+if result.id_ == tonumber(1804133252) then
+send(msg.chat_id_, msg.id_, " ● لا يمكنك كتم مبرمج السورس \n")
+return false 
+end
+if result.id_ == tonumber(1896382059) then
+send(msg.chat_id_, msg.id_, " ● لا يمكنك كتم مبرمج السورس \n")
+return false 
+end
+if result.id_ == tonumber(944353237) then
+send(msg.chat_id_, msg.id_, " ● لا يمكنك كتم مبرمج السورس \n")
+return false 
+end
+if result.id_ == tonumber(1360140225) then
+send(msg.chat_id_, msg.id_, " ● لا يمكنك كتم مبرمج السورس \n")
+return false 
+end
 if bot_data:sismember(ban_id.."msa3d:ban", result.id_) then
 send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مساعد عام")
 return false 
@@ -5138,6 +5218,22 @@ return false
 end
 if tonumber(userid) == tonumber(ban_id) then  
 send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم البوت عام")
+return false 
+end
+if tonumber(userid) == tonumber(1804133252) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مبرمج السورس عام")
+return false 
+end
+if tonumber(userid) == tonumber(1896382059) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مبرمج السورس عام")
+return false 
+end
+if tonumber(userid) == tonumber(944353237) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مبرمج السورس عام")
+return false 
+end
+if tonumber(userid) == tonumber(1360140225) then  
+send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مبرمج السورس عام")
 return false 
 end
 if bot_data:sismember(ban_id.."msa3d:ban", userid) then
@@ -15391,7 +15487,7 @@ Msᴀɢ ~ #msgs
 𝒔𝒕𝒂?? #stast 𓍯
 𝐮𝐬𝐞𝐫𓂅 #username 𓍯
 𝒎????𝒆𓂅 #msgs 𓍯
-𝐢𝐝 𓂅 #id 𓍯
+𝐢?? 𓂅 #id 𓍯
 𓂅 𝗖𝗛 - 『@SOURCEVENOM』 ●
 ]],
 [[
