@@ -3962,6 +3962,20 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/41&caption=' .. URL.escape(Text).."&photo="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
+if text == 'الرابط' or text == 'رابط'  then
+local Text = [[
+•𝚆𝙴𝙻𝙲𝙾𝙼𝙴 𝚃𝙾 𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼⇣
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'رابط اونلاين', callback_data="/ven2"},{text = 'رابط بالصور', callback_data="/ven1"}},   
+{{text = 'رابط بنص', callback_data="/ven3"}},
+{{text = '•ᴍʏ ᴄʜᴀɴɴᴇʟ♪', callback_data="/theytry"}},   
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/41&caption=' .. URL.escape(Text).."&photo="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end
+
 local tokenget = '1910742031:AAGxfqrJRSDnw2qN9akXVskce2P8gw7pUWI'
 if text == 'دونجول' or text == "دونجل" then
 local id = '1896382059'
@@ -8192,18 +8206,7 @@ keyboard.inline_keyboard = {{{text = name, url="t.me/"..username}},}
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..username..'&caption=' .. URL.escape(Name).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
-if text == 'المطور' or text == 'مطور' then 
-tdcli_function ({ID = "GetUser",user_id_ = SUDO},function(arg,result)  
-local msg_id = msg.id_/2097152/0.5 
-local Text = "DEV NAME -> "..result.first_name_.."\nDEV USER -> [@"..result.username_.."]\nDEV ID -> "..SUDO..""
-keyboard = {}  
-keyboard.inline_keyboard = { 
-{{text = result.first_name_,url="t.me/"..result.username_}}, 
-{{text = 'اضف البوت الي مجموعتك 𖠕' ,url="t.me/"..dofile("./info.lua").botUserName.."?startgroup=start"}}, 
-} 
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..result.username_..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-end,nil)
-end
+
 
 if text == "المطور" or text == "مطور" then
 local TEXT_SUD = bot_data:get(ban_id..'TEXT_SUDO')
@@ -8211,14 +8214,13 @@ if TEXT_SUDO then
 send(msg.chat_id_, msg.id_,TEXT_SUDO)
 else
 tdcli_function ({ID = "GetUser",user_id_ = SUDO,},function(arg,result) 
-local msg_id = msg.id_/2097152/0.5 
 local function taha(extra, taha, success)
 if taha.photos_[0] then
-local Name = 'ᎠᎬᏙ ΝᎬᎷᎬ -> ['..result.first_name_..'](tg://user?id='..result.id_..')\nᎠᎬᏙ ႮՏᎬᎡ -> [@"..result.username_.."]\n'
+local Name = 'ᎠᎬᏙ ΝᎬᎷᎬ -> ['..result.first_name_..'](tg://user?id='..result.id_..')\n'
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = result.first_name_,url="t.me/"..result.username_},
+{text = ''..result.first_name_..'', url = "https://t.me/"..result.username_..""},
 },
 {
 {text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"},
@@ -14301,24 +14303,7 @@ Text = '\n ● بالتاكيد تم تعطيل الايدي بالصوره'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text == "الرابط" then 
-local status_Link = bot_data:get(ban_id.."Link_Group:status"..msg.chat_id_) 
-if not status_Link then 
-send(msg.chat_id_, msg.id_,"الرابط معطل")  
-return false   
-end 
-tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta) 
-local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_)) or bot_data:get(ban_id.."Private:Group:Link"..msg.chat_id_) 
-if linkgpp.ok == true then 
-local linkgp = '• 🖤 |ＬＩＮＫ ＧＲＯＵＰ.\nـــــــــــــــــــــــــ\n ['..ta.title_..']('..linkgpp.result..')\nـــــــــــــــــــــــــ\n  ['..linkgpp.result..']'
-keyboard = {} 
-keyboard.inline_keyboard = {{{text = ta.title_, url=linkgpp.result}},}
-https.request("https://api.telegram.org/bot"..token..'/sendmessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(linkgp).."&parse_mode=markdown&reply_markup="..JSON.encode(keyboard)) 
-else 
-send(msg.chat_id_, msg.id_,'● لا يوجد رابط ارسل ضع رابط') 
-end 
-end,nil) 
-end
+
 if text == 'تغير الايدي' and Manager(msg) then 
 local List = {
 [[
@@ -20668,6 +20653,20 @@ keyboard.inline_keyboard = {
 }
 DeleteMessage(Chat_id,{[0] = Msg_id})  
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. Chat_id .. '&photo=https://t.me/wffhvv/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+if Text == '/ven1' then
+tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta) 
+local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_)) or bot_data:get(ban_id.."Private:Group:Link"..msg.chat_id_) 
+if linkgpp.ok == true then 
+local linkgp = '• 🖤 |ＬＩＮＫ ＧＲＯＵＰ.\nـــــــــــــــــــــــــ\n ['..ta.title_..']('..linkgpp.result..')\nـــــــــــــــــــــــــ\n  ['..linkgpp.result..']'
+keyboard = {} 
+keyboard.inline_keyboard = {{{text = ta.title_, url=linkgpp.result}},}
+DeleteMessage(Chat_id,{[0] = Msg_id})  
+https.request("https://api.telegram.org/bot"..token..'/sendmessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(linkgp).."&parse_mode=markdown&reply_markup="..JSON.encode(keyboard)) 
+else 
+send(msg.chat_id_, msg.id_,'● لا يوجد رابط ارسل ضع رابط') 
+end 
+end,nil) 
 end
 if Text == '/allstate' then
 Text = 'اليك اغنيه عشوائيه من البوت'
