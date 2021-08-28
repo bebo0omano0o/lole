@@ -8211,13 +8211,14 @@ if TEXT_SUDO then
 send(msg.chat_id_, msg.id_,TEXT_SUDO)
 else
 tdcli_function ({ID = "GetUser",user_id_ = SUDO,},function(arg,result) 
+local msg_id = msg.id_/2097152/0.5 
 local function taha(extra, taha, success)
 if taha.photos_[0] then
 local Name = 'ᎠᎬᏙ ΝᎬᎷᎬ -> ['..result.first_name_..'](tg://user?id='..result.id_..')\nᎠᎬᏙ ႮՏᎬᎡ -> [@"..result.username_.."]\n'
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = ''..result.first_name_..'', url = "https://t.me/"..result.username_..""},
+{text = result.first_name_,url="t.me/"..result.username_},
 },
 {
 {text = 'اضغط لاضافه البوت لمجمعتك✅ ' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"},
