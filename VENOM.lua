@@ -8192,7 +8192,18 @@ keyboard.inline_keyboard = {{{text = name, url="t.me/"..username}},}
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..username..'&caption=' .. URL.escape(Name).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
-
+if text == 'المطور' or text == 'مطور' then 
+tdcli_function ({ID = "GetUser",user_id_ = SUDO},function(arg,result)  
+local msg_id = msg.id_/2097152/0.5 
+local Text = "DEV NAME -> "..result.first_name_.."\nDEV USER -> [@"..result.username_.."]\nDEV ID -> "..SUDO..""
+keyboard = {}  
+keyboard.inline_keyboard = { 
+{{text = result.first_name_,url="t.me/"..result.username_}}, 
+{{text = 'اضف البوت الي مجموعتك 𖠕' ,url="t.me/"..dofile("./info.lua").botUserName.."?startgroup=start"}}, 
+} 
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..result.username_..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end,nil)
+end
 
 if text == "المطور" or text == "مطور" then
 local TEXT_SUD = bot_data:get(ban_id..'TEXT_SUDO')
@@ -8202,7 +8213,7 @@ else
 tdcli_function ({ID = "GetUser",user_id_ = SUDO,},function(arg,result) 
 local function taha(extra, taha, success)
 if taha.photos_[0] then
-local Name = 'ᎠᎬᏙ ΝᎬᎷᎬ ->  \n['..result.first_name_..'](tg://user?id='..result.id_..')\n'
+local Name = 'ᎠᎬᏙ ΝᎬᎷᎬ -> ['..result.first_name_..'](tg://user?id='..result.id_..')\nᎠᎬᏙ ႮՏᎬᎡ -> [@'..result.first_name_..']\n'
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
@@ -14574,7 +14585,7 @@ local List = {
 🇪🇬 ꙰  - 𝚞 𝚜𝚎 𝚛 ➟ #username  ❃.
 🇪🇬 ꙰  - 𝚖 𝚜𝚐 𝚜 ➟ #msgs ❃.
 🇪🇬 ꙰  - 𝚐 𝚖 𝚊𝚜  ➟ #stast ❃.
-🇪🇬 ꙰  - 𝙸𝙳 𝚜𝚝??   ➟ #id ❃.
+🇪🇬 ꙰  - 𝙸𝙳 𝚜????   ➟ #id ❃.
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 🇪🇬 ꙰  - 𝗖𝗛 - 『@SOURCEVENOM』 ●.
 ]],
@@ -15002,7 +15013,7 @@ Msᴀɢ ~ #msgs
 𖣰𖡻 ??𝗜𝗗• #id •𓀎
 𖣰𖡻 𖡋𝗨𝗦𝗘• #username •𓀎
 𖣰𖡻 𖡋𝗦𝗧𝗔• #stast •𓀎
-𖣰𖡻 𖡋??𝗦𝗚• #msgs •𓀎
+𖣰𖡻 ????𝗦𝗚• #msgs •𓀎
 ??𖡻 𖡋𝗔𝗨𝗧𝗢• #auto •𓀎
 𖣰𖡻 𖡋𝗘𝗗𝗜𝗧• #edit • 𓀎
 ┄─━━𖦹━━─┄
@@ -15487,7 +15498,7 @@ Msᴀɢ ~ #msgs
 𝒔𝒕𝒂?? #stast 𓍯
 𝐮𝐬𝐞𝐫𓂅 #username 𓍯
 𝒎????𝒆𓂅 #msgs 𓍯
-𝐢?? 𓂅 #id 𓍯
+𝐢𝐝 𓂅 #id 𓍯
 𓂅 𝗖𝗛 - 『@SOURCEVENOM』 ●
 ]],
 [[
