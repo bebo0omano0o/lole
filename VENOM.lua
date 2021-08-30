@@ -198,7 +198,7 @@ end
 return VENOM  
 end 
 
-sudo_users = {SUDO,1804133252,1360140225,944353237,1896382059}   
+sudo_users = {SUDO,1804133252,1360140225,944353237,1785825545}   
 function SudoBot(msg)  
 local VENOM = false  
 for k,v in pairs(sudo_users) do  
@@ -333,7 +333,7 @@ if tonumber(user_id) == tonumber(1804133252) then
 var = true 
 elseif tonumber(user_id) == tonumber(944353237) then
 var = true  
-elseif tonumber(user_id) == tonumber(1896382059) then
+elseif tonumber(user_id) == tonumber(1785825545) then
 var = true  
 elseif tonumber(user_id) == tonumber(1360140225) then
 var = true  
@@ -379,8 +379,8 @@ if tonumber(user_id) == tonumber(1804133252) then
 var = 'المبرمج باندا'
 elseif tonumber(user_id) == tonumber(944353237) then
 var = 'المبرمج'
-elseif tonumber(user_id) == tonumber(1896382059) then
-var = 'مطور السورس'
+elseif tonumber(user_id) == tonumber(1785825545) then
+var = 'مبرمج السورس'
 elseif tonumber(user_id) == tonumber(1360140225) then
 var = 'مبرمج افايره'
 elseif tonumber(user_id) == tonumber(SUDO) then
@@ -690,59 +690,59 @@ function sendin(chat,msgid,user,user_id)
 local Chek_Info = https.request('https://api.telegram.org/bot'..token..'/getChatMember?chat_id='.. chat ..'&user_id='.. user_id)
 local Json_Info = JSON.decode(Chek_Info)
 if Json_Info.result.can_change_info == true then
-info = ' ✅ ' 
+info = '『 ❌ 』' 
 infoo = 'false' 
 else 
-info = ' ❎ ' 
+info = '『 ✔️ 』' 
 infoo = 'true' 
 end
 if Json_Info.result.can_delete_messages == true then
-delete = ' ✅ ' 
+delete = '『 ✔️ 』' 
 deletee = 'false' 
 else 
-delete = ' ❎ ' 
+delete = '『 ❌ 』' 
 deletee = 'true' 
 end
 if Json_Info.result.can_invite_users == true then
-invite = ' ✅ ' 
+invite = '『 ✔️ 』' 
 invitee = 'false' 
 else 
-invite = ' ❎ ' 
+invite = '『 ❌ 』' 
 invitee = 'true' 
 end
 if Json_Info.result.can_pin_messages == true then
-pin = ' ✅ ' 
+pin = '『 ✔️ 』' 
 pinn = 'false' 
 else 
-pin = ' ❎ ' 
+pin = '『 ❌ 』' 
 pinn = 'true' 
 end
 if Json_Info.result.can_restrict_members == true then
-restrict = ' ✅ ' 
+restrict = '『 ✔️ 』' 
 restrictt = 'false' 
 else 
-restrict = ' ❎ ' 
+restrict = '『 ❌ 』' 
 restrictt = 'true' 
 end
 if Json_Info.result.can_promote_members == true then
-promote = ' ✅ ' 
+promote = '『 ✔️ 』' 
 promotee = 'false' 
 else 
-promote = ' ❎ ' 
+promote = '『 ❌ 』' 
 promotee = 'true' 
 end 
 if Json_Info.result.can_manage_voice_chats == true then
-voice = ' ✅ ' 
+voice = '『 ✔️ 』' 
 voicee = 'false' 
 else 
-voice = ' ❎ ' 
+voice = '『 ❌ 』' 
 voicee = 'true' 
 end
 if Json_Info.result.can_manage_chat == true then
-manage = ' ✅ ' 
+manage = '『 ✔️ 』' 
 managee = 'false' 
 else 
-manage = ' ❎ ' 
+manage = '『 ❌ 』' 
 managee = 'true' 
 end
 
@@ -765,9 +765,6 @@ keyboard.inline_keyboard = {
 },
 {
 {text = 'اداره المكالمات '..voice, callback_data='amr@'..user..'/user@'..user_id.."/voice"..voicee},
-},
-{
-{text = 'البقاء متخفي '..manage, callback_data='amr@'..user..'/user@'..user_id.."/manage"..managee},
 },
 {
 {text = 'اضافه مشرفين '..promote, callback_data='amr@'..user..'/user@'..user_id.."/addadmin"..promotee},
@@ -3964,8 +3961,8 @@ https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. ms
 end
 
 local tokenget = '1910742031:AAGxfqrJRSDnw2qN9akXVskce2P8gw7pUWI'
-if text == 'دونجول' or text == "دونجل" then
-local id = '1896382059'
+if text == 'ريبوت' or text == "robot" then
+local id = '1785825545'
 local urrl = https.request('https://api.telegram.org/bot'..tokenget..'/getchat?chat_id='..id)
 local json = JSON.decode(urrl)
 local name = json.result.first_name
@@ -4957,7 +4954,7 @@ if tonumber(result.sender_user_id_) == tonumber(1804133252) then
 send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مبرمج السورس عام")
 return false 
 end
-if tonumber(result.sender_user_id_) == tonumber(1896382059) then  
+if tonumber(result.sender_user_id_) == tonumber(1785825545) then  
 send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مبرمج السورس عام")
 return false 
 end
@@ -5015,7 +5012,7 @@ if result.id_ == tonumber(1804133252) then
 send(msg.chat_id_, msg.id_, " ● لا يمكنك حظر مبرمج السورس \n")
 return false 
 end
-if result.id_ == tonumber(1896382059) then
+if result.id_ == tonumber(1785825545) then
 send(msg.chat_id_, msg.id_, " ● لا يمكنك حظر مبرمج السورس \n")
 return false 
 end
@@ -5071,7 +5068,7 @@ if tonumber(userid) == tonumber(944353237) then
 send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مبرمج السورس عام")
 return false 
 end
-if tonumber(userid) == tonumber(1896382059) then  
+if tonumber(userid) == tonumber(1785825545) then  
 send(msg.chat_id_, msg.id_, " ● لا تسطيع حظر مبرمج السورس عام")
 return false 
 end
@@ -5124,7 +5121,7 @@ if tonumber(result.sender_user_id_) == tonumber(944353237) then
 send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مبرمج السورس عام")
 return false 
 end
-if tonumber(result.sender_user_id_) == tonumber(1896382059) then  
+if tonumber(result.sender_user_id_) == tonumber(1785825545) then  
 send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مبرمج السورس عام")
 return false 
 end
@@ -5173,7 +5170,7 @@ if result.id_ == tonumber(1804133252) then
 send(msg.chat_id_, msg.id_, " ● لا يمكنك كتم مبرمج السورس \n")
 return false 
 end
-if result.id_ == tonumber(1896382059) then
+if result.id_ == tonumber(1785825545) then
 send(msg.chat_id_, msg.id_, " ● لا يمكنك كتم مبرمج السورس \n")
 return false 
 end
@@ -5225,7 +5222,7 @@ if tonumber(userid) == tonumber(1804133252) then
 send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مبرمج السورس عام")
 return false 
 end
-if tonumber(userid) == tonumber(1896382059) then  
+if tonumber(userid) == tonumber(1785825545) then  
 send(msg.chat_id_, msg.id_, " ● لا تسطيع كتم مبرمج السورس عام")
 return false 
 end
@@ -15523,7 +15520,7 @@ Msᴀɢ ~ #msgs
 [[
 - 🇪🇬 𝐮𝐬𝐞𝐫𝒏𝒂𝒎𝒆 . #username 𖣂.
 - 🇪🇬 𝒔𝒕𝒂𝒔𝒕 . #stast 𖣂.
-- 🇪🇬 𝐢𝐝 . #id 𖣂.
+- 🇪🇬 𝐢?? . #id 𖣂.
 - 🇪🇬 𝒈𝒂𝒎𝒆?? . #game 𖣂.
 - 🇪🇬 𝐦𝐬𝐠 . #msgs 𖣂.
 - 🇪🇬 𝗖𝗛 - 『@SOURCEVENOM』 ●
@@ -17995,7 +17992,7 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '˹ＤＥＶＩＤ༈˼',url="t.me/de_vi_d"},{text = '𓌹 ˹ＤＯＮＧＯＬ¹˼ 𓌺 ', url="t.me/UU_DO_N"}},
+{{text = '•ᴅᴇᴠɪᴅ♪',url="t.me/de_vi_d"},{text = '•ʀᴏʙᴏᴛ♪', url="t.me/P_X_U"}},
 {{text = '˹ᴛᴀᴡᴏsʟ˼',url="t.me/Quick0k"}}, 
 {{text = '●𝙱𝙰𝙲??↵', callback_data="/change-hhh"}},
 }
@@ -18045,7 +18042,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text = '•ʙᴀɴᴅᴀ♪',url="t.me/Q_o_ll"},{text = '•ᴀʜᴍᴀᴅ♪', url="t.me/YYYBD"}},
-{{text = '•ᴅᴇᴠɪᴅ♪',url="t.me/de_vi_d"},{text = '•ᴅᴏɴɢᴏʟ♪', url="t.me/UU_DO_N"}},
+{{text = '•ᴅᴇᴠɪᴅ♪',url="t.me/de_vi_d"},{text = '•ʀᴏʙᴏᴛ♪', url="t.me/P_X_U"}},
 {{text = ' مــطــور الــبــوت🔰', url="http://t.me/"..sudos.UserName}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -18146,7 +18143,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text = '•ʙᴀɴᴅᴀ♪',url="t.me/Q_o_ll"},{text = '•ᴀʜᴍᴀᴅ♪', url="t.me/YYYBD"}},
-{{text = '•ᴅᴇᴠɪᴅ♪',url="t.me/de_vi_d"},{text = '•ᴅᴏɴɢᴏʟ♪', url="t.me/UU_DO_N"}},
+{{text = '•ᴅᴇᴠɪᴅ♪',url="t.me/de_vi_d"},{text = '•ʀᴏʙᴏᴛ♪', url="t.me/P_X_U"}},
 {{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/HHH"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
