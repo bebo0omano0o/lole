@@ -6997,7 +6997,7 @@ send(msg.chat_id_, msg.id_,t)
 end
 if text == "متجر الملفات" or text == 'المتجر' then
 if Devban(msg) then
-local Get_Files, res = https.request("https://raw.githubusercontent.com/VENOM197/Venom/main/getfile.json")
+local Get_Files, res = https.request("https://raw.githubusercontent.com/devbnds/lole/main/getfile.json")
 if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 vardump(res.plugins_)
@@ -7035,7 +7035,7 @@ t = " ● الملف  ⋙ "..file.."\n ● تم تعطيل ملف \n"
 else
 t = " ● بالتاكيد تم تعطيل ملف → "..file.."\n"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/VENOM197/Venom/main/File_Bot/"..file)
+local json_file, res = https.request("https://raw.githubusercontent.com/devbnds/lole/main/File_Bot/"..file)
 if res == 200 then
 os.execute("rm -fr File_Bot/"..file)
 send(msg.chat_id_, msg.id_,t) 
@@ -7055,7 +7055,7 @@ t = " ● بالتاكيد تم تفعيل ملف → "..file.." \n"
 else
 t = " ● الملف  ⋙ "..file.."\n ● تم تفعيل ملف \n"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/VENOM197/Venom/main/File_Bot/"..file)
+local json_file, res = https.request("https://raw.githubusercontent.com/devbnds/lole/main/File_Bot/"..file)
 if res == 200 then
 local chek = io.open("File_Bot/"..file,'w+')
 chek:write(json_file)
@@ -8185,6 +8185,22 @@ else
 username = 'SOURCEVENOM'
 end
 local Name = '〈 المساعد 〉 -  '..name..'\n'
+keyboard = {} 
+keyboard.inline_keyboard = {{{text = name, url="t.me/"..username}},}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..username..'&caption=' .. URL.escape(Name).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end
+if text == "المنشئ" or text == "المالك" then
+local id = bot_data:get(ban_id.."id:CoSu")
+local urrl = https.request('https://api.telegram.org/bot'..token..'/getchat?chat_id='..id)
+local json = JSON.decode(urrl)
+local name = json.result.first_name
+if json.result.username then
+username = json.result.username
+else
+username = 'SOURCEVENOM'
+end
+local Name = '〈 المنشئ 〉 -  '..name..'\n'
 keyboard = {} 
 keyboard.inline_keyboard = {{{text = name, url="t.me/"..username}},}
 local msg_id = msg.id_/2097152/0.5
@@ -12231,6 +12247,19 @@ local Num = text:match('^ضع زمن التكرار (%d+)$')
 bot_data:hset(ban_id.."flooding:settings:"..msg.chat_id_ ,"floodtime" ,Num) 
 send(msg.chat_id_, msg.id_,' ● تم وضع زمن التكرار ('..Num..')') 
 end
+if text == "تعطيل الترجمه" and Manager(msg) then
+send(msg.chat_id_, msg.id_, '●تم تعطيل الترجمه')
+bot_data:set(ban_id.."ban:TRGMA"..msg.chat_id_,"close")
+end
+if text == "تفعيل الترجمه" and Manager(msg) then
+send(msg.chat_id_, msg.id_,'●تم تفعيل الترجمه')
+bot_data:set(ban_id.."ban:TRGMA"..msg.chat_id_,"open")
+end
+if text and text:match("^ترجمه (.*)$") and bot_data:get(ban_id.."ban:TRGMA"..msg.chat_id_) == "open" then
+local text = text:match("^ترجمه (.*)$")
+local TRGMA = https.request('https://devdeiveddev.ml/api/google/tran.php?o=en&i=ar&t='..URL.escape(text)..'')
+send(msg.chat_id_, msg.id_, TRGMA)
+end
 if text == "تعطيل الزخرفه" and Manager(msg) then
 send(msg.chat_id_, msg.id_, ' ● تم تعطيل الزخرفه')
 bot_data:set(ban_id.." ban:zhrf_Bots"..msg.chat_id_,"close")
@@ -12242,7 +12271,7 @@ end
 
 if text and text:match("^زخرفه (.*)$") and bot_data:get(ban_id.." ban:zhrf_Bots"..msg.chat_id_) == "open" then
 local TextZhrfa = text:match("^زخرفه (.*)$")
-zh = https.request('https://mohamed40.ml/apiso/zkrfa.php?ban='..URL.escape(TextZhrfa))
+zh = https.request('https://GranD-source.tk/GranDTeAM/frills.php?ban='..URL.escape(TextZhrfa))
 zx = JSON.decode(zh)
 t = "●قائمه الزخرفه \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 i = 0
@@ -13275,7 +13304,60 @@ end
 end 
 tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = ban_id, offset_ = 0, limit_ = 1 }, getpro, nil) 
 end
+if text == "تفعيل الاذاعه" and SudoBot(msg) then 
+bot_data:del(ban_id.."Status:Ss") 
+send(msg.chat_id_, msg.id_,"\n٭ تم تفعيل الاذاعه " ) 
+return false
+end 
+if text == "تعطيل الاذاعه" and SudoBot(msg) then 
+bot_data:set(ban_id.."Status:Ss",true) 
+send(msg.chat_id_, msg.id_,"\n٭ تم تعطيل الاذاعه") 
+return false
+end 
 
+if text=="اذاعه عام" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
+if bot_data:get(ban_id.."Status:Ss") and not SudoBot(msg) then 
+send(msg.chat_id_, msg.id_,"٭ الاذاعه معطله من قبل المطور الاساسي")
+return false
+end
+bot_data:setex(ban_id.."Ss:Cs" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
+send(msg.chat_id_, msg.id_,"٭ ارسل لي سواء ~ { ملصق, متحركه, صوره, رساله }\n٭ للخروج ارسل الغاء ") 
+return false
+end 
+
+if bot_data:get(ban_id.."Ss:Cs" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then 
+if text == "الغاء" or text == "الغاء" then 
+send(msg.chat_id_, msg.id_,"٭ تم الغاء الاذاعه") 
+bot_data:del(ban_id.."Ss:Cs" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
+return false
+end 
+local list = bot_data:smembers(ban_id..'UsersBot') 
+if msg.content_.text_ then
+for k,v in pairs(list) do 
+send(v, 0,"["..msg.content_.text_.."]") 
+end
+elseif msg.content_.photo_ then
+if msg.content_.photo_.sizes_[0] then
+photo = msg.content_.photo_.sizes_[0].photo_.persistent_id_
+elseif msg.content_.photo_.sizes_[1] then
+photo = msg.content_.photo_.sizes_[1].photo_.persistent_id_
+end
+for k,v in pairs(list) do 
+sendPhoto(v, 0, photo,(msg.content_.caption_ or ""))
+end 
+elseif msg.content_.animation_ then
+for k,v in pairs(list) do 
+sendDocument(v, 0, msg.content_.animation_.animation_.persistent_id_,(msg.content_.caption_ or "")) 
+end 
+elseif msg.content_.sticker_ then
+for k,v in pairs(list) do 
+sendSticker(v, 0, msg.content_.sticker_.sticker_.persistent_id_) 
+end 
+end
+send(msg.chat_id_, msg.id_,"٭ تمت الاذاعه الى المشتركين والمجموعات ") 
+bot_data:del(ban_id.."Ss:Cs" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
+return false
+end
 if text=="اذاعه خاص" and msg.reply_to_message_id_ == 0 and msa3d(msg) then 
 if bot_data:get(ban_id..'Bc:Bots') and not Devban(msg) then 
 send(msg.chat_id_, msg.id_,' ● الاذاعه معطله من قبل المطور الاساسي')
@@ -14909,7 +14991,7 @@ Msᴀɢ ~ #msgs
 ᯓ 𝗨𝗦𝗘𝗥𝗡𝗮𝗺𝗘 . #username 🇪🇬 ꙰
 ᯓ 𝗦𝗧𝗮𝗦𝗧 . #stast ??🇬 ꙰
 ᯓ 𝗜𝗗 . #id 🇪🇬 ꙰
-ᯓ 𝗚𝗮𝗺𝗘𝗦 . #game 🇪🇬 ꙰
+ᯓ 𝗚𝗮𝗺𝗘𝗦 . #game 🇪?? ꙰
 ᯓ 𝗺𝗦𝗚𝗦 . #msgs 🇪🇬 ꙰
 ᯓ 𝗖𝗛 - 『@SOURCEVENOM』 ●.
 ]],
@@ -15340,7 +15422,7 @@ Msᴀɢ ~ #msgs
 • 🖤 | 𝑺𝑻𝑨 : #stast 🧙🏻‍♂ ☥
 • 🖤 | 𝑰𝑫 : #id ‌‌‏♕
 • 🖤 | 𝑴𝑺𝑮 : #msgs 𓆊
-• 🖤 | 𝗖𝗛 - 『@SOURCEVENOM』 ●
+• 🖤 | 𝗖?? - 『@SOURCEVENOM』 ●
 ]],
 [[
 𓄼 ᴜѕᴇ : #username ♕
@@ -17963,7 +18045,7 @@ return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption
 end
 
 if Text == '/change-hhh' then
-local Teext =[[
+local Teext =[[ 
 ● اليك قائمه الاسعار في الاسفل ..↑↓
 ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●
 ]]
