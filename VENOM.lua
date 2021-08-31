@@ -173,7 +173,7 @@ io.popen("mkdir File_Bot")
 io.popen("cd File_Bot && rm -rf commands.lua.1") 
 io.popen("cd File_Bot && rm -rf commands.lua.2") 
 io.popen("cd File_Bot && rm -rf commands.lua.3") 
-io.popen("cd File_Bot && wget https://raw.githubusercontent.com/VENOM197/Venom/main/File_Bot/commands.lua") 
+io.popen("cd File_Bot && wget https://raw.githubusercontent.com/devbnds/lole/main/File_Bot/commands.lua") 
 t = "\27[35m".."\nAll Files Started : \n____________________\n"..'\27[m'
 i = 0
 for v in io.popen('ls File_Bot'):lines() do
@@ -1880,7 +1880,7 @@ echo '●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n 🔌l •⊱ 『 م�
 end
 if text == 'تحديث السورس ' and Devban(msg) then 
 os.execute('rm -rf VENOM.lua')
-os.execute('wget https://raw.githubusercontent.com/VENOM197/Venom/main/VENOM.lua')
+os.execute('wget https://raw.githubusercontent.com/devbnds/lole/main/VENOM.lua')
 send(msg.chat_id_, msg.id_,' ● تم تحديث السورس')
 dofile('VENOM.lua')  
 end
@@ -3642,7 +3642,7 @@ end
 return false
 end
 os.execute('rm -rf VENOM.lua')
-os.execute('wget https://raw.githubusercontent.com/VENOM197/Venom/main/VENOM.lua')
+os.execute('wget https://raw.githubusercontent.com/devbnds/lole/main/VENOM.lua')
 send(msg.chat_id_, msg.id_,' ● تم تحديث السورس')
 dofile('VENOM.lua')  
 end
