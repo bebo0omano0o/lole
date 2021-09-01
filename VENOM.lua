@@ -12260,6 +12260,27 @@ local text = text:match("^ترجمه (.*)$")
 local TRGMA = https.request('https://devdeiveddev.ml/api/google/tran.php?o=en&i=ar&t='..URL.escape(text)..'')
 send(msg.chat_id_, msg.id_, TRGMA)
 end
+
+if text == "تعطيل الزخرفه" and Owner(msg) then
+send(msg.chat_id_, msg.id_, '● تم تعطيل الزخرفه')
+bot_data:set(ban_id.."ban:zhrf_Bots"..msg.chat_id_,"close")
+end
+if text == "تفعيل الزخرفه" and Owner(msg) then
+send(msg.chat_id_, msg.id_,'● تم تفعيل الزخرفه')
+bot_data:set(ban_id.."ban:zhrf_Bots"..msg.chat_id_,"open")
+end
+if text and text:match("^زخرفه (.*)$") and bot_data:get(ban_id.."ban:zhrf_Bots"..msg.chat_id_) == "open" then
+local TextZhrfa = text:match("^زخرفه (.*)$")
+zh = https.request('https://GranD-source.tk/GranDTeAM/frills.php?en='..URL.escape(TextZhrfa)..'')
+zx = JSON.decode(zh)
+t = "\n●قائمه الزخرفه \n ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
+i = 0
+for k,v in pairs(zx.ok) do
+i = i + 1
+t = t..i.."-  `"..v.."` \n"
+end
+send(msg.chat_id_, msg.id_, t..' ━━━━\n●اضغط على الاسم ليتم نسخه')
+end
 if text == "تعطيل الزخرفه" and Manager(msg) then
 send(msg.chat_id_, msg.id_, ' ● تم تعطيل الزخرفه')
 bot_data:set(ban_id.." ban:zhrf_Bots"..msg.chat_id_,"close")
@@ -12271,7 +12292,7 @@ end
 
 if text and text:match("^زخرفه (.*)$") and bot_data:get(ban_id.." ban:zhrf_Bots"..msg.chat_id_) == "open" then
 local TextZhrfa = text:match("^زخرفه (.*)$")
-zh = https.request('https://GranD-source.tk/GranDTeAM/frills.php?ban='..URL.escape(TextZhrfa))
+zh = https.request('https://GranD-source.tk/GranDTeAM/frills.php?en='..URL.escape(TextZhrfa))
 zx = JSON.decode(zh)
 t = "●قائمه الزخرفه \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 i = 0
@@ -14991,7 +15012,7 @@ Msᴀɢ ~ #msgs
 ᯓ 𝗨𝗦𝗘𝗥𝗡𝗮𝗺𝗘 . #username 🇪🇬 ꙰
 ᯓ 𝗦𝗧𝗮𝗦𝗧 . #stast ??🇬 ꙰
 ᯓ 𝗜𝗗 . #id 🇪🇬 ꙰
-ᯓ 𝗚𝗮𝗺𝗘𝗦 . #game 🇪?? ꙰
+ᯓ 𝗚𝗮𝗺𝗘𝗦 . #game 🇪🇬 ꙰
 ᯓ 𝗺𝗦𝗚𝗦 . #msgs 🇪🇬 ꙰
 ᯓ 𝗖𝗛 - 『@SOURCEVENOM』 ●.
 ]],
@@ -15422,7 +15443,7 @@ Msᴀɢ ~ #msgs
 • 🖤 | 𝑺𝑻𝑨 : #stast 🧙🏻‍♂ ☥
 • 🖤 | 𝑰𝑫 : #id ‌‌‏♕
 • 🖤 | 𝑴𝑺𝑮 : #msgs 𓆊
-• 🖤 | 𝗖?? - 『@SOURCEVENOM』 ●
+• 🖤 | 𝗖𝗛 - 『@SOURCEVENOM』 ●
 ]],
 [[
 𓄼 ᴜѕᴇ : #username ♕
