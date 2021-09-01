@@ -7784,18 +7784,13 @@ if b.first_name_ == false then
 send(msg.chat_id_, msg.id_," ● حساب المنشئ محذوف")
 return false  
 end
-if b.username_ then
-UserName = b.username_
-else
-UserName = 'SOURCEVENOM'
-end
-local Text = " ● منشئ الجروب  ⋙ [•"..b.first_name_.."•](tg://user?id="..b.id_..")"
-local msg_id = msg.id_/2097152/0.5
+local UserName = (b.username_ or "SRC-VENOM")
+local Name = '〈 المنشئ 〉 -  ["..b.first_name_.."](T.me/"..UserName..")\n'
 keyboard = {} 
-keyboard.inline_keyboard = {
-{{text = b.first_name_, url="t.me/"..UserName}},   
-}
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..UserName..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+keyboard.inline_keyboard = {{{text = b.first_name_, url="t.me/"..UserName}},}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..UserName..'&caption=' .. URL.escape(Name).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end
 end,nil)   
 end
 end
