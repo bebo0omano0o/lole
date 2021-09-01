@@ -7789,7 +7789,7 @@ UserName = b.username_
 else
 UserName = 'SOURCEVENOM'
 end
-local Text = " ● منشئ الجروب  ⋙ ["..b.first_name_.."](tg://user?id="..b.id_..")")  
+local Text = " ● منشئ الجروب  ⋙ ["..b.first_name_.."](tg://user?id="..b.id_..")"
 local msg_id = msg.id_/2097152/0.5
 keyboard = {} 
 keyboard.inline_keyboard = {
