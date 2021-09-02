@@ -8184,7 +8184,6 @@ tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumbe
 return false 
 end
 if text == "المساعد" or text == "مساعد" then
-tdcli_function ({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 100},function(arg,data) 
 local id = bot_data:get(ban_id.."id:msa3d:ban")
 local urrl = https.request('https://api.telegram.org/bot'..token..'/getchat?chat_id='..id)
 local json = JSON.decode(urrl)
