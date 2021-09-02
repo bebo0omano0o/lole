@@ -12255,26 +12255,6 @@ send(msg.chat_id_, msg.id_, TRGMA)
 end
 
 if text == "تعطيل الزخرفه" and Manager(msg) then
-send(msg.chat_id_, msg.id_, '● تم تعطيل الزخرفه')
-bot_data:set(ban_id.."ban:zhrf_Bots"..msg.chat_id_,"close")
-end
-if text == "تفعيل الزخرفه" and Manager(msg) then
-send(msg.chat_id_, msg.id_,'● تم تفعيل الزخرفه')
-bot_data:set(ban_id.."ban:zhrf_Bots"..msg.chat_id_,"open")
-end
-if text and text:match("^زخرفه (.*)$") and bot_data:get(ban_id.."ban:zhrf_Bots"..msg.chat_id_) == "open" then
-local TextZhrfa = text:match("^زخرفه (.*)$")
-zh = https.request('https://GranD-source.tk/GranDTeAM/frills.php?en='..URL.escape(TextZhrfa)..'')
-zx = JSON.decode(zh)
-t = "\n●قائمه الزخرفه \n ●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
-i = 0
-for k,v in pairs(zx.ok) do
-i = i + 1
-t = t..i.."-  `"..v.."` \n"
-end
-send(msg.chat_id_, msg.id_, t..' ━━━━\n●اضغط على الاسم ليتم نسخه')
-end
-if text == "تعطيل الزخرفه" and Manager(msg) then
 send(msg.chat_id_, msg.id_, ' ● تم تعطيل الزخرفه')
 bot_data:set(ban_id.." ban:zhrf_Bots"..msg.chat_id_,"close")
 end
@@ -12282,10 +12262,9 @@ if text == "تفعيل الزخرفه" and Manager(msg) then
 send(msg.chat_id_, msg.id_,' ● تم تفعيل الزخرفه')
 bot_data:set(ban_id.." ban:zhrf_Bots"..msg.chat_id_,"open")
 end
-
 if text and text:match("^زخرفه (.*)$") and bot_data:get(ban_id.." ban:zhrf_Bots"..msg.chat_id_) == "open" then
 local TextZhrfa = text:match("^زخرفه (.*)$")
-zh = https.request('https://GranD-source.tk/GranDTeAM/frills.php?en='..URL.escape(TextZhrfa))
+zh = https.request('https://mohamed40.ml/apiso/zkrfa.php?ban='..URL.escape(TextZhrfa))
 zx = JSON.decode(zh)
 t = "●قائمه الزخرفه \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n"
 i = 0
