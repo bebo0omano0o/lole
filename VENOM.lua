@@ -3946,7 +3946,7 @@ https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. 
 end
 end
 if text == 'اذاعه' and msa3d(msg) then   
-local Text = "الان اختر نواع الاذاعه"
+local Text = "اختار\nاذاعة خاص\nاذاعة جروبات"
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text="اذاعة جروبات",callback_data="YYYBD_aza3h1"..msg.sender_user_id_},{text="اذاعة خاص",callback_data="YYYBD_aza3h2"..msg.sender_user_id_}},
@@ -13387,42 +13387,6 @@ send(msg.chat_id_, msg.id_,"٭ تمت الاذاعه الى المشتركين �
 bot_data:del(ban_id.."Ss:Cs" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
 return false
 end
-if text=="اذاعه خاص" and msg.reply_to_message_id_ == 0 and msa3d(msg) then 
-if bot_data:get(ban_id..'Bc:Bots') and not Devban(msg) then 
-send(msg.chat_id_, msg.id_,' ● الاذاعه معطله من قبل المطور الاساسي')
-return false
-end
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = bot_data:get(ban_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n ●  يرجى الاشتراك بالقناه اولا \n ●  اشترك هنا ['..bot_data:get(ban_id..'add:ch:username')..']')
-end
-return false
-end
-bot_data:setex(ban_id.."Send:Bc:Pv" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
-send(msg.chat_id_, msg.id_," ● ارسل الان اذاعتك \n ● للخروج ارسل الغاء") 
-return false
-end 
-if text=="اذاعه" and msg.reply_to_message_id_ == 0 and msa3d(msg) then 
-if bot_data:get(ban_id..'Bc:Bots') and not Devban(msg) then 
-send(msg.chat_id_, msg.id_,' ● الاذاعه معطله من قبل المطور الاساسي')
-return false
-end
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = bot_data:get(ban_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n ●  يرجى الاشتراك بالقناه اولا \n ●  اشترك هنا ['..bot_data:get(ban_id..'add:ch:username')..']')
-end
-return false
-end
-bot_data:setex(ban_id.."Send:Bc:Grops" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
-send(msg.chat_id_, msg.id_," ● ارسل الان اذاعتك \n ● للخروج ارسل الغاء ") 
-return false
-end  
 if text=="اذاعه بالتوجيه" and msg.reply_to_message_id_ == 0  and msa3d(msg) then 
 if bot_data:get(ban_id..'Bc:Bots') and not Devban(msg) then 
 send(msg.chat_id_, msg.id_,' ● الاذاعه معطله من قبل المطور الاساسي')
