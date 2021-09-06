@@ -3946,7 +3946,7 @@ https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. 
 end
 end
 if text == 'اذاعه' and msa3d(msg) then   
-local Text = "قم بتأكيد العمليه الان"
+local Text = "الان اختر نواع الاذاعه"
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text="اذاعة جروبات",callback_data="YYYBD_aza3h1"..msg.sender_user_id_},{text="اذاعة خاص",callback_data="YYYBD_aza3h2"..msg.sender_user_id_}},
