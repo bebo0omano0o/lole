@@ -22,14 +22,14 @@ file:write(serialized)
 file:close()  
 end  
 if not bot_data:get(id_server..":token") then
-io.write('\27[0;31m\n ارسل لي توكن البوت الان ↓ :\na●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n\27')
+io.write('\27[0;31m\n ارسل لي توكن البوت الان ↓ :\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n\27')
 local token = io.read()
 if token ~= '' then
 local url , res = https.request('https://api.telegram.org/bot'..token..'/getMe')
 if res ~= 200 then
 print('\27[0;31m●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n التوكن غير صحيح تاكد منه ثم ارسله')
 else
-io.write('\27[0;31m تم حفظ التوكن بنجاح \na●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n27[0;39;49m')
+io.write('\27[0;31m تم حفظ التوكن بنجاح \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n27[0;39;49m')
 local json = JSON.decode(url)
 bot_data:set(id_server..":token_username",json.result.username)
 bot_data:set(id_server..":token",token)
@@ -40,10 +40,10 @@ end
 os.execute('lua VENOM.lua')
 end
 if not bot_data:get(id_server..":SUDO:ID") then
-io.write('\27[0;35m\n ارسل لي ايدي المطور الاساسي ↓ :\na●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n\27[0;33;49m')
+io.write('\27[0;35m\n ارسل لي ايدي المطور الاساسي ↓ :\n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n\27[0;33;49m')
 local SUDOID = io.read()
 if SUDOID ~= '' then
-io.write('\27[1;35m تم حفظ ايدي المطور الاساسي \na●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n27[0;39;49m')
+io.write('\27[1;35m تم حفظ ايدي المطور الاساسي \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n27[0;39;49m')
 bot_data:set(id_server..":SUDO:ID",SUDOID)
 else
 print('\27[0;31m●○━━━━ꪜꫀꪀꪮꪑ━━━━○●\n لم يتم حفظ ايدي المطور الاساسي ارسله مره اخره')
@@ -3944,6 +3944,15 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
+end
+if text == 'اذاعه' and msa3d(msg) then   
+local Text = "قم بتأكيد العمليه الان"
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text="اذاعة جروبات",callback_data="YYYBD_aza3h1"..msg.sender_user_id_},{text="اذاعة خاص",callback_data="YYYBD_aza3h2"..msg.sender_user_id_}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 ----------------------------------------------------------------- انتهئ الاوامر الجديدة
 if text == 'السورس' or text == 'سورس' or text == 'يا سورس' or text == 'source' then
@@ -20761,6 +20770,24 @@ end,nil)
 end
 if Text == 'noKikedMe'..data.sender_user_id_ then  
 local Text ="● تم الغاء الأمر بنجاح "
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'ՏΌႮᎡᏟᎬ ᏙᎬΝΌᎷ',url='http://t.me/SOURCEVENOM'}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+if Text == 'YYYBD_aza3h1'..data.sender_user_id_ then  
+bot_data:setex(ban_id.."Ss:Cs" .. Chat_id .. ":" .. data.sender_user_id_, 600, true) 
+local Text ="● ارسل الاذاعة لارسلها الي الجروبات "
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'ՏΌႮᎡᏟᎬ ᏙᎬΝΌᎷ',url='http://t.me/SOURCEVENOM'}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+if Text == 'YYYBD_aza3h2'..data.sender_user_id_ then  
+bot_data:setex(ban_id.."Send:Bc:Pv" .. Chat_id .. ":" .. data.sender_user_id_, 600, true) 
+local Text ="● ارسل الاذاعة لارسلها الي الجروبات "
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text = 'ՏΌႮᎡᏟᎬ ᏙᎬΝΌᎷ',url='http://t.me/SOURCEVENOM'}},
