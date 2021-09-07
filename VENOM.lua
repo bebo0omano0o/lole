@@ -4858,11 +4858,11 @@ end
 if text == 'التواصل'  then
 bot_data:del(ban_id..'Srt:Bot') 
 local Text = [[ 
-[TWL](t.me/Quick0k)
+[TWL](t.me/VeNoM_TeAm1)
 ]] 
 keyboard = {}  
 keyboard.inline_keyboard = { 
-{{text = '˹ᴛᴀᴡᴏsʟ˼', url="t.me/Quick0k"}}, 
+{{text = '˹ᴛᴀᴡᴏsʟ˼', url="t.me/VeNoM_TeAm1"}}, 
 } 
 local msg_id = msg.id_/2097152/0.5 
 https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/Qtdao/34&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
@@ -18141,7 +18141,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text = '•ᴅᴇᴠɪᴅ♪',url="t.me/de_vi_d"},{text = '•ʀᴏʙᴏᴛ♪', url="t.me/P_X_U"}},
-{{text = '˹ᴛᴀᴡᴏsʟ˼',url="t.me/Quick0k"}}, 
+{{text = '˹ᴛᴀᴡᴏsʟ˼',url="t.me/VeNoM_TeAm1"}}, 
 {{text = '●𝙱𝙰𝙲??↵', callback_data="/change-hhh"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -18157,7 +18157,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text = 'الــمــبــرمــج بــانــدا', url="t.me/QSDRG"}},
-{{text = 'تــواصــل بــانــدا',url="t.me/Quick0k"}}, 
+{{text = 'تــواصــل بــانــدا',url="t.me/VeNoM_TeAm1"}}, 
 {{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/change-hhh"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -18178,7 +18178,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text = 'ՏΌႮᎡᏟᎬ ᏙᎬΝΌᎷ', url="t.me/SOURCEVENOM"}},
-{{text = '˹تــواصــل الـسـورس˼',url="t.me/Quick0k"}}, 
+{{text = '˹تــواصــل الـسـورس˼',url="t.me/VeNoM_TeAm1"}}, 
 {{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/change-hhh"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
@@ -18235,7 +18235,7 @@ local Teext =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '™ͲᎬᎪᎷ▷Ғ_ΌҒҒ🇨🇷',url="t.me/Quick0k"}},
+{{text = '™ͲᎬᎪᎷ▷Ғ_ΌҒҒ🇨🇷',url="t.me/VeNoM_TeAm1"}},
 {{text = 'Ᏼ.Ꭺ.Ꭱ▷Ᏼ.Ꭺ.Ν.Ꭰ.Ꭺ🇱🇸',url="t.me/Quqsk"}},
 {{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/bnada-yquio"}},
 }
@@ -18279,7 +18279,7 @@ local Teext =[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text = '𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼 2⤶',url="t.me/SOURCEVENOM2"},{text = '𝚂𝙾𝚄𝚁𝙲𝙴 𝚅𝙴𝙽𝙾𝙼 1⤶', url="t.me/SOURCEVENOM1"}},
-{{text = '•ᴛᴀᴡᴏsʟ♪',url="t.me/Quick0k"}}, 
+{{text = '•ᴛᴀᴡᴏsʟ♪',url="t.me/VeNoM_TeAm1"}}, 
 {{text = '●𝙱𝙰𝙲𝙺↵', callback_data="/HHH"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessagecaption?chat_id='..Chat_id..'&caption='..URL.escape(Teext)..'&message_id='..msg_idd..'&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  
