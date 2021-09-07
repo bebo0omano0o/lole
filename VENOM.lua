@@ -4000,7 +4000,7 @@ local bio = json.result.bio
 keyboard = {} 
 keyboard.inline_keyboard = {{{text = name,url="t.me/"..user}},}
 local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..user..'&caption=' .. URL.escape(bio).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..user..'&caption=' .. URL.escape(bio).."&reply_to_message_id="..msg_id.."&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 if text == 'ديفيد' or text == 'دفيد' then
 local id = '1360140225'
@@ -4012,7 +4012,7 @@ local bio = json.result.bio
 keyboard = {} 
 keyboard.inline_keyboard = {{{text = name,url="t.me/"..user}},}
 local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..user..'&caption=' .. URL.escape(bio).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..user..'&caption=' .. URL.escape(bio).."&reply_to_message_id="..msg_id.."&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 if text == 'أحمد' or text == 'احمد' or text == 'احمد عياد' then
 local id = '944353237'
@@ -4024,7 +4024,7 @@ local bio = json.result.bio
 keyboard = {} 
 keyboard.inline_keyboard = {{{text = name,url="t.me/"..user}},}
 local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..user..'&caption=' .. URL.escape(bio).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..user..'&caption=' .. URL.escape(bio).."&reply_to_message_id="..msg_id.."&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 if text == 'باندا' or text == 'Banda' or text == 'banda' then
 local Text = [[
@@ -21120,7 +21120,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
 if Text == 'YYYBD_aza3h3'..data.sender_user_id_ and msa3d(data) then  
-bot_data:setex(ban_id.."Send:msg:sudo" .. Chat_id .. ":" .. data.sender_user_id_, 600, true) 
+bot_data:setex(ban_id.."YYYBD_aza3h3" .. Chat_id .. ":" .. data.sender_user_id_, 600, true) 
 local Text ="● ارسل الاذاعة لارسلها الي المطور الاساسي و المساعد "
 keyboard = {} 
 keyboard.inline_keyboard = {
