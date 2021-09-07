@@ -4049,7 +4049,7 @@ bot_data:setex(ban_id.."Bc:Grops:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_
 send(msg.chat_id_, msg.id_," ● ارسل الان اذاعتك؟ \n ● للخروج ارسل الغاء ")
 return false
 end
-if text == "£¢€$$__€€¢¥^^¥€" and Developers(msg) then
+if text == "£¢€$$__€€¢¥^^" and Developers(msg) then
 tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
 local list = VENOM.members_
 for k, v in pairs(list) do
