@@ -5079,6 +5079,51 @@ local vBandav_Msg = {
 send(msg.chat_id_, msg.reply_to_message_id_,'['..vBandav_Msg[math.random(#vBandav_Msg)]..']')  
 return false 
 end
+if text == "حفل" and Sudo(msg) or text == 'حفل عليه' and Sudo(msg) then
+local t7fel = { 
+'يمتهان', 
+} 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_,'['..t7fel[math.random(#t7fel)]..']') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'يكسمك')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يخول')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يديوث')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يهطل')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يمنيوك')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يكوس')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يقله')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يبن الاحبه')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يخورم')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يميت')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'رد يبني')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'نت ميت لي') 
+send(msg.chat_id_, msg.reply_to_message_id_, 'يبني')   
+send(msg.chat_id_, msg.reply_to_message_id_, 'تع بس')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'روحت فين')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'يدينمي')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'علي الضحك')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'نت بطي نيك')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'ها رد يكسمك')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'الحق الواد هرب')  
+send(msg.chat_id_, msg.reply_to_message_id_, 'هقوره😿')  
+return false 
+end
 
 if text == "ثيم" and not  bot_data:get(ban_id.."sing:for:me"..msg.chat_id_) then 
 ban = math.random(1,57); 
@@ -15337,7 +15382,7 @@ Msᴀɢ ~ #msgs
 - 🇪🇬 𝐮𝐬𝐞𝐫𝒏𝒂𝒎𝒆 . #username 𖣂.
 - 🇪🇬 𝒔𝒕𝒂𝒔𝒕 . #stast 𖣂.
 - 🇪🇬 𝐢𝐝 . #id 𖣂.
-- 🇪🇬 𝒈𝒂𝒎𝒆𝒔 . #game 𖣂.
+- 🇪🇬 𝒈𝒂??𝒆𝒔 . #game 𖣂.
 - 🇪🇬 𝐦𝐬𝐠 . #msgs 𖣂.
 - 🇪🇬 𝗖𝗛 - 『@SOURCEVENOM』 ●.
 ]],
