@@ -16811,7 +16811,7 @@ if data.ID == "UpdateNewCallbackQuery" then
 local Chat_id = data.chat_id_
 local Msg_id = data.message_id_
 local msg_idd = Msg_id/2097152/0.5
-local text = data.payload_.data_
+local Text = data.payload_.data_
 Ok_id  = Text:match("(%d+)")  
 if text == 'okCaptcha'..data.sender_user_id_ then  
 DeleteMessage(Chat_id, {[0] = Msg_id}) 
